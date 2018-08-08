@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Using catalog-diff while refactoring Puppet code"
-date: 2015-12-31
+date: 2016-01-02
 author: Alex Harvey
 ---
 
