@@ -7,21 +7,8 @@ author: Alex Harvey
 
 While writing a simple Ruby script recently, I discovered that it is difficult to find any internet documentation that discusses the simplest use-case for Rspec, namely to test a short, simple Ruby script. By that I mean a script that has methods, but no classes.  This post intends to fill that gap.
 
-#### Table of Contents
-
-1. [Following along][Following along]
-2. [Project structure][Project structure]
-3. [The spec helper][The spec helper]
-4. [The Gemfile][The Gemfile]
-5. [The Rakefile][The Rakefile]
-6. [The first script][The first script]
-7. [The first test case][The first test case]
-8. [Running the tests][Running the tests]
-9. [Expecting an error][Expecting an error]
-10. [Using fixtures][Using fixtures]
-11. [Testing get_data][Testing get_data]
-12. [Stubbing out a method][Stubbing out a method]
-13. [Following along][Following along]
+* Table of contents
+{:toc}
 
 If you’d like to follow along with the code, you can clone this repo. Note that I have added tags so that you can checkout the code in stages that will closely follow the examples in the text. Where I say, “checkout 0.0.1” in the text, I mean run:
 
