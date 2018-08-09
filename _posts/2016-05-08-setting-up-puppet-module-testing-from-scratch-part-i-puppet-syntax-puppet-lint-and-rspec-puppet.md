@@ -7,7 +7,7 @@ author: Alex Harvey
 
 It was brought to my attention that there’s demand for a post on how to set up Beaker from scratch. Then, after looking into it, I realised there’s a case for a whole series on how to set up Puppet modules as well as Puppet roles & profiles for testing.
 
-In this series I am going to look at setting up all of the following components for Puppet module testing: Puppetlabs_spec_helper, Puppet-syntax, Puppet-lint, and Rspec-puppet (this post); Beaker for modules (part II); Travis CI (part III), Puppet Blacksmith and additional set up required for publishing your module on the Forge (part IV); and using ModuleSync to keep all of this set up in sync when you support many modules or code bases (part V).
+In this series I am going to look at setting up all of the following components for Puppet module testing: Puppetlabs_spec_helper, Puppet-syntax, Puppet-lint, and Rspec-puppet (this post); [Beaker for modules (part II)](http://alexharv074.github.io/2016/05/13/setting-up-puppet-module-testing-from-scratch-part-ii-beaker-for-module-testing.html); [Travis CI (part III)](http://alexharv074.github.io/2016/05/16/setting-up-puppet-module-testing-from-scratch-part-iii-travis-ci.html), Puppet Blacksmith and additional set up required for publishing your module on the Forge (part IV); and using ModuleSync to keep all of this set up in sync when you support many modules or code bases (part V).
 
 My aim is not to provide tutorials on how to write Rspec or Rspec-puppet or Beaker tests; there are many of those out there already. My focus is simply how to set up the various frameworks, assuming no prior knowledge from the reader.
 
@@ -15,7 +15,7 @@ My aim is not to provide tutorials on how to write Rspec or Rspec-puppet or Beak
 {:toc}
 
 ## Example module
-By way of example, we will look at adding the testing of the puppet-spacewalk module that I have been working on.  As such, it is a real-life example.
+By way of example, we will look at adding the testing of the [puppet-spacewalk](https://github.com/alexharv074/puppet-spacewalk) module that I have been working on.  As such, it is a real-life example.
 
 ## The puppetlabs_spec_helper
 It makes sense to begin with the puppetlabs_spec_helper gem, a wrapper around quite a number of other tools, including:
@@ -26,7 +26,7 @@ It makes sense to begin with the puppetlabs_spec_helper gem, a wrapper around qu
 And many others.
 
 ### Prerequisites
-To install and configure up the puppetlabs_spec_helper gem we need to firstly have RubyGems, and Bundler installed.  This is well-documented in the links provided.  Once these are installed you should find these commands in your path:
+To install and configure up the puppetlabs_spec_helper gem we need to firstly have [RubyGems](https://rubygems.org/), and [Bundler](https://bundler.io) installed.  This is well-documented in the links provided.  Once these are installed you should find these commands in your path:
 
 ~~~ text
 $ bundler -v
@@ -36,7 +36,7 @@ $ gem -v
 ~~~
 
 ### Gemfile
-Assuming we have Bundler and Ruby Gems installed, we begin by specifying our Ruby Gem dependencies in a file called Gemfile. I am using boilerplate from the Gem config from ModuleSync, although I have simplified it considerably for users who aren’t interested in setting up the ModuleSync tool at this stage. We’ll be adding to it in subsequent posts.
+Assuming we have Bundler and Ruby Gems installed, we begin by specifying our Ruby Gem dependencies in a file called Gemfile. I am using [boilerplate](https://github.com/voxpupuli/modulesync_config/blob/master/config_defaults.yml) from the Gem config in [ModuleSync,](https://github.com/voxpupuli/modulesync_config) although I have simplified it considerably for users who aren’t interested in setting up the ModuleSync tool at this stage. We’ll be adding to it in subsequent posts.
 
 For now, I include the bits we need just for Puppet-syntax, Puppet-lint, and Rspec-puppet:
 
@@ -51,9 +51,9 @@ gem 'facter'
 gem 'puppet'
 ~~~
 
-As can be seen, we have a gem group :test, which installs just the puppetlabs_spec_helper.  We use gem groups so that developers and CI/CD systems can opt-out of some of these dependencies, since Gem installs are expensive.
+As can be seen, we have a [gem group](https://bundler.io/v1.10/groups.html) :test, which installs just the puppetlabs_spec_helper.  We use gem groups so that developers and CI/CD systems can opt-out of some of these dependencies, since Gem installs are expensive.
 
-Note that puppetlabs_spec_helper installs Rspec, Rspec-puppet, Puppet-lint, Puppet-syntax, and other dependencies. For now, I’ll note in passing that if you want to know more about this tool, start at the project’s README. And if you want to know more about why we add :require => false, try this page.
+Note that puppetlabs_spec_helper installs Rspec, Rspec-puppet, Puppet-lint, Puppet-syntax, and other dependencies. For now, I’ll note in passing that if you want to know more about this tool, start at the project’s README. And if you want to know more about why we add :require => false, try [this](http://stackoverflow.com/questions/4800721/bundler-what-does-require-false-in-a-gemfile-mean) page.
 
 Once the Gemfile is set up, we install all the gems using Bundler:
 
@@ -93,7 +93,7 @@ For the moment, we’ll need a simple Rakefile, that will contain just a single 
 require 'puppetlabs_spec_helper/rake_tasks'
 ~~~
 
-Rake is a Make-like tool for Ruby, and we will use it to run our Lint and Rspec tests, which is the convention. As is probably clear enough, this single line pulls in the standard selection of Rake tasks from the puppetlabs_spec_helper. To see them all:
+[Rake](https://github.com/ruby/rake) is a Make-like tool for Ruby, and we will use it to run our Lint and Rspec tests, which is the convention. As is probably clear enough, this single line pulls in the standard selection of Rake tasks from the puppetlabs_spec_helper. To see them all:
 
 ~~~ text
 $ bundle exec rake -T
@@ -101,8 +101,7 @@ rake beaker                # Run beaker acceptance tests
 rake beaker_nodes          # List available beaker nodesets
 rake build                 # Build puppet module package
 rake check:dot_underscore  # Fails if any ._ files are present in directory
-rake check:git_ignore      # Fails if directories contain the files specified in
-  .gitignore
+rake check:git_ignore      # Fails if directories contain the files specified in .gitignore
 rake check:symlinks        # Fails if symlinks are present in directory
 rake check:test_file       # Fails if .pp files present in tests folder
 rake clean                 # Clean a built module package
@@ -110,8 +109,7 @@ rake compute_dev_version   # Print development version of module
 rake coverage              # Generate code coverage information
 rake help                  # Display the list of available rake tasks
 rake lint                  # Run puppet-lint
-rake release_checks        # Runs all nessesary checks on a module in preparation for
-  a release
+rake release_checks        # Runs all nessesary checks on a module in preparation for a release
 rake spec                  # Run spec tests in a clean fixtures directory
 rake spec_clean            # Clean up the fixtures directory
 rake spec_prep             # Create the fixtures directory
@@ -120,8 +118,7 @@ rake syntax                # Syntax check Puppet manifests and templates
 rake syntax:hiera          # Syntax check Hiera config files
 rake syntax:manifests      # Syntax check Puppet manifests
 rake syntax:templates      # Syntax check Puppet templates
-rake validate              # Check syntax of Ruby files and call :syntax and
-  :metadata_lint
+rake validate              # Check syntax of Ruby files and call :syntax and :metadata_lint
 ~~~
 Of these, we’ll be discussing :validate, :lint, :spec, :spec_clean, and :spec_prep today.
 
@@ -165,11 +162,11 @@ PuppetLint.configuration.send('disable_2sp_soft_tabs')
 
 To find the string 2sp_soft_tabs I simply grepped the Lint code for the string ‘two-space soft tabs not used’. There may be a better way.
 
-(Rob Nelson has helpfully informed me that it’s possible to disable Lint checks for sections of code without disabling them globally using control comments. My feeling is that most people will not want to have Lint-related control comments in their code, but it’s still useful to be aware that this feature exists.)
+(Rob Nelson has helpfully informed me that it’s possible to disable Lint checks for sections of code without disabling them globally using [control comments](http://puppet-lint.com/controlcomments/). My feeling is that most people will not want to have Lint-related control comments in their code, but it’s still useful to be aware that this feature exists.)
 
-For more information on configuring Lint, see the project’s README.
+For more information on configuring Lint, see the [README](https://github.com/rodjek/puppet-lint).
 
-Also, be aware that at the time of writing, the Lint gem hasn’t been released in a long time, so it’s possible that the README is ahead of the released Gem.
+Also, be aware that at the time of writing, the Lint gem hasn’t been [released](https://github.com/rodjek/puppet-lint/issues/443) in a long time, so it’s possible that the README is ahead of the released Gem.
 
 If you can’t wait for the next Gem release, and you need the recent fixes in Lint, you can add to your Gemfile:
 
@@ -195,7 +192,7 @@ So :spec is just a wrapper around three other tasks; it just calls :spec_prep (n
 #### .fixtures.yml and the spec_prep task
 In order for Rspec-puppet to find the module code and module dependencies, a file .fixtures.yml is used by the :spec_prep task to populate the spec/fixtures/module directory.
 
-To understand how this file works, consult the puppetlabs_spec_helper README, and also have a look in lib/puppetlabs_spec_helper/rake_tasks.rb.
+To understand how this file works, consult the puppetlabs_spec_helper [README](https://github.com/puppetlabs/puppetlabs_spec_helper), and also have a look in lib/puppetlabs_spec_helper/rake_tasks.rb.
 
 In the example of our Spacewalk module, and like many other modules, our only dependency will be the puppetlabs/stdlib module, and we’ll need to have a symbolic link back to the module root. To achieve this:
 
