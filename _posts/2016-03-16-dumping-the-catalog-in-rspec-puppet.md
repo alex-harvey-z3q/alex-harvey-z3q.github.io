@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Dumping the catalog in rspec-puppet"
-date: 2016-03-13
+date: 2016-03-16
 author: Alex Harvey
 ---
 
