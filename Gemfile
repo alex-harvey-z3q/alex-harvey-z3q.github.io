@@ -1,8 +1,6 @@
 source 'https://rubygems.org'
-
-group :tests do
-  gem 'rspec', :require => false
-  gem 'rake',  :require => false
-end
-
+gem 'rspec'
+gem 'rake'
 gem 'pry'
+gem 'pry-rescue'
+gem 'pry-stack_explorer'
