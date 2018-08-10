@@ -5,7 +5,7 @@ date: 2017-05-31
 author: Alex Harvey
 ---
 
-After writing this it was pointed out to me that Corey Osman has written another tool that auto-generates Rspec code called Retrospec, which is also worth having a look at.
+_After writing this it was pointed out to me that Corey Osman has written another tool that auto-generates Rspec code called [Retrospec](https://github.com/nwops/puppet-retrospec), which is also worth having a look at._
 
 In this post I document a new method for complex Puppet code refactoring, which involves a simple tool that I wrote, create_specs.
 
