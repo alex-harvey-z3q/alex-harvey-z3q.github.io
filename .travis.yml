@@ -1,0 +1,10 @@
+---
+language: ruby
+rvm: 2.4.1
+script: "bundle exec rake"
+notifications:
+  email:
+    recipients:
+      - 'alexharv074@gmail.com'
+    on_success: never
+    on_failure: always
