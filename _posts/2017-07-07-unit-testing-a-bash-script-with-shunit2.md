@@ -107,7 +107,7 @@ It is worth thinking about what it is doing before moving on. I proceed immediat
 $ bash /usr/share/doc/shunit2-2.1.6/examples/party_test.sh
 testEquality
 testPartyLikeItIs1999
-ASSERT:It's not 1999  expected:<1999> but was:<2017>
+ASSERT:It's not 1999 :-( expected:<1999> but was:<2017>
  
 Ran 2 tests.
  
