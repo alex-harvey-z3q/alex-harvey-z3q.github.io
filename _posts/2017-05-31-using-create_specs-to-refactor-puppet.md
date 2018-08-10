@@ -8,15 +8,15 @@ tags: puppet create-specs rspec
 
 _After writing this it was pointed out to me that Corey Osman has written another tool that auto-generates Rspec code called [Retrospec](https://github.com/nwops/puppet-retrospec), which is also worth having a look at._
 
-In this post I document a new method for complex Puppet code refactoring, which involves a simple tool that I wrote, create_specs.
+In this post I document a new method for complex Puppet code refactoring, which involves a simple tool that I wrote called [create_specs](https://github.com/alexharv074/create_specs).
 
 I have been using this method a while now; I find it easier than catalog-diff and consider it to be safer as well.
 
-The tool create_specs automatically generates Rspec test cases to test all aspects of the compiled catalog that is passed to it as an input. Of course, most Puppet modules can compile an infinite number of catalogs, unless they are very simple. Therefore, to have confidence in a real refactoring effort, we would need to compile a representative set of these catalogs and apply the method I describe here to each of those. This will be out of scope for today, but it is trivial to extend the method.
+The tool create_specs automatically generates Rspec test cases to test all aspects of a compiled catalog that is passed to it as an input. Of course, most Puppet modules can compile an infinite number of catalogs, unless they are very simple. Therefore, to have confidence in a real refactoring effort, we would need to compile a representative set of these catalogs and apply the method I describe here to each of those. This will be out of scope for today, but it is trivial to extend the method.
 
 Here, I provide a simple Puppet module that manages an NTP service in a single class, and then I refactor it to split the module into several classes. I then show how this method proves with certainty that the refactoring did not introduce bugs.
 
-I assume the reader already understands how to set up Rspec-puppet; if not, have a look at my earlier post.
+I assume the reader already understands how to set up Rspec-puppet; if not, have a look at my [earlier](https://alexharv074.github.io/2016/05/08/setting-up-puppet-module-testing-from-scratch-part-i-puppet-syntax-puppet-lint-and-rspec-puppet.html) post.
 
 * Table of Contents
 {:toc}
@@ -50,7 +50,7 @@ class ntp (
 Before we refactor anything, we need to compile a catalog. To do this, we create an initial spec file that uses Rspec-puppet to simply compile a catalog, as documented in the project’s README:
 
 ~~~ ruby
-init_spec.rb
+# init_spec.rb
 require 'spec_helper'
 
 describe 'ntp' do
@@ -199,7 +199,7 @@ However, in order to simulate a real refactoring task, I deliberately inserted a
 ~~~ puppet
 # init.pp
 class ntp (
-  Array $servers = $ntp::params::servers,
+  Array[String] $servers = $ntp::params::servers,
 ) inherits ntp::params {
   contain ntp::install
   contain ntp::configure
@@ -209,13 +209,17 @@ class ntp (
   -> Class['ntp::configure']
   ~> Class['ntp::service']
 }
-install.pp
+~~~
+
+~~~ puppet
+# install.pp
 class ntp::install {
   package { 'ntp':
     ensure => installed,
   }
 }
 ~~~
+
 ~~~ puppet
 # configure.pp
 class ntp::configure (
@@ -227,6 +231,7 @@ class ntp::configure (
   }
 }
 ~~~
+
 ~~~ puppet
 # service.pp
 class ntp::service {
@@ -236,6 +241,7 @@ class ntp::service {
   }
 }
 ~~~
+
 ~~~ puppet
 # params.pp
 class ntp::params {
