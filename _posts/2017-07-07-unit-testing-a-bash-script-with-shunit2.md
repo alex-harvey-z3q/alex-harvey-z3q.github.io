@@ -11,7 +11,7 @@ According to the [docs](http://ssb.stsci.edu/testing/shunit2/shunit2.html), shUn
 
 In this post, I introduce the subject of unit testing shell scripts using Kate Ward’s shUnit2 unit testing framework, and show how I have used it to solve some testing problems.
 
-Table of Contents	
+* Table of Contents	
 {:toc}
 
 ## Installing shUnit2
