@@ -3,6 +3,7 @@ layout: post
 title: "Integration testing using Ansible and Test Kitchen"
 date: 2016-06-13
 author: Alex Harvey
+tags: ansible test-kitchen
 ---
 
 ## Introduction

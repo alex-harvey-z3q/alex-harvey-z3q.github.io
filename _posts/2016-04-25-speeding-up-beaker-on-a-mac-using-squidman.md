@@ -3,6 +3,7 @@ layout: post
 title: "Speeding up Beaker on a Mac using SquidMan"
 date: 2016-04-25
 author: Alex Harvey
+tags: puppet beaker
 ---
 
 _Update: Thanks to [Steven Bambling](https://github.com/smbambling) for pointing out that SquidMan is also available as a Homebrew Cask._

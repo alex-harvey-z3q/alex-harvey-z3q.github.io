@@ -3,6 +3,7 @@ layout: post
 title: "Testing an Ansible role using Test Kitchen"
 date: 2016-05-25
 author: Alex Harvey
+tags: ansible test-kitchen
 ---
 
 _Updated with thanks to [Bill Wang](https://github.com/SydOps) for his feedback and pull request._

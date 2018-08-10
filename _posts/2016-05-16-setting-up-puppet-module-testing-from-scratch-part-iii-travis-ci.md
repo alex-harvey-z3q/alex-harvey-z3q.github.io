@@ -3,6 +3,7 @@ layout: post
 title: "Setting up Puppet module testing from scratch: Part III, Travis CI"
 date: 2016-05-16
 author: Alex Harvey
+tags: puppet travis
 ---
 
 In Parts I & II we have looked at setting up Puppet-syntax, Puppet-lint, Rspec-puppet, and Beaker. In today’s post we look at how to automatically run these tests in the Travis CI build pipeline.

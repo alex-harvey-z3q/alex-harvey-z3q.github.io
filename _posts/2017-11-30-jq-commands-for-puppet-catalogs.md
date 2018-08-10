@@ -3,6 +3,7 @@ layout: post
 title: "JQ commands for Puppet catalogs"
 date: 2017-11-30
 author: Alex Harvey
+tags: puppet catalog jq
 ---
 
 This is a page dedicated to useful JQ commands for querying a compiled Puppet catalog.

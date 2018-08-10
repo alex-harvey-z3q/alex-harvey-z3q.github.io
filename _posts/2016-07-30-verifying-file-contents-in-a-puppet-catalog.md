@@ -3,6 +3,7 @@ layout: post
 title: "Verifying file contents in a puppet catalog"
 date: 2016-07-30
 author: Alex Harvey
+tags: puppet rspec
 ---
 
 One of the most useful applications of Rspec-puppet I have found is in the verification of generated ERB file content. However, it is not always obvious how to actually do this.

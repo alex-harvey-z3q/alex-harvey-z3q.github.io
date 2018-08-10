@@ -3,6 +3,7 @@ layout: post
 title: "Setting up Puppet module testing from scratch: Part I, Puppet-syntax, Puppet-lint and Rspec-puppet"
 date: 2016-05-08
 author: Alex Harvey
+tags: puppet rspec
 ---
 
 It was brought to my attention that there’s demand for a post on how to set up Beaker from scratch. Then, after looking into it, I realised there’s a case for a whole series on how to set up Puppet modules as well as Puppet roles & profiles for testing.

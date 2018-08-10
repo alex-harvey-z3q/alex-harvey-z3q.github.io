@@ -3,6 +3,7 @@ layout: post
 title: "Introducing programmatic editing of Hiera YAML files"
 date: 2016-09-11
 author: Alex Harvey
+tags: puppet hiera ruamel
 ---
 
 * Table of contents

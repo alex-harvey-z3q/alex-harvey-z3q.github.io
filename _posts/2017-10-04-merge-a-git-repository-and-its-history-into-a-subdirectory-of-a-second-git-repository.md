@@ -3,6 +3,7 @@ layout: post
 title: "Merge a Git repository and its history into a subdirectory of a second Git repository"
 date: 2017-10-04
 author: Alex Harvey
+tags: git puppet
 ---
 
 On more than one occasion, I have needed to merge a Git repository and its history into a subdirectory of a second Git repository.

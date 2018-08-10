@@ -3,6 +3,7 @@ layout: post
 title: "Unit Testing a Bash Script with shUnit2"
 date: 2017-07-07
 author: Alex Harvey
+tags: bash shunit2
 ---
 
 According to the [docs](http://ssb.stsci.edu/testing/shunit2/shunit2.html), shUnit2:

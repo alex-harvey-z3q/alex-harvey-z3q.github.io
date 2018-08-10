@@ -3,6 +3,7 @@ layout: post
 title: "Rspec testing a simple Ruby script"
 date: 2016-04-23
 author: Alex Harvey
+tags: rspec
 ---
 
 While writing a simple Ruby script recently, I discovered that it is difficult to find any internet documentation that discusses the simplest use-case for Rspec, namely to test a short, simple Ruby script. By that I mean a script that has methods, but no classes.  This post intends to fill that gap.

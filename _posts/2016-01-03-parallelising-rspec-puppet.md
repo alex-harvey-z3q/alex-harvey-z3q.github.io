@@ -3,6 +3,7 @@ layout: post
 title: "Parallelising rspec-puppet"
 date: 2016-01-03
 author: Alex Harvey
+tags: puppet rspec
 ---
 
 I recently migrated a site away from Andrew Cunningham’s [puppet-validator](https://github.com/oldNoakes/puppet-validator) – an open source project that simply compiles catalogs based on configurable fact values – to rspec-puppet.

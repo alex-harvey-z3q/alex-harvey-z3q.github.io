@@ -3,6 +3,7 @@ layout: post
 title: "Setting up Puppet module testing from scratch: Part II, Beaker for module testing"
 date: 2016-05-13
 author: Alex Harvey
+tags: puppet rspec beaker
 ---
 
 In the previous post I covered the puppetlabs_spec_helper, a kind of front-end to a bunch of tools including puppet-syntax, puppet-lint, and rspec-puppet.

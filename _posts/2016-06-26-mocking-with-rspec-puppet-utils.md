@@ -3,6 +3,7 @@ layout: post
 title: "Mocking with rspec-puppet-utils"
 date: 2016-06-26
 author: Alex Harvey
+tags: puppet rspec
 ---
 
 This post came out of a [question](https://ask.puppet.com/question/26542/using-razorsedgenetwork-with-hiera/) that I answered at ask.puppet.com.
