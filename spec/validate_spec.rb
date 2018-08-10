@@ -18,15 +18,15 @@ describe 'posts' do
     title_in_file_content = front_matter['title'].gsub(title_regex,' ').downcase
 
     context basename do
-      it 'filename should match pattern' do
+      it 'filename must match pattern' do
         expect(basename).to match /^#{date_regex}-[0-9a-z_-]+\.md$/
       end
 
-      it 'date should match filename' do
+      it 'date in file name must match date in file content' do
         expect(date_in_file_name).to eq date_in_file_content
       end
 
-      it 'title should match filename' do
+      it 'title in file name should match title in file' do
         expect(title_in_file_name).to eq title_in_file_content
       end
     end
