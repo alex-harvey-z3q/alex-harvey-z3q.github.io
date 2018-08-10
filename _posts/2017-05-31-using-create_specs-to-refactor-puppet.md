@@ -84,7 +84,8 @@ And the catalog is written to catalogs/ntp.before.json.
 Running the script is easy:
 
 ~~~ text
-$ create_specs.rb catalogs/ntp.before.json
+$ create_specs.rb -c catalogs/ntp.before.json -o spec/classes/init_spec.rb
+Writing out as spec/classes/init_spec.rb
 ~~~
 After running the script, we find that it has overwritten the init_spec.rb with an updated version containing the auto-generated Rspec-puppet tests:
 
