@@ -1,16 +1,19 @@
 require 'spec_helper'
+require 'yaml'
 
 describe 'posts' do
   Dir.glob("_posts/*md").each do |file|
     context file do
 
-      front_matter = File.read(file).split(/---/)[1]
+      front_matter = YAML.load(File.read(file).split(/---/)[1])
 
-      date_in_file_name     = /_posts\/(\d{4}-\d{2}-\d{2})-.*/.match(file).captures[0]
-      date_in_file_content  = front_matter.lines.select{ |x| x =~ /^date/ }[0].chomp.split[1]
+      date_in_file_name = Date.parse(/_posts\/(\d{4}-\d{2}-\d{2})-.*/.match(file).captures[0])
+      title_in_file_name = /_posts\/\d{4}-\d{2}-\d{2}-(.*)\.md/.match(file).captures[0].gsub(/-/,' ')
 
-      title_in_file_name    = /_posts\/\d{4}-\d{2}-\d{2}-(.*)\.md/.match(file).captures[0].gsub(/-/,' ')
-      title_in_file_content = front_matter.lines.select{ |x| x =~ /^title/ }[0].chomp.gsub(/.*"(.*)"/,'\1').gsub(/ *[:,–-] */,' ').downcase
+      title_regex = / *[:,–-] */ # a title like "Foo: bar, Baz: qux" is "foo-bar-baz-qux" in file name.
+
+      date_in_file_content = front_matter['date']
+      title_in_file_content = front_matter['title'].gsub(title_regex,' ').downcase
 
       it 'filename should match pattern' do
         expect(file).to match /^_posts\/\d{4}-\d{2}-\d{2}-[0-9a-z_-]+\.md$/
