@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Setting up Puppet module testing from scratch: Part I, Puppet-syntax, Puppet-lint and Rspec-puppet"
+title: "Setting up Puppet module testing from scratch&#58 Part I, Puppet-syntax, Puppet-lint and Rspec-puppet"
 date: 2016-05-08
 author: Alex Harvey
 tags: puppet rspec
