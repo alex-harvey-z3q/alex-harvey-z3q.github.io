@@ -1,33 +1,34 @@
 require 'spec_helper'
 require 'yaml'
+require 'time'
 
-date_regex = '\d{4}-\d{2}-\d{2}'
-title_regex = / *[:,–-] */ # a title like "Foo: bar, Baz: qux"
-                           # is "foo-bar-baz-qux" in file name.
+# Documented at https://jekyllrb.com/news/2017/03/02/jekyll-3-4-1-released/
+post_regex = %r!^(?:.+/)*(\d{2,4}-\d{1,2}-\d{1,2})-(.*)(\.[^.]+)$!
 
 describe 'posts' do
   Dir.glob("_posts/*md").each do |file|
-    front_matter = YAML.load(File.read(file).split(/---/)[1])
-
     basename = File.basename(file)
 
-    date_in_file_name = Date.parse(/(#{date_regex})-.*/.match(basename).captures[0])
-    title_in_file_name = /#{date_regex}-(.*)\.md/.match(basename).captures[0].gsub(/-/,' ')
+    front_matter = YAML.load(File.read(file).split(/---/)[1])
 
-    date_in_file_content = front_matter['date']
-    title_in_file_content = front_matter['title'].gsub(title_regex,' ').downcase
+    date_in_file_name =
+      Time.parse(post_regex.match(basename).captures[0]).to_date
 
     context basename do
-      it 'filename must match pattern' do
-        expect(basename).to match /^#{date_regex}-[0-9a-z_-]+\.md$/
+      it 'filename must match documented post regex' do
+        expect(basename).to match post_regex
       end
 
-      it 'date in file name must match date in file content' do
-        expect(date_in_file_name).to eq date_in_file_content
+      it 'date in file name same day as date in front matter' do
+        expect(front_matter['date']).to be === date_in_file_name
       end
 
-      it 'title in file name should match title in file' do
-        expect(title_in_file_name).to eq title_in_file_content
+      it 'title in front matter should not contain a colon' do
+        expect(front_matter['title']).to_not match /:/
+      end
+
+      it 'front matter should not have published: false' do
+        expect(front_matter['published']).to_not be false
       end
     end
   end
