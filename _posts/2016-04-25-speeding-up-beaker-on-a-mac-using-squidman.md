@@ -6,8 +6,6 @@ author: Alex Harvey
 tags: puppet beaker
 ---
 
-_Update: Thanks to [Steven Bambling](https://github.com/smbambling) for pointing out that SquidMan is also available as a Homebrew Cask._
-
 If you have used Beaker extensively for system testing your Puppet roles and profiles, you will have no doubt had some coffees while waiting for RPMs to download that you may well have downloaded before.
 
 I was pleasantly surprised to find that setting up a Squid Cache using [SquidMan](http://squidman.net/) on my Mac OS X Yosemite laptop and then having Beaker point at it was fairly straightforward. Still, there are a few gotchas to justify a blog post on the subject.
@@ -19,17 +17,17 @@ I downloaded SquidMan 3.6 from [here](http://squidman.net/resources/downloads/Sq
 
 Having started I went to its Preferences and entered the following config:
 
-- Screen Shot 2016-04-27 at 12.13.11 am
+![Squid Preferences 1]({{ "/assets/squidman1.png" | absolute_url }})
 
 That is, I set the port to 3128, increased the maximum object size to 256MB in case I need to deal with large RPMs, and set the cache size to 4GB, and then I went to the Clients tab:
 
-- Screen Shot 2016-04-25 at 8.28.37 pm
+![Squid Preferences 2]({{ "/assets/squidman2.png" | absolute_url }})
 
 And here I allowed Beaker to connect from whatever network it happens to be on, i.e. all. (Limit that as your needs for security dictate.)  (If you forget this step, Beaker will error out during a Yum install with a 403 Forbidden error.)
 
 After starting Squid, you can find its config file using:
 
-~~~
+~~~ text
 $ ps -ef |grep squid
   501  2955     1   0  8:17pm ??         0:03.64 /Applications/SquidMan.app/Contents/MacOS/SquidMan
   501  7283     1   0  8:28pm ??         0:00.00 /usr/local/squid/sbin/squid -f /Users/alexharvey/Library/Preferences/squid.conf
@@ -83,3 +81,5 @@ The first time you run it, of course, the Squid Cache will be empty, so you wonâ
 By a curious coincidence I had actually fixed the $BEAKER_PACKAGE_PROXY functionality for Yum-based platforms in Beaker-rspec myself in [this](https://github.com/puppetlabs/beaker/pull/983/files) PR.
 
 I mention this because I noted at the time that $BEAKER_PACKAGE_PROXY looked broken in the same way for Debian-based platforms (and not to mention other platforms like AIX etc.). Consider this a heads-up if youâ€™re trying to get this procedure to work on say Ubuntu; you may need to send in a patch similar to the one I sent in for the Red Hat plaforms.
+
+_Update: Thanks to [Steven Bambling](https://github.com/smbambling) for pointing out that SquidMan is also available as a Homebrew Cask._
