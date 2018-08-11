@@ -16,7 +16,7 @@ Acknowledgements go to Neill for writing all of these extensions, as well as Mar
 {:toc}
 
 ## Kitchen CI architecture
-test kitchen-2
+![Ansible/Test Kitchen Architecture]({{ "/assets/ansible-test-kitchen.png" | absolute_url }})
 
 At a high level I have used an architecture that includes Test Kitchen with the kitchen-docker driver, the kitchen-ansible provisioner, which in turn calls Neill’s omnibus-ansible as well as his kitchen-verifier-serverspec test runner to run the Serverspec tests.  Use of the kitchen-verifier-serverspec means that I am not dependent on busser runner and therefore have no need to have Chef Omnibus in the picture just to run the tests, which was the case in earlier incarnations of this stack.
 

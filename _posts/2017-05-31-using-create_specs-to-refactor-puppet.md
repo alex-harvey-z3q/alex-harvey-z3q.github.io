@@ -6,8 +6,6 @@ author: Alex Harvey
 tags: puppet create-specs rspec
 ---
 
-_After writing this it was pointed out to me that Corey Osman has written another tool that auto-generates Rspec code called [Retrospec](https://github.com/nwops/puppet-retrospec), which is also worth having a look at._
-
 In this post I document a new method for complex Puppet code refactoring, which involves a simple tool that I wrote called [create_specs](https://github.com/alexharv074/create_specs).
 
 I have been using this method a while now; I find it easier than catalog-diff and consider it to be safer as well.
@@ -375,3 +373,5 @@ I am back to 100% passing tests and 100% resource coverage. I feel 100% certain 
 This is an excellent outcome, because only if refactoring can be done quickly – and safely! – can developers realistically be expected to do it at all, and without refactoring, there can be no continuous improvement.
 
 Questions and feedback in the comments most welcome!
+
+_After writing this it was pointed out to me that Corey Osman has written another tool that auto-generates Rspec code called [Retrospec](https://github.com/nwops/puppet-retrospec), which is also worth having a look at._

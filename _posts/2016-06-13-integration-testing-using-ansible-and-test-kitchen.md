@@ -28,7 +28,7 @@ The Ansible role that we will be testing configures a simple BIND 9 system with 
 
 The following figure shows the high-level architecture:
 
-Screen Shot 2016-06-12 at 7.56.37 pm
+![BIND Architecture]({{ "assets/ansible-bind.png" | absolute_url }})
 
 ## Ansible role
 The code for this solution is available online at Github [here](https://github.com/alexharv074/ansible-bind) It’s not my intention here to discuss the Ansible code itself, except where it is relevant to the integration testing procedure.

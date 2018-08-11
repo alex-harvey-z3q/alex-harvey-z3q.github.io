@@ -107,7 +107,7 @@ Next, it is typical to advertise the Travis CI build status by adding a line at 
 ~~~
 Once this is committed and pushed back to Github, the project’s README page will show a build status that looks like this:
 
-Screen Shot 2016-05-16 at 9.19.48 pm
+![Spacewalk]({{ "/assets/travis1.png" | absolute_url }})
 
 At this stage the build status is “unknown” as we haven’t activated Travis CI for this repository yet.
 
@@ -116,7 +116,7 @@ If you have not used Travis CI before, you will need to sign up, which is free f
 
 Click the “build, unknown” link and you’ll be taken to Travis CI, where you’ll see something like:
 
-Screen Shot 2016-05-16 at 1.18.34 pm
+![Travis 1]({{ "/assets/travis2.png" | absolute_url }})
 
 Click the Green “Activate repository” link, and the repository will then be active.
 
@@ -124,11 +124,11 @@ Next, you’ll need to actually push some changes to trigger the first build.  T
 
 Click on the link on the left corresponding to your git project, and you’ll see the build status:
 
-Screen Shot 2016-05-16 at 10.52.55 pm
+![Travis 2]({{ "/assets/travis3.png" | absolute_url }})
 
 If all is well, you’ll end up soon enough with a screen that looks something like this:
 
-Screen Shot 2016-05-17 at 1.46.28 am
+![Travis 3]({{ "/assets/travis4.png" | absolute_url }})
 
 The perceptive reader may notice that I’ve shown build #7 as green and passing there, whereas it was build #1 in the screen shot above.  Well, it turned out I had some debugging to do; we’d unknowingly used a feature that was introduced in Puppet 3.5.1.  And I certainly wouldn’t have known if it weren’t for these tests running in Travis CI.
 
