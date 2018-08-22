@@ -6,21 +6,15 @@ author: Alex Harvey
 tags: rspec
 ---
 
-While writing a simple Ruby script recently, I discovered that it is difficult to find any internet documentation that discusses the simplest use-case for Rspec, namely to test a short, simple Ruby script. By that I mean a script that has methods, but no classes.  This post intends to fill that gap.
+While writing a simple Ruby script recently, I discovered that it is difficult to find internet documentation that discusses the simplest use-case for Rspec, namely to test such a short, simple Ruby script. By that I mean a script with methods and no classes. This post intends to fill that gap.
 
 * Table of contents
 {:toc}
 
-If you’d like to follow along with the code, you can clone this repo. Note that I have added tags so that you can checkout the code in stages that will closely follow the examples in the text. Where I say, “checkout 0.0.1” in the text, I mean run:
-
-~~~ text
-$ git checkout 0.0.1
-~~~
-
-and you’ll have the code matching where you’re up to in the text.
+The post is written as a tutorial and if you’d like to follow along with the code, you can clone [this](https://github.com/alexharv074/rspec_examples) repo. Note that I have added tags so that you can checkout the code in stages that will closely follow the examples in the text.
 
 ## Project structure
-To begin (checkout 0.0.1) we create a new project that illustrates expected file locations.
+To begin (git checkout 0.0.1) I create a new project that illustrates expected file locations.
 
 ~~~ text
 $ mkdir example
@@ -29,7 +23,7 @@ $ mkdir bin spec
 ~~~
 
 ## The spec helper
-To begin with we create a simple spec helper file in spec/spec_helper.rb:
+To begin with I create a simple spec helper file in spec/spec_helper.rb:
 
 ~~~ ruby
 RSpec.configure do |config|
@@ -37,10 +31,10 @@ RSpec.configure do |config|
 end
 ~~~
 
-Our examples being very simple, we don’t really need a helper but it’s conventional and I include it anyway, and this one just adds colour to our Rspec output.
+Our examples being very simple, I don’t really need a helper but it’s conventional and I include it anyway, and this one just adds colour to our Rspec output.
 
 ## The Gemfile
-We assume you have already installed Ruby Gems and Bundler.  Next we create our Gemfile with:
+We assume you have already installed Ruby Gems and Bundler.  Next I create our Gemfile with:
 
 ~~~ ruby
 source 'https://rubygems.org'
@@ -48,14 +42,14 @@ gem 'rspec'
 gem 'rake'
 ~~~
 
-And then we install the gems as follows:
+And then I install the gems as follows:
 
 ~~~ text
 $ bundle install
 ~~~
 
 ## The Rakefile
-In order to call our tests from Rake, we add a simple Rakefile:
+In order to call our tests from Rake, I add a simple Rakefile:
 
 ~~~ ruby
 require 'rspec/core/rake_task'
@@ -65,7 +59,7 @@ task :default => :spec
 This adds the rake spec task that we’ll use to run the tests.
 
 ## The first script
-Imagine we have a script that just calls a method to convert a string from hours and minutes as used for example when logging time to a Jira ticket into seconds (checkout 0.0.2).  We add this script in ./bin/example.rb:
+Imagine I have a script that just calls a method to convert a string from hours and minutes as used for example when logging time to a Jira ticket into seconds (checkout 0.0.2).  We add this script in ./bin/example.rb:
 
 ~~~ ruby
 #!/usr/bin/env ruby
@@ -106,7 +100,7 @@ In Ruby, `__FILE__` is a special variable that contains the name of the current 
 This allows us to run our script as a script by calling it directly, while allowing it to behave as a library of methods in the context of Rspec.
 
 ## The first test case
-Now we will add the first test case, an expectation that our method, if passed a string ‘3h 30m’, will return 3 hours and 30 minutes expressed as seconds, which is 12,600.
+Now I will add the first test case, an expectation that our method, if passed a string ‘3h 30m’, will return 3 hours and 30 minutes expressed as seconds, which is 12,600.
 
 ~~~ ruby
 require 'spec_helper'
@@ -123,7 +117,7 @@ Note that I have had to use require_relative. This feels a bit like a hack to me
 
 We also require our spec helper, which is conventionally named and required as I’ve done here.
 
-More interesting is our first test. By convention, we write describe '#method' do ... end to “describe” or test an instance method. (And we’d write describe '.method' do ... end to test a class method.)
+More interesting is our first test. By convention, I write describe '#method' do ... end to “describe” or test an instance method. (And we’d write describe '.method' do ... end to test a class method.)
 
 It’s useful to be aware at this point that Ruby doesn’t have functions in the same way that some other OO languages like Python does, even if they look the same as functions when defined in a script. In Ruby, nearly everything is an object, and methods in a script become private instance methods of Object:
 
@@ -172,7 +166,7 @@ $ ./bin/example.rb I_am_badly_formatted
 
 And that behaviour is normal. That’s what I want it to do if called incorrectly. Two things to note here about the behaviour: (1) the script has raised a RuntimeError (the default if unspecified); and (2) the error message string “illegal input” that I wrote into the code.
 
-Rspec has a matcher raise_error that we can use here:
+Rspec has a matcher raise_error that I can use here:
 
 ~~~ ruby
 it 'should raise an error given badly formatted input' do
@@ -181,12 +175,12 @@ it 'should raise an error given badly formatted input' do
 end
 ~~~
 
-Did you also note the syntax change after the expect call? When we expect a call to raise an exception, that call must be protected inside a block { ... }. If it wasn’t so protected, the raise call would cause Rspec itself to exit, which isn’t what we want.
+Did you also note the syntax change after the expect call? When I expect a call to raise an exception, that call must be protected inside a block { ... }. If it wasn’t so protected, the raise call would cause Rspec itself to exit, which isn’t what I want.
 
 ## Using fixtures
 Let’s extend the script a bit (checkout 0.0.4) so that it reads times from a YAML-formatted data file.
 
-Assume we have a file spec/fixtures/good.yml that looks like this (the reason for this file name and path will be explained below):
+Assume I have a file spec/fixtures/good.yml that looks like this (the reason for this file name and path will be explained below):
 
 ~~~ yaml
 ---
@@ -254,7 +248,7 @@ describe '#get_data' do
   end
 end
 ~~~
-We’ll also need a test for a badly formatted YAML file and we add that file in spec/fixtures/bad.yml. It looks like this:
+We’ll also need a test for a badly formatted YAML file so I add that file in spec/fixtures/bad.yml. It looks like this:
 
 ~~~ yaml
 ---
@@ -329,5 +323,3 @@ $ bundle exec rake spec
 Finished in 0.02416 seconds (files took 0.18324 seconds to load)
 7 examples, 0 failures
 ~~~
-
-And that’s it for today.
