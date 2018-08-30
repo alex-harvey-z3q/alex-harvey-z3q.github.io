@@ -26,7 +26,7 @@ The sample code is a simple Puppet class that installs and configures NTP.
 
 ~~~ puppet
 class ntp (
-  Array $servers,
+  Array[String] $servers,
 ) {
   package { 'ntp':
     ensure => installed,
@@ -193,7 +193,7 @@ Let us continue.
 ## Refactoring task
 The hypothetical refactoring task is to split the module into separate classes, ntp::install, ntp::configure, ntp::service and ntp::params.
 
-However, in order to simulate a real refactoring task, I deliberately inserted a bug as well. It is a bug that will not break compilation, but stop Puppet from running. The reader may or may not choose to spend a moment trying to find it before continuing.
+However, in order to simulate a real refactoring task, I deliberately inserted a bug as well. It is a bug that will not break compilation, but it will stop Puppet from running. The reader may choose to spend a moment trying to find the bug before continuing.
 
 ~~~ puppet
 # init.pp
@@ -222,7 +222,7 @@ class ntp::install {
 ~~~ puppet
 # configure.pp
 class ntp::configure (
-  Array $servers = $ntp::servers,
+  Array[String] $servers = $ntp::servers,
 ) {
   file { '/etc/ntp.conf':
     ensure  => file,
@@ -368,7 +368,7 @@ Total resources:   6
 Touched resources: 6
 Resource coverage: 100.00%
 ~~~
-I am back to 100% passing tests and 100% resource coverage. I feel 100% certain that my refactoring has not broken anything, and there is no need for me to perform time-expensive testing, like spinning Vagrant instances etc. The tests ran in only 2.17 seconds. In fact, the most time expensive part of the whole procedure is refactoring the code itself.
+I am back to 100% passing tests and 100% resource coverage. I feel 100% certain that my refactoring has not broken anything, and there is no need for me to perform time-expensive testing, like spinning Vagrant instances etc. The tests ran in only 2.17 seconds. In fact, the most time expensive part of the whole procedure was refactoring the code itself.
 
 This is an excellent outcome, because only if refactoring can be done quickly – and safely! – can developers realistically be expected to do it at all, and without refactoring, there can be no continuous improvement.
 
