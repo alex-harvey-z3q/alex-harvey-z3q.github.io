@@ -1,3 +1,7 @@
 ---
 theme: jekyll-theme-hacker
 name: Alex Harvey
+author:
+  twitter: alexharv074
+plugins:
+  - jekyll-seo-tag
