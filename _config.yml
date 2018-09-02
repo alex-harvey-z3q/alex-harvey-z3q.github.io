@@ -3,5 +3,7 @@ theme: jekyll-theme-hacker
 name: Alex Harvey
 author:
   twitter: alexharv074
+url: https://alexharv074.github.io/
 plugins:
   - jekyll-seo-tag
+  - jekyll-sitemap
