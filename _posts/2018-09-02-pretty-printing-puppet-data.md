@@ -14,7 +14,7 @@ Until then, I found a useful [Gist](https://gist.github.com/Cinderhaze/6d1e90dec
 
 Consider the following snippet:
 
-~~~ puppet
+``` puppet
 # data.pp
 $data = {
   "test.ltd" => {
@@ -33,7 +33,7 @@ $data = {
 }
 
 notice($data)
-~~~
+```
 
 If I apply, the output is unreadable:
 
@@ -48,7 +48,7 @@ Notice: Applied catalog in 0.01 seconds
 
 Using the idea suggested by Cinderhaze:
 
-~~~ puppet
+``` puppet
 # data.pp
 $data = {
   "test.ltd" => {
@@ -70,7 +70,7 @@ $content = inline_template("
   <%- require 'json' -%>
   <%= JSON.pretty_generate(@data) %>
   ")
-~~~
+```
 
 I now get nice readable JSON-formatted output:
 
@@ -110,7 +110,7 @@ Notice: Applied catalog in 0.01 seconds
 
 Or we could use the Ruby awesome_print library:
 
-~~~ puppet
+``` puppet
 $data = {
   "test.ltd" => {
     "ensure" => "present",
@@ -132,7 +132,7 @@ $content = inline_template("
   <%= ap(@data) %>
   ")
 notice($content)
-~~~
+```
 
 And get:
 
