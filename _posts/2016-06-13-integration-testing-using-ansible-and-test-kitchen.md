@@ -6,7 +6,9 @@ author: Alex Harvey
 tags: ansible test-kitchen
 ---
 
-* ToC
+## Table of contents
+
+- ToC
 {:toc}
 
 ## Introduction

@@ -8,12 +8,12 @@ tags: rspec
 
 While writing a simple Ruby script recently, I discovered that it is difficult to find internet documentation that discusses the simplest use-case for Rspec, namely to test such a short, simple Ruby script. By that I mean a script with methods and no classes. This post intends to fill that gap.
 
-* Table of contents
 {:toc}
 
 The post is written as a tutorial and if you’d like to follow along with the code, you can clone [this](https://github.com/alexharv074/rspec_examples) repo. Note that I have added tags so that you can checkout the code in stages that will closely follow the examples in the text.
 
 ## Project structure
+
 To begin (git checkout 0.0.1) I create a new project that illustrates expected file locations.
 
 ~~~ text
@@ -23,6 +23,7 @@ $ mkdir bin spec
 ~~~
 
 ## The spec helper
+
 To begin with I create a simple spec helper file in spec/spec_helper.rb:
 
 ~~~ ruby
@@ -34,6 +35,7 @@ end
 Our examples being very simple, I don’t really need a helper but it’s conventional and I include it anyway, and this one just adds colour to our Rspec output.
 
 ## The Gemfile
+
 We assume you have already installed Ruby Gems and Bundler.  Next I create our Gemfile with:
 
 ~~~ ruby
@@ -49,6 +51,7 @@ $ bundle install
 ~~~
 
 ## The Rakefile
+
 In order to call our tests from Rake, I add a simple Rakefile:
 
 ~~~ ruby
@@ -56,15 +59,18 @@ require 'rspec/core/rake_task'
 RSpec::Core::RakeTask.new(:spec)
 task :default => :spec
 ~~~
+
 This adds the rake spec task that we’ll use to run the tests.
 
 ## The first script
+
 Imagine I have a script that just calls a method to convert a string from hours and minutes as used for example when logging time to a Jira ticket into seconds (checkout 0.0.2).  We add this script in ./bin/example.rb:
 
 ~~~ ruby
 #!/usr/bin/env ruby
 
 ##
+
 # Converts hours and minutes to seconds.
 
 def hm2s(hm)
@@ -95,11 +101,13 @@ if $0 == __FILE__
   # do stuff
 end
 ~~~
+
 In Ruby, `__FILE__` is a special variable that contains the name of the current file, whereas $0 is the name of the file that started the program. So if called from Rspec, $0 will be something like /Library/Ruby/Gems/2.0.0/gems/rspec-core-3.4.4/exe/rspec whereas __FILE__ will contain the path to the file itself, in our case ../../bin/example.rb.
 
 This allows us to run our script as a script by calling it directly, while allowing it to behave as a library of methods in the context of Rspec.
 
 ## The first test case
+
 Now I will add the first test case, an expectation that our method, if passed a string ‘3h 30m’, will return 3 hours and 30 minutes expressed as seconds, which is 12,600.
 
 ~~~ ruby
@@ -154,6 +162,7 @@ Finished in 0.00117 seconds (files took 0.12125 seconds to load)
 ~~~
 
 ## Expecting an error
+
 Our tests aren’t complete however (checkout 0.0.3). We also expect that this method will raise an exception given badly formatted input.
 
 If I run the script with badly formatted input, I receive output like this:
@@ -178,6 +187,7 @@ end
 Did you also note the syntax change after the expect call? When I expect a call to raise an exception, that call must be protected inside a block { ... }. If it wasn’t so protected, the raise call would cause Rspec itself to exit, which isn’t what I want.
 
 ## Using fixtures
+
 Let’s extend the script a bit (checkout 0.0.4) so that it reads times from a YAML-formatted data file.
 
 Assume I have a file spec/fixtures/good.yml that looks like this (the reason for this file name and path will be explained below):
@@ -196,6 +206,7 @@ We will add some methods for reading in this file and looping through its data:
 require 'yaml'
 ...
 ##
+
 # Get data from a YAML-formatted data file.
 
 def get_data(data_file)
@@ -207,6 +218,7 @@ def get_data(data_file)
 end
 
 ##
+
 # Process a list of data from a file.
 
 def process(data_file)
@@ -234,6 +246,7 @@ $ ./bin/example.rb spec/fixtures/good.yml
 But how do we test it?
 
 ## Testing get_data
+
 To test the get_data method it would be ideal if we can use a real file as input and expect its Hash representation in return.
 
 The reason I have saved my data file as spec/fixtures/good.yml is another Rspec convention (although some say that use of fixtures is an anti-pattern, e.g.) Well, I think it would be overkill to use factory_girl in a simple script, and this will remain beyond the scope of today’s post).
@@ -248,6 +261,7 @@ describe '#get_data' do
   end
 end
 ~~~
+
 We’ll also need a test for a badly formatted YAML file so I add that file in spec/fixtures/bad.yml. It looks like this:
 
 ~~~ yaml
@@ -279,6 +293,7 @@ Finished in 0.00565 seconds (files took 0.11604 seconds to load)
 ~~~
 
 ## Stubbing out a method
+
 Finally (checkout 0.0.5), we’ll want to test the process method. We could apply the same approach, and have the process method also read from a file in fixtures. However, that would not be a unit test; it would be an integration test. It would be testing at once the correct operation of both the get_data and the process methods.
 
 To test the process method in isolation we need to “stub” the get_data method. In the language of Rspec, we will “allow” the method to be called with a specific input and then return a canned output.
@@ -313,6 +328,7 @@ describe '#process' do
   end
 end
 ~~~
+
 And running the tests:
 
 ~~~ text

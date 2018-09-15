@@ -119,7 +119,7 @@ creator: "Gene Roddenberry"
 I now want to apply the patch that was emailed to the current version of the file, but of course it won't apply:
 
 ~~~ text
-$ git apply patch 
+$ git apply patch
 error: patch failed: star_trek.yml:3
 error: star_trek.yml: patch does not apply
 ~~~

@@ -15,6 +15,7 @@ I often wondered why Rspec-puppet couldn't just dump the catalogs it compiles du
 Well it can; I just found a bit of the answer [here](https://groups.google.com/forum/#!topic/puppet-dev/AbXgZEFl3ME), and the rest inside the debugger.
 
 ## How to dump the catalog in Rspec-puppet
+
 I assume we have Rspec-puppet set up already.  If not, try the [Rspec-puppet tutorial](http://rspec-puppet.com/tutorial/).
 
 Imagine we have a simple test as follows:

@@ -9,6 +9,7 @@ tags: puppet refactoring
 In [yesterday’s post](http://alexharv074.github.io/compiling-a-puppet-catalog-on-a-laptop.html) I showed how you can compile a Puppet catalog from a bundle on a laptop. Today I’m going to document how to use Zack Smith’s catalog diff tool to assist with complex refactoring changes.
 
 ## Refactoring exercise
+
 For the purpose of describing how to use the catalog diff tool, it will be better to use an artificially simple code example. Imagine a single site.pp file with the following contents:
 
 ~~~ puppet
@@ -105,12 +106,14 @@ $ puppet help catalog diff
 Being able to see the diffs between resources is certainly important if you’re refactoring code.
 
 ## Compiling the catalogs
+
 For more detail on how to compile the catalogs, refer to yesterday’s post.
 
 Our YAML facts file today needs only two fact values:
 
 ~~~ yaml
 # ~/.puppet/var/yaml/facts/myhost.example.com.yaml
+
 --- !ruby/object:Puppet::Node::Facts
 values:
   hostname: myhost
@@ -136,6 +139,7 @@ $ puppet master --manifestdir=manifests --compile myhost.example.com | sed 1d > 
 ~~~
 
 ## Diff’ing the two catalogs
+
 We are now ready to run the diff:
 
 ~~~ text

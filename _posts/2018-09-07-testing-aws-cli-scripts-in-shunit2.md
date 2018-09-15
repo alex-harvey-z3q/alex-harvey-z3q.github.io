@@ -8,7 +8,6 @@ tags: aws shunit2
 
 In this post, I document a pattern of unit testing AWS CLI shell scripts in the shUnit2 framework.
 
-* Table of contents
 {:toc}
 
 ## Overview
@@ -65,6 +64,7 @@ aws cloudformation delete-stack \
 (Note: all of the code for this blog post is available at Github [here](https://github.com/alexharv074/shunit2_example.git). The reader can step through the revision history to see the examples before and after the refactoring.)
 
 As can be seen, this script does these things:
+
 - validates the inputs
 - deletes a key pair and deployment artifacts
 - resumes any suspended processes in auto-scaling groups
@@ -73,6 +73,7 @@ As can be seen, this script does these things:
 ## Designing the tests
 
 To provide complete unit test coverage, I need the following test cases:
+
 - a usage message is expected if incorrect inputs are passed
 - for a stack with no auto-scaling groups:
     * key pairs and deployment artifacts are expected to be deleted
@@ -81,6 +82,7 @@ To provide complete unit test coverage, I need the following test cases:
     * a resume-processes command should be issued for each auto-scaling group.
 
 Also, it is a known issue with the script that it doesn't try to handle a non-existent S3 bucket and a non-existent CloudFormation stack. To remedy this I can choose between:
+
 - documenting this as a known issue
 - fixing the script to be more defensive (recommended!)
 - or writing tests to test for and demonstrate the known issue.
@@ -259,7 +261,7 @@ The `assertEquals` function takes three arguments: a message to be seen only dur
 
 The complicated call to `diff -wu` ensures that during failures, a nice readable unified diff of "expected" compared to "actual" is seen. This is because I found over time that the default shUnit2 output that compares two multiline strings is not easy to read at all.
 
-Notice also that we _source_ the script into the running shell rather than executing it in its own process. This way, the mocks and other setup can alter its behaviour in the test environment. 
+Notice also that we _source_ the script into the running shell rather than executing it in its own process. This way, the mocks and other setup can alter its behaviour in the test environment.
 
 ### Testing bad inputs
 

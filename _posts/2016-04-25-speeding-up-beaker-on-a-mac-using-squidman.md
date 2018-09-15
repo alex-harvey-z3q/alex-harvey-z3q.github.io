@@ -13,6 +13,7 @@ I was pleasantly surprised to find that setting up a Squid Cache using [SquidMan
 Thanks go to Alexander Rumyantsev for his [post](http://serverascode.com/2014/03/29/squid-cache-yum.html) on using Squid to cache RedHat/CentOS yum repositories, and also to My Private Network for their [post](https://help.my-private-network.co.uk/support/solutions/articles/9418-setting-up-a-proxy-server-on-your-mac-os-x-system) on setting up Squid Man.
 
 ## Installing and configuring SquidMan
+
 I downloaded SquidMan 3.6 from [here](http://squidman.net/resources/downloads/SquidMan3.6.dmg), and installed as with any other DMG file (although, to be sure, I had to manually drag and drop the app into my Applications folder).
 
 Having started I went to its Preferences and entered the following config:
@@ -46,6 +47,7 @@ cache_log /Users/alexharvey/Library/Logs/squid/squid-cache.log
 Tailing these log files while your Beaker tests run allows you to see it working, in particular the Cache Hits and Misses.
 
 ## Disabling mirrorlists
+
 As Alexander Rumyantsev notes, use of Yum mirror lists in place of baseurls is going to cause a lot of unnecessary cache misses, so we disable them.
 
 In my case I have all my Yum repos in Hiera so this meant making changes like:
@@ -69,6 +71,7 @@ ch'
 (If you’d like to see the actual commit where I updated mirror lists with base URLs it is [here](https://github.com/alexharv074/elk/commit/86a740caa37afc9254e2abfb9397bcb38e6f3d3a).)
 
 ## Telling Beaker to use the Squid Cache
+
 All that is left to do is call Beaker after setting the $BEAKER_PACKAGE_PROXY environment variable:
 
 ~~~ text
@@ -78,6 +81,7 @@ $ BEAKER_PACKAGE_PROXY=http://<myHostIP>:3128 bundle exec rspec spec/acceptance/
 The first time you run it, of course, the Squid Cache will be empty, so you won’t expect to see any performance improvement. After that, I found 14 minutes for an ELK stack became about 4.
 
 ## A note about $BEAKER_PACKAGE_PROXY on non-Red Hat-based platforms
+
 By a curious coincidence I had actually fixed the $BEAKER_PACKAGE_PROXY functionality for Yum-based platforms in Beaker-rspec myself in [this](https://github.com/puppetlabs/beaker/pull/983/files) PR.
 
 I mention this because I noted at the time that $BEAKER_PACKAGE_PROXY looked broken in the same way for Debian-based platforms (and not to mention other platforms like AIX etc.). Consider this a heads-up if you’re trying to get this procedure to work on say Ubuntu; you may need to send in a patch similar to the one I sent in for the Red Hat plaforms.

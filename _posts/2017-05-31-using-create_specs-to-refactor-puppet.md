@@ -20,6 +20,7 @@ I assume the reader already understands how to set up Rspec-puppet; if not, have
 {:toc}
 
 ## Sample code
+
 The sample code is a simple Puppet class that installs and configures NTP.
 
 (Note: all of the code for this blog post is available at Github here. The reader can step through the revision history to see the examples before and after the refactoring.)
@@ -44,11 +45,14 @@ class ntp (
   }
 }
 ~~~
+
 ## Create specs
+
 Before we refactor anything, we need to compile a catalog. To do this, we create an initial spec file that uses Rspec-puppet to simply compile a catalog, as documented in the project’s README:
 
 ~~~ ruby
 # init_spec.rb
+
 require 'spec_helper'
 
 describe 'ntp' do
@@ -71,20 +75,24 @@ describe 'ntp' do
   }
 end
 ~~~
+
 Then we run:
 
 ~~~ text
 $ bundle exec rake spec
 ~~~
+
 And the catalog is written to catalogs/ntp.before.json.
 
 ### Running the script
+
 Running the script is easy:
 
 ~~~ text
 $ create_specs.rb -c catalogs/ntp.before.json -o spec/classes/init_spec.rb
 Writing out as spec/classes/init_spec.rb
 ~~~
+
 After running the script, we find that it has overwritten the init_spec.rb with an updated version containing the auto-generated Rspec-puppet tests:
 
 ~~~ ruby
@@ -151,13 +159,17 @@ keys /etc/ntp/keys
   }
 end
 ~~~
+
 ### Enable coverage report
+
 I am going to also manually add a line at the end of init_spec.rb to enable Rspec-puppet’s code coverage report:
 
 ~~~ ruby
 at_exit { RSpec::Puppet::Coverage.report! }
 ~~~
+
 ### Run the tests again
+
 Next, we run the tests again to prove that create_specs really has created passing tests:
 
 ~~~ text
@@ -179,7 +191,9 @@ Total resources:   3
 Touched resources: 3
 Resource coverage: 100.00%
 ~~~
+
 ## Under the hood
+
 So, what just happened?
 
 The create_specs.rb script is quite simple. It reads in a catalog, which, of course, is just a JSON document; it deletes all of the “scaffolding” if you like (the classes, anchors, stages etc. that relate to the catalog and Puppet manifests rather than the system itself); it extracts the parameters that were passed to the Class; and, finally, all of what is left is written out again, formatted as executable Rspec-puppet test code.
@@ -191,12 +205,14 @@ Finally, note that we achieved 100% resource coverage, as we would expect.
 Let us continue.
 
 ## Refactoring task
+
 The hypothetical refactoring task is to split the module into separate classes, ntp::install, ntp::configure, ntp::service and ntp::params.
 
 However, in order to simulate a real refactoring task, I deliberately inserted a bug as well. It is a bug that will not break compilation, but it will stop Puppet from running. The reader may choose to spend a moment trying to find the bug before continuing.
 
 ~~~ puppet
 # init.pp
+
 class ntp (
   Array[String] $servers = $ntp::params::servers,
 ) inherits ntp::params {
@@ -212,6 +228,7 @@ class ntp (
 
 ~~~ puppet
 # install.pp
+
 class ntp::install {
   package { 'ntp':
     ensure => installed,
@@ -221,6 +238,7 @@ class ntp::install {
 
 ~~~ puppet
 # configure.pp
+
 class ntp::configure (
   Array[String] $servers = $ntp::servers,
 ) {
@@ -233,6 +251,7 @@ class ntp::configure (
 
 ~~~ puppet
 # service.pp
+
 class ntp::service {
  service { 'ntpd':
     ensure => running,
@@ -243,6 +262,7 @@ class ntp::service {
 
 ~~~ puppet
 # params.pp
+
 class ntp::params {
   $servers = [
     '0.au.pool.ntp.org',
@@ -252,7 +272,9 @@ class ntp::params {
   ]
 }
 ~~~
+
 ### Running the tests again
+
 After refactoring, we run the tests again. Here is what we see this time:
 
 ~~~ text
@@ -308,12 +330,14 @@ Untouched resources:
   Service[ntpd]
 /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/bin/ruby -I/Library/Ruby/Gems/2.0.0/gems/rspec-core-3.6.0/lib:/Library/Ruby/Gems/2.0.0/gems/rspec-support-3.6.0/lib /Library/Ruby/Gems/2.0.0/gems/rspec-core-3.6.0/exe/rspec --pattern spec/\{aliases,classes,defines,unit,functions,hosts,integration,type_aliases,types\}/\*\*/\*_spec.rb --color failed
 ~~~
+
 So we have two test failures:
 
 ~~~ text
 It was expected that File[/etc/ntp.conf] would require Package[ntp].
 It was expected that the catalog would contain Service[ntp].
 ~~~
+
 The first failure is a good failure. I wanted that to change, and I will now update my tests. Instead of expecting File[/etc/ntp.conf] to require Package[ntp], I expect instead for relationships to exist at the class level. So I add a new test:
 
 ~~~ ruby
@@ -323,6 +347,7 @@ it 'classes and their relationships' do
   is_expected.to contain_class('ntp::service')
 end
 ~~~
+
 And I change the package test to:
 
 ~~~ ruby
@@ -330,6 +355,7 @@ it {
   is_expected.to contain_file('/etc/ntp.conf')
 }
 ~~~
+
 The second failure is a bad failure. I actually introduced a bug in the refactoring, by changing the name of the service from ntp to ntpd. I fix that by fixing the service class:
 
 ~~~ diff
@@ -346,6 +372,7 @@ index 8b9fdbd..66367fd 100644
      enable    => true,
    }
 ~~~
+
 Finally, I run the tests and everything passes now:
 
 ~~~ text
@@ -368,6 +395,7 @@ Total resources:   6
 Touched resources: 6
 Resource coverage: 100.00%
 ~~~
+
 I am back to 100% passing tests and 100% resource coverage. I feel 100% certain that my refactoring has not broken anything, and there is no need for me to perform time-expensive testing, like spinning Vagrant instances etc. The tests ran in only 2.17 seconds. In fact, the most time expensive part of the whole procedure was refactoring the code itself.
 
 This is an excellent outcome, because only if refactoring can be done quickly – and safely! – can developers realistically be expected to do it at all, and without refactoring, there can be no continuous improvement.

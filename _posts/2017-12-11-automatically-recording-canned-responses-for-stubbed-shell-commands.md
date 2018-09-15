@@ -11,6 +11,7 @@ This brief post shows a shell script that can automatically record canned respon
 For more information, see my other [post](https://alexharv074.github.io/2017/07/07/unit-testing-a-bash-script-with-shunit2.html) on unit testing bash scripts in shUnit2.
 
 ## Method
+
 Replace the command of interest with a shell function following this pattern:
 
 ~~~ bash
@@ -42,6 +43,7 @@ aws ec2 describe-instances --instance-id i-0985e6cf081ec2424 --query 'Reservatio
 aws ec2 describe-images --image-id ami-0001e562 --query 'Images[].OwnerId' --output text
 aws ec2 describe-images --image-id ami-0001e562 --query 'Images[].CreationDate' --output text
 ~~~
+
 Now run the script you wish to test, and your stub will be in the log file:
 
 ~~~ bash

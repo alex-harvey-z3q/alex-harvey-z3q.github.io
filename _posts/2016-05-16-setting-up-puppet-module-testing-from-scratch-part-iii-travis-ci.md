@@ -15,7 +15,9 @@ I must thank Mark McKinstry for showing me how to do this when he sent in a pull
 Anyhow, let’s begin.
 
 ## Setting up Travis CI
+
 ### Changes to Gemfile
+
 One of the advantages of using Travis CI is that it is easy to test Puppet modules against a matrix of Ruby and Puppet versions. This is a great advantage when maintaining a Puppet Forge module, as it allows us to easily test and advertise the versions of Puppet that we support, and we can ensure that our module is also tested against the standard set of Ruby versions.
 
 But in order to test against different Puppet versions, our Gemfile needs to be modified to accept the Puppet Gem version as a variable.
@@ -25,6 +27,7 @@ Here’s what we’re going to do. We’ll delete the line …
 ~~~ ruby
 gem 'puppet'
 ~~~
+
 … and replace it with a block:
 
 ~~~ ruby
@@ -34,6 +37,7 @@ else
   gem 'puppet', :require => false
 end
 ~~~
+
 So parameterised, we can now test our code against a specific Puppet version:
 
 ~~~ text
@@ -42,9 +46,11 @@ $ PUPPET_GEM_VERSION=3.8.6 bundle install
 Installing hiera 1.3.4 (was 3.1.2)
 Installing puppet 3.8.6 (was 4.4.2)
 ~~~
+
 And our bundle is updated with an earlier version of Puppet. Now when I call bundle exec rake spec, I am testing the code using Puppet 3.8.6.
 
 ### The .travis.yml file
+
 Of course we want all of this automated in the Travis CI build pipeline.
 
 We create a .travis.yml file in the root of the project with the following content:
@@ -78,11 +84,12 @@ matrix:
     env: PUPPET_GEM_VERSION='~> 4.3.0' STRICT_VARIABLES=yes
   - rvm: 2.1.6
     env: PUPPET_GEM_VERSION='~> 4.0' STRICT_VARIABLES=yes
-script: 'bundle exec rake validate && bundle exec rake lint && bundle exec rake spec 
+script: 'bundle exec rake validate && bundle exec rake lint && bundle exec rake spec
  SPEC_OPTS="--format documentation"'
 notifications:
   email: false
 ~~~
+
 The first thing to notice is that we pass `--without system_tests` in as bundler_args. This speeds up the CI build significantly, as it takes a long time to install all the Beaker-related Gems.
 
 In the before_install section, we update the version of bundler and Ruby Gems used, and print out the version information for debugging purposes. In the unlikely event something goes wrong during the bundle install, this information will help to reproduce the issue.
@@ -100,11 +107,13 @@ Also note the Ruby versions I’ve chosen in the matrix. Puppet Enterprise has h
 Finally, the script: line specifies the command line to use to run the builds. All of these Rake tasks have been discussed in Part I; the :validate task checks all the project’s files for syntax errors; the :lint task runs Puppet-lint; and the :spec task runs the Rspec-puppet tests.
 
 ### Build status in the project README
+
 Next, it is typical to advertise the Travis CI build status by adding a line at the top of the project’s README file:
 
 ~~~ text
 [![Build Status](https://img.shields.io/travis/alexharv074/puppet-spacewalk.svg)](https://travis-ci.org/alexharv074/puppet-spacewalk)
 ~~~
+
 Once this is committed and pushed back to Github, the project’s README page will show a build status that looks like this:
 
 ![Spacewalk]({{ "/assets/travis1.png" | absolute_url }})
@@ -112,6 +121,7 @@ Once this is committed and pushed back to Github, the project’s README page wi
 At this stage the build status is “unknown” as we haven’t activated Travis CI for this repository yet.
 
 ### Activating the build in Travis CI
+
 If you have not used Travis CI before, you will need to sign up, which is free for open source projects.
 
 Click the “build, unknown” link and you’ll be taken to Travis CI, where you’ll see something like:

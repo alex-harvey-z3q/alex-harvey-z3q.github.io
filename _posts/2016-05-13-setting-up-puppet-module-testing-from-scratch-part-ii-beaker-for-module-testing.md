@@ -16,10 +16,11 @@ Once again, my focus is on helping new people to quickly stand up the Beaker fra
 
 Let’s dive right into it.
 
-* Table of Contents	
+* Table of Contents
 {:toc}
 
 ## Installing and configiuring Beaker
+
 ### Prerequisites
 
 To get started, we’ll need to ensure we have our prerequisites installed. In addition to Ruby Gems and Bundler, which were discussed in Part I, we’ll also need to install Vagrant.  I assume that my readers have used Vagrant before; if not, it’s well worth spending 15 minutes doing the Vagrant tutorial.
@@ -27,6 +28,7 @@ To get started, we’ll need to ensure we have our prerequisites installed. In a
 Otherwise, let’s continue.
 
 ### Gemfile additions
+
 As we discussed in Part I, the Gemfile is a file that specifies Ruby dependencies to be installed in our ‘bundle’ by Bundler, a Ruby app that manages dependencies in Ruby projects.
 
 To install Beaker, we will add a new system testing Gem group to the Gemfile:
@@ -171,6 +173,7 @@ Bundle updated!
 As can be seen, there is a long list of dependencies.
 
 ### Adding the nodesets
+
 Moving along, we’ll now need to add to our project some nodesets – YAML files that define platforms that we will test our modules on.
 
 Firstly, we create a directory for them:
@@ -178,6 +181,7 @@ Firstly, we create a directory for them:
 ~~~ text
 $ mkdir -p spec/acceptance/nodesets
 ~~~
+
 And then we copy them from the moduleroot/spec/acceptance/nodesets directory of the ModuleSync project, which I assume we have checked out in the same directory as our project:
 
 ~~~ text
@@ -195,7 +199,9 @@ ubuntu-server-1404-x64.yml
 ~~~
 
 ### Rakefile
+
 #### The :beaker and :beaker_nodes tasks
+
 You may have noticed in Part I of this series that the :beaker and :beaker_nodes tasks were placed in the list of Rake tasks by the puppetlabs_spec_helper. Well, the :beaker task will run all of the specs in spec/acceptance. I rarely use that one. The other one, :beaker_nodes, essentially just lists the files I have in the nodesets directory:
 
 ~~~ text
@@ -210,30 +216,37 @@ default
 ubuntu-server-1204-x64
 ubuntu-server-1404-x64
 ~~~
+
 So, you’ll probably find that you don’t actually need the Beaker-related tasks from the puppetlabs_spec_helper, but it’s still good to know what they are.
 
 So the take away point is, when configuring Beaker, you don’t really need to touch the Rakefile, and I’ve covered the config you might find in here in case you’re interested.
 
 ### The spec helper acceptance
+
 The acceptance test spec helper file, however, is very important.
 
 As we mentioned in Part I, the spec helper is a file that is used by convention to configure Rspec, and we will already be using that file to configure Rspec-puppet. So for Beaker, a special spec helper file is typically used to configure Beaker-rspec, and it lives at spec/spec_helper_acceptance.rb.
 
 #### Digression: The Beaker docs
+
 Before proceeding I’d like to note some important sources of Beaker documentation that will help in understanding the spec/spec_helper_acceptance.rb file.
 
 - The README of Beaker-rspec, where an (at the time of writing, out of date) set up tutorial can be found there.
 - The README of the Beaker-puppet_install_helper project.
 - The Beaker DSL documentation, but don’t be intimidated by the Beaker DSL, as we’ll be using just a handful of these methods, and these are all discussed in the next subsection.
+
 #### Beaker DSL methods
+
 As the documentation linked above shows, the Beaker DSL provides a large number of helper methods and classes.  Of these, we will need just a few for our simple Spacewalk module:
 
 - The copy_module_to method: Copies a module to the module path on the test system.
 - The on method:  Runs arbitrary commands on the test system.
 - The puppet method:  Runs puppet on the test system.
+
 And of course, read the source code when all else fails!
 
 #### The Beaker::Host object and the nodesets
+
 It’s also important to be aware that the Beaker DSL makes available to Rspec an array named hosts that contains Beaker::Host objects, a.k.a. “systems under test” or SUTs. (Only follow the link if you know Ruby well.)
 
 The SUTs themselves are initialised according to the HOSTS Hash in the nodesets files that we copied earlier. For example, our the CentOS 7 node set:
@@ -257,10 +270,12 @@ Firstly, note that the keys of the HOSTS Hash in our node sets correspond to ele
 Secondly, it is normal to have only a single host defined in the nodesets; you’ll only ever see multiple hosts in here in multi-node configurations that use Beaker DSL in multi-node configurations.
 
 #### Puppet install helper
+
 A perceptive reader may have noticed that the Beaker-rspec documentation includes an example spec helper that includes the following lines:
 
 ~~~ ruby
 # Install Puppet on all hosts
+
 hosts.each do |host|
   on host, install_puppet
 end
@@ -273,6 +288,7 @@ run_puppet_install_helper
 ~~~
 
 #### Putting it all together
+
 Ok, so we have all of the pieces we need, so here is the code for our spec/spec_helper_acceptance.rb:
 
 ~~~ ruby
@@ -295,6 +311,7 @@ RSpec.configure do |c|
   end
 end
 ~~~
+
 So we require the beaker-rspec and beaker/puppet_install_helper, we run the install helper, then in our RSpec.configure block we define a variable for our project root directory, we configure RSpec’s output, and then declare a before :suite hook (set up code that is run once before all of our tests).
 
 Notice that our hosts.each loops through the hosts, and then inside this loop we copy the module to the host and on that host we call puppet module install puppetlabs-stdlib.
@@ -310,6 +327,7 @@ end
 ~~~
 
 ### A simple test case
+
 The apply_manifest method and the test for idempotence
 We finally arrive at the test case themselves.
 
@@ -340,6 +358,7 @@ end
 ~~~
 
 #### Extending the test case with Serverspec
+
 It’s likely that remainder of your test cases will use the Serverspec extensions, and as such I’d refer the reader to the Serverspec tutorial.
 
 In the case of our Spacewalk module, we’ll expect that our server will be at minimum listening on ports 80 and 443. So we add to our describe two more:
@@ -355,7 +374,9 @@ end
 ~~~
 
 ### Running the tests
+
 #### Specifying the Puppet version
+
 Now, here’s a big gotcha. By default, the Puppet install helper will install the latest Puppet 3.x, and not the latest Puppet 4.x! At the time of writing, that means we’ll get Puppet 3.8.6 instead of Puppet 4.4.2.
 
 And wham, followed by a second big gotcha: to set the Puppet version to Puppet 4.4.2, we need to understand that the environment variable $PUPPET_INSTALL_VERSION is overloaded when used in conjunction with $PUPPET_INSTALL_TYPE. It is explained here in the docs.
@@ -380,6 +401,7 @@ $ bundle exec rake beaker
 Phew.
 
 #### Specifying the node set
+
 Specifying the node set is much easier. Just set the variable $BEAKER_set to the node set:
 
 ~~~ text
@@ -390,11 +412,13 @@ $ bundle exec rake beaker
 If left unset, it will default to default (i.e. it will use whatever is specified in spec/acceptance/nodesets/default.yml.
 
 #### Other important environment variables
+
 Another important environment variable is $BEAKER_destroy. If you set this to no, the VM will not be destroyed after the test/s.
 
 This is really useful for debugging, and perhaps the best part, your acceptance tests double as a convenient way of quickly spinning up a VM that is ready-configured by Puppet. So if I ever want a Spacewalk server to play with, I just run my spec test, and voila!
 
 #### Understanding the output
+
 I’ll need to truncate the output, as there will always be a lot of it.
 
 To begin, Rspec is called, and it is quite common to call the rspec command directly:
@@ -402,6 +426,7 @@ To begin, Rspec is called, and it is quite common to call the rspec command dire
 ~~~ text
 $ bundle exec rspec spec/acceptance/spacewalk_server_spec.rb
 ~~~
+
 At the time of writing, the latest version of Serverspec is emitting some warnings that I am not interested in:
 
 ~~~ text

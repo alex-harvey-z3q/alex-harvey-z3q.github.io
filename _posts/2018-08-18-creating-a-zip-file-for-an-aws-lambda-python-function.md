@@ -40,7 +40,7 @@ xlrd
 The final folder structure is expected to look like this:
 
 ~~~ text
-$ tree -L 1 . 
+$ tree -L 1 .
 .
 ├── lambda_function.py
 ├── xlrd
