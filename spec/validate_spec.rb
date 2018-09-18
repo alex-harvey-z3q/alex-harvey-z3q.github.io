@@ -37,10 +37,6 @@ describe 'posts' do
       it 'title in front matter should not contain a colon' do
         expect(front_matter['title']).to_not match /:/
       end
-
-      it 'front matter should not have published: false' do
-        expect(front_matter['published']).to_not be false
-      end
     end
   end
 end

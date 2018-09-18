@@ -4,6 +4,7 @@ title: "Automatically recording canned responses for stubbed shell commands"
 date: 2017-12-11
 author: Alex Harvey
 tags: bash shunit2
+published: false
 ---
 
 This brief post shows a shell script that can automatically record canned responses from a shell command, for example the aws command line, for later use in shUnit2 tests.
