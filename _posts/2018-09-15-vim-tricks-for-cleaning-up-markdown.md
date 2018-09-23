@@ -4,6 +4,7 @@ title: "Vim tricks for cleaning up Markdown"
 date: 2018-09-15
 author: Alex Harvey
 tags: vim markdown
+published: false
 ---
 
 This post is a collection of vim regular expressions for cleaning up Markdown files for compliance with [mdl](https://github.com/markdownlint/markdownlint).
