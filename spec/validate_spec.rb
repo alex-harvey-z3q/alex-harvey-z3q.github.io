@@ -33,10 +33,6 @@ describe 'posts' do
         date_in_front_matter = date_in_front_matter(front_matter['date'])
         expect(date_in_front_matter).to eq date_in_file_name
       end
-
-      it 'title in front matter should not contain a colon' do
-        expect(front_matter['title']).to_not match /:/
-      end
     end
   end
 end
