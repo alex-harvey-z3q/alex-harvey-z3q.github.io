@@ -56,7 +56,7 @@ end
 
 Notice two things here:
 
-1. I have configured Hiera to use real Hiera data
+1. I have configured Rspec to use real Hiera data
 1. This is the only Rspec code I am going to write in this blog post.
 
 All testing is based on simply passing real Hiera data into the compiler.

@@ -124,7 +124,7 @@ Finished in 0.15346 seconds (files took 1.24 seconds to load)
 1 example, 0 failures
 ~~~
 
-### Other things 
+### Other things
 
 Okay, I simplified the problem a bit by focusing only on Rspec, didn't I. To fully set up module testing, I probably want all this running in a CI pipeline like Travis CI; I could want Rubocop; perhaps I need something like Beaker or Test Kitchen or equivalent; maybe I want Rspec-puppet-facts for multi-OS testing; if I intend to publish this on the Forge, I'll need metadata and probably Puppet-blacksmith.
 
@@ -268,7 +268,7 @@ On the other hand, it is my belief that code should also be documentation and fo
 
 #### Barrier to understanding
 
-Success with Puppet requires the user to understand Ruby and Rspec. (No, it really does.) And the Ruby community has produced wonderful tools, including Bundler, Rake, Yard etc. As a Puppet developer, I want people in my team to know how to write Gemfiles and Rakefiles and so on by themselves. This knowledge is going to be crucial, sooner or later, even if only in the context of debugging. 
+Success with Puppet requires the user to understand Ruby and Rspec. (No, it really does.) And the Ruby community has produced wonderful tools, including Bundler, Rake, Yard etc. As a Puppet developer, I want people in my team to know how to write Gemfiles and Rakefiles and so on by themselves. This knowledge is going to be crucial, sooner or later, even if only in the context of debugging.
 
 Likewise, learning how to design and write good unit tests - and I mean with the full understanding of what you are doing and why, rather than those who are writing tests for the sake of it - is hard. Learning how to think of a piece of code as a unit, as a black or white box, and expressing its expected behaviour in Rspec is an art - a rewarding art too - and also the secret to the rapid development of infrastructure-as-code. But I don't believe in falsely raising expectations that this is, or that it should be, easy. Lawyers, doctors, engineers, and others have no such demand that their work should be easy, and neither should the infrastructure-as-code developer. It is as easy or as difficult as it needs to be, but no more or less.
 
