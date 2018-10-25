@@ -8,7 +8,7 @@ tags: puppet rspec
 
 One of the most useful applications of Rspec-puppet I have found is in the verification of generated ERB file content. However, it is not always obvious how to actually do this.
 
-I discovered the verify_contents method one day when pondering a question at Ask.puppet.com (ref). An undocumented feature of the Puppetlabs_spec_helper, it is used in a few Forge modules to allow testers to say, “the catalog should contain a file X, whose contents should contain lines A, B, ..”. For example, in the Haproxy module here.
+I discovered the verify_contents method one day when pondering a question at Ask.puppet.com. An undocumented feature of the Puppetlabs_spec_helper, it is used in a few Forge modules to allow testers to say, “the catalog should contain a file X, whose contents should contain lines A, B, C ...”. For example, in the Haproxy module [here](https://github.com/puppetlabs/puppetlabs-haproxy/blob/be6cde02d34ad61c32cc71123bfb9882b3b6a809/spec/classes/haproxy_spec.rb#L393).
 
 In this post I’m going to document how I’ve used the verify_contents method and improved upon it when testing ERB generated file content.
 
@@ -18,10 +18,13 @@ The basic usage of verify_contents is as follows:
 
 ~~~ ruby
 # spec/spec_helper.rb
-
 require 'puppetlabs_spec_helper/module_spec_helper'
-spec/classes/test_spec.rb:
+~~~
 
+and:
+
+~~~ ruby
+# spec/classes/test_spec.rb:
 require 'spec_helper'
 
 it {
@@ -30,9 +33,9 @@ it {
 }
 ~~~
 
-This says, “I expect the catalog to contain a file /etc/resolv.conf containing the line ‘server 1.1.1.1’.
+This says, “I expect the catalog to contain a file /etc/resolv.conf containing the line ‘server 1.1.1.1’”.
 
-The method itself is defined here:
+The method itself is defined [here](https://github.com/puppetlabs/puppetlabs_spec_helper/blob/178b895c4a07f7d5c7ec43bf9eec5bce52cbe0e8/lib/puppetlabs_spec_helper/module_spec_helper.rb#L9-L12):
 
 ~~~ ruby
 def verify_contents(subject, title, expected_lines)
@@ -99,7 +102,7 @@ le.org\n</VirtualHost>\n"
 }
 ~~~
 
-(If you don’t know how to dump the catalog, see my earlier post.)
+(If you don’t know how to dump the catalog, see my [earlier](https://alexharv074.github.io/2016/03/16/dumping-the-catalog-in-rspec-puppet.html) post.)
 
 ## Tricks for catalog viewing
 
@@ -147,7 +150,10 @@ Listen 80
 
 This is much easier to read, and helps us understand how to write our tests, and debug things when the tests fail.
 
-Duplicate lines
+## Duplicate lines
+
+_Note 2018 my fix for duplicate lines was merged so this section is no longer relevant._
+
 A skilled Rubyist may have noticed that the verify_contents method would emit a false negative if the array of expected lines contained duplicates. This is the case in the following example:
 
 ~~~ ruby
