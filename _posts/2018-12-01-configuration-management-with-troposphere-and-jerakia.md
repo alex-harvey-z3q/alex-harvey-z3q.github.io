@@ -317,6 +317,7 @@ I have not used this pattern in production yet, and I would welcome any critical
 
 ## Further reading
 
+- Paulina Budzon, [Using Troposphere to create CloudFormation stack template](https://mysteriouscode.io/blog/using-troposphere-to-create-cloudformation-stack-template/)
 - Craig Dunn (@crayfishx), [Solving real world problems with Jerakia](https://www.craigdunn.org/2015/09/solving-real-world-problems-with-jerakia/)
 - Avi Friedman, [The road to infrastructure as code, Part 1](https://engineering.innovid.com/the-road-to-infrastructure-as-code-part-1-8d65c336ad92)
 - Yevgeniy Brikman, [Terraform tips & tricks: loops, if-statements, and gotchas](https://blog.gruntwork.io/terraform-tips-tricks-loops-if-statements-and-gotchas-f739bbae55f9)
