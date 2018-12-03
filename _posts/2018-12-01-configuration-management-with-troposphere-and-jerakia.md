@@ -212,7 +212,7 @@ Mapping:
     AMI: ami-dcfa4edd
 ```
 
-Points to note here arew:
+Points to note here are:
 
 - The `__init__()` contructor is used to initialise the class attributes with lookups from Jerakia. Of course, we don't have Puppet's automatic parameter lookup, which means our calls to Jerakia must be explicit, although not [everyone](http://garylarizza.com/blog/2014/10/24/puppet-workflows-4-using-hiera-in-anger/) in the Puppet community likes the automatic parameter lookup feature, and, certainly, the Python community values explicit over implicit.
 - The `build()` method is comparable to the Puppet class's body, where resources are declared.
