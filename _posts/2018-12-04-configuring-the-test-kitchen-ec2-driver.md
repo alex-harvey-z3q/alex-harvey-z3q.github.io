@@ -60,7 +60,6 @@ driver:
   region: ap-southeast-2
   subnet_id: subnet-1234567890abcdef0
   iam_profile_name: instance-profile
-  instance_type: t2.medium
   aws_ssh_key_id: key-pair-name
   tags:
     foo: bar
