@@ -25,11 +25,11 @@ AWS Cloudformation has many benefits, including a declarative DSL that is easy t
 
 The Cloudformation DSL, however, when viewed as a programming language is limited, lacking basic features like functions, variables, iteration, a standard library, etc, and its data handling is limited to a flat array of parameters. Similarly, there is no way to do unit testing.
 
-For this reason, many have chosen to use tools like Terraform or the [Ansible Cloudformation module](https://docs.ansible.com/ansible/2.6/modules/cloudformation_module.html) as an alternative to Cloudformation. But these solutions have problems too. The DSLs of both Terraform and Ansible are limited. Features like iteration and conditional logic are available, but their implementation is confusing and generally limited when compared to programming languages like Python or Ruby or the Puppet DSL. Ansible has the additional problem that code cannot be indented, and the Jinja2 template language is needed to interpolate in Cloudformation templates, which introduces other problems.
+For these reasons, many have chosen to use tools like Terraform or the [Ansible Cloudformation module](https://docs.ansible.com/ansible/2.6/modules/cloudformation_module.html) as an alternative to Cloudformation. But these solutions have problems too. The DSLs of both Terraform and Ansible are limited. Features like iteration and conditional logic are available, but their implementation is confusing and generally limited when compared to programming languages like Python or Ruby or the Puppet DSL. Ansible has the additional problem that code cannot be indented, and the Jinja2 template language is needed to interpolate in Cloudformation templates, which introduces other problems.
 
 Terraform is admittedly popular at the moment, although I suspect that its popularity owes more to its superior user experience<sup>1</sup> and the solid Hashicorp brand than it does to the flexibility and usefulness of the DSL and its actual fit to the problems it tries to solve. Feature-wise, it is quite comparable to the Puppet 3 DSL and earlier, and it introduces a "state" problem, which is a Terraform-specific problem where infrastructure "state" is tracked that contains information from both the Terraform code you wrote as well as run-time information from the cloud provider.
 
-The Terraform DSL limitations have already given rise to the [Terragrunt](https://github.com/gruntwork-io/terragrunt) project, which has, at the time of writing, nearly 2,000 stars on Github and 57 contributors, and is billed as "a thin wrapper for Terraform that provides extra tools for keeping your Terraform configurations DRY, working with multiple Terraform modules, and managing remote state". But with Terragrunt and Terraform both in place, I feel there are too many layers of separation between the infrastructure-as-code and the infrastructure for my liking.
+The Terraform limitations have already given rise to the [Terragrunt](https://github.com/gruntwork-io/terragrunt) project, which has, at the time of writing, nearly 2,000 stars on Github and 57 contributors, and is billed as "a thin wrapper for Terraform that provides extra tools for keeping your Terraform configurations DRY, working with multiple Terraform modules, and managing remote state". But with Terragrunt and Terraform both in place, I feel there are too many layers of separation between the infrastructure-as-code and the infrastructure for my liking.
 
 The data handling of these solutions is not excellent either. Terraform's tfvars is limited compared to Puppet's Hiera and certainly compared to Jerakia. The data store is tightly coupled to Terraform itself, and lacks features like merging of hashes and hierarchical lookups. The same can be said of Ansible.
 
@@ -37,18 +37,18 @@ And finally, none of these solutions make unit testing possible. As a result, au
 
 ## High level design
 
-The solution I am proposing solves all of these problems. The architecture is shown in the following figure:
+The solution I propose here, as far as I can tell, solves all of these problems. The architecture is shown in the following figure:
 
 ![Architecture]({{ "/assets/tropo-arch.png" | absolute_url }})
 
-So, aside from the Troposphere library itself, there is a very thin layer of custom Python code; a pattern of organising classes in a Puppet-like way; and Jerakia. Possibly I would also have SSM, Hiera-EYAML, Hashicorp Vault etc for secrets.
+Aside from the Troposphere library itself, there is a very thin layer of custom Python code; a pattern of organising classes in a Puppet-like way; and Jerakia as a hierarchical data store. And for secrets, I could have SSM, Hiera-EYAML, Hashicorp Vault etc.
 
-The benefits of this solution are:
+The benefits are:
 
 - Python is a flexible OO-programming that gives us variables, iteration, conditional logic and other features.
-- The Puppet conventions of Roles, Profiles, Modules<sup>2</sup>, Classes and Resource Declarations is a well-understood, very mature pattern of configuration management.
+- The Puppet conventions of Roles, Profiles, Modules<sup>2</sup>, Classes and Resource Declarations is a well-understood, mature pattern of configuration management.
 - Jerakia provides a flexible, Hiera-like hierarchical key-value data store.
-- A way to deal with secrets.
+- The solution gives us a way to manage secrets.
 
 The only disadvantages known to me are:
 
@@ -57,7 +57,7 @@ The only disadvantages known to me are:
 
 ## Why the puppet conventions
 
-A reader may wonder why I would adopt the conventions of the Puppet community in a Python project. Well, as far as I can tell, the Troposphere project has not provided any recommendations for the organisation of the Python code; all of the [examples](https://github.com/cloudtools/troposphere/tree/master/examples) are just Python scripts without any organisation into functions or classes.
+A reader may wonder why I would adopt the conventions of the Puppet community in a Python project. Well, as far as I can tell, the Troposphere project has not provided any recommendations for the organisation of the Python code; all of the [examples](https://github.com/cloudtools/troposphere/tree/master/examples) are Python scripts without organisation into functions or classes.
 
 Meanwhile, the Puppet conventions evolved for solving configuration management patterns over more than a decade. The Puppet community is the oldest infrastructure as code community, and I think these patterns are the ones that have stood the test of time.
 
@@ -121,7 +121,7 @@ And that of course made the troposphere library available to my code.
 
 #### Jerakia interface
 
-Jerakia is expected to be run from Bundler, as it is a Ruby project. It's just a few lines of code:
+Jerakia is expected to be run from Bundler, as it is a Ruby project. The Jerakia interface is just a few lines of code:
 
 ```python
 from subprocess import check_output
@@ -158,9 +158,11 @@ As can be seen, the `TropBase` class expects a subclass to implement the `build(
 
 ### Puppet-like classes
 
+In the next two sections, I introduce some code that creates a simple EC2 instance with a Key Pair and an output with the Instance ID.
+
 #### Mappings class
 
-Now I want a class that adds some Cloudformation [Mappings](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/mappings-section-structure.html). In Puppet's grammar, I imagine something like this:
+First, I have a class that adds some Cloudformation [Mappings](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/mappings-section-structure.html). In Puppet's grammar, I imagine something like this:
 
 ```ruby
 class stack::mappings (
@@ -176,7 +178,7 @@ class stack::mappings (
 }
 ```
 
-I've chosen this example to illustrate real iteration, something that really doesn't exist in native Cloudformation, or in Ansible or Terraform. Here, I do something that users of both these languages often wish they could do: simply loop over an array or hash/dict.
+I chose this example to illustrate real iteration, something that doesn't exist in native Cloudformation, or in Ansible or Terraform. Here, I do something that users of both these languages often wish they could do: simply loop over an array or hash/dict.
 
 In the Python/Troposphere version, I can do exactly the same thing in a Python for loop:
 
@@ -257,7 +259,7 @@ class stack::ec2_instance (
     'Type'        => 'String',
   }
 
-  ec2_instance { 'Ec2Instance':
+  resource::ec2_instance { 'Ec2Instance':
     'ImageId'        => 'FindInMap("RegionMap", Ref("AWS::Region"), "AMI")',
     'InstanceType'   => $instance_type,
     'KeyName'        => 'Ref("KeyName")'
