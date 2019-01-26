@@ -128,6 +128,7 @@ Or, I could test the lookup behaviour more directly:
 ▶ environment=dev . ./data.sh ; echo $instance_type
 t2.micro
 ```
+
 ```text
 ▶ environment=prod . ./data.sh ; echo $instance_type
 t2.large
