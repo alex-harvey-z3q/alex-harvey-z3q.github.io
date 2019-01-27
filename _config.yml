@@ -7,3 +7,5 @@ url: https://alexharv074.github.io/
 plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
+disqus:
+  shortname: alexharv074-github-io
