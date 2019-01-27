@@ -11,6 +11,8 @@ gem 'pry-stack_explorer'
 gem 'pry-doc'
 gem 'debug_inspector', '<= 0.0.2'
 
+gem 'jekyll'
+gem 'jekyll-theme-hacker'
 gem 'jekyll-seo-tag'
 gem 'jekyll-sitemap'
 
