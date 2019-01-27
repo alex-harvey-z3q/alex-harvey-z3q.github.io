@@ -4,6 +4,7 @@ title: "Unit testing a Python Boto3 Lambda function using Placebo"
 date: 2019-01-26
 author: Alex Harvey
 tags: python boto3 placebo
+comments: true
 ---
 
 This posts documents a method for adding automated tests using the Python Placebo library to AWS Python Boto3 scripts. The method can be used for any Python Boto3 scripts, including Python Lambda functions that use the Boto3 library.

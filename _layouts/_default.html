@@ -1,5 +1,8 @@
 <html>
   <head>
     {% seo %}
+    {% if page.comments == true %}
+    {% include disqus.html %}
+    {% endif %}
   </head>
 </html>
