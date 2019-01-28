@@ -109,10 +109,10 @@ To do that:
 
 ```text
 ▶ export BOTO_RECORD=true
-▶ python encrypt_ami.py --source-image-id ami-52293031 \
+▶ python encrypt_ami.py --source-image-id ami-12345678 \
 ◀   --name my_test_ami --kms-key-id alias/mykey \
 ◀   --iam-instance-profile MyInstanceProfile \
-◀   --subnet-id subnet-43920e34 --os-type linux
+◀   --subnet-id subnet-12345678 --os-type linux
 Launching a source AWS instance...
 Waiting for instance (i-0481ed4a67454b5e7) to become running...
 state: pending
@@ -268,8 +268,8 @@ class TestAMIEncrypter(unittest.TestCase):
   def testEncryptAMIDifferentAccount(self):
     ami_encrypter = AMIEncrypter()
     encrypted_ami = ami_encrypter.encrypt(
-      'ami-52293031', 'my_test_ami', 'alias/mykey', 'MyInstanceProfile',
-      'subnet-43920e34', 'linux')
+      'ami-12345678', 'my_test_ami', 'alias/mykey', 'MyInstanceProfile',
+      'subnet-12345678', 'linux')
     self.assertEquals(encrypted_ami, 'ami-2939214a')
 
 def main():
@@ -292,7 +292,7 @@ Now for the test itself:
 ```python
   def testEncryptAMIDifferentAccount(self):
     ami_encrypter = AMIEncrypter()
-    encrypted_ami = ami_encrypter.encrypt('ami-52293031', 'my_test_ami', 'alias/mykey', 'MyInstanceProfile', 'subnet-43920e34', 'linux')
+    encrypted_ami = ami_encrypter.encrypt('ami-12345678', 'my_test_ami', 'alias/mykey', 'MyInstanceProfile', 'subnet-12345678', 'linux')
     self.assertEquals(encrypted_ami, 'ami-2939214a')
 ```
 
