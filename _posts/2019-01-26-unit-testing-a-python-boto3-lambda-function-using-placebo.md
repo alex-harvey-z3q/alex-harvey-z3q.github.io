@@ -319,7 +319,7 @@ This has shown the basics of what I do when I test Python Boto3 scripts using Pl
 
 Armed with the information I have documented here, Python Placebo is easy to set up. You can have this up and running for any Python script in 20 minutes. Then you can run your script in a real AWS account, record all the responses, ensuring that you test all the paths through the code you care about, then take it away, go nuts, refactor it, and you have unit tests to protect you from bugs.
 
-And the best bit of course is there's no need to manually create Mocks. I didn't need the Python Mock library. No MagicMock. No [moto](https://github.com/spulec/moto). It's just run the script and you have all your mocks saved for you. That's a big win!
+And the best bit of course is there's no need to manually create mocks. I didn't need the Python Mock library. No MagicMock. No [moto](https://github.com/spulec/moto). Just run the script and all your mocks saved for you. It's a big win!
 
 ### What I don't like
 
