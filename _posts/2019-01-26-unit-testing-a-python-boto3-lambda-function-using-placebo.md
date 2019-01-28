@@ -248,7 +248,7 @@ pill.playback()
 The actual test looks like this:
 
 ```python
-class TestEncryptAMI(unittest.TestCase):
+class TestAMIEncrypter(unittest.TestCase):
 
   def setUp(self):
 
