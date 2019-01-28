@@ -331,7 +331,7 @@ The naming convention of the response files is also not ideal. It would be great
 
 I raised an issue at the Placebo project [here](https://github.com/garnaat/placebo/issues/66). Feel free to upvote that issue if you also agree that this could be improved.
 
-Another concern is whether or not Placebo is a good fit for Test-Driven Development. I am personally not overly zealous about always writing tests first but the test-first approach sometimes does have merit. In that situation, it wouldn't make sense to use Placebo I don't think.
+Another concern is whether or not Placebo is a good fit for Test-Driven Development. I am not personally overly zealous about interpreting TDD as always writing tests first, but the test-first approach sometimes does have merit. In any case, if your requirement is to always write the tests first, I am not certain that the Placebo library will help.
 
 ## Conclusion
 
