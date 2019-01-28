@@ -296,7 +296,7 @@ Now for the test itself:
     self.assertEquals(encrypted_ami, 'ami-2939214a')
 ```
 
-Here I say if I call the `encrypt` method on the `AMIEncrypter` with those arguments similar to what I passed in on the script's CLI, the script returns an expected AMI ID. And with understanding of the code, I know that this test exercises all of the code in one of the main logic pathways through the code.
+Here I say if I call the `encrypt` method on the `AMIEncrypter` with those arguments similar to what I passed in on the script's CLI, the script returns an expected AMI ID. And with understanding of the code, I know that this test exercises one of its main logic pathways through it. (The other main one would `testEncryptAMISameAccount`, not shown here.)
 
 ### Running the test
 
