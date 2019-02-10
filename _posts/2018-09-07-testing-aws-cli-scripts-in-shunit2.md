@@ -115,13 +115,13 @@ script_under_test=$(basename $0)
 
 ## Installing shUnit2 > 2.1.7
 
-At the time of writing, the method I describe here depends on a patched version of shUnit2 that is only available in shUnit2 pre-2.1.8. The method was tested using [this](https://github.com/kward/shunit2/blob/07bb3292048a4982aad7247bdd7890f2bf532ece/shunit2) version that I took from the master branch.
+At the time of writing, the method I describe here depends on a patched version of shUnit2 that is only available in shUnit2 pre-2.1.8. The method was tested using [this](https://github.com/kward/shunit2/blob/768978563f74a64d58c2e4438fb5e8071d19b72b/shunit2) version that I took from the master branch.
 
 So, to install, something like this would be required:
 
 ~~~ text
 ▶ curl \
-    https://raw.githubusercontent.com/kward/shunit2/07bb3292048a4982aad7247bdd7890f2bf532ece/shunit2 \
+    https://raw.githubusercontent.com/kward/shunit2/768978563f74a64d58c2e4438fb5e8071d19b72b/shunit2 \
     -o /usr/local/bin/shunit2
 ~~~
 
