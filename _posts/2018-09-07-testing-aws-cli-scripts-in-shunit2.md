@@ -131,6 +131,16 @@ Or, if shUnit2 2.1.8 is released, then (on a Mac) try:
 ▶ brew install shunit2
 ~~~
 
+## Installing DiffHighlight (optional)
+
+Also used just for prettifying diff output (see below) is `DiffHighlight.pl`. This is a slightly-modified version of [diff-highlight](https://github.com/git/git/tree/master/contrib/diff-highlight), which is part of Git.
+
+~~~ text
+▶ curl \
+    https://raw.githubusercontent.com/alexharv074/scripts/master/DiffHighlight.pl \
+    -o /usr/local/bin/DiffHighlight.pl
+~~~
+
 ## Structure of the tests
 
 The test file `shunit2/delete_stack.sh` has five parts:
@@ -248,7 +258,7 @@ aws cloudformation delete-stack --stack-name mystack
 EOF
 
   assertEquals "unexpected sequence of commands issued" \
-    "" "$(diff -wu expected_log commands_log)"
+    "" "$(diff -wu expected_log commands_log | DiffHighlight.pl)"
 }
 
 # section 5 - the call to shUnit2 itself.
@@ -259,7 +269,7 @@ The test case here just calls the script with some fake inputs. The mocks interc
 
 The `assertEquals` function takes three arguments: a message to be seen only during failures (optional); an expected string; and the actual string. The shUnit2 framework is just like jUnit, Python unittest etc.
 
-The complicated call to `diff -wu` ensures that during failures, a nice readable unified diff of "expected" compared to "actual" is seen. This is because I found over time that the default shUnit2 output that compares two multiline strings is not easy to read at all.
+The complicated call to `diff -wu` ensures that during failures, a nice readable unified diff of "expected" compared to "actual" is seen. This is because I found over time that the default shUnit2 output that compares two multiline strings is not easy to read at all. The use of `DiffHighlight.pl` helps a great deal by further highlighting the character-level diffs.
 
 Notice also that we _source_ the script into the running shell rather than executing it in its own process. This way, the mocks and other setup can alter its behaviour in the test environment.
 

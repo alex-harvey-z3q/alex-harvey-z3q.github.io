@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+tags() {
+  echo -n "[" $(for i in $(awk -F':' '/^tags/ {print $2}' _posts/*) ; do echo $i ; done | sort -u ) "]"
+}
+
 usage() {
   echo "Usage: $0 [-h]"
   exit 1
@@ -8,7 +12,7 @@ usage() {
 
 echo -n "Title: "
 read title
-echo -n "Tags, space separated: "
+echo -n "Tags, space separated: $(tags) "
 read tags
 
 date=$(date +%Y-%m-%d)
