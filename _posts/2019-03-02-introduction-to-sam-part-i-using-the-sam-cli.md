@@ -273,24 +273,6 @@ REPORT RequestId: 30ea15c8-3364-42aa-be08-58d752807a8b Duration: 11 ms Billed Du
 2019-02-25 19:32:33 127.0.0.1 - - [25/Feb/2019 19:32:33] "GET /hello HTTP/1.1" 200 -
 ```
 
-### Connecting to other networks
-
-Although it's not relevant to the "hello world" example, I might also mention that if you need to connect your test container to another network - e.g. in order to connect to an RDS database, you can use the \--docker-network option. First, find the local host network:
-
-```
-▶ docker network ls
-NETWORK ID          NAME                DRIVER              SCOPE
-25a03c8453a6        bridge              bridge              local
-00de89cf09d0        host                host                local
-41597d91a389        none                null                local
-```
-
-And then pass that to sam local start-api:
-
-```
-▶ sam local start-api --docker-network 00de89cf09d0
-```
-
 ## Building and deploying
 
 Satisfied that I have a working Lambda function, it is time to deploy it.
