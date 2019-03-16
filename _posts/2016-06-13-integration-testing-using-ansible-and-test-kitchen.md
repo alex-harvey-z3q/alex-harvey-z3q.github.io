@@ -192,8 +192,8 @@ We define the BIND 9 master playbook that configures or “converges” the mast
         allow_recursion:   ['0.0.0.0/0'],
         forwarders:        ['8.8.8.8', '8.8.4.4'],
         slaves:            ['10.0.0.11', '10.0.0.12'],
-        named_root:        "{{ role_path ~ '/test/fixtures/named.root' }}",
-        zone_files_source: "{{ role_path ~ '/test/fixtures/zones' }}",
+        named_root:        "{%raw%}{{ role_path ~ '/test/fixtures/named.root' }}{%endraw%}",
+        zone_files_source: "{%raw%}{{ role_path ~ '/test/fixtures/zones' }}{%endraw%}",
         zones:             ['0.0.10.in-addr.arpa', 'example.com'],
       }
   post_tasks:
@@ -264,7 +264,7 @@ Now it is time to create a DNS slave. We create a playbook for the first slave t
         listen_on:       ['127.0.0.1', '10.0.0.11'],
         allow_recursion: ['0.0.0.0/0'],
         forwarders:      ['8.8.8.8', '8.8.4.4'],
-        named_root:      "{{ role_path ~ '/test/fixtures/named.root' }}",
+        named_root:      "{%raw%}{{ role_path ~ '/test/fixtures/named.root' }}{%endraw%}",
         zones:           ['0.0.10.in-addr.arpa', 'example.com'],
       }
   post_tasks:
