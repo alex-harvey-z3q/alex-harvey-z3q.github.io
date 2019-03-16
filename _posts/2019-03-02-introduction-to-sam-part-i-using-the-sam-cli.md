@@ -8,7 +8,7 @@ tags: sam lambda cors
 
 In this blog series I introduce Amazon's Serverless Application Model (SAM). The series summarises my learnings after developing an app in this framework for the first time. It could serve as a guide for others who also want to learn SAM quickly.
 
-In Part I (this article) I show how to use the SAM CLI to build, test and deploy SAM's built-in Python "hello world" app. In Part II I look at the internals of SAM with reference to the architecture and template language features. And then in Part III I configure the app's API Gateway to add a proxy+ endpoint and CORS configuration using the SAM template.
+In Part I (this article) I show how to use the SAM CLI to build, test and deploy SAM's built-in Python "hello world" app. In [Part II](https://alexharv074.github.io/2019/03/02/introduction-to-sam-part-ii-template-and-architecture.html) I look at the internals of SAM with reference to the architecture and template language features. And then in Part III I configure the app's API Gateway to add a proxy+ endpoint and CORS configuration using the SAM template.
 
 #### Table of contents
 
