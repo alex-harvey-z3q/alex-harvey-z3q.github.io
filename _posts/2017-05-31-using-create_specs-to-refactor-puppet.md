@@ -48,7 +48,7 @@ class ntp (
 
 ## Create specs
 
-Before we refactor anything, we need to compile a catalog. To do this, we create an initial spec file that uses Rspec-puppet to simply compile a catalog, as documented in the project’s README:
+Before I refactor anything, I need to compile a catalog. To do this, I create an initial spec file that uses Rspec-puppet to simply compile a catalog, as documented in the project’s README:
 
 ~~~ ruby
 # init_spec.rb
