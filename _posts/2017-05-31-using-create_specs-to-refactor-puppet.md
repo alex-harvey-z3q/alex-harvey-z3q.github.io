@@ -23,7 +23,7 @@ I assume the reader already understands how to set up Rspec-puppet; if not, have
 
 The sample code is a simple Puppet class that installs and configures NTP.
 
-(Note: all of the code for this blog post is available at Github here. The reader can step through the revision history to see the examples before and after the refactoring.)
+(Note: all of the code for this blog post is available at Github [here](https://github.com/alexharv074/create_specs_example). The reader can step through the revision history to see the examples before and after the refactoring.)
 
 ~~~ puppet
 class ntp (
