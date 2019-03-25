@@ -50,7 +50,7 @@ class ntp (
 
 Before I refactor anything, I need to compile a catalog. To do this, I create an initial spec file that uses Rspec-puppet to simply compile a catalog, as documented in the project’s README:
 
-~~~ ruby
+```ruby
 # init_spec.rb
 
 require 'spec_helper'
@@ -74,9 +74,9 @@ describe 'ntp' do
     )
   }
 end
-~~~
+```
 
-Then we run:
+Then I run:
 
 ~~~ text
 $ bundle exec rake spec
@@ -93,9 +93,9 @@ $ create_specs.rb -c catalogs/ntp.before.json -o spec/classes/init_spec.rb
 Writing out as spec/classes/init_spec.rb
 ~~~
 
-After running the script, we find that it has overwritten the init_spec.rb with an updated version containing the auto-generated Rspec-puppet tests:
+After running the script, I find that it has overwritten the init_spec.rb with an updated version containing the auto-generated Rspec-puppet tests:
 
-~~~ ruby
+```ruby
 require 'spec_helper'
 
 describe 'ntp' do
@@ -158,19 +158,19 @@ keys /etc/ntp/keys
     )
   }
 end
-~~~
+```
 
 ### Enable coverage report
 
 I am going to also manually add a line at the end of init_spec.rb to enable Rspec-puppet’s code coverage report:
 
-~~~ ruby
+```ruby
 at_exit { RSpec::Puppet::Coverage.report! }
-~~~
+```
 
 ### Run the tests again
 
-Next, we run the tests again to prove that create_specs really has created passing tests:
+Next, I run the tests again to prove that create_specs really has created passing tests:
 
 ~~~ text
 $ bundle exec rake spec
@@ -210,7 +210,7 @@ The hypothetical refactoring task is to split the module into separate classes, 
 
 However, in order to simulate a real refactoring task, I deliberately inserted a bug as well. It is a bug that will not break compilation, but it will stop Puppet from running. The reader may choose to spend a moment trying to find the bug before continuing.
 
-~~~ puppet
+```puppet
 # init.pp
 
 class ntp (
@@ -224,9 +224,9 @@ class ntp (
   -> Class['ntp::configure']
   ~> Class['ntp::service']
 }
-~~~
+```
 
-~~~ puppet
+```puppet
 # install.pp
 
 class ntp::install {
@@ -234,9 +234,9 @@ class ntp::install {
     ensure => installed,
   }
 }
-~~~
+```
 
-~~~ puppet
+```puppet
 # configure.pp
 
 class ntp::configure (
@@ -247,9 +247,9 @@ class ntp::configure (
     content => template("${module_name}/ntp.conf.erb"),
   }
 }
-~~~
+```
 
-~~~ puppet
+```puppet
 # service.pp
 
 class ntp::service {
@@ -258,9 +258,9 @@ class ntp::service {
     enable => true,
   }
 }
-~~~
+```
 
-~~~ puppet
+```puppet
 # params.pp
 
 class ntp::params {
@@ -271,11 +271,11 @@ class ntp::params {
     '3.au.pool.ntp.org',
   ]
 }
-~~~
+```
 
 ### Running the tests again
 
-After refactoring, we run the tests again. Here is what we see this time:
+After refactoring, I run the tests again. Here is what I see this time:
 
 ~~~ text
 $ bundle exec rake spec
@@ -331,7 +331,7 @@ Untouched resources:
 /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/bin/ruby -I/Library/Ruby/Gems/2.0.0/gems/rspec-core-3.6.0/lib:/Library/Ruby/Gems/2.0.0/gems/rspec-support-3.6.0/lib /Library/Ruby/Gems/2.0.0/gems/rspec-core-3.6.0/exe/rspec --pattern spec/\{aliases,classes,defines,unit,functions,hosts,integration,type_aliases,types\}/\*\*/\*_spec.rb --color failed
 ~~~
 
-So we have two test failures:
+So there are two test failures:
 
 ~~~ text
 It was expected that File[/etc/ntp.conf] would require Package[ntp].
@@ -340,21 +340,21 @@ It was expected that the catalog would contain Service[ntp].
 
 The first failure is a good failure. I wanted that to change, and I will now update my tests. Instead of expecting File[/etc/ntp.conf] to require Package[ntp], I expect instead for relationships to exist at the class level. So I add a new test:
 
-~~~ ruby
+```ruby
 it 'classes and their relationships' do
   is_expected.to contain_class('ntp::install').with({'before' => ['Class[Ntp::Configure]']})
   is_expected.to contain_class('ntp::configure').with({'notify' => ['Class[Ntp::Service]']})
   is_expected.to contain_class('ntp::service')
 end
-~~~
+```
 
 And I change the package test to:
 
-~~~ ruby
+```ruby
 it {
   is_expected.to contain_file('/etc/ntp.conf')
 }
-~~~
+```
 
 The second failure is a bad failure. I actually introduced a bug in the refactoring, by changing the name of the service from ntp to ntpd. I fix that by fixing the service class:
 
