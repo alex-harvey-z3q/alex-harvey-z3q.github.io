@@ -10,8 +10,11 @@ This is a list of my favourite productivity-enhancing vim tricks.
 
 #### Table of contents
 
-1. [Fix inconsistent cases](#fix-inconsistent-cases)
-2. [Sort lines in a file](#sort-lines-in-a-file)
+1. [Enter visual mode](#enter-visual-mode)
+2. [Fix inconsistent cases](#fix-inconsistent-cases)
+3. [Sort lines in a file](#sort-lines-in-a-file)
+4. [auto-indent some code](#auto-indent-some-code)
+5. [auto-indent a JSON document using jq](#auto-indent-a-json-document-using-jq)
 
 ## Enter visual mode
 
