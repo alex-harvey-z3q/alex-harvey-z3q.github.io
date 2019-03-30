@@ -10,17 +10,24 @@ This is a list of my favourite productivity-enhancing vim tricks.
 
 #### Table of contents
 
-1. [Enter visual mode](#enter-visual-mode)
-2. [Fix inconsistent cases](#fix-inconsistent-cases)
-3. [Sort lines in a file](#sort-lines-in-a-file)
-4. [auto-indent some code](#auto-indent-some-code)
-5. [auto-indent a JSON document using jq](#auto-indent-a-json-document-using-jq)
+1. [Preface](#preface)
+    * [How to enter Vim visual mode](#how-to-enter-vim-visual-mode)
+    * [A note about tab-completion in commands](#a-note-about-tab-completion-in-commands)
+2. [Cookbook](#cookbook)
+    * [Align equals signs](#align-equals-signs)
+    * [Auto-indent JSON code using jq](#auto-indent-json-code-using-jq)
+    * [Auto-indent code using visual mode and equals](#auto-indent-code-using-visual-mode-and-equals)
+    * [Copy some lines to the clipboard](#copy-some-lines-to-the-clipboard)
+    * [Fix inconsistent cases](#fix-inconsistent-cases)
+    * [Sort lines in a file](#sort-lines-in-a-file)
 
-## Enter visual mode
+## Preface
 
-- Problem
+Some info that is useful to know while reading all of the Vim tricks below.
 
-You don't know how to enter visual mode in vim. E.g. select the lines foo and baz in the following:
+### How to enter Vim visual mode
+
+If you don't know how to enter visual mode in vim. E.g. select the lines foo and baz in the following:
 
 ```json
 {
@@ -28,10 +35,6 @@ You don't know how to enter visual mode in vim. E.g. select the lines foo and ba
   "Baz": "Qux"
 }
 ```
-
-That's important because the other recipes in this article mostly rely on Vim visual mode.
-
-- Solution
 
 Move the cursor to line 2. `SHIFT-V`. `j` (to move down one line). `:`. Vim enters command mode with the beginning of a command set to `:'<,'>`. Now enter the rest of the command e.g. `:'<,'>s/: /:/` (remove the space after the colons).
 
@@ -39,89 +42,57 @@ Move the cursor to line 2. `SHIFT-V`. `j` (to move down one line). `:`. Vim ente
 
 See the [Vim manual](http://vimdoc.sourceforge.net/htmldoc/visual.html).
 
-## Fix inconsistent cases
+### A note about tab-completion in commands
+
+Be aware in all of these tips that Bash tab-completion works inside the Vim command mode. E.g. suppose you are using the pbcopy tip. You can go into visual mode, select the text and then:
+
+```
+:'<,'> ! pbc<TAB>
+```
+
+It will auto-complete as:
+
+```
+:'<,'> ! pbcopy
+```
+
+## Cookbook
+
+### Align equals signs
 
 - Problem
 
-You have variables, functions, etc in a file and some of them are in the incorrect case. Suppose the variable should be `FooBar` everywhere but has been inserted as variations of `Foobar`, `foobar` etc.
+You have some code like this:
+
+```js
+$ = jQuery.sub()
+Survey = App.Survey
+Sidebar = App.Sidebar
+Main = App.Main
+```
+
+And you want the equals signs to align like this:
+
+```js
+$       = jQuery.sub()
+Survey  = App.Survey
+Sidebar = App.Sidebar
+Main    = App.Main
+```
 
 - Solution
 
-```
-:%s/\cfoobar/FooBar/gc
-```
+Enter visual mode and then:
 
-- Explanation
-
-Use `\c` to search for a string case-insensitive in vim regular expressions.
+```
+:'<,'> ! column -t | sed -e 's/ = /=/'
+```
 
 - Reference
 
-From [this]() Stack Overflow post.
+My [answer](https://stackoverflow.com/a/51462785/3787051) on Stack Overflow.
 
-## Sort lines in a file
-
-- Problem 1
-
-You have some lines in a file that you'd like ordered alphabetically, e.g.
-
-```json
-{
-  "Foo": "Bar",
-  "Baz": "Qux"
-}
-```
-
-- Solution
-
-1. Use visual mode to select the lines foo and baz.
-2. Then:
-
-```
-:'<,'> ! sort
-```
-
-- Problem 2
-
-Just sort the entire file.
-
-- Solution 2
-
-```
-:% ! sort
-```
-
-## auto-indent some code
-
-- Problem
-
-You have some code in any language that's not indented properly, e.g.
-
-```bash
-while true ; do
-echo "hello world"
-done
-```
-
-And you want it indented like this:
-
-```bash
-while true ; do
-echo "hello world"
-done
-```
-
-- Solution
-
-Enter visual mode and select the block of code. Press `=`. The code is now indented as:
-
-```bash
-while true ; do
-  echo "hello world"
-done
-```
-
-## auto-indent a JSON document using jq
+### Auto-indent JSON code using jq
 
 - Problem
 
@@ -146,3 +117,92 @@ You want a different indentation e.g. 4 spaces instead of 2:
 - Reference
 
 See the [jq manual](https://stedolan.github.io/jq/manual/) for other options.
+
+### Auto-indent code using visual mode and equals
+
+- Problem
+
+You have some code in any language that's not indented properly, e.g.
+
+```bash
+while true ; do
+echo "hello world"
+done
+```
+
+And you want it indented like this:
+
+```bash
+while true ; do
+  echo "hello world"
+done
+```
+
+- Solution
+
+Enter visual mode and select the block of code. Press `=`.
+
+### Copy some lines to the clipboard
+
+- Problem
+
+You have some lines in a file and you want them moved to the clipboard. For some reason, selecting them and doing a copy is too hard or not possible. You'd rather get them in visual mode.
+
+- Solution (Mac OS X)
+
+Select the lines in visual mode and then:
+
+```
+:'<,'> ! pbcopy
+```
+
+### Fix inconsistent cases
+
+- Problem
+
+You have variables, functions, etc in a file and some of them are in the incorrect case. Suppose the variable should be `FooBar` everywhere but has been inserted as variations of `Foobar`, `foobar` etc.
+
+- Solution
+
+```
+:%s/\cfoobar/FooBar/gc
+```
+
+- Explanation
+
+Use `\c` to search for a string case-insensitive in vim regular expressions.
+
+- Reference
+
+From [this]() Stack Overflow post.
+
+### Sort lines in a file
+
+- Problem 1
+
+You have some lines in a file that you'd like ordered alphabetically, e.g.
+
+```yaml
+---
+Foo: Bar
+Baz: Qux
+```
+
+- Solution
+
+1. Use visual mode to select the lines foo and baz.
+2. Then:
+
+```
+:'<,'> ! sort
+```
+
+- Problem 2
+
+Just sort the entire file.
+
+- Solution 2
+
+```
+:% ! sort
+```
