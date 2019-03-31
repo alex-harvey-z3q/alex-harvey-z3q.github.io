@@ -241,7 +241,7 @@ Another common requirement is to enable CORS. To do that, the Globals section ca
 >
 > Enable and configure CORS for the APIs. Enabling CORS will allow your API to be called from other domains. Assume your API is served from 'www.example.com' and you want to allow.
 >
-> <!-- language: lang-yaml -->
+> <!-- language: yaml -->
 >
 >     Cors:
 >       AllowMethods: Optional. String containing the HTTP methods to allow.
