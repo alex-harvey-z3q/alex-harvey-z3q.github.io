@@ -1,0 +1,261 @@
+---
+layout: post
+title: "Introduction to SAM Part III: Adding a proxy+ endpoint and CORS configuration"
+date: 2019-03-31
+author: Alex Harvey
+tags: aws lambda sam
+---
+
+This is the third and final part of my blog series on Amazon’s Serverless Application Model (SAM). Part I and Part II are [here]() and [here]().
+
+## Overview to Part III
+
+In this final part of my series, I take the example "hello world" app and extend it to configure the app's API Gateway to add a proxy+ endpoint and CORS configuration using the SAM template.
+
+## Deploy script
+
+Because the process of rebuilding and redeploying becomes repetitive, I automated all that using the following script:
+
+```bash
+#!/usr/bin/env bash
+
+if ! which -s sam ; then
+  echo "sam not found. Try . virtualenv/bin/activate"
+  exit 1
+fi
+
+s3_bucket='alexharvey3118'
+stack_name='HelloWorld'
+
+cd sam-app
+
+set -x
+
+sam build || exit $?
+
+sam package \
+  --output-template-file packaged.yaml \
+  --s3-bucket $s3_bucket || exit $?
+
+sam deploy \
+  --template-file packaged.yaml \
+  --stack-name $stack_name \
+  --capabilities CAPABILITY_IAM || exit $?
+```
+
+I take that script to be both useful and self-explanatory.
+
+## Adding a proxy+ endpoint
+
+### What I am trying to do
+
+A task suggested as a learning exercise in the generated README file is as follows:
+
+~~~ text
+* Create a catch all resource (e.g. /hello/{proxy+}) and return the name requested through this new path
+~~~
+
+When I looked into this I found it frankly intimidating for two reasons:
+
+1. Inspection of what changed when I manually created a catch all resource in the AWS Console suggested that quite a lot changed.
+1. An excellent blog post on how to do this in pure CloudFormation [here](https://cjohansen.no/aws-apigw-proxy-cloudformation/) also suggested a lot should change - but not necessarily the same things!
+
+In the end the solution was trivial although undocumented and I found the answer in the [implicit_api_settings](https://github.com/awslabs/serverless-application-model/blob/v1.10.0/examples/2016-10-31/implicit_api_settings/template.yaml#L52-L56) example in the examples folder.
+
+A block of code similar to this is required:
+
+```yaml
+  Events:
+    ProxyApiGreedy:
+      Type: Api
+      Properties:
+        Path: /{proxy+}
+        Method: ANY
+```
+
+### Making the change
+
+Thus I make this change:
+
+```diff
+▶ git diff -U1 --inter-hunk-context=3
+diff --git a/sam-app/template.yaml b/sam-app/template.yaml
+index aaf342b..dc5194c 100644
+--- a/sam-app/template.yaml
++++ b/sam-app/template.yaml
+@@ -20,7 +20,12 @@ Resources:
+       Events:
+-        HelloWorld:
++        HelloWorldRoot:
+           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+           Properties:
+             Path: /hello
+             Method: get
++        HelloWorldGreedy:
++          Type: Api
++          Properties:
++            Path: /hello/{proxy+}
++            Method: get
+```
+
+### Redeploying
+
+I redeploy:
+
+~~~ text
+▶ bash deploy-stack.sh
++ sam build
+2019-03-31 18:25:55 Building resource 'HelloWorldFunction'
+2019-03-31 18:25:55 Running PythonPipBuilder:ResolveDependencies
+2019-03-31 18:25:57 Running PythonPipBuilder:CopySource
+
+Build Succeeded
+
+Built Artifacts  : .aws-sam/build
+Built Template   : .aws-sam/build/template.yaml
+
+Commands you can use next
+=========================
+[*] Invoke Function: sam local invoke
+[*] Package: sam package --s3-bucket <yourbucket>
+
++ sam package --output-template-file packaged.yaml --s3-bucket alexharvey3118
+Uploading to 8ca36d876aa32f39439ee2c0fa104f33  527363 / 527363.0  (100.00%)
+Successfully packaged artifacts and wrote output template to file packaged.yaml.
+Execute the following command to deploy the packaged template
+aws cloudformation deploy --template-file /Users/alexharvey/git/home/sam-test/sam-app/packaged.yaml --stack-name <YOUR STACK NAME>
++ sam deploy --template-file packaged.yaml --stack-name HelloWorld --capabilities CAPABILITY_IAM
+
+Waiting for changeset to be created..
+Waiting for stack create/update to complete
+Successfully created/updated stack - HelloWorld
+~~~
+
+### Testing
+
+Get the endpoint again:
+
+~~~ text
+▶ aws cloudformation describe-stacks --stack-name HelloWorld \
+    --query 'Stacks[].Outputs[?OutputKey==`HelloWorldApi`].OutputValue[]'
+[
+    "https://wpx37byki5.execute-api.ap-southeast-2.amazonaws.com/Prod/hello/"
+]
+~~~
+
+And test it out:
+
+~~~ text
+▶ curl https://wpx37byki5.execute-api.ap-southeast-2.amazonaws.com/Prod/hello/foo
+{"message": "Hello, Alex!"}
+▶ curl https://wpx37byki5.execute-api.ap-southeast-2.amazonaws.com/Prod/hello/bar
+{"message": "Hello, Alex!"}
+~~~
+
+Showing that requests sent to the endpoint /Prod/hello/* are being proxied to /Prod/hello.
+
+### Hashdiffing the processed.yml file
+
+To see what really changed I compare the new processed.yml file with the one I generated in the previous post and again use the Ruby Hashdiff utility. But before doing that I want to perform a few string substitutions on the deployment SHA1, the S3 bucket key, and the minor change I made to the HelloWorld event name. Thus:
+
+~~~ text
+▶ mv processed.yml processed.yml.orig
+▶ aws cloudformation get-template --stack-name HelloWorld \
+    --template-stage Processed --query TemplateBody | cfn-flip -y > processed.yml
+▶ sed -i -e '
+    s/HelloWorldRoot/HelloWorld/;
+    s/180520cefa92dffb99bc3e306accbba9/447c06bbc03dcd1b23220d2450918b99/;
+    s/47fc2d5f9d9a11e811f2722f41b991bfc98b4947/47fc2d5f9d21ad56f83937abe2779d0e26d7095e/;
+    s/095f5a6f3d/47fc2d5f9d/' \
+      processed.yml
+~~~
+
+Hashdiff now shows me three interesting actual diffs:
+
+```ruby
+▶ ruby -rhashdiff -rawesome_print -ryaml \
+    -e "ap HashDiff.diff(*ARGV.map{|f| YAML.load_file(f)})" processed.yml.orig processed.yml
+[
+  [0] [
+    [0] "+",
+    [1] "Resources.ServerlessRestApi.Properties.Body.paths./hello/{proxy+}",
+    [2] {
+      "get" => {
+        "x-amazon-apigateway-integration" => {
+          "httpMethod" => "POST",
+          "type"       => "aws_proxy",
+          "uri"        => "arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${HelloWorldFunction.Arn}/invocations"
+        },
+        "responses"                       => {}
+      }
+    }
+  ],
+  [1] [
+    [0] "+",
+    [1] "Resources.HelloWorldFunctionHelloWorldGreedyPermissionProd",
+    [2] {
+      "Type"       => "AWS::Lambda::Permission",
+      "Properties" => {
+        "Action"       => "lambda:invokeFunction",
+        "Principal"    => "apigateway.amazonaws.com",
+        "FunctionName" => "HelloWorldFunction",
+        "SourceArn"    => [
+          [0] "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${__ApiId__}/${__Stage__}/GET/hello/*",
+          [1] {
+            "__Stage__" => "Prod",
+            "__ApiId__" => "ServerlessRestApi"
+          }
+        ]
+      }
+    }
+  ],
+  [2] [
+    [0] "+",
+    [1] "Resources.HelloWorldFunctionHelloWorldGreedyPermissionTest",
+    [2] {
+      "Type"       => "AWS::Lambda::Permission",
+      "Properties" => {
+        "Action"       => "lambda:invokeFunction",
+        "Principal"    => "apigateway.amazonaws.com",
+        "FunctionName" => "HelloWorldFunction",
+        "SourceArn"    => [
+          [0] "arn:aws:execute-api:${AWS::Region}:${AWS::AccountId}:${__ApiId__}/${__Stage__}/GET/hello/*",
+          [1] {
+            "__Stage__" => "*",
+            "__ApiId__" => "ServerlessRestApi"
+          }
+        ]
+      }
+    }
+  ]
+]
+```
+
+Or, in summary, two more Lambda permissions, for the GET/hello/* Source ARN, and the additional path in the Swagger definition.
+
+## CORS configuration
+
+Another common requirement is to enable CORS. To do that, the Globals section can be used, according to documentation at [versions/2016-10-31.md#cors-configuration](https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#cors-configuration):
+
+> **Cors Configuration**
+>
+> Enable and configure CORS for the APIs. Enabling CORS will allow your API to be called from other domains. Assume your API is served from 'www.example.com' and you want to allow.
+>
+> <!-- language: lang-yaml -->
+>
+>     Cors:
+>       AllowMethods: Optional. String containing the HTTP methods to allow.
+>       # For example, "'GET,POST,DELETE'". If you omit this property, then SAM will automatically allow all the methods configured for each API.
+>       # Checkout [HTTP Spec](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Methods) more details on the value.
+>
+>       AllowHeaders: Optional. String of headers to allow.
+>       # For example, "'X-Forwarded-For'". Checkout [HTTP Spec](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Headers) for more details on the value
+>
+>       AllowOrigin: Required. String of origin to allow.
+>       # For example, "'www.example.com'". Checkout [HTTP Spec](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin) for more details on this value.
+>
+>       MaxAge: Optional. String containing the number of seconds to cache CORS Preflight request.
+>       # For example, "'600'" will cache request for 600 seconds. Checkout [HTTP Spec](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Max-Age) for more details on this value
+>
+>       AllowCredentials: Optional. Boolean indicating whether request is allowed to contain credentials.
+>       # Header is omitted when false. Checkout [HTTP Spec](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Credentials) for more details on this value.
