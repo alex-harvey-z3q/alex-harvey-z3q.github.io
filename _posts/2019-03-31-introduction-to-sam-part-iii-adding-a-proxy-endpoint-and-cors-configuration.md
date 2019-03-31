@@ -235,6 +235,8 @@ Or, in summary, two more Lambda permissions, for the GET/hello/* Source ARN, and
 
 ## CORS configuration
 
+### What I am trying to do
+
 Another common requirement is to enable CORS. To do that, the Globals section can be used, according to documentation at [versions/2016-10-31.md#cors-configuration](https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#cors-configuration):
 
 > **Cors Configuration**
@@ -259,3 +261,27 @@ Another common requirement is to enable CORS. To do that, the Globals section ca
 >
 >       AllowCredentials: Optional. Boolean indicating whether request is allowed to contain credentials.
 >       # Header is omitted when false. Checkout [HTTP Spec](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Credentials) for more details on this value.
+
+### Making the change
+
+Thus I make the following change:
+
+```diff
+▶ git diff sam-app/template.yaml
+diff --git a/sam-app/template.yaml b/sam-app/template.yaml
+index aaf342b..0f4c4ec 100644
+--- a/sam-app/template.yaml
++++ b/sam-app/template.yaml
+@@ -9,6 +9,11 @@ Description: >
+ Globals:
+   Function:
+     Timeout: 3
++  Api:
++    Cors:
++      AllowMethods: "'DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT'"
++      AllowHeaders: "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'"
++      AllowOrigin: "'*'"
+
+ Resources:
+   HelloWorldFunction:
+```
