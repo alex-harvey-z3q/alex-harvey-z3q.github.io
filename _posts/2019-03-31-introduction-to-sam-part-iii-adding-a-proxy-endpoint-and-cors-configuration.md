@@ -6,7 +6,24 @@ author: Alex Harvey
 tags: aws lambda sam
 ---
 
-This is the third and final part of my blog series on Amazon’s Serverless Application Model (SAM). Part I and Part II are [here]() and [here]().
+This is the third and final part of my blog series on Amazon’s Serverless Application Model (SAM). Part I and Part II are [here](https://alexharv074.github.io/2019/03/02/introduction-to-sam-part-i-using-the-sam-cli.html) and [here](https://alexharv074.github.io/2019/03/02/introduction-to-sam-part-ii-template-and-architecture.html).
+
+#### Table of contents
+
+1. [Overview to Part III](#overview-to-part-iii)
+2. [Deploy script](#deploy-script)
+3. [Adding a proxy+ endpoint](#adding-a-proxy-endpoint)
+    * [What I am trying to do](#what-i-am-trying-to-do)
+    * [Making the change](#making-the-change)
+    * [Redeploying](#redeploying)
+    * [Testing](#testing)
+    * [Hashdiffing the processed.yml file](#hashdiffing-the-processedyml-file)
+4. [CORS configuration](#cors-configuration)
+    * [What I am trying to do](#what-i-am-trying-to-do)
+    * [Making the change](#making-the-change)
+    * [The generated Swagger](#the-generated-swagger)
+5. [Summary](#summary)
+6. [Further reading](#further-reading)
 
 ## Overview to Part III
 
@@ -285,3 +302,68 @@ index aaf342b..0f4c4ec 100644
  Resources:
    HelloWorldFunction:
 ```
+
+### The generated Swagger
+
+Looking now at the Swagger that was generated, there's a better sense this time that SAM has really generated quite a lot of CloudFormation code:
+
+```yaml
+  ServerlessRestApi:
+    Type: AWS::ApiGateway::RestApi
+    Properties:
+      Body:
+        swagger: '2.0'
+        info:
+          version: '1.0'
+          title: !Ref 'AWS::StackName'
+        paths:
+          /hello/{proxy+}:
+            get:
+              x-amazon-apigateway-integration:
+                httpMethod: POST
+                type: aws_proxy
+                uri: !Sub 'arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${HelloWorldFunction.Arn}/invocations'
+              responses: {}
+            options:
+              summary: CORS support
+              consumes:
+                - application/json
+              produces:
+                - application/json
+              x-amazon-apigateway-integration:
+                type: mock
+                requestTemplates:
+                  application/json: "{\n  \"statusCode\" : 200\n}\n"
+                responses:
+                  default:
+                    statusCode: '200'
+                    responseTemplates:
+                      application/json: "{}\n"
+                    responseParameters:
+                      method.response.header.Access-Control-Allow-Origin: '''*'''
+                      method.response.header.Access-Control-Allow-Methods: '''DELETE,GET,HEAD,OPTIONS,PATCH,POST,PUT'''
+                      method.response.header.Access-Control-Allow-Headers: '''Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'''
+              responses:
+                '200':
+                  description: Default response for CORS method
+                  headers:
+                    Access-Control-Allow-Origin:
+                      type: string
+                    Access-Control-Allow-Headers:
+                      type: string
+                    Access-Control-Allow-Methods:
+                      type: string
+                      ...
+```
+
+## Summary
+
+This was the final part of my 3-part series on SAM. I do hope it has been useful to some and to that end please let me know if you found any of it confusing or in need of changes.
+
+In Part I, I looked at the SAM CLI and how to install it, and use it to generate the example "hello world" project, had a look at some of its features, and then how to build and deploy that app to AWS. Then in Part II, I looked more into the SAM template language and architecture to understand better how SAM generates CloudFormation code from a SAM template.
+
+In this final part, I have played around with extending the "hello world" app in some simple ways to add a proxy+ endpoint - something that didn't appear to be previously documented - and also how to enable CORS. I also provided a simple shell script for building and deploying that I find useful.
+
+## Further reading
+
+- Christian Johansen, [Setting up an Api Gateway Proxy Resource using Cloudformation](https://cjohansen.no/aws-apigw-proxy-cloudformation/).
