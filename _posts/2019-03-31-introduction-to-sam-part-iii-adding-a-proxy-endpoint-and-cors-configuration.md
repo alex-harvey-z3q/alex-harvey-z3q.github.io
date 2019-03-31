@@ -172,7 +172,7 @@ And test it out:
 
 Showing that requests sent to the endpoint /Prod/hello/* are being proxied to /Prod/hello.
 
-### Hashdiffing the processed.yml file
+### Hashdiff of the processed.yml file
 
 To see what really changed I compare the new processed.yml file with the one I generated in the previous post and again use the Ruby Hashdiff utility. But before doing that I want to perform a few string substitutions on the deployment SHA1, the S3 bucket key, and the minor change I made to the HelloWorld event name. Thus:
 
@@ -186,13 +186,13 @@ To see what really changed I compare the new processed.yml file with the one I g
     s/47fc2d5f9d9a11e811f2722f41b991bfc98b4947/47fc2d5f9d21ad56f83937abe2779d0e26d7095e/;
     s/095f5a6f3d/47fc2d5f9d/' \
       processed.yml
+▶ ruby -rhashdiff -rawesome_print -ryaml \
+    -e "ap HashDiff.diff(*ARGV.map{|f| YAML.load_file(f)})" processed.yml.orig processed.yml
 ~~~
 
 Hashdiff now shows me three interesting actual diffs:
 
 ```ruby
-▶ ruby -rhashdiff -rawesome_print -ryaml \
-    -e "ap HashDiff.diff(*ARGV.map{|f| YAML.load_file(f)})" processed.yml.orig processed.yml
 [
   [0] [
     [0] "+",
