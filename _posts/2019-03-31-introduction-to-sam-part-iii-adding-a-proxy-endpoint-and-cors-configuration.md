@@ -261,24 +261,24 @@ Another common requirement is to enable CORS. To do that, the Globals section ca
 >
 > Enable and configure CORS for the APIs. Enabling CORS will allow your API to be called from other domains. Assume your API is served from 'www.example.com' and you want to allow.
 >
-> <!-- language: yaml -->
+> ```yaml
+> Cors:
+>   AllowMethods: Optional. String containing the HTTP methods to allow.
+>   # For example, "'GET,POST,DELETE'". If you omit this property, then SAM will automatically allow all the methods configured for each API.
+>   # Checkout [HTTP Spec](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Methods) more details on the value.
 >
->     Cors:
->       AllowMethods: Optional. String containing the HTTP methods to allow.
->       # For example, "'GET,POST,DELETE'". If you omit this property, then SAM will automatically allow all the methods configured for each API.
->       # Checkout [HTTP Spec](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Methods) more details on the value.
+>   AllowHeaders: Optional. String of headers to allow.
+>   # For example, "'X-Forwarded-For'". Checkout [HTTP Spec](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Headers) for more details on the value
 >
->       AllowHeaders: Optional. String of headers to allow.
->       # For example, "'X-Forwarded-For'". Checkout [HTTP Spec](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Headers) for more details on the value
+>   AllowOrigin: Required. String of origin to allow.
+>   # For example, "'www.example.com'". Checkout [HTTP Spec](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin) for more details on this value.
 >
->       AllowOrigin: Required. String of origin to allow.
->       # For example, "'www.example.com'". Checkout [HTTP Spec](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin) for more details on this value.
+>   MaxAge: Optional. String containing the number of seconds to cache CORS Preflight request.
+>   # For example, "'600'" will cache request for 600 seconds. Checkout [HTTP Spec](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Max-Age) for more details on this value
 >
->       MaxAge: Optional. String containing the number of seconds to cache CORS Preflight request.
->       # For example, "'600'" will cache request for 600 seconds. Checkout [HTTP Spec](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Max-Age) for more details on this value
->
->       AllowCredentials: Optional. Boolean indicating whether request is allowed to contain credentials.
->       # Header is omitted when false. Checkout [HTTP Spec](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Credentials) for more details on this value.
+>   AllowCredentials: Optional. Boolean indicating whether request is allowed to contain credentials.
+>   # Header is omitted when false. Checkout [HTTP Spec](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Credentials) for more details on this value.
+> ```
 
 ### Making the change
 
