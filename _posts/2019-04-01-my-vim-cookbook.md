@@ -17,6 +17,7 @@ This is a list of my favourite productivity-enhancing vim tricks.
     * [Align equals signs](#align-equals-signs)
     * [Auto-indent JSON code using jq](#auto-indent-json-code-using-jq)
     * [Auto-indent code using visual mode and equals](#auto-indent-code-using-visual-mode-and-equals)
+    * [Bulk edit files using Vimscript](#bulk-edit-files-using-vimscript)
     * [Copy some lines to the clipboard](#copy-some-lines-to-the-clipboard)
     * [Fix inconsistent cases](#fix-inconsistent-cases)
     * [Sort lines in a file](#sort-lines-in-a-file)
@@ -141,6 +142,62 @@ done
 - Solution
 
 Enter visual mode and select the block of code. Press `=`.
+
+### Bulk edit files using Vimscript
+
+- Problem
+
+You have some similar files e.g. JSON files and they all need to be edited in a similar way. You thought about writing a sed, AWK, or Perl one-liner and can't think of a way. But the changes can be specified as a sequence of repeatable steps inside Vim.
+
+Suppose you have this content in a file:
+
+```text
+aaa
+bbb
+ccc
+bbb
+ccc
+eee
+```
+
+You need to add a missing line `ddd` after the second occurrence of `ccc`. Suppose you also need to make this change in all files matching an extended glob pattern `**/*.txt`.
+
+- Solution 1 - using built-in functions
+
+In a file /tmp/script.vim create the following Vimscript:
+
+```vim
+function! AddLine()
+  call search("bbb")
+  call search("bbb")
+  let l:foundline = search("ccc")
+  call append(l:foundline, "ddd")
+  wq!
+endfunction
+```
+
+Then execute that script on all of your files:
+
+```text
+▶ for i in **/*.txt ; do vim -u /tmp/script.vim -c 'call AddLine()' $i ; done
+```
+
+- Solution 2 - using normal mode
+
+In a file /tmp/script.vim create the following Vimscript:
+
+```vim
+function! AddLine()
+  normal /bbb^Mn/ccc^Moddd^[
+  wq!
+endfunction
+```
+
+Note that `^M` is a newline and `^[` is ESC. To enter these press CTRL-v then CTRL-M (^M) and CTRL-v then ESC (^[).
+
+- Further explanation
+
+The -u option tells Vim to load from a custom vimrc file and -c tells vim to execute that command on startup. The function AddLine() meanwhile calls `wq!` ensuring that vim starts, runs the function, and then saves and exits. This is repeated for each file in the for loop.
 
 ### Copy some lines to the clipboard
 
