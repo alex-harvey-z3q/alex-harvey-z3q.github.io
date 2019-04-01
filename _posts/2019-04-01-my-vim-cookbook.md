@@ -199,6 +199,8 @@ Note that `^M` is a newline and `^[` is ESC. To enter these press CTRL-v then CT
 
 The -u option tells Vim to load from a custom vimrc file and -c tells vim to execute that command on startup. The function AddLine() meanwhile calls `wq!` ensuring that vim starts, runs the function, and then saves and exits. This is repeated for each file in the for loop.
 
+In the normal mode version of the function, the characters following the normal command are the literal keystrokes you would press inside Vim, in order.
+
 ### Copy some lines to the clipboard
 
 - Problem
