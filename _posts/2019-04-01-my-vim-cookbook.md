@@ -18,6 +18,7 @@ This is a list of my favourite productivity-enhancing vim tricks.
     * [Auto-indent JSON code using jq](#auto-indent-json-code-using-jq)
     * [Auto-indent code using visual mode and equals](#auto-indent-code-using-visual-mode-and-equals)
     * [Bulk edit files using Vimscript](#bulk-edit-files-using-vimscript)
+    * [Convert a space separated string to newline separated string](#convert-a-space-separated-string-to-newline-separated-string)
     * [Copy some lines to the clipboard](#copy-some-lines-to-the-clipboard)
     * [Delete lines matching](#delete-lines-matching)
     * [Fix inconsistent cases](#fix-inconsistent-cases)
@@ -201,6 +202,32 @@ Note that `^M` is a newline and `^[` is ESC. To enter these press CTRL-v then CT
 The -u option tells Vim to load from a custom vimrc file and -c tells vim to execute that command on startup. The function AddLine() meanwhile calls `wq!` ensuring that vim starts, runs the function, and then saves and exits. This is repeated for each file in the for loop.
 
 In the normal mode version of the function, the characters following the normal command are the literal keystrokes you would press inside Vim, in order.
+
+### Convert a space separated string to newline separated string
+
+- Problem
+
+You have text in a file like:
+
+```text
+foo bar baz
+```
+
+You want it changed to:
+
+```text
+foo
+bar
+baz
+```
+
+- Solution
+
+Select the line or lines in visual mode then:
+
+```text
+:'<,'>s/ /^M/g
+```
 
 ### Copy some lines to the clipboard
 
