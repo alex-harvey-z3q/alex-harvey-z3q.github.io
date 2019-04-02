@@ -19,6 +19,7 @@ This is a list of my favourite productivity-enhancing vim tricks.
     * [Auto-indent code using visual mode and equals](#auto-indent-code-using-visual-mode-and-equals)
     * [Bulk edit files using Vimscript](#bulk-edit-files-using-vimscript)
     * [Copy some lines to the clipboard](#copy-some-lines-to-the-clipboard)
+    * [Delete lines matching](#delete-lines-matching)
     * [Fix inconsistent cases](#fix-inconsistent-cases)
     * [Sort lines in a file](#sort-lines-in-a-file)
 
@@ -213,6 +214,18 @@ Select the lines in visual mode and then:
 
 ```
 :'<,'> ! pbcopy
+```
+
+### Delete lines matching
+
+- Problem
+
+You have a bunch of lines matching a pattern PATTERN in a file. You want them all deleted.
+
+- Solution
+
+```
+:%g/PATTERN/d
 ```
 
 ### Fix inconsistent cases
