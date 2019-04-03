@@ -37,6 +37,44 @@ sed -i 's/SEARCH/REPLACE/g'
 sed -i 's/  *$//'
 ```
 
+## Print a line or range of lines
+
+### Print the nth line in a file
+
+- Problem
+
+You want to print the nth line in a file, for example the 11th.
+
+- Solution using sed
+
+```text
+sed -n 11p
+```
+
+### Print all lines between the nth and mth, inclusive
+
+- Problem
+
+Suppose you want to print the 4th to 11th lines inclusive in a file.
+
+- Solution using sed
+
+```text
+sed -n 4,11p
+```
+
+### Print all lines from the nth to the end of file, inclusive
+
+- Problem
+
+Suppose you want to print all lines from the 4th to the end of file.
+
+- Solution using sed
+
+```text
+sed -n '4,$p'
+```
+
 ## Print all lines between two patterns
 
 ### Print all lines between two patterns, inclusive, patterns may recur
@@ -166,42 +204,4 @@ sed -n '/PATTERN1/,/PATTERN2/{//!p;}'
 
 ```text
 awk '/PATTERN1/,/PATTERN2/{if(/PATTERN2|PATTERN1/)next;print}'
-```
-
-## Print a line or range of lines
-
-### Print the nth line in a file
-
-- Problem
-
-You want to print the nth line in a file, for example the 11th.
-
-- Solution using sed
-
-```text
-sed -n 11p
-```
-
-### Print all lines between the nth and mth, inclusive
-
-- Problem
-
-Suppose you want to print the 4th to 11th lines inclusive in a file.
-
-- Solution using sed
-
-```text
-sed -n 4,11p
-```
-
-### Print all lines from the nth to the end of file, inclusive
-
-- Problem
-
-Suppose you want to print all lines from the 4th to the end of file.
-
-- Solution using sed
-
-```text
-sed -n '4,$p'
 ```

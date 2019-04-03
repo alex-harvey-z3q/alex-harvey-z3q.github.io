@@ -36,3 +36,25 @@ describe 'posts' do
     end
   end
 end
+
+describe 'cookbooks sorting' do
+  cookbook = '2019-04-01-my-vim-cookbook.md'
+  ignore = [
+    '### How to enter Vim visual mode',
+    '### A note about tab-completion in commands',
+  ]
+  context cookbook do
+    unsorted = File.readlines("_posts/#{cookbook}").select{|x| x =~ /^### /}.map(&:chomp) - ignore
+    it "#{cookbook} should be sorted" do
+      expect(unsorted).to eq unsorted.sort
+    end
+  end
+
+  cookbook = '2019-04-02-my-sed-and-awk-cookbook.md'
+  context cookbook do
+    unsorted = File.readlines("_posts/#{cookbook}").select{|x| x =~ /^## /}
+    it "#{cookbook} should be sorted" do
+      expect(unsorted).to eq unsorted.sort
+    end
+  end
+end
