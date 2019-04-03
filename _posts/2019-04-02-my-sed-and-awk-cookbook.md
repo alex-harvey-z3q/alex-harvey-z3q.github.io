@@ -205,3 +205,44 @@ sed -n '/PATTERN1/,/PATTERN2/{//!p;}'
 ```text
 awk '/PATTERN1/,/PATTERN2/{if(/PATTERN2|PATTERN1/)next;print}'
 ```
+
+### Print all lines between two patterns, exclusive, first match only if patterns recur
+
+Suppose you have these lines in a file:
+
+```text
+aaa
+PATTERN1
+bbb
+ccc
+PATTERN2
+ddd
+PATTERN1
+eee
+fff
+PATTERN2
+ggg
+```
+
+You want to return these lines:
+
+```text
+bbb
+ccc
+```
+
+- Solution using GNU sed
+
+```text
+gsed '0,/PATTERN1/d;/PATTERN2/Q'
+```
+
+- Solution using AWK
+
+```text
+awk '/PATTERN1/{f=1;next}/PATTERN2/{exit}f'
+```
+
+- Reference
+
+On Stack Overflow [here](https://stackoverflow.com/a/55220428/3787051) and [here](https://stackoverflow.com/a/55222083/3787051).
