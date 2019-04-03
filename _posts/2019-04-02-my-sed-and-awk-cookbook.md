@@ -37,6 +37,18 @@ sed -i 's/SEARCH/REPLACE/g'
 sed -i 's/  *$//'
 ```
 
+### Insert a line after each instance of a pattern
+
+- Problem
+
+You want to insert a line `foo` after a pattern `PATTERN` in a file.
+
+- Solution using sed
+
+```text
+sed -i '/PATTERN/a foo'
+```
+
 ## Print a line or range of lines
 
 ### Print the nth line in a file
