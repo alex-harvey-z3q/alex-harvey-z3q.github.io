@@ -16,7 +16,7 @@ echo -n "Tags, space separated: $(tags) "
 read tags
 
 date=$(date +%Y-%m-%d)
-file="_posts/$date-$(echo $title | tr '[:upper:]' '[:lower:]' | sed -e 's/[ +:][ +:]*/-/g').md"
+file="_posts/$date-$(echo $title | tr '[:upper:]' '[:lower:]' | sed -e 's/[ +,:][ +,:]*/-/g').md"
 
 cat > $file <<EOF
 ---
