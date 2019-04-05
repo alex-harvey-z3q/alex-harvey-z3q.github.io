@@ -39,14 +39,24 @@ sed -i 's/  *$//'
 
 ### Insert a line after each instance of a pattern
 
-- Problem
+- Problem 1
 
 You want to insert a line `foo` after a pattern `PATTERN` in a file.
 
-- Solution using sed
+- Solution using GNU sed
 
 ```text
 sed -i '/PATTERN/a foo'
+```
+
+- Problem 2
+
+You want to insert a line "`  foo`" with 2 leading spaces after a pattern `PATTERN` in a file.
+
+- Solution using GNU sed
+
+```text
+sed -i '/PATTERN/a \ \ foo'
 ```
 
 ## Print a line or range of lines
