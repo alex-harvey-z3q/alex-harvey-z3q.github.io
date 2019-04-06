@@ -49,6 +49,12 @@ You want to insert a line `foo` after a pattern `PATTERN` in a file.
 sed -i '/PATTERN/a foo'
 ```
 
+If you need to also insert say 2 leading newlines:
+
+```text
+sed -i '/PATTERN/a \ \ foo'
+```
+
 - Problem 2
 
 You want to insert a line "`  foo`" with 2 leading spaces after a pattern `PATTERN` in a file.
