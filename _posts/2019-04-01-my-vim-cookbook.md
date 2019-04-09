@@ -275,6 +275,39 @@ Use `\c` to search for a string case-insensitive in vim regular expressions.
 
 From [this]() Stack Overflow post.
 
+### Record a macro
+
+- Problem
+
+You want to define a Vim Macro, to automate repeated steps within Vim.
+
+Suppose you want a Macro to insert a Ruby debugging line:
+
+```ruby
+require 'pry'; binding.pry
+```
+
+You want the Macro to be played back when you hit `@a`.
+
+- Solution
+
+In normal mode:
+
+```
+qa
+```
+
+Vim displays that the Macro is recording. Now actually insert the text into the file. That is `o` to enter edit mode on the next line, type the Ruby code, and ESC to exit back to normal mode. Then press `q` to end recording.
+
+To view the code of the Macro:
+
+```
+:reg a
+"a   orequire 'pry'; binding.pry^M^[
+```
+
+To playback the Macro, `@a`.
+
 ### Sort lines in a file
 
 - Problem 1
