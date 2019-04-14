@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Data consistency testing in Puppet, Part I: data types"
+title: "Data consistency testing in Puppet, Part I: Data types"
 date: 2018-09-30
 author: Alex Harvey
 tags: puppet data-testing
@@ -9,6 +9,9 @@ tags: puppet data-testing
 When maintaining Puppet (or any Infrastructure-as-code solution) in production, human errors are made most frequently in data. A class expected an array of strings but you just passed in a string. The data wasn't valid JSON because you left out a comma. You added a comment to an INI file using a hash symbol instead of the semicolon. And so on.
 
 In this first part of a blog series on data consistency testing in Puppet, I look at the benefits of properly using Puppet's data types to prevent human errors and speed up your team's velocity.
+
+* ToC
+{:toc}
 
 ## Puppet data types
 
