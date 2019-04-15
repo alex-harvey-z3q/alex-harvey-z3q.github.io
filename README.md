@@ -13,6 +13,13 @@ To build:
 ▶ bundle exec jekyll build
 ```
 
+To serve:
+
+```text
+▶ bundle install
+▶ bundle exec jekyll serve
+```
+
 To run the tests:
 
 ```text
