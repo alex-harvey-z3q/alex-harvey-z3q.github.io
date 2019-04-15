@@ -65,6 +65,34 @@ You want to insert a line "`  foo`" with 2 leading spaces after a pattern `PATTE
 sed -i '/PATTERN/a \ \ foo'
 ```
 
+### Insert a line before each instance of a pattern
+
+- Problem
+
+You want to insert a line `foo` before a pattern `PATTERN` in a file.
+
+- Solution using GNU sed
+
+```text
+sed -i '/PATTERN/i foo'
+```
+
+### Insert a line after the last instance of a pattern
+
+- Problem
+
+You want to insert a line `foo` after the _last_ instance of a pattern `PATTERN` in a file.
+
+- Solution
+
+```text
+sed -i '1h;1!H;$!d;x;s/.*PATTERN[^\n]*/&\nfoo/'
+```
+
+- Reference
+
+See [Stack Overflow](https://stackoverflow.com/a/37911473/3787051).
+
 ## Print a line or range of lines
 
 ### Print the nth line in a file
