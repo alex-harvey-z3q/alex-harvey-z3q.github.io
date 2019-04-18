@@ -27,7 +27,7 @@ That's the problem I am trying to solve today. How do you test the data that liv
 
 Suppose you have a manifest:
 
-```puppet
+```js
 class loopback {
 
   $rest_api_root = '/api'
@@ -197,7 +197,7 @@ Finished in 0.78467 seconds (files took 1.3 seconds to load)
 
 This all works fine if your data is in Puppet templates. But sometimes Puppet's built-in file server is used.<sup>2</sup> What if our Loopback class looked like this:
 
-```puppet
+```js
 class loopback {
 
   file { '/server/config.json':
@@ -235,7 +235,7 @@ Of course, not all file content is JSON data, although the same general approach
 
 Here is a YAML example. The manifest:
 
-```puppet
+```js
 class hiera {
 
   $codedir = '/etc/puppetlabs/code'
@@ -307,7 +307,7 @@ INI files, however, present a few specific challenges:
 
 Here is an example inifile manifest:
 
-```puppet
+```js
 class puppet::agent {
 
   $agent_certname = 'agent01.example.com'
@@ -366,7 +366,7 @@ I have tested Java Properties files in the past using Jonas Thiel's [java-proper
 
 Here is an example. Manifest:
 
-```puppet
+```js
 class javaprops {
   file { '/home/webapp/config.properties':
     ensure  => present,
