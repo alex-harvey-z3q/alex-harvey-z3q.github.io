@@ -22,6 +22,8 @@ This is a list of my favourite productivity-enhancing vim tricks.
     * [Copy some lines to the clipboard](#copy-some-lines-to-the-clipboard)
     * [Delete lines matching](#delete-lines-matching)
     * [Fix inconsistent cases](#fix-inconsistent-cases)
+    * [Move ahead by n characters](#move-ahead-by-n-characters)
+    * [Record a macro](#record-a-macro)
     * [Sort lines in a file](#sort-lines-in-a-file)
 
 ## Preface
@@ -274,6 +276,20 @@ Use `\c` to search for a string case-insensitive in vim regular expressions.
 - Reference
 
 From [this]() Stack Overflow post.
+
+### Move ahead by n characters
+
+- Problem
+
+A command like sed fails with a message like:
+
+```text
+gsed: -e expression #1, char 44: extra characters after command
+```
+
+- Solution
+
+Go to the start of the sed script, then `<SPACE>44`. The cursor will move ahead by 44 characters, traversing newlines.
 
 ### Record a macro
 
