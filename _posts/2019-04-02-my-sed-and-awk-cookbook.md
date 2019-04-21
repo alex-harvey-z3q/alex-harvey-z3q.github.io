@@ -13,8 +13,6 @@ This is a list of my favourite productivity-enhancing sed & AWK one-liners.
 
 ## Edit files in place
 
-### In general
-
 - Problem
 
 You want to replace all instances of a pattern in a file in place without saving a backup.
@@ -22,62 +20,46 @@ You want to replace all instances of a pattern in a file in place without saving
 - Solution using sed (Mac OS X)
 
 ```text
-sed -i '' 's/SEARCH/REPLACE/g'
+sed -i '' 's/SEARCH/REPLACE/g' FILE
 ```
 
 - Solution using sed (Linux)
 
 ```text
-sed -i 's/SEARCH/REPLACE/g'
+gsed -i 's/SEARCH/REPLACE/g' FILE
 ```
 
-### Remove trailing whitespaces
+## Inserting lines before or after patterns
 
-```text
-sed -i 's/  *$//'
-```
+### After each instance of a pattern
 
-### Insert a line after each instance of a pattern
-
-- Problem 1
+- Problem
 
 You want to insert a line `foo` after a pattern `PATTERN` in a file.
 
-- Solution using GNU sed
+- Solution using sed
 
 ```text
-sed -i '/PATTERN/a foo'
+gsed -i '/PATTERN/a foo' FILE
 ```
 
 If you need to also insert say 2 leading newlines:
 
 ```text
-sed -i '/PATTERN/a \ \ foo'
+gsed -i -e '/PATTERN/a -e '  foo' FILE
 ```
 
-- Problem 2
-
-You want to insert a line "`  foo`" with 2 leading spaces after a pattern `PATTERN` in a file.
-
-- Solution using GNU sed
-
-```text
-sed -i '/PATTERN/a \ \ foo'
-```
-
-### Insert a line before each instance of a pattern
-
-- Problem
+### Before each instance of a pattern
 
 You want to insert a line `foo` before a pattern `PATTERN` in a file.
 
-- Solution using GNU sed
+- Solution using sed
 
 ```text
-sed -i '/PATTERN/i foo'
+gsed -i '/PATTERN/i foo' FILE
 ```
 
-### Insert a line after the last instance of a pattern
+### After the last instance of a pattern
 
 - Problem
 
@@ -97,11 +79,7 @@ See [Stack Overflow](https://stackoverflow.com/a/37911473/3787051).
 
 ### Print the nth line in a file
 
-- Problem
-
-You want to print the nth line in a file, for example the 11th.
-
-- Solution using sed
+For example, the 11th line of a file:
 
 ```text
 sed -n 11p
@@ -109,11 +87,7 @@ sed -n 11p
 
 ### Print all lines between the nth and mth, inclusive
 
-- Problem
-
-Suppose you want to print the 4th to 11th lines inclusive in a file.
-
-- Solution using sed
+The 4th to 11th lines inclusive in a file:
 
 ```text
 sed -n 4,11p
@@ -121,11 +95,7 @@ sed -n 4,11p
 
 ### Print all lines from the nth to the end of file, inclusive
 
-- Problem
-
-Suppose you want to print all lines from the 4th to the end of file.
-
-- Solution using sed
+The 4th line to the end of file:
 
 ```text
 sed -n '4,$p'
@@ -151,6 +121,8 @@ eee
 fff
 PATTERN2
 ggg
+PATTERN1
+hhh
 ```
 
 You want to return these lines:
@@ -164,6 +136,8 @@ PATTERN1
 eee
 fff
 PATTERN2
+PATTERN1
+hhh
 ```
 
 - Solution using sed
@@ -184,23 +158,7 @@ On Stack Overflow [here](https://stackoverflow.com/a/38978201/3787051) and [here
 
 ### Print all lines between two patterns, inclusive, first match only if patterns recur
 
-Suppose you have these lines in a file:
-
-```text
-aaa
-PATTERN1
-bbb
-ccc
-PATTERN2
-ddd
-PATTERN1
-eee
-fff
-PATTERN2
-ggg
-```
-
-You want to return these lines:
+Suppose you only want to return these lines:
 
 ```text
 PATTERN1
@@ -223,25 +181,7 @@ awk '/PATTERN1/,/PATTERN2/;/PATTERN2/{exit}'
 
 ### Print all lines between two patterns, exclusive, patterns may recur
 
-- Problem
-
-Suppose you have these lines in a file:
-
-```text
-aaa
-PATTERN1
-bbb
-ccc
-PATTERN2
-ddd
-PATTERN1
-eee
-fff
-PATTERN2
-ggg
-```
-
-You want to return these lines:
+Suppose you only want to return these lines:
 
 ```text
 bbb
@@ -264,23 +204,7 @@ awk '/PATTERN1/,/PATTERN2/{if(/PATTERN2|PATTERN1/)next;print}'
 
 ### Print all lines between two patterns, exclusive, first match only if patterns recur
 
-Suppose you have these lines in a file:
-
-```text
-aaa
-PATTERN1
-bbb
-ccc
-PATTERN2
-ddd
-PATTERN1
-eee
-fff
-PATTERN2
-ggg
-```
-
-You want to return these lines:
+Suppose you only want to return these lines:
 
 ```text
 bbb
@@ -302,3 +226,10 @@ awk '/PATTERN1/{f=1;next}/PATTERN2/{exit}f'
 - Reference
 
 On Stack Overflow [here](https://stackoverflow.com/a/55220428/3787051) and [here](https://stackoverflow.com/a/55222083/3787051).
+
+## Remove trailing whitespaces in a file
+
+```text
+gsed -i 's/  *$//' FILE
+```
+
