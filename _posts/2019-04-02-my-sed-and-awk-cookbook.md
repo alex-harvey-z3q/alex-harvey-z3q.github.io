@@ -6,7 +6,7 @@ author: Alex Harvey
 tags: sed awk
 ---
 
-This is a list of my favourite productivity-enhancing sed & AWK one-liners.
+This is a list of my favourite productivity-enhancing sed & AWK one-liners.<sup>1</sup>
 
 - ToC
 {:toc}
@@ -193,7 +193,7 @@ sed -n '/PATTERN1/,/PATTERN2/p' FILE
 - Solution using AWK
 
 ```text
-awk '/PATTERN1/,/PATTERN2/'
+awk '/PATTERN1/,/PATTERN2/' FILE
 ```
 
 - Reference
@@ -220,7 +220,7 @@ sed -n '/PATTERN1/,/PATTERN2/p;/PATTERN2/q'
 - Solution using AWK
 
 ```text
-awk '/PATTERN1/,/PATTERN2/;/PATTERN2/{exit}'
+awk '/PATTERN1/,/PATTERN2/;/PATTERN2/{exit}' FILE
 ```
 
 ### Print all lines between two patterns, exclusive, patterns may recur
@@ -243,7 +243,7 @@ gsed -n '/PATTERN1/,/PATTERN2/{//!p}' FILE
 - Solution using AWK
 
 ```text
-awk '/PATTERN1/,/PATTERN2/{if(/PATTERN2|PATTERN1/)next;print}'
+awk '/PATTERN1/,/PATTERN2/{if(/PATTERN2|PATTERN1/)next;print}' FILE
 ```
 
 ### Print all lines between two patterns, exclusive, first match only if patterns recur
@@ -264,7 +264,7 @@ gsed '0,/PATTERN1/d;/PATTERN2/Q' FILE
 - Solution using AWK
 
 ```text
-awk '/PATTERN1/{f=1;next}/PATTERN2/{exit}f'
+awk '/PATTERN1/{f=1;next}/PATTERN2/{exit}f' FILE
 ```
 
 - Reference
@@ -277,4 +277,7 @@ On Stack Overflow [here](https://stackoverflow.com/a/55220428/3787051) and [here
 gsed -i 's/  *$//' FILE
 ```
 
+---
+
+<sup>1</sup> Note that many of these one-liners are [auto-generated](https://github.com/alexharv074/alexharv074.github.io/blob/master/erb/2019-04-02-my-sed-and-awk-cookbook.md.erb#L9-L24) from [unit test](https://github.com/alexharv074/alexharv074.github.io/blob/master/shunit2/sed_and_awk_cookbook.sh) code.
 <!-- vim: set ft=liquid: -->
