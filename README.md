@@ -23,4 +23,5 @@ To run the tests:
 
 ```text
 ▶ bundle exec rake
+▶ bash/shunit2/sed_and_awk_cookbook.sh
 ```
