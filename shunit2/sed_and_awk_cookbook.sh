@@ -4,42 +4,40 @@ if [ "$(uname -s)" == "Darwin" ] ; then
 fi
 
 testInplaceEdit() {
-  echo "qux bar baz" > /tmp/FILE
-  sed -i 's/qux/foo/g' /tmp/FILE
-  assertEquals "foo bar baz" "$(</tmp/FILE)"
+  echo "SEARCH bar baz" > /tmp/FILE
+  sed -i 's/SEARCH/REPLACE/g' /tmp/FILE
+  assertEquals "REPLACE bar baz" "$(</tmp/FILE)"
 }
 
 testAppendLine() {
-  echo "foo
-baz
-qux" > /tmp/FILE
-  sed -i '/foo/a bar' /tmp/FILE
-  echo "foo
-bar
-baz
-qux" > /tmp/EXPECTED
+  echo "PATTERN
+bar" > /tmp/FILE
+  sed -i '/PATTERN/a foo' /tmp/FILE
+  echo "PATTERN
+foo
+bar" > /tmp/EXPECTED
   assertEquals "$(</tmp/EXPECTED)" "$(</tmp/FILE)"
 }
 
 testAppendLineWithSpaces() {
-  echo "  foo
-  baz
-  qux" > /tmp/FILE
-  sed -i -e '/foo/a\' -e '  bar' /tmp/FILE
-  echo "  foo
+  echo "PATTERN
   bar
-  baz
-  qux" > /tmp/EXPECTED
+  baz" > /tmp/FILE
+  sed -i -e '/PATTERN/a\' -e '  foo' /tmp/FILE
+  echo "PATTERN
+  foo
+  bar
+  baz" > /tmp/EXPECTED
   assertEquals "$(</tmp/EXPECTED)" "$(</tmp/FILE)"
 }
 
 testInsertLine() {
-  echo "foo
+  echo "PATTERN
 baz
 qux" > /tmp/FILE
-  sed -i '/baz/i bar' /tmp/FILE
+  sed -i '/PATTERN/i foo' /tmp/FILE
   echo "foo
-bar
+PATTERN
 baz
 qux" > /tmp/EXPECTED
   assertEquals "$(</tmp/EXPECTED)" "$(</tmp/FILE)"
@@ -48,42 +46,42 @@ qux" > /tmp/EXPECTED
 testInsertAfterLastInstanceOfPattern() {
   echo "aaa
 bbb
-ccc
+PATTERN
 bbb
-ccc
+PATTERN
 eee" > /tmp/FILE
   echo "aaa
 bbb
-ccc
+PATTERN
 bbb
-ccc
-ddd
+PATTERN
+foo
 eee" > /tmp/EXPECTED
-  sed -i '1h; 1!H; $!d; x; s/.*ccc[^\n]*/&\nddd/' /tmp/FILE
+  sed -i '1h; 1!H; $!d; x; s/.*PATTERN[^\n]*/&\nfoo/' /tmp/FILE
   assertEquals "$(</tmp/EXPECTED)" "$(</tmp/FILE)"
 }
 
 testPrintLineAfterPattern() {
   echo "aaa
-bbb
+PATTERN
 ccc
-bbb
+PATTERN
 ccc
 eee" > /tmp/FILE
-  output=$(sed -n '/bbb/{n;p}' /tmp/FILE)
+  output=$(sed -n '/PATTERN/{n;p}' /tmp/FILE)
   expected="ccc
 ccc"
   assertEquals "$expected" "$output"
 }
 
 testPrintTwoLinesAfterPattern() {
-  echo "aaa
+  echo "PATTERN
 bbb
 ccc
-aaa
+PATTERN
 bbb
 ccc" > /tmp/FILE
-  output=$(sed -n '/aaa/{n;n;p}' /tmp/FILE)
+  output=$(sed -n '/PATTERN/{n;n;p}' /tmp/FILE)
   expected="ccc
 ccc"
   assertEquals "$expected" "$output"
@@ -91,12 +89,12 @@ ccc"
 
 testPrintLineBeforePattern() {
   echo "aaa
-bbb
+PATTERN
 ccc
 aaa
-bbb
+PATTERN
 ccc" > /tmp/FILE
-  output=$(sed '$!N; /.*\n.*bbb/P; D' /tmp/FILE)
+  output=$(sed '$!N; /.*\n.*PATTERN/P; D' /tmp/FILE)
   expected="aaa
 aaa"
   assertEquals "$expected" "$output"
@@ -105,11 +103,11 @@ aaa"
 testPrintTwolinesBeforePattern() {
   echo "aaa
 bbb
-ccc
+PATTERN
 aaa
 bbb
-ccc" > /tmp/FILE
-  output=$(sed '1N; $!N; /.*\n.*\n.*ccc/P; D' /tmp/FILE)
+PATTERN" > /tmp/FILE
+  output=$(sed '1N; $!N; /.*\n.*\n.*PATTERN/P; D' /tmp/FILE)
   expected="aaa
 aaa"
   assertEquals "$expected" "$output"
@@ -120,13 +118,13 @@ testPrintFourLinesBeforePattern() {
 bbb
 ccc
 ddd
-eee
+PATTERN
 aaa
 bbb
 ccc
 ddd
-eee" > /tmp/FILE
-  output=$(sed '1{N;N;N}; $!N; /.*\n.*\n.*\n.*\n.*eee/P; D' /tmp/FILE)
+PATTERN" > /tmp/FILE
+  output=$(sed '1{N;N;N}; $!N; /.*\n.*\n.*\n.*\n.*PATTERN/P; D' /tmp/FILE)
   expected="aaa
 aaa"
   assertEquals "$expected" "$output"
@@ -134,36 +132,36 @@ aaa"
 
 testPrintLinesBetweenPatternsInclusive() {
   echo "aaa
-PAT1
+PATTERN1
 bbb
 ccc
 ddd
-PAT2
+PATTERN2
 eee
-PAT1
+PATTERN1
 fff" > /tmp/FILE
-  output=$(sed -n '/PAT1/,/PAT2/p' /tmp/FILE)
-  expected="PAT1
+  output=$(sed -n '/PATTERN1/,/PATTERN2/p' /tmp/FILE)
+  expected="PATTERN1
 bbb
 ccc
 ddd
-PAT2
-PAT1
+PATTERN2
+PATTERN1
 fff"
   assertEquals "$expected" "$output"
 }
 
 testPrintLinesBetweenPatternsExclusive() {
   echo "aaa
-PAT1
+PATTERN1
 bbb
 ccc
 ddd
-PAT2
+PATTERN2
 eee
-PAT1
+PATTERN1
 fff" > /tmp/FILE
-  output=$(sed -n '/PAT1/,/PAT2/{//!p}' /tmp/FILE)
+  output=$(sed -n '/PATTERN1/,/PATTERN2/{//!p}' /tmp/FILE)
   expected="bbb
 ccc
 ddd
@@ -173,15 +171,15 @@ fff"
 
 testPrintLinesBetweenPatternsExclusiveFirstOnly() {
   echo "aaa
-PAT1
+PATTERN1
 bbb
 ccc
 ddd
-PAT2
+PATTERN2
 eee
-PAT1
+PATTERN1
 fff" > /tmp/FILE
-  output=$(sed '0,/PAT1/d;/PAT2/Q' /tmp/FILE)
+  output=$(sed '0,/PATTERN1/d;/PATTERN2/Q' /tmp/FILE)
   expected="bbb
 ccc
 ddd"

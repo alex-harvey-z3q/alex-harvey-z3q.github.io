@@ -6,6 +6,22 @@ author: Alex Harvey
 tags: sed awk
 ---
 
+<%
+  def lookup(test_name)
+    unit_test = 'shunit2/sed_and_awk_cookbook.sh'
+    %x{gsed -nE '
+      /#{test_name}()/,$ {
+        /sed/ {
+          s/.*output=..//
+          s/\\).*//
+          s/^ *//
+          s! */tmp/FILE!!
+          p
+          q
+        }
+      }' #{unit_test}}.chomp + " FILE\n"
+  end
+-%>
 This is a list of my favourite productivity-enhancing sed & AWK one-liners.
 
 - ToC
@@ -26,7 +42,7 @@ sed -i '' 's/SEARCH/REPLACE/g'
 - Solution using sed (Linux)
 
 ```text
-gsed -i 's/SEARCH/REPLACE/g' FILE
+g<%= lookup('testInplaceEdit') -%>
 ```
 
 ## Inserting lines before or after patterns
@@ -40,13 +56,13 @@ You want to insert a line `foo` after a pattern `PATTERN` in a file.
 - Solution using sed
 
 ```text
-gsed -i '/PATTERN/a foo' FILE
+g<%= lookup('testAppendLine') -%>
 ```
 
 If you need to also insert say 2 leading newlines:
 
 ```text
-gsed -i -e '/PATTERN/a\' -e '  foo' FILE
+g<%= lookup('testAppendLineWithSpaces') -%>
 ```
 
 ### Before each instance of a pattern
@@ -56,7 +72,7 @@ You want to insert a line `foo` before a pattern `PATTERN` in a file.
 - Solution using sed
 
 ```text
-gsed -i '/PATTERN/i foo' FILE
+g<%= lookup('testInsertLine') -%>
 ```
 
 ### After the last instance of a pattern
@@ -68,7 +84,7 @@ You want to insert a line `foo` after the _last_ instance of a pattern `PATTERN`
 - Solution
 
 ```text
-sed -i '1h; 1!H; $!d; x; s/.*PATTERN[^\n]*/&\nfoo/' FILE
+<%= lookup('testInsertAfterLastInstanceOfPattern') -%>
 ```
 
 - Reference
@@ -82,13 +98,13 @@ See [Stack Overflow](https://stackoverflow.com/a/37911473/3787051).
 For N=1:
 
 ```text
-gsed -n '/PATTERN/{n;p}' FILE
+g<%= lookup('testPrintLineAfterPattern') -%>
 ```
 
 For N=2:
 
 ```text
-gsed -n '/PATTERN/{n;n;p}' FILE
+g<%= lookup('testPrintTwoLinesAfterPattern') -%>
 ```
 
 ### Print a line N lines before matching a pattern
@@ -96,13 +112,13 @@ gsed -n '/PATTERN/{n;n;p}' FILE
 For N=1:
 
 ```text
-sed '$!N; /.*\n.*PATTERN/P; D' FILE
+<%= lookup('testPrintLineBeforePattern') -%>
 ```
 
 For N=2:
 
 ```text
-sed '1N; $!N; /.*\n.*\n.*PATTERN/P; D' FILE
+<%= lookup('testPrintTwolinesBeforePattern') -%>
 ```
 
 For N=3:
@@ -114,7 +130,7 @@ sed '1{N;N};$!N;/.*\n.*\n.*\n.*pattern/P;D'
 For N=4:
 
 ```text
-sed '1{N;N;N}; $!N; /.*\n.*\n.*\n.*\n.*PATTERN/P; D' FILE
+<%= lookup('testPrintFourLinesBeforePattern') -%>
 ```
 
 See [Stack Overflow](https://unix.stackexchange.com/a/283489/231569).
@@ -187,7 +203,7 @@ hhh
 - Solution using sed
 
 ```text
-sed -n '/PATTERN1/,/PATTERN2/p' FILE
+<%= lookup('testPrintLinesBetweenPatternsInclusive') -%>
 ```
 
 - Solution using AWK
@@ -237,7 +253,7 @@ fff
 - Solution using sed
 
 ```text
-gsed -n '/PATTERN1/,/PATTERN2/{//!p}' FILE
+g<%= lookup('testPrintLinesBetweenPatternsExclusive') -%>
 ```
 
 - Solution using AWK
@@ -258,7 +274,7 @@ ccc
 - Solution using GNU sed
 
 ```text
-gsed '0,/PATTERN1/d;/PATTERN2/Q' FILE
+g<%= lookup('testPrintLinesBetweenPatternsExclusiveFirstOnly') -%>
 ```
 
 - Solution using AWK

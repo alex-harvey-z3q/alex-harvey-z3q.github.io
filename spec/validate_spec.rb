@@ -37,7 +37,7 @@ describe 'posts' do
   end
 end
 
-describe 'cookbooks sorting' do
+describe 'cookbooks' do
   cookbook = '2019-04-01-my-vim-cookbook.md'
   ignore = [
     '### How to enter Vim visual mode',
@@ -55,6 +55,13 @@ describe 'cookbooks sorting' do
     unsorted = File.readlines("_posts/#{cookbook}").select{|x| x =~ /^## /}
     it "#{cookbook} should be sorted" do
       expect(unsorted).to eq unsorted.sort
+    end
+
+    it 'cookbook ERB should generate real one' do
+      template = File.read('erb/2019-04-02-my-sed-and-awk-cookbook.md.erb')
+      real = File.read('_posts/2019-04-02-my-sed-and-awk-cookbook.md')
+      renderer = ERB.new(template, nil, '-')
+      expect(real).to eq renderer.result()
     end
   end
 end
