@@ -79,18 +79,36 @@ See [Stack Overflow](https://stackoverflow.com/a/37911473/3787051).
 
 ### Print a line N lines after matching a pattern
 
+For N=1:
+
+```text
+sed -n '/PATTERN/{n;p;}'
+```
+
 For N=3:
 
 ```text
-sed -n '/PATTERN/{n;n;p;q;}'
+sed -n '/PATTERN/{n;n;p;}'
 ```
 
 ### Print a line N lines before matching a pattern
+
+For N=1:
+
+```text
+sed '$!N; /PATTERN/P; D'
+```
 
 For N=2:
 
 ```text
 sed '1N; $!N; /.*\n.*\n.*PATTERN.*/P; D'
+```
+
+For N=3:
+
+```text
+sed '1{N;N};$!N;/.*\n.*\n.*\n.*pattern/P;D'
 ```
 
 For N=4:
