@@ -16,7 +16,6 @@ To build:
 To serve:
 
 ```text
-▶ bundle install
 ▶ bundle exec jekyll serve
 ```
 
