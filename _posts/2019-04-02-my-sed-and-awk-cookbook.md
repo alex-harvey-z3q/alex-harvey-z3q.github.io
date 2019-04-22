@@ -68,12 +68,38 @@ You want to insert a line `foo` after the _last_ instance of a pattern `PATTERN`
 - Solution
 
 ```text
-sed -i '1h;1!H;$!d;x;s/.*PATTERN[^\n]*/&\nfoo/'
+sed -i '1h; 1!H; $!d; x; s/.*PATTERN[^\n]*/&\nfoo/' FILE
 ```
 
 - Reference
 
 See [Stack Overflow](https://stackoverflow.com/a/37911473/3787051).
+
+## Print a line N lines before or after matching a pattern
+
+### Print a line N lines after matching a pattern
+
+For N=3:
+
+```text
+sed -n '/PATTERN/{n;n;p;q;}'
+```
+
+### Print a line N lines before matching a pattern
+
+For N=2:
+
+```text
+sed '1N; $!N; /.*\n.*\n.*PATTERN.*/P; D'
+```
+
+For N=4:
+
+```text
+sed '1{N;N;N}; $!N; /.*\n.*\n.*\n.*\n.*PATTERN.*/P; D'
+```
+
+See [Stack Overflow](https://unix.stackexchange.com/a/283489/231569).
 
 ## Print a line or range of lines
 
