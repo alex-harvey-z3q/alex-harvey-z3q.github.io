@@ -877,7 +877,7 @@ They operate as follows:
 
 ### Example 1
 
-Contrived example from the docs to illustrate `N` and `D`:
+Here is a contrived example from the docs to illustrate `N` and `D`:
 
 ```text
 N   # Append a newline and the next line to the existing pattern space. If pattern space is 1, it
@@ -932,6 +932,21 @@ I am the second
 para.
 ```
 
+### Example 3
+
+Delete preceding line and line matching a pattern:
+
+```text
+1{
+  /PATTERN/d  # Special case needed for line 1. Delete if it contains PATTERN.
+              # Also begins next cycle.
+}
+$!N         # Append next line. $!N stops exit w/o printing at EOF.
+/PATTERN/d  # If pattern space contains PATTERN, d & begin next cycle.
+P           # If we get to here, there is no PATTERN. Print to first newline.
+D           # Delete to first newline.
+```
+
 ## Branching and flow control
 
 ### The :, b, t and T commands
@@ -953,16 +968,20 @@ The following table lists all of sed's flow control contructs:
 |`t`|branch conditionally, that is: jump to a label, only if a `s///` command has succeeded since the last input line was read or another conditional branch was taken.|
 |`T`|similar but opposite to the `t` command: branch only if there has been no successful substitutions since the last input line was read.|
 
+Note well that some of the basic commands like `d` and `D` also have side effects that alter the program flow. This can be confusing at first. Notice also that an address specification is like an if/then and that `s///` in conjunction with `t` and `T` also can conditionally control flow.
+
+But some examples will have to suffice.
+
 ### Example 1
 
-A classic example of `D` is emulating the tail command e.g. `tail -5`:
+This is a classic sed script that sets up a sliding window to emulate tail -5. It illustrates use of `N` and `D`, and also a loop using `:` and `b`.:
 
 ```
 :a        # Define the label "a".
   N       # Append a newline and the next line to the existing pattern space. If pattern space is 1,
           #   it becomes 1 + \n + next line.
   1,5ba   # If still within the range 1,5: goto label a.
-  D       # Else: Delete from the pattern space but only up until the first newline.
+D         # Else: Delete from the pattern space but only up until the first newline.
 ```
 
 In this way, the script maintains a stable buffer of the last 5 lines throughout all cycles. Also, and confusingly, the script depends on a GNU-specific feature of the `N` command, as documented [here](https://www.gnu.org/software/sed/manual/sed.html#Limitations):
@@ -980,7 +999,7 @@ Testing:
 200
 ```
 
-Showing that the script doesn't work if POSIX-conforming behaviour is requested:
+Note that the script doesn't work if POSIX-conforming behaviour is requested:
 
 ```text
 ▶ seq 200 | gsed --posix ':a N; 1,5ba; D'
@@ -998,8 +1017,8 @@ Another classic example illustrating branching and the `P` command: Append a lin
             #   pattern space.
   s/\n=/ /  # Replace the string \n= with a space.
   ta        # If the previous s/// succeeded: goto a.
-  P         # Print from the beginning of pattern space to the first newline.
-  D         # Delete the bit that was just printed, i.e. from the beginning of pattern space to
+P           # Print from the beginning of pattern space to the first newline.
+D           # Delete the bit that was just printed, i.e. from the beginning of pattern space to
             #   the first newline.
 ```
 
@@ -1233,7 +1252,7 @@ Also, the `q` and `Q` commands, via a GNU extension, can be used to exit with a 
 
 ## Summary
 
-This completes a fairly comprehensive overview of the GNU sed programming language. I have covered all of sed's features and illustrated most with examples, with the exception of regular expressions, which I regarded as documented elsewhere and not strictly speaking a feature of the sed language. I have omitted some of the command line options, undocumented behaviours, some of the most advanced commands, a my treatment of flow control is cursory.
+This completes an almost complete overview of the GNU sed programming language. I have covered most of sed's features and illustrated them with examples, with the exception of regular expressions, which I regarded as documented elsewhere and not strictly speaking a feature of the sed language. I have omitted some of the command line options, undocumented behaviours, some of the most advanced commands, and my treatment of branching and flow control is cursory.
 
 Please let me know if you find any errors or have any suggestions for improvement!
 
