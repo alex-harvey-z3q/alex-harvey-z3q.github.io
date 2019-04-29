@@ -56,12 +56,17 @@ describe 'cookbooks' do
     it "#{cookbook} should be sorted" do
       expect(unsorted).to eq unsorted.sort
     end
+  end
 
-    it 'cookbook ERB should generate real one' do
-      template = File.read('erb/2019-04-02-my-sed-and-awk-cookbook.md.erb')
-      real = File.read('_posts/2019-04-02-my-sed-and-awk-cookbook.md')
+  context 'ERB generation' do
+    Dir.glob("erb/*.erb").each do |f|
+      real_f = '_posts/' + f.sub(%r{erb/},"").sub(/\.erb/,"")
+      template = File.read(f)
+      real = File.read(real_f)
       renderer = ERB.new(template, nil, '-')
-      expect(real).to eq renderer.result()
+      it "#{f} should generate #{real_f}" do
+        expect(real).to eq renderer.result()
+      end
     end
   end
 end
