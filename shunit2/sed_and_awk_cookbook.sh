@@ -186,4 +186,22 @@ ddd"
   assertEquals "$expected" "$output"
 }
 
+testGrepFunction() {
+  echo "aaa
+bbb
+function() {
+  ccc
+  ddd
+  PATTERN
+  eee
+  fff
+}
+ggg
+PATTERN
+hhh" > /tmp/FILE
+  output=$(sed -n '/^function/,/^}/{/PATTERN/p;}' /TMP/FILE)
+  expected="  PATTERN"
+  assertEquals "$expected" "$output"
+}
+
 . shunit2

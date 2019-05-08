@@ -294,6 +294,33 @@ On Stack Overflow [here](https://stackoverflow.com/a/55220428/3787051) and [here
 gsed -i 's/  *$//' FILE
 ```
 
+## Search for a pattern within a function or block
+
+Problem you want to search or "grep" for a pattern, but only within a function or block of code.
+
+Suppose you have some text:
+
+```text
+aaa
+bbb
+function() {
+  ccc
+  ddd
+  PATTERN
+  eee
+  fff
+}
+ggg
+PATTERN
+hhh
+```
+
+- Solution using sed
+
+```text
+<%= lookup('testGrepFunction') -%>
+```
+
 ---
 
 <sup>1</sup> Note that many of these one-liners are [auto-generated](https://github.com/alexharv074/alexharv074.github.io/blob/master/erb/2019-04-02-my-sed-and-awk-cookbook.md.erb#L9-L24) from [unit test](https://github.com/alexharv074/alexharv074.github.io/blob/master/shunit2/sed_and_awk_cookbook.sh) code.
