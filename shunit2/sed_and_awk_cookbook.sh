@@ -199,7 +199,7 @@ function() {
 ggg
 PATTERN
 hhh" > /tmp/FILE
-  output=$(sed -n '/^function/,/^}/{/PATTERN/p;}' /TMP/FILE)
+  output=$(sed -n '/^function/,/^}/{/PATTERN/p;}' /tmp/FILE)
   expected="  PATTERN"
   assertEquals "$expected" "$output"
 }

@@ -301,7 +301,7 @@ hhh
 - Solution using sed
 
 ```text
-sed -n '/^function/,/^}/{/PATTERN/p;}' /TMP/FILE FILE
+sed -n '/^function/,/^}/{/PATTERN/p;}' FILE
 ```
 
 ---
