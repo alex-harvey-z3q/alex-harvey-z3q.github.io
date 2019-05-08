@@ -67,12 +67,16 @@ I see shell scripts everywhere that specify the `-e` option, and, I think, most 
 >
 >    Add the commands in script to the set of commands to be run while processing the input.
 
-In fact, the following commands are all identical:
+In fact, the following commands are identical:
 
 ```text
-sed -e 's/foo/bar/'
-sed -e 's/fo' -e 'o/bar/'
-sed 's/foo/bar/'
+sed -e 's/foo/bar/; s/baz/qux/'
+sed 's/foo/bar/; s/baz/qux/'
+sed -e s/foo/bar/ -e s/baz/qux
+sed '
+  s/foo/bar/
+  s/baz/qux/
+  '
 ```
 
 So, most of the time, you do not actually need to specify `-e`. In particular, there is never a good reason to specify just one `-e`; such code can and should always be refactored to remove the redundant `-e`. Use of `-e` makes sense when splitting up a command into multiple sections via multiple `-e` improves readability.
@@ -1043,6 +1047,34 @@ And by opposing end them?
 ```
 
 This code is further explained [here](https://catonmat.net/sed-one-liners-explained-part-one).
+
+### Example 3
+
+Implementing `s///3g` on BSD or other non-GNU sed. This illustrates use of `t` again.
+
+```text
+:a              # Define the label "a".
+  s/foo/bar/3   # Replace the 3rd occurrence of foo with bar.
+  ta            # Branch if and only if the previous s/// replaced something.
+```
+
+Testing:
+
+```text
+▶ sed -e :a -e s/foo/bar/3 -e ta <<< foofoofoofoofoo
+foofoobarbarbar
+```
+
+Note that BSD sed, unlike GNU sed, requires each label to be line-break terminated thus the requirement to use `-e`.
+
+This version also makes it easier to understand how it works:
+
+```text
+▶ sed -n -e :a -e s/foo/bar/3p -e ta <<< foofoofoofoofoo
+foofoobarfoofoo
+foofoobarbarfoo
+foofoobarbarbar
+```
 
 ## The GNU sed debugger
 
