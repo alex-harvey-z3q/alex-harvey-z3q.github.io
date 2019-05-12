@@ -19,9 +19,7 @@ Addressing structured data in languages like Python, Ruby or Perl is trivial. Gi
 
 In Terraform 0.11, the notations `mylist[n]` and `mymap[key]` are supported, but, when combined, are not. For example, you might expect this to work:
 
-```tf
-# test.tf
-
+```js
 locals {
   foo = [{bar = "baz"}]
 }
@@ -63,7 +61,7 @@ Terraform has three different kinds of variables: _input variables_ which serve 
 
 Here is an example of declaring an input variable in a module:
 
-```tf
+```js
 variable "zones" {
   type = "list"
   default = ["us-east-1a", "us-east-1b"]
@@ -72,7 +70,7 @@ variable "zones" {
 
 If that variable is an input to a module, `mymodule`, then the module can be called and a value passed to that variable like this:
 
-```tf
+```js
 module "mymodule" {
   source "./mymodule"
   zones = ["ap-southeast-2"]
@@ -85,7 +83,7 @@ And if nothing was specified for zones, then the default would be used. Specific
 
 To address an input variable, use the notation `var.<NAME>`. For example:
 
-```tf
+```js
 variable "key" {
   type = "string"
 }
@@ -99,10 +97,10 @@ output "key" {
 
 Now, here is an example of declaring a local value instead:
 
-```tf
+```js
 locals {
   common_tags = {
-    PowerMgt     = "business_hours"
+    PowerMgt    = "business_hours"
     Environment = "production"
   }
 }
@@ -116,7 +114,7 @@ Note that local values are also referred to in the docs as _local named variable
 
 To address a local value, use the notation `local.<NAME>`. For example:
 
-```tf
+```js
 locals {
   foo = "bar"
 }
@@ -130,7 +128,7 @@ output "baz" {
 
 The examples above have already introduced the output value. Once again:
 
-```tf
+```js
 output "addresses" {
   value = ["${aws_instance.web.*.public_dns}"]
 }
@@ -166,7 +164,7 @@ For the remainder of this article, I explore the various permutations of the pro
 
 In this example I declare a local list and then address the whole list in an output value. (I use output values throughout this post, because Terraform prints those during a terraform apply. It is the closest there is to a "print" statement in Terraform.)
 
-```tf
+```js
 locals {
   foo = ["bar", "baz", "qux"]
 }
@@ -198,7 +196,7 @@ quux = [
 
 Addressing an _element_ in a list is also no big deal. Here's how it's done:
 
-```tf
+```js
 locals {
   foo = ["bar", "baz", "qux"]
 }
@@ -224,7 +222,7 @@ quux = baz
 
 Next, I am going to create a local map variable and reference it to address a whole map:
 
-```tf
+```js
 locals {
   foo = {
     bar = "baz"
@@ -256,7 +254,7 @@ quuz = {
 
 To address a key in a map, we can again use notation familiar to us from other languages like Python and Ruby. Assuming the same local `foo`, I can address the `bar` key as:
 
-```tf
+```js
 output "quuz" {
   value = "${local.foo["bar"]}"
 }
@@ -268,7 +266,7 @@ Note also that, like Bash, Terraform allows interpolation of double quotes insid
 
 The fun starts when there is nested data, that is, lists of maps, maps of lists and so on. In this example, I create an output value that outputs a list of maps:
 
-```tf
+```js
 locals {
   foo = [
     {
@@ -285,7 +283,7 @@ locals {
 
 Now, addressing the whole data structure is, as usual, fine:
 
-```tf
+```js
 output "waldo" {
   value = "${local.foo}"
 }
@@ -295,7 +293,7 @@ output "waldo" {
 
 Addressing one element of a list of maps is also fine:
 
-```tf
+```js
 output "waldo" {
   value = "${local.foo[0]}"
 }
@@ -320,7 +318,7 @@ waldo = {
 
 But, if I try to address the key `bar`, I get a parse error:
 
-```tf
+```js
 output "waldo" {
   value = "${local.foo[0]["bar"]}"
 }
@@ -338,7 +336,7 @@ Error: Error loading terraform-test/test.tf: Error reading config for output wal
 
 Before I continue, I also wish to introduce the parallel problem of the element within a key of a map of lists. Consider:
 
-```tf
+```js
 locals {
   foo = {
     bar = ["baz", "qux", "quux"]
@@ -349,7 +347,7 @@ locals {
 
 Once again, addressing the whole structure is fine; addressing one key of that structure is fine:
 
-```tf
+```js
 output "waldo" {
   value = "${local.foo["bar"]}"
 }
@@ -373,7 +371,7 @@ waldo = [
 
 But addressing an element of that key within the structure also leads to a parse error:
 
-```tf
+```js
 output "waldo" {
   value = "${local.foo["bar"][1]}"
   }
@@ -391,7 +389,7 @@ Error: Error loading terraform-test/test.tf: Error reading config for output wal
 
 In the forthcoming Terraform 0.12 this problem appears to be resolved. If I switch to my Terraform 0.12-beta2 binary:
 
-```tf
+```js
 locals {
   foo = [
     {
@@ -432,7 +430,7 @@ output "waldo" {
 
 And if I try the other case:
 
-```tf
+```js
 locals {
   foo = {
     bar = ["baz", "qux", "quux"]
@@ -459,7 +457,7 @@ waldo = qux
 
 Even something arbitrarily complex like this works in 0.12:
 
-```tf
+```js
 locals {
   foo = {
     bar = [
@@ -482,7 +480,7 @@ output "waldo" {
 
 In the mean time, the normal way of working around this problem in Terraform is via the `lookup()` and `element()` functions. Switching back to Terraform 0.11 and this example:
 
-```tf
+```js
 locals {
   foo = [
     {
@@ -499,7 +497,7 @@ locals {
 
 I can access the key "bar" using the lookup function as follows:
 
-```tf
+```js
 output "waldo" {
   value = "${lookup(local.foo[0], "bar")}"
 }
@@ -511,7 +509,7 @@ That's quite inconvenient and ugly of course and I expect that the release of Te
 
 Switching to the other example:
 
-```tf
+```js
 locals {
   foo = {
     bar = ["baz", "qux", "quux"]
@@ -522,7 +520,7 @@ locals {
 
 And I can use element as:
 
-```tf
+```js
 output "waldo" {
   value = "${element(local.foo["bar"], 1)}"
 }
@@ -532,7 +530,7 @@ output "waldo" {
 
 Returning to the arbitrarily complex example from before:
 
-```tf
+```js
 locals {
   foo = {
     bar = [
@@ -547,7 +545,7 @@ locals {
 
 Unfortunately, it appears impossible to deal with that even using lookup/element. Because:
 
-```tf
+```js
 output "waldo" {
   value = "${element(local.foo["bar"], 0)}"
 }
