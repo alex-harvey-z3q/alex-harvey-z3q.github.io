@@ -34,7 +34,8 @@ Testing:
 ```text
 ▶ terraform apply
 
-Error: Error loading test.tf: Error reading config for output foo: parse error at 1:15: expected "}" but found "["
+Error: Error loading test.tf: Error reading config for output foo:
+  parse error at 1:15: expected "}" but found "["
 ```
 
 In Terraform 0.12-beta2 however it works fine:
@@ -329,7 +330,8 @@ Applying:
 ```text
 ▶ terraform apply
 
-Error: Error loading terraform-test/test.tf: Error reading config for output waldo: parse error at 1:15: expected "}" but found "["
+Error: Error loading terraform-test/test.tf: Error reading config for output waldo:
+  parse error at 1:15: expected "}" but found "["
 ```
 
 ### Addressing an element in a key in a map of lists
@@ -374,7 +376,7 @@ But addressing an element of that key within the structure also leads to a parse
 ```js
 output "waldo" {
   value = "${local.foo["bar"][1]}"
-  }
+}
 ```
 
 And:
@@ -382,7 +384,8 @@ And:
 ```text
 ▶ terraform apply
 
-Error: Error loading terraform-test/test.tf: Error reading config for output waldo: parse error at 1:19: expected "}" but found "["
+Error: Error loading terraform-test/test.tf: Error reading config for output waldo:
+  parse error at 2:19: expected "}" but found "["
 ```
 
 ## Good news - Terraform 0.12-beta2
@@ -556,12 +559,47 @@ Leads to:
 ```text
 ▶ terraform apply
 
-Error: output.waldo: element: element() may only be used with flat lists, this list contains elements of type map in:
+Error: output.waldo: element: element() may only be used with flat lists, this list contains elements
+  of type map in:
 
 ${element(local.foo["bar"], 0)}
 ```
 
-Similar restrictions apply on the lookup function too.
+Similar restrictions apply on the lookup function too:
+
+```js
+variable "foo" {
+  type = "list"
+  default = [
+    {
+      foo = ["bar", "baz", "qux"]
+    }
+  ]
+}
+
+output "foo" {
+  value = "${lookup(var.foo[0], "foo")}"
+}
+```
+
+And this leads to:
+
+```text
+▶ terraform apply
+
+Error: output.foo: lookup: lookup() may only be used with flat maps, this map contains elements of
+  type list in:
+
+${lookup(var.foo[0], "foo")}
+```
+
+As mentioned in the docs [here](https://www.terraform.io/docs/configuration-0-11/interpolation.html#lookup-map-key-default-):
+
+> ...This function only works on flat maps and will return an error for maps that include nested lists or maps.
+
+See also this comment in GitHub [here](https://github.com/hashicorp/terraform/issues/8047#issuecomment-294183643):
+
+> ...Terraform's type system doesn't currently allow a function to return a different type depending on its input arguments and thus, as you've seen, the functions are all defined to return strings.
 
 ## Summary
 
