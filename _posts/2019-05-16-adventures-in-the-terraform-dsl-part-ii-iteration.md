@@ -308,7 +308,7 @@ output "arns" {
 }
 ```
 
-And that's confusing, because if `$aws_iam_user.users.*.arn`, then migrants from other languages would expect `["${aws_iam_user.users.*.arn}"]` to be a list of lists. But no, it's still just a list, and if I apply:
+And that's confusing, because if `$aws_iam_user.users.*.arn` is a list, then you would expect `["${aws_iam_user.users.*.arn}"]` to be a list of lists. But no, it's still just a list, and if I apply:
 
 ```text
 ▶ terraform apply
