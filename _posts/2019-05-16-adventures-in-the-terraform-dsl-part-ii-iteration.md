@@ -59,7 +59,7 @@ resource "random_id" "tf_bucket_id" {
 
 When I apply this, note the array created:
 
-```js
+```text
 ▶ terraform apply
 …
 random_id.tf_bucket_id[1]: Creation complete after 0s (ID: U6k)
@@ -80,7 +80,7 @@ resource "aws_instance" "web" {
   instance_type = "m1.small"
   ami           = "ami-b1cf19c6"
 
-  # This will create 4 instances
+  // This will create 4 instances
   count = 4
 }
 ```
@@ -100,7 +100,7 @@ resource "aws_instance" "web" {
   instance_type = "m1.small"
   ami           = "ami-b1cf19c6"
 
-  # This will create 4 instances
+  // This will create 4 instances
   count = 4
 
   tags {
@@ -118,7 +118,7 @@ resource "aws_instance" "web" {
   instance_type = "m1.small"
   ami           = "ami-b1cf19c6"
 
-  # This will create 4 instances
+  // This will create 4 instances
   count = 4
 
   tags {
