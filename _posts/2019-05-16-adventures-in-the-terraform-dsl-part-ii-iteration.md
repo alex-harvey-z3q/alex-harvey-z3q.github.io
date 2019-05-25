@@ -21,7 +21,7 @@ Iteration in Terraform has evolved in a similar way as it did in Puppet:
 
 Well that's a [true story](https://puppet.com/docs/puppet/5.3/style_guide.html#multiple-resources) about the style guide in Puppet, and it should be true of Terraform by the end of 2019!
 
-The first part of this post, if you like, is James Schubin's [Iteration in Puppet](https://ttboj.wordpress.com/2013/11/17/iteration-in-puppet/) much ranked 2013 post on iteration in Puppet in the bad old days - for Terraform 0.11. And in the second part, I look at iteration in Terraform 0.12-beta2.
+This post, if you like, is James Schubin's [Iteration in Puppet](https://ttboj.wordpress.com/2013/11/17/iteration-in-puppet/) much ranked 2013 post on iteration in Puppet in the bad old days - but for Terraform 0.11. And in Part III, I look at iteration in Terraform 0.12-beta2.
 
 ## Iteration in Terraform 0.11
 
