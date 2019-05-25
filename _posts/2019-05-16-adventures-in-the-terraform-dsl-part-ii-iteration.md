@@ -29,7 +29,7 @@ This post, if you like, is James Schubin's [Iteration in Puppet](https://ttboj.w
 
 #### Meta parameters
 
-Before I get to Terraform's `count`, I want to mention its _meta parameters_, which are also known as _meta arguments_ in the 0.12 documentation. These are defined as special parameters that are accepted by all resources. These are similar to meta parameters in Puppet, and also what Amazon's documentation calls "additional resource attributes" in AWS CloudFormation.
+Before I get to Terraform's `count`, I want to mention its _meta parameters_ (which are now known as _meta arguments_ in the 0.12 documentation). These are defined as special parameters that are accepted by all resources. These are similar to meta parameters in Puppet, and also to what Amazon's documentation calls "additional resource attributes" in AWS CloudFormation.
 
 The following are available to all Terraform resources:
 
