@@ -242,7 +242,7 @@ resource "aws_iam_user" "users" {
 }
 ```
 
-### Iteration 4: Splat notation
+### Iteration IV: Splat notation
 
 #### Addressing resource attributes
 
