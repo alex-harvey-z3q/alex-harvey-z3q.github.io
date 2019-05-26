@@ -4,6 +4,7 @@ title: "My Vim Cookbook"
 date: 2019-04-01
 author: Alex Harvey
 tags: vim
+published: false
 ---
 
 This is a list of my favourite productivity-enhancing vim tricks.
