@@ -345,6 +345,12 @@ And on that note I'm wrapping up Part II of this series. In this post, I have co
 
 In Part III, I will be looking at the brave new world of real iteration using Golang-like `for` and `for each` loops as are now available in Terraform 0.12-beta2.
 
+## See also
+
+- Yevgeniy Brikman, 2016, [Terraform tips & tricks: loops, if-statements, and gotchas](https://blog.gruntwork.io/terraform-tips-tricks-loops-if-statements-and-gotchas-f739bbae55f9).
+- Ben Gnoinski, 2018, [Terraform Count and Loops](https://ben.gnoinski.ca/posts/terraform_loops/#).
+- Sebastien Lambla, 2016, [Working around the lack of count in Terraform modules](https://serialseb.com/blog/2016/05/11/terraform-working-around-no-count-on-module/).
+
 ---
 
 <sup>1</sup> At the time of writing, Hashicorp's documentation lists `count` in a section "meta parameters available to all resources" but then states that `count` "doesn't apply to all resources." I understand this to mean that `count` is available to all resources, as long as the underlying provider supports creating multiple resources.
