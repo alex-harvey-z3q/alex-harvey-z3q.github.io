@@ -16,12 +16,14 @@ In this second part of my blog series, I look at iteration in the Terraform 0.11
 Iteration in Terraform has evolved in a similar way as it did in Puppet:
 
 - Puppet 2005 (Terraform 2014): "Puppet (Terraform) is a declarative DSL. If you need iteration, you're doing it wrong."
-- Puppet (Terraform) a bit later: "Well ok. If you declare an array (count) of resources that's kind of iteration isn't it. Don't do it too often."
+- Puppet (Terraform) a bit later: "Well ok. If you declare an array (count) of resources that's a kind of iteration. But don't do it too often."
 - Puppet 2015 (Terraform 2020): "Puppet (Terraform) supports a clean, explicit iteration grammar borrowed from Ruby (Golang). It is considered bad style to declare an array (count) of resources the old way. Go forth and iterate!"
 
-Well that's a [true story](https://puppet.com/docs/puppet/5.3/style_guide.html#multiple-resources) about the style guide in Puppet, and it should be true of Terraform by the end of 2019!
+Well that's a [true story](https://puppet.com/docs/puppet/5.3/style_guide.html#multiple-resources) about the style guide in Puppet, and I would predict it should be true of Terraform by 2020!
 
-This post, if you like, is James Schubin's [Iteration in Puppet](https://ttboj.wordpress.com/2013/11/17/iteration-in-puppet/) much ranked 2013 post on iteration in Puppet in the bad old days - but for Terraform 0.11. And in Part III, I look at iteration in Terraform 0.12-beta2.
+This post, if you like, is James Schubin's [Iteration in Puppet](https://ttboj.wordpress.com/2013/11/17/iteration-in-puppet/) much ranked 2013 post on iteration in Puppet in the bad old days - but for Terraform 0.11.
+
+And in Part III, I look investigate the Promised Land of real for loops in Terraform 0.12-beta2.
 
 ## Iteration in Terraform 0.11
 
