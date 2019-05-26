@@ -334,8 +334,8 @@ Would yield this error here:
 
 ```text
 ▶ terraform088 apply
-module root: 1 error(s) occurred:                          
-                                                          
+module root: 1 error(s) occurred:
+
 * output 'arns': use of the splat ('*') operator must be wrapped in a list declaration
 ```
 
@@ -390,12 +390,12 @@ resource "random_id" "random_name" {
 // locals {
 //   names = "${random_id.random_name.*.id}"
 // }
-// 
+//
 // resource "aws_iam_user" "users" {
 //   count = "${length(local.names)}"
 //   name  = "${local.names[count.index]}"
 // }
-// 
+//
 // output "arns" {
 //   value = "${aws_iam_user.users.*.arn}"
 // }
@@ -416,7 +416,7 @@ Apply complete! Resources: 3 added, 0 changed, 0 destroyed.
 Then uncomment the additional lines, and apply again:
 
 ```text
-▶ terraform apply 
+▶ terraform apply
 random_id.random_name[1]: Refreshing state... (ID: fCE)
 random_id.random_name[2]: Refreshing state... (ID: NpM)
 random_id.random_name[0]: Refreshing state... (ID: _yw)
