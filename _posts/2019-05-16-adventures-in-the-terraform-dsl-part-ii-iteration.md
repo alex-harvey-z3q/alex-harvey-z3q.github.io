@@ -339,6 +339,163 @@ module root: 1 error(s) occurred:
 * output 'arns': use of the splat ('*') operator must be wrapped in a list declaration
 ```
 
+### Count limitations in Terraform 0.11 and earlier
+
+This post would not be complete without discussion of the limitations of `count`. Although the limitations discussed here appear to apply only to Terraform 0.11 and earlier.
+
+In particular, dynamic data cannot be used in the `count` parameter. And by dynamic data, I mean any data is fetched from a provider. This is the "generated data" that is found in the state file.
+
+Suppose I wanted my IAM user names to be the `random_id` strings I generated earlier in the post. I should be able to do this, right?
+
+```js
+resource "random_id" "random_name" {
+  byte_length = 2
+  count       = 3
+}
+
+locals {
+  names = "${random_id.random_name.*.id}"
+}
+
+resource "aws_iam_user" "users" {
+  count = "${length(local.names)}"
+  name  = "${local.names[count.index]}"
+}
+
+output "arns" {
+  value = "${aws_iam_user.users.*.arn}"
+}
+```
+
+Well no. If I apply that:
+
+```text
+▶ terraform apply
+
+Error: Error running plan: 1 error(s) occurred:
+
+* aws_iam_user.users: aws_iam_user.users: value of 'count' cannot be computed
+```
+
+And googling that error message brings up a lot of pages indeed.
+
+It gets better. What if I generate the random names in the first Terraform apply, get them into the state file, and then generate the rest later. Surely, it won't let me actually do that, right? It does. On my first go, I change the code to:
+
+```js
+resource "random_id" "random_name" {
+  byte_length = 2
+  count       = 3
+}
+
+// locals {
+//   names = "${random_id.random_name.*.id}"
+// }
+// 
+// resource "aws_iam_user" "users" {
+//   count = "${length(local.names)}"
+//   name  = "${local.names[count.index]}"
+// }
+// 
+// output "arns" {
+//   value = "${aws_iam_user.users.*.arn}"
+// }
+```
+
+Then:
+
+```text
+▶ terraform apply
+...
+random_id.random_name[0]: Creation complete after 0s (ID: _yw)
+random_id.random_name[1]: Creation complete after 0s (ID: fCE)
+random_id.random_name[2]: Creation complete after 0s (ID: NpM)
+
+Apply complete! Resources: 3 added, 0 changed, 0 destroyed.
+```
+
+Then uncomment the additional lines, and apply again:
+
+```text
+▶ terraform apply 
+random_id.random_name[1]: Refreshing state... (ID: fCE)
+random_id.random_name[2]: Refreshing state... (ID: NpM)
+random_id.random_name[0]: Refreshing state... (ID: _yw)
+
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  + aws_iam_user.users[0]
+      id:            <computed>
+      arn:           <computed>
+      force_destroy: "false"
+      name:          "_yw"
+      path:          "/"
+      unique_id:     <computed>
+
+  + aws_iam_user.users[1]
+      id:            <computed>
+      arn:           <computed>
+      force_destroy: "false"
+      name:          "fCE"
+      path:          "/"
+      unique_id:     <computed>
+
+  + aws_iam_user.users[2]
+      id:            <computed>
+      arn:           <computed>
+      force_destroy: "false"
+      name:          "NpM"
+      path:          "/"
+      unique_id:     <computed>
+
+Plan: 3 to add, 0 to change, 0 to destroy.
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+aws_iam_user.users[0]: Creating...
+  arn:           "" => "<computed>"
+  force_destroy: "" => "false"
+  name:          "" => "_yw"
+  path:          "" => "/"
+  unique_id:     "" => "<computed>"
+aws_iam_user.users[1]: Creating...
+  arn:           "" => "<computed>"
+  force_destroy: "" => "false"
+  name:          "" => "fCE"
+  path:          "" => "/"
+  unique_id:     "" => "<computed>"
+aws_iam_user.users[2]: Creating...
+  arn:           "" => "<computed>"
+  force_destroy: "" => "false"
+  name:          "" => "NpM"
+  path:          "" => "/"
+  unique_id:     "" => "<computed>"
+aws_iam_user.users[0]: Creation complete after 3s (ID: _yw)
+aws_iam_user.users[2]: Creation complete after 3s (ID: NpM)
+aws_iam_user.users[1]: Creation complete after 3s (ID: fCE)
+
+Apply complete! Resources: 3 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+arns = [
+    arn:aws:iam::885164491973:user/_yw,
+    arn:aws:iam::885164491973:user/fCE,
+    arn:aws:iam::885164491973:user/NpM
+]
+```
+
+Of course, I now have an infrastructure that cannot be generated from the code.
+
+So, another good reason to upgrade to Terraform 0.12. And in the mean time, beware of generating dynamic data in counts.
+
 ## Summary
 
 And on that note I'm wrapping up Part II of this series. In this post, I have covered all the tricks of doing iteration in Terraform 0.11 and earlier. I've looked at the `count` meta parameter, its attribute `count.index`, the `length()` function, the splat (`*`) notation, and how to combine all this to iterate over lists of resources, with some examples. Along the way I've discussed some of the historical quirks such as use of the `element()` function and why splats are usually seen wrapped in apparently redundant list declaration.
@@ -348,8 +505,9 @@ In Part III, I will be looking at the brave new world of real iteration using Go
 ## See also
 
 - Yevgeniy Brikman, 2016, [Terraform tips & tricks: loops, if-statements, and gotchas](https://blog.gruntwork.io/terraform-tips-tricks-loops-if-statements-and-gotchas-f739bbae55f9).
-- Ben Gnoinski, 2018, [Terraform Count and Loops](https://ben.gnoinski.ca/posts/terraform_loops/#).
 - Sebastien Lambla, 2016, [Working around the lack of count in Terraform modules](https://serialseb.com/blog/2016/05/11/terraform-working-around-no-count-on-module/).
+- Ben Gnoinski, 2018, [Terraform Count and Loops](https://ben.gnoinski.ca/posts/terraform_loops/#).
+- Cloud Posse, [Terraform error: value of 'count' cannot be computed](https://docs.cloudposse.com/troubleshooting/terraform-value-of-count-cannot-be-computed/).
 
 ---
 
