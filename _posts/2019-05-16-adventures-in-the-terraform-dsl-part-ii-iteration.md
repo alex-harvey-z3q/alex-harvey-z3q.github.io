@@ -131,7 +131,7 @@ resource "aws_instance" "web" {
 
 #### Digression: Iteration in Puppet 3 and earlier
 
-Back in the bad old days of Puppet 3 and earlier, iteration in Puppet was done something like this:
+Back in the days of Puppet 3 and earlier, iteration in Puppet was done something like this:
 
 ```js
 $rc_dirs = [
