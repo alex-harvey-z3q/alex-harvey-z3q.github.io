@@ -89,7 +89,7 @@ resource "aws_instance" "web" {
 
 #### count.index
 
-When the `count` meta parameter is used, the `count` object is available within the block that declared it. This object has one attribute, `count.index`, which provides the index number (starting with 0) for each instance. In this way, `count.index` gives you access to the Array indices we saw printed on the screen in the previous examples.
+When the `count` meta parameter is used, the `count` object is available within the block that declared it. This object has one attribute, `count.index`, which provides the index number (starting with 0) for each instance. In this way, `count.index` gives you access to the Array indices that were seen printed on the screen in the previous examples.
 
 #### Example 3: A pool of EC2 instances with unique Name tags
 
@@ -154,7 +154,7 @@ Well, it turns out that iteration in Terraform 0.11 and earlier is most of the t
 
 #### The length function
 
-But firstly, we need to learn a new function. The built-in `length()` function returns either the length of a string or the length of a list. Thus, given the following Terraform code:
+But firstly, a new function is needed. The built-in `length()` function returns either the length of a string or the length of a list. Thus, given the following Terraform code:
 
 ```js
 locals {
@@ -178,7 +178,7 @@ Outputs:
 quux = 3
 ```
 
-We can also declare lists on the fly using the list function, so this also works:
+It is also possible to declare lists on the fly using the `list()` function, so this also works:
 
 ```js
 output "quux" {
@@ -188,7 +188,7 @@ output "quux" {
 
 #### Example 5: Declare a list of IAM users
 
-Combining the `length()` function with the `count` meta parameter and its `count.index`, we can now iterate over a list:
+Combining the `length()` function with the `count` meta parameter and its `count.index`, it is now possible to iterate over a list:
 
 ```js
 locals {
@@ -211,7 +211,7 @@ aws_iam_user.users[1]: Creation complete after 4s (ID: ted)
 Apply complete! Resources: 3 added, 0 changed, 0 destroyed.
 ```
 
-And as can be seen, `aws_iam_user.users[0]` corresponds to `bill`, the first element of the list we declared.
+And as can be seen, `aws_iam_user.users[0]` corresponds to `bill`, the first element of the list that was declared.
 
 #### The element function
 
@@ -246,7 +246,7 @@ resource "aws_iam_user" "users" {
 
 #### Addressing resource attributes
 
-In the above examples, we have created a list of IAM users. The attributes of those users can be addressed using the notation `"${TYPE.NAME.INDEX.ATTRIBUTE}"`. For example:
+In the above examples, I created a list of IAM users. The attributes of those users can be addressed using the notation `"${TYPE.NAME.INDEX.ATTRIBUTE}"`. For example:
 
 ```js
 output "bills_arn" {
