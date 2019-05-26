@@ -4,6 +4,7 @@ title: "Observations of AWK"
 date: 2019-04-12
 author: Alex Harvey
 tags: awk
+published: false
 ---
 
 This post summarises observations that interested me when I spent a few hours on a weekend skim reading the [GNU AWK manual](www.gnu.org/software/gawk/manual/).

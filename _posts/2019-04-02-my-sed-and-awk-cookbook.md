@@ -4,6 +4,7 @@ title: "My sed and AWK Cookbook"
 date: 2019-04-02
 author: Alex Harvey
 tags: sed awk
+published: false
 ---
 
 This is a list of my favourite productivity-enhancing sed & AWK one-liners.<sup>1</sup>
