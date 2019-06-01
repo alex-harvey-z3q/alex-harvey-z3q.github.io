@@ -22,7 +22,7 @@ Other dependencies usually have to be satisfied too. For instance, if the tests 
 
 The sample code is a simple script that deletes CloudFormation stacks and related deployment artifacts.
 
-~~~ bash
+```bash
 #!/usr/bin/env bash
 
 usage() {
@@ -32,14 +32,14 @@ usage() {
 
 delete_all_artifacts() {
   aws ec2 delete-key-pair \
-    --key-name ${stack_name}
+    --key-name "$stack_name"
   aws s3 rm --recursive --quiet \
-    s3://${s3_bucket}/deployments/${stack_name}
+    s3://"$s3_bucket"/deployments/"$stack_name"
 }
 
 resume_all_autoscaling_processes() {
   asgs=$(aws cloudformation describe-stack-resources \
-    --stack-name $stack_name \
+    --stack-name "$stack_name" \
     --query \
 'StackResources[?ResourceType==`AWS::AutoScaling::AutoScalingGroup`].PhysicalResourceId' \
     --output text)
@@ -47,7 +47,7 @@ resume_all_autoscaling_processes() {
   for asg in $asgs
   do
     aws autoscaling resume-processes \
-      --auto-scaling-group-name $asg
+      --auto-scaling-group-name "$asg"
   done
 }
 
@@ -58,8 +58,8 @@ delete_all_artifacts
 resume_all_autoscaling_processes
 
 aws cloudformation delete-stack \
-  --stack-name ${stack_name}
-~~~
+  --stack-name "$stack_name"
+```
 
 (Note: all of the code for this blog post is available at Github [here](https://github.com/alexharv074/shunit2_example.git). The reader can step through the revision history to see the examples before and after the refactoring.)
 
@@ -93,25 +93,25 @@ For the purpose of this blog post, I want the script and tests to be short and s
 
 The convention I have adopted is to create a directory `shunit2` in the root of the project and name the test files the same as the scripts that they test. In this example I have:
 
-~~~ text
+```text
 ▶ tree .
 .
 ├── delete_stack.sh
 └── shunit2
     └── delete_stack.sh
-~~~
+```
 
 The tests are expected to be also run from the root of the project, like this:
 
-~~~ text
+```text
 ▶ bash shunit2/delete_stack.sh
-~~~
+```
 
 To locate the script-under-test, I have a line like this at the start of every test file:
 
-~~~ bash
-script_under_test=$(basename $0)
-~~~
+```bash
+script_under_test=$(basename "$0")
+```
 
 ## Installing shUnit2 > 2.1.7
 
@@ -119,27 +119,27 @@ At the time of writing, the method I describe here depends on a patched version 
 
 So, to install, something like this would be required:
 
-~~~ text
+```text
 ▶ curl \
     https://raw.githubusercontent.com/kward/shunit2/6d17127dc12f78bf2abbcb13f72e7eeb13f66c46/shunit2 \
     -o /usr/local/bin/shunit2
-~~~
+```
 
 Or, if shUnit2 2.1.8 is released, then (on a Mac) try:
 
-~~~ text
+```text
 ▶ brew install shunit2
-~~~
+```
 
 ## Installing DiffHighlight (optional)
 
 Also used just for prettifying diff output (see below) is `DiffHighlight.pl`. This is a slightly-modified version of [diff-highlight](https://github.com/git/git/tree/master/contrib/diff-highlight), which is part of Git.
 
-~~~ text
+```text
 ▶ curl \
     https://raw.githubusercontent.com/alexharv074/scripts/master/DiffHighlight.pl \
     -o /usr/local/bin/DiffHighlight.pl
-~~~
+```
 
 ## Structure of the tests
 
@@ -159,15 +159,15 @@ I reiterate that some scripts simply can't be tested by this method. Some probab
 
 The mocks follow a pattern, and indeed I intend to publish a script, similar to the Python [Placebo](https://github.com/garnaat/placebo) library, for recording and playing back AWS CLI responses as mocks. Until then, I simply note that a mock that just silently intercepts and logs the inputs passed into it looks like:
 
-~~~ bash
+```bash
 some_command() {
   echo "${FUNCNAME[0]} $*" >> commands_log
 }
-~~~
+```
 
 The variable `${FUNCNAME[0]}` in Bash is the name of a function. Use of this pattern (actually not used in this example script) allows me to quickly copy/paste mocks from other mocks. E.g.
 
-~~~ bash
+```bash
 chmod() {
   echo "${FUNCNAME[0]} $*" >> commands_log
 }
@@ -177,11 +177,11 @@ chown() {
 }
 
 ...
-~~~
+```
 
 More complicated mocks that also respond with fake responses programmed into them then look like:
 
-~~~ bash
+```bash
 some_command() {
   echo "${FUNCNAME[0]} $*" >> commands_log
   case "${FUNCNAME[0]} $*"
@@ -189,15 +189,15 @@ some_command() {
     "${FUNCNAME[0]} some_arg_c some_arg_d") ; echo some_response_2 ;;
   esac
 }
-~~~
+```
 
 And the `tearDown` function provided by shUnit2 is later expected to clean up the `commands_log`:
 
-~~~ bash
+```bash
 tearDown() {
   rm -f commands_log
 }
-~~~
+```
 
 ## About the commands log
 
@@ -209,11 +209,11 @@ The `commands_log` created by the mocks can be queried to make assertions about 
 
 In the simplest test case, I just call the script with some fake inputs, and then assert that the actual contents of `commands_log` after the script runs matches expected content. My test file looks like this:
 
-~~~ bash
+```bash
 #!/usr/bin/env bash
 
 # section 1 - the script under test.
-script_under_test=$(basename $0)
+script_under_test=$(basename "$0")
 
 # section 2 - the mocks.
 aws() {
@@ -247,7 +247,7 @@ tearDown() {
 
 # section 4 - the test cases.
 testSimplestExample() {
-  . $script_under_test mystack mybucket
+  . "$script_under_test" mystack mybucket
 
   cat > expected_log <<'EOF'
 aws ec2 delete-key-pair --key-name mystack
@@ -258,12 +258,12 @@ aws cloudformation delete-stack --stack-name mystack
 EOF
 
   assertEquals "unexpected sequence of commands issued" \
-    "" "$(diff -wu expected_log commands_log | DiffHighlight.pl)"
+    "" "$(diff -wu expected_log commands_log | colordiff | DiffHighlight.pl)"
 }
 
 # section 5 - the call to shUnit2 itself.
 . shunit2
-~~~
+```
 
 The test case here just calls the script with some fake inputs. The mocks intercept the AWS CLI calls and write their command line into the log file, and then the shunit2 `assertEquals` function is called to assert that the actual log file equals the expected log.
 
@@ -277,13 +277,13 @@ Notice also that we _source_ the script into the running shell rather than execu
 
 To add an example to ensure that the script errors out as expected when passed in bad inputs:
 
-~~~ bash
+```bash
 testBadInputs() {
-  actual_stdout=$(. $script_under_test too many arguments passed)
+  actual_stdout=$(. "$script_under_test" too many arguments passed)
   assertTrue "unexpected response when passing bad inputs" \
     "echo $actual_stdout | grep -q ^Usage"
 }
-~~~
+```
 
 Notice here that the STDOUT is captured using command substitution `$( ... )` and an assertion is made about the content of that string.
 
@@ -293,7 +293,7 @@ Another possibility is that a user tries to delete a stack that has no auto-scal
 
 So, I end up with a new sequence of mocks which I probably collected from a different stack during manual testing, like this:
 
-~~~ bash
+```bash
 aws() {
   ...
   # responses for myotherstack.
@@ -309,23 +309,23 @@ aws() {
 
   "aws cloudformation delete-stack --stack-name myotherstack") true ;;
 }
-~~~
+```
 
 And I write another test case that looks like this:
 
-~~~ bash
+```bash
 testNoASGs() {
-  . $script_under_test myotherstack mybucket
+  . "$script_under_test" myotherstack mybucket
   assertFalse "a resume-processes command was unexpectedly issued" \
     "grep -q resume-processes commands_log"
 }
-~~~
+```
 
 ## Running the tests
 
 To run the tests:
 
-~~~ text
+```text
 ▶ bash shunit2/delete_stack.sh
 testSimplestExample
 testBadInputs
@@ -334,7 +334,7 @@ testNoASGs
 Ran 3 tests.
 
 OK
-~~~
+```
 
 ## Discussion
 
@@ -366,19 +366,19 @@ All things considered, still - for me - this layer of unit testing shell scripts
 
 Imagine that the tests documented above did not exist. If so, no one, no matter how experienced in the AWS CLI, could possibly be expected to know, without additional research, what the response from a command like this would look like:
 
-~~~ text
+```text
 aws cloudformation describe-stack-resources \
   --stack-name mystack \
   --query "'StackResources[?ResourceType==`AWS::AutoScaling::AutoScalingGroup`].PhysicalResourceId'" \
   --output text
-~~~
+```
 
 Few would know even if it is a valid command, much less that it might return a list of strings like:
 
-~~~ text
+```text
 mystack-AutoScalingGroup-xxxxxxxx
 mystack-AutoScalingGroup-yyyyyyyy
-~~~
+```
 
 The tests and mocks document all this. I refer to tests all the time for all sorts of things.
 
