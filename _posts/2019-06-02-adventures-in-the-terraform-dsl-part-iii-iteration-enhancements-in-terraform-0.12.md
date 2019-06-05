@@ -238,7 +238,7 @@ resource "aws_security_group" "vault" {
 
 ##### Nested blocks
 
-A _nested_block_ meanwhile is a block defined inside a block:
+A _nested block_ meanwhile is a block defined inside a block:
 
 ```js
 resource "aws_security_group" "vault" {
@@ -252,7 +252,7 @@ resource "aws_security_group" "vault" {
 
 #### Dynamic block types
 
-And thus we get to _dynamic nested blocks_. Terraform 0.12 has introduces the dynamic nested block, although no dynamic top-scope block. And it is in the context of the dynamic nested block that `for_each` expressions can be used. (Although, as mentioned below, they will eventually be available to resources, data blocks and modules too).
+Which brings me to _dynamic nested blocks_. Terraform 0.12 has introduces the dynamic nested block, although no dynamic top-scope block. And it is in the context of the dynamic nested block that `for_each` expressions can be used. (Although, as mentioned below, they will eventually be available to resources, data blocks and modules too).
 
 A dynamic block looks like this:
 
