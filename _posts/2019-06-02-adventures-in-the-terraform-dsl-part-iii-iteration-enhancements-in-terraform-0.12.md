@@ -252,7 +252,7 @@ resource "aws_security_group" "vault" {
 
 #### Dynamic block types
 
-Which brings me to _dynamic nested blocks_. Terraform 0.12 has introduces the dynamic nested block, although no dynamic top-scope block. And it is in the context of the dynamic nested block that `for_each` expressions can be used. (Although, as mentioned below, they will eventually be available to resources, data blocks and modules too).
+Which brings me to _dynamic nested blocks_. Terraform 0.12 has introduced the dynamic nested block, although no dynamic top-scope block. And it is in the context of the dynamic nested block that `for_each` expressions can be used. (Although, as mentioned below, they will eventually be available to resources, data blocks and modules too).
 
 A dynamic block looks like this:
 
@@ -451,5 +451,5 @@ Stay tuned for Part IV of this series, where I amazingly continue with iteration
 
 ---
 
-<sup>1</sup> Note that since I began this series, Terraform 0.12 was in beta2 stage. At the time of writing this post, the current version is Terraform 0.12.1.
-<sup>2</sup> The numbering in this post continues the numbering in the previous post, so that the two posts can be read together as a complete treatment of iteration in Terraform 0.12.<br>
+<sup>1</sup> Note that since I began this series, Terraform 0.12 was in beta2 stage. At the time of writing this post, the current version is Terraform 0.12.1.<br>
+<sup>2</sup> The numbering in this post continues the numbering in the previous post, so that these two posts (and the next one) can be read together as a complete treatment of iteration in Terraform 0.12.
