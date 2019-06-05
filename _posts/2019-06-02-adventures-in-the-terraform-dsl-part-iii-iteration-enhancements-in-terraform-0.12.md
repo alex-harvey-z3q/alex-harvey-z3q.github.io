@@ -270,7 +270,7 @@ resource "aws_security_group" "vault" {
 
 Now to the `for_each` expression.
 
-From a grammar point of view, Terraform's `for_each` is a little surprising. In languages that have both a [`for`](https://en.wikipedia.org/wiki/For_loop) and a [`foreach`](https://en.wikipedia.org/wiki/Foreach_loop) loop, the for loop generally allows iteration over ranges of numbers or arbitrary conditions, whereas a foreach loop is specifically for iterating over collections such as arrays and maps.
+From a grammar point of view, Terraform's `for_each` is a little surprising. In languages that have both a [`for`](https://en.wikipedia.org/wiki/For_loop) and a [`foreach`](https://en.wikipedia.org/wiki/Foreach_loop) loop, the for loop generally allows iteration over ranges of numbers or iteration according to arbitrary conditions, whereas a foreach loop is specifically for iterating over collections such as arrays and maps.
 
 In Terraform, however, the `for` and `for_each` expressions are both foreach loops in this sense as both iterate over collections.
 
