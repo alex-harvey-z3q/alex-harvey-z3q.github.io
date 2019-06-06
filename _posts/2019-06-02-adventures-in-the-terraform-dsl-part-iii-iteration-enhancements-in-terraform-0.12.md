@@ -451,5 +451,5 @@ Stay tuned for Part IV of this series, where I amazingly continue with iteration
 
 ---
 
-<sup>1</sup> Note that since I began this series, Terraform 0.12 was in beta2 stage. At the time of writing this post, the current version is Terraform 0.12.1.<br>
+<sup>1</sup> Note that when I began this series, Terraform 0.12 was in beta2 stage, whereas at the time of writing this post, the current version is Terraform 0.12.1.<br>
 <sup>2</sup> The numbering in this post continues the numbering in the previous post, so that these two posts (and the next one) can be read together as a complete treatment of iteration in Terraform 0.12.
