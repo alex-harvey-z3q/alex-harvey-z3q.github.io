@@ -114,7 +114,7 @@ I will return to JMESpath throughout this post.
 
 #### The random_id example again
 
-So much for splats. Now back to Terraform. So, I have shown that Terraform's splat isn't like Ruby's (or Puppet's) splat at all other than the name and the asterisk (`*`) symbol and implicit iteration over lists, although it is quite like the wildcard expression in JMESpath.
+So much for splats. Now back to Terraform. So, I have shown that Terraform's splat isn't like Ruby's (or Puppet's) splat at all other than the name and the asterisk (`*`) symbol and implicit iteration over lists, although - as I will show - it is quite like the wildcard expression in JMESpath.
 
 Here is the example Terraform code that I introduced in Part I, which shows the splat syntax and a resource with a `count` meta parameter:
 
