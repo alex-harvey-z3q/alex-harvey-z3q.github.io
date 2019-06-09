@@ -305,7 +305,7 @@ What if I have this one:
 And I want all the `baz` keys as an array? In JMESpath, I can do this:
 
 ```text
-▶ jp 'foo[*].bar[*].baz' < y.json
+▶ jp 'foo[*].bar[*].baz' < JSON
 [
   [
     19,
