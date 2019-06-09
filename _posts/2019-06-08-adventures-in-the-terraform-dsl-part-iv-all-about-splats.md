@@ -232,7 +232,7 @@ Hmm.
 
 #### Reading the docs
 
-Returnng to the Terraform 0.11 [docs](https://www.terraform.io/docs/configuration-0-11/interpolation.html), it is documented that:
+Returning to the Terraform 0.11 [docs](https://www.terraform.io/docs/configuration-0-11/interpolation.html), it is documented that:
 
 > If the resource has a `count` attribute set, you can access individual attributes with a zero-based index, such as `${aws_instance.web.0.id}`. You can also use the splat syntax to get a list of all the attributes: `${aws_instance.web.*.id}`.
 
