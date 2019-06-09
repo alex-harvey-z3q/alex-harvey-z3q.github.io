@@ -139,7 +139,7 @@ random_id = [
 ]
 ```
 
-Note that the Terraform 0.12 docs now refer to this as the _legacy (attribute-only) splat expression_, where the splat is indicated by the sequence `.*`. It is considered to be deprecated:
+Note that the Terraform 0.12 docs now refer to this as the _legacy (attribute-only) splat expression_, where the splat is indicated by the sequence `.*`:
 
 > An older variant of the splat expression is available for compatibility with code written in older versions of the Terraform language. This is a less useful version of the splat expression, and should be avoided in new configurations.
 
