@@ -486,18 +486,18 @@ Another big problem in Terraform 0.11 and earlier was the lack any equivalent of
 
 In Puppet, it has always been possible to write code like this:
 
-```puppet
+```js
 class user (
   $uid = undef,
   )
   user { 'myuser':
     ensure => present,
-    uid    => $uid, # Use the provider's default behaviour
-  }                 # if $uid is not set.
+    uid    => $uid, // Use the provider's default behaviour
+  }                 // if $uid is not set.
 }
 ```
 
-This is now possible in Terraform 0.12 with the introduction of the `null` value, which is just like Puppet's `undef`. Thus, it is now possible to do something like this:
+This is now possible in Terraform 0.12 too with the introduction of the `null` value, which is just like Puppet's `undef`. Thus, it is now possible to do something like this:
 
 ```js
 variable "private_ip" {
@@ -512,6 +512,8 @@ resource "aws_instance" "example" {
   private_ip    = var.private_ip // Use provider's default behaviour
 }                                // if var.private_ip not set.
 ```
+
+And considering how many times I have needed to do that in Puppet, I think that's another big win for Terraform!
 
 ### Truthiness in Terraform 0.12
 
