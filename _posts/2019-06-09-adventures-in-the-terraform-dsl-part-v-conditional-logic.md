@@ -523,8 +523,8 @@ I was surprised to discover while testing Terraform's truthiness in its various 
 
 > Terraform automatically converts number and bool values to strings when needed. It also converts strings to numbers or bools, as long as the string contains a valid representation of a number or bool value.
 >
-> `true` converts to `"true"`, and vice-versa
-> `false` converts to `"false"`, and vice-versa
+> `true` converts to `"true"`, and vice-versa<br>
+> `false` converts to `"false"`, and vice-versa<br>
 > 15 converts to "15", and vice-versa
 
 In any case, I put together a table of comparisons show evaluations of truth and truthiness in Terraform 0.11 and 0.12<sup>2</sup>. Truthy and falsey means these are not equal to the booleans `true` or `false` but they will evaluate as `true` or `false` in a boolean context. And the `-` means a syntax error is seen in a boolean context. The highlighted lines show the behaviour that changed from 0.11 to 0.12.
