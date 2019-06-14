@@ -119,7 +119,7 @@ And what else does a regular expression do? It compares strings!
 
 This led to the abuse of the replace function to do string comparisons in Terraform. I hope it didn't happen _too_ much and I really hope this code isn't still out there, but just in case, here is an example taken from the aforementioned blog post.
 
-Imagine I want to add a CPU alarm but only on my AWS t-class EC2 instances. Here is an example:
+Imagine I want to add a CPU alarm but only on my AWS t-class EC2 instances. Consider this code:
 
 ```text
 variable "instance_type" {
