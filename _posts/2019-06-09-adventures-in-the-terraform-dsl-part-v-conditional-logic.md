@@ -23,7 +23,7 @@ In this Part V of my blog series, I look into all of this. I look at "truthiness
 
 #### Count, true and false
 
-In the dark days of early Terraform, the Terraform DSL had no conditional logic at all. And, although the underlying HashiCorp Configuration Language (HCL) converted the bare words `true` and `false` into the strings `1` and `0` respectively, it meant nothing to Terraform itself. It had no concept of `true` and `false` either.
+In the dark days of early Terraform, the Terraform DSL had no conditional logic at all. And, although the underlying HashiCorp Configuration Language (HCL) converted the bare words `true` and `false` into the strings `1` and `0` respectively, it meant nothing to Terraform itself. It had no concept of `true` and `false`.
 
 Instead, Terraform had - as seen throughout this blog series so far - a `count` meta parameter. And there's one bit I haven't mentioned about `count` yet, which is what happens if you set `count = 0`? Well, it causes Terraform to simply not create that resource - or, if it is already created, it causes Terraform to destroy it again.
 
