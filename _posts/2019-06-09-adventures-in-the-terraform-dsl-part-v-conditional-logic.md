@@ -171,7 +171,7 @@ Well Yevgeniy Brikman calls it an "if-else" although I would call it an "exclusi
 
 The supported operations are:
 
-- Add (`+`), Subtract (`-`), Multiply (*), and Divide (`/`) for float types
+- Add (`+`), Subtract (`-`), Multiply (`*`), and Divide (`/`) for float types
 - Add (`+`), Subtract (`-`), Multiply (`*`), Divide (`/`), and Modulo (`%`) for integer types
 
 #### Example 3: Simple maths
