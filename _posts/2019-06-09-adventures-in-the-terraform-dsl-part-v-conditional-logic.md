@@ -527,7 +527,9 @@ I was surprised to discover while testing Terraform's truthiness in its various 
 > `false` converts to `"false"`, and vice-versa<br>
 > 15 converts to "15", and vice-versa
 
-In any case, I put together a table of comparisons to show evaluations of truth and truthiness in Terraform 0.11 and 0.12<sup>2</sup>.
+In any case, I put together a table of comparisons to show evaluations of truth and truthiness in Terraform 0.11 and 0.12.
+
+(Note that the code that generated this table is available [here](https://gist.github.com/alexharv074/123d5bfdce3eaf4e0dccc760669bb0b0).)
 
 When reading this table, note that the `-` means a syntax error would be seen in a boolean context (the actual errors seen change from version to version). And the highlighted lines show the behaviour that changed from 0.11 to 0.12.
 
@@ -604,4 +606,3 @@ The next part of this series should be interesting, because I am going to do a p
 ---
 
 <sup>1</sup> Of course, the "random_ids" aren't real resources in AWS like EC2 instances, which is the main reason I like using them for testing.<br>
-<sup>2</sup> Note that the code that generated this table is available [here](https://gist.github.com/alexharv074/123d5bfdce3eaf4e0dccc760669bb0b0).
