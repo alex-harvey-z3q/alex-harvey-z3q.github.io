@@ -527,7 +527,9 @@ I was surprised to discover while testing Terraform's truthiness in its various 
 > `false` converts to `"false"`, and vice-versa<br>
 > 15 converts to "15", and vice-versa
 
-In any case, I put together a table of comparisons show evaluations of truth and truthiness in Terraform 0.11 and 0.12<sup>2</sup>. Truthy and falsey means these are not equal to the booleans `true` or `false` but they will evaluate as `true` or `false` in a boolean context. And the `-` means a syntax error is seen in a boolean context. The highlighted lines show the behaviour that changed from 0.11 to 0.12.
+In any case, I put together a table of comparisons to show evaluations of truth and truthiness in Terraform 0.11 and 0.12<sup>2</sup>.
+
+When reading this table, note that the `-` means a syntax error would be seen in a boolean context (the actual errors seen change from version to version). And the highlighted lines show the behaviour that changed from 0.11 to 0.12.
 
 |Value|Terraform 0.11|Terraform 0.12|
 |=====|=============|==============|
