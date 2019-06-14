@@ -586,7 +586,7 @@ So takeaway of all this for me is that `tobool()` shouldn't normally be used at 
 
 As far as I can tell, I have now covered all of Terraform's conditional logic features. Migrants from high-level programming languages and also those from the comparable Puppet DSL (or Chef's Ruby DSL) might find that Terraform's support for conditional logic remains inadequate. While many languages have a ternary operator like Terraform, they are used infrequently in those languages compared to if/else. For example, I just counted ~ 11,000 if statements in the Puppet source code (i.e. a mature Ruby project) compared to only 1,000 ternary statements.
 
-Personally, I would a real if/elsif/else and I wouldn't turn down a case or switch statement either! Of course, it may be that the brilliant Martin Atkins and his team at HashiCorp are hemmed in by Terraform's earliest design choices and turning Terraform into a real language is harder than I realise.
+Personally, I would like a real if/elsif/else and I wouldn't turn down a case or switch statement either! Of course, it may be that the brilliant Martin Atkins and his team at HashiCorp are hemmed in by Terraform's earliest design choices and turning Terraform into a real language is harder than I realise.
 
 In any case, I hope that this post has been helpful to those learning Terraform 0.12 and also to those maintaining earlier Terraforms.
 
