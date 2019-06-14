@@ -117,7 +117,7 @@ And what else does a regular expression do? It compares strings!
 
 #### Example 2: Add a metrics alarm if instance_type begins with "t"
 
-This led to the abuse of the replace function to do string comparisons in Terraform. I hope it didn't happen _too_ much and I really hope this code isn't still out there, but just in case, here is an example is taken from the aforementioned blog post.
+This led to the abuse of the replace function to do string comparisons in Terraform. I hope it didn't happen _too_ much and I really hope this code isn't still out there, but just in case, here is an example taken from the aforementioned blog post.
 
 Imagine I want to add a CPU alarm but only on my AWS t-class EC2 instances. Here is an example:
 
