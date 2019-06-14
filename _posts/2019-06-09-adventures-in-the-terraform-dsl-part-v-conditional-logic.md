@@ -167,7 +167,7 @@ Ones and zeros!
 
 #### Simple maths in interpolations
 
-Well Yevgeniy Brikman calls it an "if-else" although I would call it an "exclusive-or" (XOR). It turns out that Terraform - allow simple maths to be performed in interpolations. The supported operations are:
+Well Yevgeniy Brikman calls it an "if-else" although I would call it an "exclusive-or" (XOR). It turns out that Terraform allows simple maths to be performed in interpolations. The supported operations are:
 
 The supported operations are:
 
