@@ -412,7 +412,7 @@ variable "file_path" {
 }
 
 data "template_file" "template" {
-  vars {
+  vars = {
     file_contents = "${length(var.file_path) > 0 ? file("${var.file_path}") : ""}"
   }
 }
@@ -438,7 +438,7 @@ variable "file_path" {
 }
 
 data "template_file" "template" {
-  vars {
+  vars = {
     file_contents = "${var.file_path != "/dev/null" ? file("${var.file_path}") : ""}"
   }
 }
