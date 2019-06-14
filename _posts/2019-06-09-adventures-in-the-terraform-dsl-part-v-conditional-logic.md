@@ -450,7 +450,7 @@ Not ideal.
 
 ### Conditional expression
 
-As mentioned above, the ternary operator is now referred to as the _conditional expression_ in the Terraform 0.12 docs. And thanks to Terraform 0.12's first-class expressions, it has a cleaner syntax. Also, the above two issues have been resolved.
+Note that ternary operators are now referred to as _conditional expressions_ in the Terraform 0.12 docs. And thanks to Terraform 0.12's first-class expressions, they have a cleaner syntax too. And both of the above issues have been resolved.
 
 Thus, it is now possible to use lists and maps in a ternary like this:
 
@@ -482,7 +482,7 @@ So, it is more readable, more functional and not broken. Some big wins here.
 
 ### Conditional logic V: Conditionally set an attribute
 
-Another big problem in Terraform 0.11 and earlier was lack any equivalent of Puppet's `undef` value, which made it impossible to conditionally set attributes on resources while otherwise allowing the resource's default behaviour for that attribute. This was raised in Terraform [Issue #17968](https://github.com/hashicorp/terraform/issues/17968). 
+Another big problem in Terraform 0.11 and earlier was the lack any equivalent of Puppet's `undef` value, which made it impossible to conditionally set attributes on resources while otherwise allowing the resource's default behaviour for that attribute. This was raised in Terraform [Issue #17968](https://github.com/hashicorp/terraform/issues/17968). 
 
 In Puppet, it has always been possible to write code like this:
 
