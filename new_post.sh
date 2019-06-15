@@ -1,7 +1,17 @@
 #!/usr/bin/env bash
 
+if [ ! -x /usr/local/bin/gsed ] ; then
+  echo "You need to install gnu-sed:"
+  echo "$ brew install gnu-sed"
+  exit 1
+fi
+
+shopt -s expand_aliases
+alias sed='/usr/local/bin/gsed'
+
 tags() {
-  echo -n "[" $(for i in $(awk -F':' '/^tags/ {print $2}' _posts/*) ; do echo $i ; done | sort -u ) "]"
+  # shellcheck disable=SC2046,SC2013
+  echo -n "[" $(for i in $(awk -F':' '/^tags/ {print $2}' _posts/*) ; do echo "$i" ; done | sort -u) "]"
 }
 
 usage() {
@@ -11,14 +21,14 @@ usage() {
 [ "$1" == "-h" ] && usage
 
 echo -n "Title: "
-read title
+read -r title
 echo -n "Tags, space separated: $(tags) "
-read tags
+read -r tags
 
 date=$(date +%Y-%m-%d)
-file="_posts/$date-$(echo $title | tr '[:upper:]' '[:lower:]' | sed -e 's/[ +,:][ +,:]*/-/g').md"
+file="_posts/$date-$(sed 's/.*/\L&/; s/[ +,:][ +,:]*/-/g' <<< "$title").md"
 
-cat > $file <<EOF
+cat > "$file" <<EOF
 ---
 layout: post
 title: "$title"
