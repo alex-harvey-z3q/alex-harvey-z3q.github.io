@@ -209,7 +209,7 @@ So before I show any actual test code I'd like to think through what I'd like to
               - It should have a valid mkdir line.
               - It should have a valid mount line.
 
-The process above is, by the way, known as _white box testing_, the process of systematically testing the logical pathways through code. I suspect that many DevOps engineers have never thought through such a process as the above whereas in practice it almost always leads to the discovery of bugs - at least in the edge cases. On this occasion, for instance, although not a "bug" I nevertheless had not realised that the `mount_point` if not supplied would cause Terraform to error out.
+The process above is, by the way, known as _white box testing_, the process of writing down and systematically testing all logical pathways through code. I suspect that many DevOps engineers have never thought through such a process as the above whereas in practice it almost always leads to the discovery of bugs - at least in the edge cases. On this occasion, for instance, although not a "bug" I nevertheless had not realised that the `mount_point` if not supplied would cause Terraform to error out.
 
 So, even in the absence of a test framework, the process of white box testing still adds value. But of course, we want the tests to be automated, not on paper.
 
