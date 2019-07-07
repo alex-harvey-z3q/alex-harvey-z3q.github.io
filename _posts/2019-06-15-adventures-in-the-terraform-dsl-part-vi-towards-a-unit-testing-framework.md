@@ -13,17 +13,17 @@ This post introduces a first of its kind unit testing framework for the Terrafor
 
 ## Introduction
 
-This post, which I have included as part VI of my ongoing blog series on the Terraform DSL, I introduce for the first time (as far as I know anyway) a unit testing framework called, for now anyway, "terraform testing eval" that was written by Martin Atkins at HashiCorp as a prototype test framework for [Issue #21628](https://github.com/hashicorp/terraform/issues/21628) that I raised. In the post I show how to set it all up and write real unit tests using Rspec or Python's unittest framework. I hope to generate some interest and demand for the concept in the hope that people will upvote the related issue and cause HashiCorp to prioritise merging this important feature!
+This post, which I have included as part VI of my ongoing blog series on the Terraform DSL, introduces for the first time (as far as I know anyway) a unit testing framework called, for now anyway, "terraform testing eval" that was written by Martin Atkins at HashiCorp as a prototype test framework for [Issue #21628](https://github.com/hashicorp/terraform/issues/21628) that I raised. In the post I show how to set it all up and write real unit tests using Rspec or Python's unittest framework. I hope to generate some interest and demand for the concept in the hope that people will upvote the issue and cause HashiCorp to prioritise merging this important feature!
 
 ## Why unit test
 
-The fact that the Terraform DSL has made it through 12 beta releases and 5 years of use in production without a unit testing framework shows, I think, a lack of demand in the DevOps community for real unit testing frameworks for their infrastructure code. Indeed, competing products also have never provided real unit test frameworks either - e.g. Ansible, AWS CloudFormation. Puppet has had a unit testing framework - [Rspec-puppet](https://github.com/rodjek/rspec-puppet) - since 2011, although, even there, it is used only by a niche of engineers.<sup>1</sup>
+The fact that the Terraform DSL has made it through 12 beta releases and 5 years of use in production without a unit testing framework shows, I think, a lack of demand in the DevOps community for real unit testing frameworks for their infrastructure code. Indeed, competing products also have never provided real unit test frameworks either - e.g. Ansible, Salt, AWS CloudFormation. Puppet has had a unit testing framework - [Rspec-puppet](https://github.com/rodjek/rspec-puppet) - since 2011, although, even there, it is used only by a niche of engineers.<sup>1</sup>
 
 It appears, therefore, that many DevOps engineers either do not see the point of unit testing - or, for whatever reason, choose to not do it.
 
 I also often hear it said that slow integration tests that spin up real infrastructure are preferrable to fast unit tests because unit tests can never prove that your application actually "works".
 
-Well I see unit testing as essential for at least all of the following use cases:
+Well, I see unit testing of Terraform and other infrastructure code as essential in at least all of the following scenarios:
 
 |Use case|Terraform example|
 |--------|-----------------|
