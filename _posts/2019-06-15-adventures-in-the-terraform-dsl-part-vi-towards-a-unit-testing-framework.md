@@ -184,7 +184,7 @@ As can be seen, my example module uses the following logic features of the Terra
 
 ### Some test cases
 
-So before I show any actual test code I'd like to discuss the module's features and think through what I'd like to actually test.
+So before I show any actual test code I'd like to think through what I'd like to actually test.
 
 - The module accepts an input `var.instance_count`.
     * I would expect nothing to be created if this is variable is set to 0.
