@@ -667,6 +667,10 @@ One consequence though is that [logic inside a locals declaration](https://githu
 
 Users of Rspec-puppet would notice that the requirement to provide fake data for all mandatory parameters is onerous. This again seems to follow from the decision to not test as the level of the whole module. I am not sure if reimplementing "terraform testing eval" would mean that module defaults would be automatically available or not. But we can all agree that it would be better if these defaults were available, whatever the implementation.
 
+### No cache
+
+In order to perform better, Rspec-puppet implements a "catalog cache" to ensure that compilation - which can be slow - occurs only once. There is no such thing in my proof of concept as yet and so these tests are much slower than the Rspec-puppet tests are.
+
 ### None of Rspec-puppet's conveniences
 
 A minor issue to be sure is that all of this is done so far is pure Rspec and I need to explicitly define the subject, whereas Rspec-puppet hides all this in an implicit subject and a bunch of Puppet-specific matchers. Actually it could be argued that this is good and bad, because hiding so much Rspec from the user has led to far fewer Puppet users actually understanding Rspec!
