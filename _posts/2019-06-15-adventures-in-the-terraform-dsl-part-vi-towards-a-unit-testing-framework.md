@@ -48,7 +48,7 @@ But there are some key differences, and these differences no doubt made it easie
 
 For more information be sure to carefully read all of Martin's comments in the [GitHub issue](https://github.com/hashicorp/terraform/issues/21628). The problems are not insurmountable.
 
-## Terraform testing eval
+## The proof of concept
 
 It is now time to look at the proof of concept I have written for the "terraform testing eval" framework. The feature came about, as mentioned, after I raised a GitHub issue requesting a Terraform unit testing framework. And, to my surprise, Martin Atkins had [implemented](https://github.com/hashicorp/terraform/commit/760ec68a5c587340abb87e95b42b4cc56e0f7ab4) one within a few hours. He named the prototype "terraform testing eval". He also demonstrated its use in Python [here](https://github.com/hashicorp/terraform/issues/21628#issuecomment-499939509).
 
@@ -139,7 +139,6 @@ resource "aws_instance" "this" {
     iterator = e
 
     content {
-
       device_name = e.value.device_name
 
       encrypted   = lookup(e.value, "encrypted",   null)
@@ -677,7 +676,7 @@ A minor issue to be sure is that all of this is done so far is pure Rspec and I 
 
 ## Concluding thoughts
 
-Part of my motivation for writing this is post is to show how close we are to making real unit testing possible in Terraform and to provide incentive for HashiCorp to finish off this feature and merge it. At the moment, Martin Atkins has said that delivering this feature is not high on HashiCorp's priorities, although it took only a couple of hours to implement this prototype.
+Part of my motivation for writing this post is to show how close we are to making real unit testing possible in Terraform and to provide incentive for HashiCorp to finish off the feature and merge it. At the moment, Martin Atkins has said that delivering this feature is not high on HashiCorp's priorities, although it took only a couple of hours to implement this prototype.
 
 In my own view, a tool like Terraform that lacks a unit testing framework is not safe for production. It is not a matter of if, but only when, a code base, whether written in the Terraform DSL or any other language, will require extensive refactoring. And, as things are, there will be so safe way to actually do that refactoring in Terraform when that point is reached. So, at the moment, my only recommendation would be to not use Terraform in production, ever. There are safer options: [Pulumi](https://www.pulumi.com), [AWS CDK](https://docs.aws.amazon.com/cdk/latest/guide/home.html), and I have written about [Troposphere](https://alexharv074.github.io/2018/12/01/configuration-management-with-troposphere-and-jerakia.html) here before.
 
@@ -685,4 +684,4 @@ If you are reading this, go and upvote the related issue and let HashiCorp know 
 
 ---
 
-<sup>1</sup> In fact, even Puppet's professional services team prefers to use a tool [Rollout]() in lieu of real unit tests in Rspec-puppet.
+<sup>1</sup> In fact, even Puppet's professional services team prefers to use a tool [Onceover](https://github.com/dylanratcliffe/onceover) in lieu of real unit tests in Rspec-puppet.
