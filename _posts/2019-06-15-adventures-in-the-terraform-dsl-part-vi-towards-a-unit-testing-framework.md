@@ -37,24 +37,22 @@ Well, I see unit testing of Terraform and other infrastructure code as essential
 
 These are some and not all of the benefits that unit testing brings to infrastructure and any code. And while not everyone will agree, I personally consider a unit testing framework a must-have feature for any code that will run in production.
 
-## Similarities and differences with Rspec-puppet
+## Similarities and differences with Puppet
 
-The designs of Puppet and Terraform have many obvious similarities - both are declarative DSLs for infrastructure code; both provide resource abstraction layers with a type and provider model; both build directed acyclic graphs to order the configuration of resources; both take a human-readable source code and "compile" it into a "catalog" (Puppet) or "plan" (Terraform).
+The designs of Puppet and Terraform have many obvious similarities: both are declarative DSLs for infrastructure code; both provide resource abstraction layers with a type and provider model; both build directed acyclic graphs to order the configuration of resources; both take a human-readable source code and "compile" it into a "catalog" (Puppet) or "plan" (Terraform).
 
-But there are two key differences, and these made it easier to provide a unit testing framework in Puppet than in Terraform:
+But there are some key differences, and these differences no doubt made it easier to provide a unit testing framework in Puppet than in Terraform:
 
 1. Terraform's state file caches known state information and provides input into the Terraform plan, whereas Puppet's only knowledge of state at the time of catalog compilation are the facts sent by the Puppet agent. Mocking these facts is a smaller problem than mocking state in Terraform.
 1. Terraform's providers actually send inputs to the plan as well. Puppet's providers meanwhile only operate after the catalog is already compiled.
 
+For more information be sure to carefully read all of Martin's comments in the [GitHub issue](https://github.com/hashicorp/terraform/issues/21628). The problems are not insurmountable.
+
 ## Terraform testing eval
 
-It is now time to look at the proof of concept "terraform testing eval" feature. The feature came about, as mentioned, after I raised a GitHub issue requesting a Terraform unit testing framework. And, to my surprise, Martin Atkins had [implemented](https://github.com/hashicorp/terraform/commit/760ec68a5c587340abb87e95b42b4cc56e0f7ab4) one within a few hours. He named the prototype "terraform testing eval". He also demonstrated its use in Python [here](https://github.com/hashicorp/terraform/issues/21628#issuecomment-499939509).
+It is now time to look at the proof of concept I have written for the "terraform testing eval" framework. The feature came about, as mentioned, after I raised a GitHub issue requesting a Terraform unit testing framework. And, to my surprise, Martin Atkins had [implemented](https://github.com/hashicorp/terraform/commit/760ec68a5c587340abb87e95b42b4cc56e0f7ab4) one within a few hours. He named the prototype "terraform testing eval". He also demonstrated its use in Python [here](https://github.com/hashicorp/terraform/issues/21628#issuecomment-499939509).
 
-## Rspec helpers
-
-I chose to rewrite Martin's Python helpers in Ruby so that Rspec can be used - my thinking is that Rspec is already known to many DevOps engineers, and is the basis of Serverspec, Test Kitchen, Rspec-puppet, Chefspec, InSpec and not to mention an old project [rspec-terraform](https://github.com/bsnape/rspec-terraform). And I also believe that Ruby's flexibility - a language that has evolved from sed, AWK & Perl - makes it a good language for automated testing. But, of course, the choice of framework here isn't a key consideration. I like Rspec. Others may feel free to use something else.
-
-My proof of concept code is online [here](https://github.com/alexharv074/terraform-unit-testing-poc) and my version of Martin's helper is [here](https://github.com/alexharv074/terraform-unit-testing-poc/blob/master/spec/spec_helper.rb#L8-L63).
+Also, note that Martin's example unit tests in Python are on the [unit-testing-prototype](https://github.com/terraformnet/terraform-aws-vpc-region/tree/unit-testing-prototype) branch of the [terraform-aws-vpc-region](https://github.com/terraformnet/terraform-aws-vpc-region) module.
 
 ## Building a modified terraform
 
@@ -117,6 +115,8 @@ Usage: terraform testing eval MODULE-DIR REF-ADDR DATA-FILE
 
 ### Example code
 
+My proof of concept code is online [here](https://github.com/alexharv074/terraform-unit-testing-poc) and the final version of all the code discussed in this post can be seen from there. The reader may also clone that and try it themself.
+
 So as to have an example of something to actually test I have written a simple Terraform module that spins up an AWS EC2 instance:
 
 ```js
@@ -173,6 +173,15 @@ mount ${e.device_name} ${e.mount_point}
 %{endfor ~}
 ```
 
+### Notes on the evaluation logic
+
+As can be seen, my example module uses the following logic features of the Terraform DSL:
+
+- A dynamic nested block to code generate the EBS volumes via Terraform 0.12's `for_each`.
+- A `count` of resources that can be used to conditionally disable the resource.
+- A complicated `for` expression to merge two data sources together.
+- A for loop in the `templatefile()`'s template language to generate the `user_data`.
+
 ### Some test cases
 
 So before I show any actual test code I'd like to discuss the module's features and think through what I'd like to actually test.
@@ -206,7 +215,7 @@ So, even in the absence of a test framework, the process of white box testing st
 
 ### Using terraform testing eval
 
-The modified Terraform has a new command, `terraform testing eval` as mentioned above. As the name suggests, its purpose is for testing Terraform's evaluation logic. It has the following usage:
+The modified Terraform has a new command, `terraform testing eval` as mentioned above. As the name suggests, its purpose is for testing Terraform's evaluation logic. It has (again) the following usage:
 
 ```text
 ▶ terraform testing eval
@@ -223,7 +232,7 @@ Usage: terraform testing eval MODULE-DIR REF-ADDR DATA-FILE
 
 So we can pass in a `REF-ADDR` - a single Terraform resource like `aws_instance.this` - and a `DATA-FILE` - a JSON file specifying the variables we want to pass in, and also - and this is a bit of a gotcha - the values of any locals.
 
-In my case, I have created some example JSON files in my proof-of-concept [here](). For example:
+In my case, I have created some example JSON files in my proof-of-concept [here](https://github.com/alexharv074/terraform-unit-testing-poc/blob/master/spec/fixtures/simplest_instance_count_1.json). For example:
 
 ```json
 {
@@ -246,11 +255,17 @@ These are the data inputs for my tests. Now I can run `terraform testing eval` u
 ▶ terraform testing eval . aws_instance.this spec/fixtures/simplest_instance_count_1.json
 ```
 
-This then outputs, in Martin's words, "a JSON representation of the configuration object that resulted from evaluating the body of the given resource block against the given mock data." He added, "This specific mechanism for doing that isn't the point of this prototype, so let's put these implementation details aside and focus on what kinds of tests this allows us to write."
+This then outputs, in Martin's words:
 
-### Supporting code
+> ...a JSON representation of the configuration object that resulted from evaluating the body of the given resource block against the given mock data.
 
-To be sure, the JSON representation is a little confusing, I needed some Ruby code, copied from Martin's [Python code](https://github.com/terraformnet/terraform-aws-vpc-region/blob/unit-testing-prototype/unittests/test_subnets.py#L85-L135), to make sense of it. I have this class here that converts the JSON representation into a structure that makes a bit more sense:
+### Rspec helpers
+
+To be sure, the JSON representation is a little confusing, which is why Martin also wrote some [Python code](https://github.com/terraformnet/terraform-aws-vpc-region/blob/unit-testing-prototype/unittests/test_subnets.py#L85-L135) to make sense of it.
+
+I chose to rewrite these Python helpers in Ruby so that I could use Rspec instead. My thinking is that Rspec is already known to many DevOps engineers, and is the basis of Serverspec, Test Kitchen, Rspec-puppet, Chefspec, InSpec and not to mention an old project [rspec-terraform](https://github.com/bsnape/rspec-terraform). And I also believe that Ruby's flexibility - a language that has evolved from sed, AWK & Perl - makes it a good language for automated testing. But, of course, the choice of framework here isn't a key consideration. I like Rspec. Others may feel free to use something else.
+
+The source code for these are [here](https://github.com/alexharv074/terraform-unit-testing-poc/blob/master/spec/spec_helper.rb#L8-L63).
 
 ```ruby
 class TerraformTesting
@@ -651,6 +666,10 @@ One consequence though is that [logic inside a locals declaration](https://githu
 ### No automatic mocking of defaults
 
 Users of Rspec-puppet would notice that the requirement to provide fake data for all mandatory parameters is onerous. This again seems to follow from the decision to not test as the level of the whole module. I am not sure if reimplementing "terraform testing eval" would mean that module defaults would be automatically available or not. But we can all agree that it would be better if these defaults were available, whatever the implementation.
+
+### None of Rspec-puppet's conveniences
+
+A minor issue to be sure is that all of this is done so far is pure Rspec and I need to explicitly define the subject, whereas Rspec-puppet hides all this in an implicit subject and a bunch of Puppet-specific matchers. Actually it could be argued that this is good and bad, because hiding so much Rspec from the user has led to far fewer Puppet users actually understanding Rspec!
 
 ## Concluding thoughts
 
