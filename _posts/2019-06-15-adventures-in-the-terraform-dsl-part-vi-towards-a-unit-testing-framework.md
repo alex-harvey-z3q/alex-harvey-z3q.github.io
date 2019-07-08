@@ -534,8 +534,6 @@ The `nil` is Ruby's equivalent of Terraform's `null` by the way. And if I want t
 
 That there is my UserData script, of course, which I noted earlier would contain just a shebang line in the case of an empty array of EBS block devices.
 
-> The general idea here would be to select some evaluatable sub-portion of the module (which could be a whole resource block, or an individual argument in a resource block, depending on what we think is useful) and evaluate it against a fake static data scope to get the value that Terraform would normally pass to the provider as the "configuration object".
-
 #### Test case 3 - expecting errors
 
 I won't of course be able to show all of the above test cases because there are too many, but I would like to show an example of expecting an error. In this case I look at a list of 2 EBS block devices where a mandatory parameter is missing:
@@ -583,7 +581,7 @@ The last example I am going to look at is testing the user_data string. This is 
             {"device_name": "/dev/sdg"},
             {"device_name": "/dev/sdh"}
           ],
-					"mount_point": ["/data", "/home"]
+          "mount_point": ["/data", "/home"]
         },
         "locals": {
           "key_name": "default"
