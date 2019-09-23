@@ -30,7 +30,7 @@ The feature is most useful when you have a list of resources that feel just like
 So for example given a Hash of users:
 
 ```js
-# A hash of user resources:
+// A hash of user resources:
 $myusers = {
   'nick' => { uid    => '1330',
               gid    => allstaff,
