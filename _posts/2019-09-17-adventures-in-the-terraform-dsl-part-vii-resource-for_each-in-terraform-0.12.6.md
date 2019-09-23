@@ -29,7 +29,7 @@ The feature is most useful when you have a list of resources that feel just like
 
 So for example given a Hash of users:
 
-```puppet
+```js
 # A hash of user resources:
 $myusers = {
   'nick' => { uid    => '1330',
@@ -51,7 +51,7 @@ create_resources(user, $myusers)
 
 And for those who hate create_resources I feel obligated to also show how it's done using the Puppet DSL's resource iteration:
 
-```puppet
+```js
 $myusers.each |$user,$data| {
   user { $user:
     * => $data
