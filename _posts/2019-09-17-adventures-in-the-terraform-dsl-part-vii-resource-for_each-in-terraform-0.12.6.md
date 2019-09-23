@@ -13,7 +13,7 @@ A discussion of the resource for_each feature that was added in Terraform 0.12.6
 
 ## Introduction
 
-I was excited about Terraform's resource for_each feature when it was announced because I frequently use the comparable create_resources feature in Puppet. Puppet's resource for_each was introduced in Puppet 2.6 in 2011. It is a particularly useful if you have a number of resources that are like data more than config.
+I was excited about Terraform's resource for_each feature when it was announced because I frequently use the comparable create_resources feature in Puppet. Puppet's resource for_each was introduced in Puppet 2.6 in 2011. It is particularly useful if you have a number of resources that are like data more than config.
 
 In this post, I look in detail at Terraform's new resource for_each feature, which was released recently in Terraform 0.12.6, and I cover off what it can do and compare it to the Puppet 2.6 create_resources feature as well as the Puppet 4 resource iteration. In the end I conclude that it is not possible to emulate Puppet's resource iteration and discuss therefore how Terraform could be improved.
 
