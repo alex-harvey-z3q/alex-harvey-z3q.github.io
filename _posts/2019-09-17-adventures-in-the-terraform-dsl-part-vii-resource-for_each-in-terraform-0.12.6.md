@@ -121,13 +121,7 @@ _Notice that the structure of the data in the variable azurerm_resource_groups d
 
 ### set for_each
 
-Terraform also allows resources to be declared for each element in a set. And to add to the fun, let me quote,
-
-> The Terraform language doesn't have a literal syntax for sets, but you can use the toset function to convert a list of strings to a set.
-
-It is unclear to me, therefore, why a set was chosen rather than a list. I suppose it is because a set, unlike a list, cannot contain duplicates. If I find out more, I will update this post.
-
-In any case, use of sets rather than maps allows resources that differ by a single attribute to be declared for each element in a set. As in this example:
+Terraform also allows resources to be declared for each element in a set. Use of sets rather than maps allows resources that differ by a single attribute to be declared for each element in a set. As in this example:
 
 ```js
 variable "subnet_ids" {
@@ -147,11 +141,13 @@ resource "aws_instance" "server" {
 }
 ```
 
-And note well that comment there in the code (lifted from the docs):
+Note that the toset() function needs to be used because there is no other way to declare a set in Terraform.
+
+Also note well that comment there in the code, which I copied from the docs:
 
 > each.key and each.value are the same for a set
 
-Beware hack! I guess since the example in the docs here uses each.key then it's best to use each.key rather than value? I would have been otherwise inclined to use each.value. I suppose as long as consistency is observed this won't cause too much trouble.
+Beware of this! This seems quite surprising and could lead to quite confusing code, especially if each.key and each.value are both used. I would be inclined to only ever use each.value to keep the code readable.
 
 ## Resource syntax in Terraform
 
