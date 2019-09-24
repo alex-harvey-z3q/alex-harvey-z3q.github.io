@@ -353,7 +353,7 @@ There is no variable named "each".
 
 So, using Terraform 0.12.6 and the resource for_each, it appears that Puppet's create_resources function still cannot be emulated, at least without great difficulty and so much code complexity that it is probably not worth doing.
 
-Is it an actual problem? Some Terraform true believers may say it is fine. And I remember only too well how so many in the Puppet community once said - "don't add iteration! It's not required!" Let me just say this. There is no problem defining sets or maps of data in Puppet and transforming them into resources. And in all the time I've used Puppet, I have never, ever seen anyone actually do that. So, I do think it is a real problem and the Terraform DSL is forcing the community to write code that is going to be unreadable.
+Is it an actual problem? Some may say it is fine. And I remember well how so many in the Puppet community once said - "don't add iteration. It's not required!" Let me just say this. There is no problem defining sets or maps of data in Puppet and transforming them into resources. And in all the time I've used Puppet, I have rarely seen anyone actually do that. So, I do think it is a real problem and the Terraform DSL is forcing the community to write code that is going to be unreadable.
 
 Could it be fixed though?
 
@@ -395,4 +395,4 @@ While I am not familiar enough with Terraform's code base to be certain, I suspe
 
 Today I have looked in detail at the Terraform 0.12.6 resource for_each and compared it specifically to the related features in Puppet. For anyone simply wanting to know how to use the feature, I had covered most of that in [Part III](https://alexharv074.github.io/2019/06/02/adventures-in-the-terraform-dsl-part-iii-iteration-enhancements-in-terraform-0.12.html) of this series, whereas today I have focused on what the feature still can't do, and I've proposed a way for HashiCorp to make it possible in a future release.
 
-Stay tuned for Part VIII - yes, there is a Part VIII coming! - where I look at the Terraform Puppet provisioner.
+Stay tuned for Part VIII where I look at the Terraform Puppet provisioner.
