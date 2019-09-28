@@ -13,7 +13,7 @@ This post documents a pattern of hierarchical data lookups similar to Puppet's H
 
 ## Overview
 
-Shell scripts are a fact of life and it is hard to imagine a technological future that has no role for the Bash shell, whether in Dockerfiles, UserData scripts, CI/CD pipelines, and so on. Another common use-case for the Bash shell is wrapper scripts around Packer bakes and Cloudformation stacks.
+Shell scripts are a fact of life and it is hard to imagine a technological future that has no role for the Bash shell, whether in Dockerfiles, UserData scripts, CI/CD pipelines, and so on. Another common use-case for the Bash shell is wrapper scripts around Packer bakes and AWS CloudFormation stacks.
 
 But what do you do about data?
 
@@ -25,7 +25,7 @@ This post shows how to implement a hierarchical organisation of data in the same
 
 An example project to go with this blog post is online at Github [here](https://github.com/alexharv074/hiera-in-bash.git). It was forked from [this](https://github.com/awslabs/ami-builder-packer) AWS Labs project. It is a very simple project that bakes an EC2 AMI using Packer, with different data for some parameters in dev, test and prod environments.
 
-(This example project could be used as the starting point for any project that intends to manage Packer or Cloudformation or similar using shell scripts as wrappers. It is complete with a Makefile, unit tests and so on.)
+(This example project could be used as the starting point for any project that intends to manage Packer or CloudFormation or similar using shell scripts as wrappers. It is complete with a Makefile, unit tests and so on.)
 
 ## Build script
 
@@ -48,17 +48,17 @@ cat > variables.json <<EOF
   "instance_type": "$instance_type"
 }
 EOF
-jq . variables.json > /dev/null || exit $?
+jq . variables.json > /dev/null || exit "$?"
 
 for action in validate build ; do
-  packer $action -var-file=variables.json \
-    packer.json || exit $?
+  packer "$action" -var-file=variables.json \
+    packer.json || exit "$?"
 done
 
 rm -f variables.json
 ```
 
-The line `. data.sh` is where I source my data. This is the subject of the blog post, and I'll come back to that in a moment, but for now I'd like to note that this is a simple script that gets the date, builds a Packer variables JSON file, validates the template, and then builds an AMI. Also note that a bunch of variables are passed into Packer, some of which are environment-specific (like the VPC, Subnet, Owner and Instance Type) and others are the same for all environments (such as the region).
+The line `. data.sh` is where I source my data. This is the subject of the blog post, and I'll come back to that in a moment, but for now I'd like to note that this is a simple script that gets the date, builds a Packer variables JSON file, validates the Packer template, and then builds an AMI. Also note that a bunch of variables are passed into Packer, some of which are environment-specific - like the VPC, Subnet, Owner and Instance Type - and others are the same for all environments - such as the region.
 
 The Hiera-like magic is inside the `data.sh` script. In the sections below, I'll relate this script and its features to Puppet's Hiera.
 
@@ -77,14 +77,14 @@ usage() {
 
 data_dir=./data
 
-if [ ! -e "$data_dir/environment/${environment}.sh" ]; then
+if [ ! -e "$data_dir"/environment/"$environment".sh ]; then
   echo "Data file $data_dir/environment/${environment}.sh not found"
   usage
 fi
 
 # Hierarchy.
-. $data_dir/common.sh
-. $data_dir/environment/${environment}.sh
+. "$data_dir"/common.sh
+. "$data_dir"/environment/"$environment".sh
 ```
 
 Aside from some error-checking, the file defines a hierarchy of lookups. Firstly, the `common.sh` file is sourced into the running shell. Next, an environment-specific file is sourced.
@@ -148,9 +148,11 @@ And if I had to do that a lot I could wrap it in a function inside `data.sh` lik
 
 ```bash
 query_ssm() {
-  local param=$1
-  aws ssm get-parameter --name $param \
-    --query Parameter.Value --with-decryption --output text
+  local param="$1"
+  local prev="$-" ; set +x # Prevent set -x from leaking secrets.
+  aws ssm get-parameter --name "$param" \
+    --query 'Parameter.Value' --with-decryption --output 'text'
+  set -"$prev"
 }
 ```
 
@@ -173,6 +175,6 @@ How about structured data? Well to the extent that structured data is supported 
 
 ## Conclusion
 
-I have documented a pattern for externalising data in Bash for use-cases like wrapper scripts for Packer and Cloudformation. The model is quite similar to Puppet's Hiera and Chef's data bags and so on. Feel free to let me know if you decide to use this approach!
+I have documented a pattern for externalising data in Bash for use-cases like wrapper scripts for Packer and CloudFormation. The model is quite similar to Puppet's Hiera and Chef's data bags and so on. Feel free to let me know if you decide to use this approach!
 
 <sup>1</sup> Actually, in Hiera, you would put the environment-specific level at the top and the common level at the bottom. Hiera searches each level in order until it finds the key it was looking for and then returns.
