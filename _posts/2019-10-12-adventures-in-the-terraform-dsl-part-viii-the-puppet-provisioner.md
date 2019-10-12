@@ -83,7 +83,7 @@ mod 'puppetlabs/puppet_agent',
   :ref => 'MODULES-9981-add_amazon_linux_2_support_to_install_task'
 ```
 
-At the time of writing, there was so support for Amazon Linux 2 in the puppetlabs/puppet_agent `puppet_agent::install` task. I have added some support although foresee some delays in getting it merged. Hopefully that feature will be merged soon. If so, this file would be:
+At the time of writing, there was no support for Amazon Linux 2 in the puppetlabs/puppet_agent `puppet_agent::install` task. I have added some support although foresee some delays in getting it merged. Hopefully that feature will be merged soon. If so, this file would be:
 
 ```ruby
 mod 'danieldreier/autosign'
@@ -108,7 +108,8 @@ variable "key_file" {
 }
 
 locals {
-  instance_type = "t2.micro"
+  linux_instance_type   = "t2.micro"
+  windows_instance_type = "t2.large"
 }
 
 data "aws_ami" "amazon_linux_2" {
@@ -141,7 +142,7 @@ data "template_file" "winrm" {
 
 resource "aws_instance" "master" {
   ami           = data.aws_ami.amazon_linux_2.id
-  instance_type = local.instance_type
+  instance_type = local.linux_instance_type
   key_name      = var.key_name
   user_data     = data.template_file.user_data.rendered
 
@@ -161,7 +162,7 @@ resource "aws_instance" "master" {
 
 resource "aws_instance" "linux_agent" {
   ami           = data.aws_ami.ami.id
-  instance_type = local.instance_type
+  instance_type = local.linux_instance_type
   key_name      = var.key_name
 
   connection {
@@ -181,7 +182,7 @@ resource "aws_instance" "linux_agent" {
 
 resource "aws_instance" "win_agent" {
   ami               = data.aws_ami.windows_2012R2.image_id
-  instance_type     = "t2.large"
+  instance_type     = local.windows_instance_type
   key_name          = var.key_name
   get_password_data = true
 
@@ -281,9 +282,9 @@ Notice there is autosigning configuration provided by the autosign Ruby Gem. You
 
 ##### Remote exec provisioner
 
-Also note the following "hack" to get Terraform to stop and wait before moving the Puppet Master's aws_instance "created". I refer to this code:
+Also note the following "hack" to get Terraform to stop and wait before marking the Puppet Master's aws_instance state as "created". I refer to this code:
 
-```
+```js
   provisioner "remote-exec" {
     on_failure = continue
     inline = [
@@ -292,10 +293,10 @@ Also note the following "hack" to get Terraform to stop and wait before moving t
   }
 ```
 
-This is needed because Terraform has no equivalent of CloudFormation's [cfn-signal](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-signal.html) to signal that a resource has been "created". See also the line in the agent configs:
+The code uses a remote-exec provisioner to monitor the /var/log/cloud-init-output.log every 20 seconds for the a message that Cloud-init has finished. Is there a better way? Let me know! This is apparently the only way to do this because Terraform has no equivalent of CloudFormation's [cfn-signal](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-signal.html) to signal that a resource has been "created". See also the line in the agent configs:
 
 ```js
-depends_on = [aws_instance.master]
+  depends_on = [aws_instance.master]
 ```
 
 That's where I tell the agents to wait for the master to be created.
@@ -313,12 +314,6 @@ Or you could set a Terraform variable to point to another key you want to use. F
 ```text
 ▶ export TF_VAR_key_name='my_key'
 ```
-
-##### Connection type SSH
-
-I am one of those people who doesn't like to overspecify things and I tend to use default values where possible. I tried to do that for the SSH connection blocks for the Puppet Master and Agent aws_instances. I then ran into a quite confusing bug that led me on a goose chase through both the Terraform & Bolt code bases! That's why there's a comment there that points to [this](https://github.com/hashicorp/terraform/issues/23004) Terraform issue that I raised.
-
-In the end I fixed that bug in this open pull request [here](https://github.com/hashicorp/terraform/pull/23057). At the time of writing, it is unmerged and will probably go in to Terraform 0.12.11. If you have a lower Terraform, just make sure you specify the connection type on Linux explicitly as "ssh".
 
 #### The Amazon Linux 2 agent
 
@@ -353,7 +348,15 @@ Things to note here:
 - The settings `server` and `server_user` refer to the Puppet Master node. In my case, I have the Puppet Master managed in Terraform too although I can foresee others could have their Puppet Masters on long-lived pets etc.
 - At the time of writing, the private key needed to connect to the Puppet Master lives in Puppet Bolt's configuration in the bolt.yaml file. I find this surprising and I'm going to raise a patch if I can to change this so that the private_key to connect to the Puppet Master will be specified in Terraform too.
 
+#### Connection type SSH
+
+I am one of those people who doesn't like to overspecify things in code and I tend to use default values where possible. I tried to do that for the SSH connection blocks for the Puppet Master and Agent aws_instances. I then ran into a quite confusing bug that led me on a goose chase through both the Terraform & Bolt code bases! That's why there's a comment there that points to [this](https://github.com/hashicorp/terraform/issues/23004) Terraform issue that I raised.
+
+In the end I fixed that bug in this open pull request [here](https://github.com/hashicorp/terraform/pull/23057). At the time of writing, it is unmerged and will probably go in to Terraform 0.12.11. If you have a lower Terraform, just make sure you specify the connection type on Linux explicitly as "ssh".
+
 #### The Windows 2016 node
+
+And here is the Windows agent node code:
 
 ```js
 resource "aws_instance" "win_agent" {
@@ -593,11 +596,11 @@ Apply complete! Resources: 3 added, 0 changed, 0 destroyed.
 
 ## Discussion
 
-It has been quite a journey setting all of this up and I do hope it assists others to get started.'
+It has been quite a journey setting all of this up. I do hope it assists others to get started.
 
-I feel that users who are already using all of Terraform, Puppet Bolt, and Puppet to manage their EC2 instances will find that this provisioner is quite good and probably will want to think about using this. When it's all set up it feels quite clean. Remember that most of the complexity in this solution lies in the Puppet Master. This will not be a consideration for people who are already using Puppet Masters.
+For users who are already using Terraform, Puppet Bolt, and Puppet to manage their EC2 infrastructure, I expect that this provisioner will be useful and they probably will want to think about using it. When it is all set up it feels quite clean and it is a nice user experience. Remember that, as I mentioned already, most of the complexity in my solution lies in setting up the Puppet Master in Terraform. But this will not be a consideration for people who are already using Puppet Masters.
 
-The more interesting question is who should use this if they are _not_ already using Terraform, Puppet Bolt, and Puppet to manage their EC2 instances. How _should_ you manage a fleet of EC2 instances using Terraform?
+The more interesting question might be this: Who should use this if they are _not_ already using Terraform, Puppet Bolt, and Puppet to manage their EC2 instances? How _should_ you manage a fleet of EC2 instances using Terraform?
 
 HashiCorp [say](https://www.terraform.io/docs/provisioners/index.html) that provisioners - any provisioners, whether Chef, Puppet, local-exec etc - should be used as a "last resort":
 
@@ -605,7 +608,7 @@ HashiCorp [say](https://www.terraform.io/docs/provisioners/index.html) that prov
 >
 > However, they also add a considerable amount of complexity and uncertainty to Terraform usage. Firstly, Terraform cannot model the actions of provisioners as part of a plan because they can in principle take any action. Secondly, successful use of provisioners requires coordinating many more details than Terraform usage usually requires: direct network access to your servers, issuing Terraform credentials to log in, making sure that all of the necessary external software is installed, etc.
 
-In fact, it is quite possible to do configuration management just using Terraform's own features and UserData scripts. This should work fine - a lot of the time. But if you foresee yourself outgrowing this - if your use-case might grow to include configuration management of complex applications running on Linux or Windows - the use of as provisioner like the Puppet provisioner (or the Chef provisioner and some others) deserves consideration.
+In fact, it is quite possible to do configuration management just using Terraform's own features and UserData scripts. This should work fine ... most of the time! But if you foresee yourself outgrowing UserData - and believe me you need to think hard about this because you don't want to ever run into the limits of UserData as your configuration management solution because you'll probably discover that you have no choice other than to rewrite everything! So, if your use-case might grow to include configuration management of complex applications running on Linux or Windows, the use of a provisioner like the Puppet provisioner (or the Chef provisioner or some of the others) deserves consideration.
 
 I can imagine that the requirement to also have Puppet Bolt on the machine running Terraform is going to be an issue for some users. If this provisioner is the _only_ reason to use Puppet Bolt, you may decide to do your configuration management another way. But with that said, Puppet Bolt is a quite powerful tool that also deserves consideration.
 
