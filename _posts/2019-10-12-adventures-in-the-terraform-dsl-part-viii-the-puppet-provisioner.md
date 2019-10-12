@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Adventures in the Puppet DSL, Part VIII: The Puppet provisioner"
+title: "Adventures in the Terraform DSL, Part VIII: The Puppet provisioner"
 date: 2019-10-12
 author: Alex Harvey
 tags: terraform puppet
