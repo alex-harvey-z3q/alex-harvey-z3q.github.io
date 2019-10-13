@@ -91,7 +91,7 @@ As the reader will observe below, I have had to specify some of these SSH connec
 
 ### Puppetfile contents
 
-I will say something about the Puppetfile though. The Puppetfile is used by Puppet Bolt to install the two modules `danieldreier/autosign` and `puppetlabs/puppet_agent` that the provisioner depends upon, as mentioned above. Note that Puppetfile actually points to an unmerged pull request:
+I will also say something about the Puppetfile. The Puppetfile is used by Puppet Bolt to install the two modules `danieldreier/autosign` and `puppetlabs/puppet_agent` that the provisioner depends upon, as mentioned above. Note that Puppetfile actually points to an unmerged pull request:
 
 ```ruby
 # Modules from the Puppet Forge.
