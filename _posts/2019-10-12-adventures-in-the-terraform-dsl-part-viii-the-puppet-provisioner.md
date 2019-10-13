@@ -61,7 +61,6 @@ fi
 mkdir -p ~/.puppetlabs/bolt/
 
 (cd bolt && cp \
-    inventory.yaml \
     bolt.yaml \
     Puppetfile \
     ~/.puppetlabs/bolt/)
@@ -69,7 +68,26 @@ mkdir -p ~/.puppetlabs/bolt/
 bolt puppetfile install
 ```
 
-This should be self-explanatory for people familiar with Puppet Bolt. Note that the bolt.yaml and inventory.yaml files are required mostly just so that Bolt knows about its private key! The rest of the details Bolt needs to connect to the EC2 instances are actually in the Terraform code below. I make a note of this as I found it a bit confusing.
+This should be self-explanatory.
+
+### Bolt config
+
+#### bolt.yaml
+
+The bolt.yaml meanwhile has this content:
+
+```yaml
+---
+modulepath: "~/.puppetlabs/bolt-code/modules:~/.puppetlabs/bolt-code/site-modules"
+concurrency: 10
+format: human
+ssh:
+  host-key-check: false
+  user: ec2-user
+  private-key: ~/.ssh/default.pem
+```
+
+As the reader will observe below, I have had to specify some of these SSH connection details twice - here, and also in Terraform. The inconsistency seems to be that I have to tell both Terraform and Bolt about the SSH user ec2-user but I can only tell Bolt about the private key here.
 
 ### Puppetfile contents
 
