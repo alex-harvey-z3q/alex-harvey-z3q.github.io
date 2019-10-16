@@ -6,42 +6,42 @@ author: Alex Harvey
 tags: terraform puppet
 ---
 
-An overview of a proof of concept of the Terraform 0.12.2 Puppet provisioner.
+This post discussed a proof of concept of the Terraform 0.12.2 Puppet provisioner.
 
 - ToC
 {:toc}
 
 ## Introduction
 
-In Terraform 0.12.2 a "basic Puppet provisioner" was added per feature request [#18851](https://github.com/hashicorp/terraform/pull/18851). The motivation for the provisioner is apparently to simplify installing, configuring and running Puppet Agents. And, since I am interested in both Terraform and Puppet, I decided to have a go at setting it up and doing a simple "hello world" with it. Also, I am fairly stubborn, so I even got it all to work. This is the story of how I did it!
+In Terraform 0.12.2 a "basic Puppet provisioner" was added per feature request [#18851](https://github.com/hashicorp/terraform/pull/18851). The motivation for the provisioner is apparently to simplify installing, configuring and running Puppet Agents. And, since I am interested in both Terraform and Puppet, I decided to have a go at setting it up and doing a simple "hello world" with it. Also, I am fairly stubborn, and I even got it to work. This is the story of how I did it!
 
 ## Target audience
 
-The post should help Puppet users who want to use the Terraform Puppet provisioner but it probably won't help Terraform users much with Puppet! I assume the reader already has a good understanding of Puppet, Puppet Bolt and Terraform.
-
-## Architecture
-
-In the following diagram I show the main moving parts of this solution:
-
-![Puppet Terraform architecture]({{ "assets/arch.jpg" | absolute_url }})
-
-A bit about some of these:
-
-|component|notes|
-|---------|-----|
-|Puppet Master|The Puppet Master a.k.a "puppetserver". Note that the Puppet provisioner does not help to build a Puppet Master, and just assumes you already have one somewhere. It is worth noting that much of the complexity of this solution comes from standing up the Puppet Master.|
-|Puppet Agent|The Puppet Agent node. This is where the Puppet provisioner assists.|
-|Puppet Bolt|Puppet Bolt is required by the Puppet provisioner. Bolt tasks are called to autosign certificates on the Puppet Master and install Puppet on the Puppet Agent.|
-|danieldreier/autosign|A Puppet module used by Puppet Bolt for autosigning Puppet agent Certificate Signing Requests. This and the following module is a dependency of the Terraform Puppet provisioner.|
-|puppetlabs/puppet_agent|A Puppet module used by Puppet Bolt for managing Puppet Agent configuration.|
+The post should help Puppet users who want to use the Terraform Puppet provisioner but it probably won't help Terraform users much with Puppet. I assume the reader has a good understanding of Puppet, Puppet Bolt and Terraform.
 
 ## The code
 
 For readers who prefer to just go straight to the code, I have that all on GitHub [here](https://github.com/alexharv074/terraform-puppet-provisioner-test).
 
-## What it does
+## Architecture
 
-The proof of concept code spins up a Puppet Master node, configures it using a UserData shell script, and then spins up an Amazon Linux 2 agent and a Windows 2016 agent in parallel and uses the Puppet provisioner to configure them both. And by "configure" I really just mean a simple Puppet manifest that prints "hello world" in the log.
+The following diagram shows the main moving parts of the solution:
+
+![Puppet Terraform architecture]({{ "assets/arch.jpg" | absolute_url }})
+
+Here is a bit about some of these:
+
+|component|notes|
+|---------|-----|
+|Puppet Master<sup>1</sup>|The Puppet Master a.k.a. Puppet Server in today's Puppet. This is an open source Puppet 6 Puppet Server with the Autosign Ruby Gem installed.|
+|Puppet Agent|The Puppet Agent node. In fact I have two of these, an Amazon Linux 2 Puppet Agent node and a Windows 2012 Puppet Agent node. It is installing Puppet here that the Puppet Provisioner assists.|
+|Puppet Bolt|Puppet Bolt is required to be on the machine running Terraform by the Puppet provisioner. Puppet Bolt tasks are called to autosign certificates on the Puppet Master and install Puppet on the Puppet Agent.|
+|danieldreier/autosign|A Puppet module used by Puppet Bolt for autosigning Puppet agent Certificate Signing Requests. This and the following module is a dependency of the Terraform Puppet provisioner. They are managed outside of Terraform by Puppet Bolt and installed using bolt puppetfile install.|
+|puppetlabs/puppet_agent|A Puppet module used by Puppet Bolt for managing Puppet Agent configuration.|
+
+## Overview
+
+The proof of concept code spins up a Puppet Master node, configures it using a UserData shell script, and then spins up an Amazon Linux 2 agent and a Windows 2012 agent in parallel and uses the Puppet provisioner to configure them both. And by "configure" I really just mean a simple Puppet manifest that prints "hello world" in the log. Why Windows 2012? That's what I found in Tim Sharpe's (the provisioner author's) [test code](https://github.com/rodjek/terraform-puppet-example).
 
 Under the hood, the Terraform Puppet provisioner calls Puppet Bolt twice, once to sign the certificate signing request on the Puppet Master as the agent comes up for the first time and a second time to install the Puppet agent software on the node.
 
@@ -49,7 +49,7 @@ Under the hood, the Terraform Puppet provisioner calls Puppet Bolt twice, once t
 
 ### Setting up Puppet Bolt
 
-Perhaps the most surprising feature of the Terraform Puppet provisioner is the requirement to have Puppet Bolt already set up on the machine where you run Terraform. So the first thing my solution does is provide a simple shell script setup.sh that installs and configures Puppet Bolt and then installs the Bolt Modules. Here is that script:
+Perhaps the most surprising feature of the Terraform Puppet provisioner is the requirement to have Puppet Bolt already set up on the machine where you run Terraform. So the first thing my code does is provide a simple shell script called setup.sh that installs and configures Puppet Bolt and then installs the Bolt Modules. (It assumes Mac OS X.) Here is that script:
 
 ```bash
 #!/usr/bin/env bash
@@ -68,7 +68,7 @@ mkdir -p ~/.puppetlabs/bolt/
 bolt puppetfile install
 ```
 
-This should be self-explanatory.
+This is fairly self-explanatory.
 
 ### Bolt config
 
@@ -91,7 +91,7 @@ As the reader will observe below, I have had to specify some of these SSH connec
 
 ### Puppetfile contents
 
-I will also say something about the Puppetfile. The Puppetfile is used by Puppet Bolt to install the two modules `danieldreier/autosign` and `puppetlabs/puppet_agent` that the provisioner depends upon, as mentioned above. Note that Puppetfile actually points to an unmerged pull request:
+I will also say something about the Puppetfile. The Puppetfile is used by Puppet Bolt to install the two Bolt modules that the provisioner depends upon, as mentioned above. Note that Puppetfile actually points to an unmerged pull request:
 
 ```ruby
 # Modules from the Puppet Forge.
@@ -228,7 +228,7 @@ resource "aws_instance" "win_agent" {
 
 #### About the Puppet Master
 
-Note that the Terraform Puppet provisioner assumes that you already have a Puppet Master, and it's not its job to help you build that. As such, building the Puppet Master isn't really about the Puppet provisioner. Also, it threw some of the biggest challenges, so keep this in mind when reviewing the overall complexity of this solution.
+The Puppet provisioner assumes that you already have a Puppet Master runnings somewhere, and it is not the provisioner's job to help you build that. Also, building the Puppet Master threw some of the biggest challenges, so keep that in mind when reviewing the overall complexity of this solution.
 
 ##### user_data
 
@@ -295,7 +295,7 @@ main() {
 main
 ```
 
-Notice there is autosigning configuration provided by the autosign Ruby Gem. Your Puppet Master needs that configuration to support the Puppet Terraform provisioner.
+Notice there is autosigning configuration provided by the autosign Ruby Gem. Your Puppet Master needs that configuration to support the Puppet Terraform provisioner. Also notice that IU had to get the Public Hostname from the EC2 instance Meta Data using curl. That is to workaround the fact that there seems to be no way to populate a Terraform template with the generated self.public_dns other than inside a connection or provisioner block!<sup>2</sup>
 
 ##### Remote exec provisioner
 
@@ -371,7 +371,7 @@ I am one of those people who doesn't like to overspecify things in code and I te
 
 In the end I fixed that bug in this open pull request [here](https://github.com/hashicorp/terraform/pull/23057). At the time of writing, it is unmerged and will probably go in to Terraform 0.12.11. If you have a lower Terraform, just make sure you specify the connection type on Linux explicitly as "ssh".
 
-#### The Windows 2016 node
+#### The Windows 2012 node
 
 And here is the Windows agent node code:
 
@@ -612,9 +612,9 @@ Apply complete! Resources: 3 added, 0 changed, 0 destroyed.
 
 ## Discussion
 
-It has been quite a journey setting all of this up. I do hope it assists others to get started.
+It has been a journey to set all of this up that, as mentioned already, led me to submit patches into both Terraform and one of the Bolt modules. I do hope it is useful to get others up to speed quickly.
 
-For users who are already using Terraform, Puppet Bolt, and Puppet to manage their EC2 infrastructure, I expect that this provisioner will be useful and they probably will want to think about using it. When it is all set up it feels quite clean and it is a nice user experience. Remember that, as I mentioned already, most of the complexity in my solution lies in setting up the Puppet Master in Terraform. But this will not be a consideration for people who are already using Puppet Masters.
+For those who are already using Terraform, Puppet Bolt, and Puppet to manage their EC2 infrastructure, I expect that this provisioner will be useful and they probably will want to think about using it. When it is all set up it feels quite clean and it is a nice user experience. Remember, as I mentioned already, that most of the complexity in the solution relates to setting up the Puppet Master in Terraform. That will not be a consideration for most people who are already using Puppet Masters.
 
 The more interesting question might be this: Who should use this if they are _not_ already using Terraform, Puppet Bolt, and Puppet to manage their EC2 instances? How _should_ you manage a fleet of EC2 instances using Terraform?
 
@@ -622,7 +622,9 @@ HashiCorp [say](https://www.terraform.io/docs/provisioners/index.html) that prov
 
 > Terraform includes the concept of provisioners as a measure of pragmatism, knowing that there will always be certain behaviors that can't be directly represented in Terraform's declarative model.
 >
-> However, they also add a considerable amount of complexity and uncertainty to Terraform usage. Firstly, Terraform cannot model the actions of provisioners as part of a plan because they can in principle take any action. Secondly, successful use of provisioners requires coordinating many more details than Terraform usage usually requires: direct network access to your servers, issuing Terraform credentials to log in, making sure that all of the necessary external software is installed, etc.
+> However, they also add a considerable amount of complexity and uncertainty to Terraform usage. Firstly, Terraform cannot model the actions of provisioners as part of a plan because they can in principle take any action. Secondly, successful use of provisioners requires coordinating many more details than Terraform usage usually requires: direct network access to your servers, issuing Terraform credentials to log in, making sure that all of the necessary external software is installed, etc. ...
+>
+> Even if your specific use-case is not described in the following sections, we still recommend attempting to solve it using other techniques first, and use provisioners only if there is no other option.
 
 In fact, it is quite possible to do configuration management just using Terraform's own features and UserData scripts. This should work fine ... most of the time! But if you foresee yourself outgrowing UserData - and believe me you need to think hard about this because you don't want to ever run into the limits of UserData as your configuration management solution because you'll probably discover that you have no choice other than to rewrite everything! - that is, if your use-case may grow to include configuration management of complex applications running on Linux or Windows - then the use of a provisioner like the Puppet provisioner (or the Chef provisioner or some of the others) deserves consideration.
 
@@ -633,3 +635,8 @@ I can imagine that the requirement to also have Puppet Bolt on the machine runni
 - Martez Reed, 10th July 2019, [Terraform Puppet Provisioner](https://www.greenreedtech.com/terraform-puppet-provisioner/).
 
 - Tim Sharpe's (the provisioner author's) [test code](https://github.com/rodjek/terraform-puppet-example).
+
+---
+
+<sup>1</sup> Note that I refer throughout to the "Puppet Master" using the traditional terminology, although I probably should say "Puppet Server".<br>
+<sup>2</sup> See also Tim Sharpe's apparent solution to the same problem [here](https://github.com/rodjek/terraform-puppet-example/blob/master/example.tf#L33-L36).
