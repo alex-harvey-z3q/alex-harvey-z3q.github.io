@@ -34,7 +34,7 @@ Here is a bit about some of these:
 |component|notes|
 |---------|-----|
 |Puppet Master<sup>1</sup>|The Puppet Master a.k.a. Puppet Server in today's Puppet. This is an open source Puppet 6 Puppet Server with the Autosign Ruby Gem installed.|
-|Puppet Agent|The Puppet Agent node. In fact I have two of these, an Amazon Linux 2 Puppet Agent node and a Windows 2012 Puppet Agent node. It is installing Puppet here that the Puppet Provisioner assists.|
+|Puppet Agent|The Puppet Agent node. In fact I have two of these, an Amazon Linux 2 Puppet Agent node and a Windows 2012 Puppet Agent node. It is here with installing and running Puppet that the Puppet Provisioner assists.|
 |Puppet Bolt|Puppet Bolt is required to be on the machine running Terraform by the Puppet provisioner. Puppet Bolt tasks are called to autosign certificates on the Puppet Master and install Puppet on the Puppet Agent.|
 |danieldreier/autosign|A Puppet module used by Puppet Bolt for autosigning Puppet agent Certificate Signing Requests. This and the following module is a dependency of the Terraform Puppet provisioner. They are managed outside of Terraform by Puppet Bolt and installed using bolt puppetfile install.|
 |puppetlabs/puppet_agent|A Puppet module used by Puppet Bolt for managing Puppet Agent configuration.|
