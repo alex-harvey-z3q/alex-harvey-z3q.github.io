@@ -410,7 +410,7 @@ This is much the same as the Amazon Linux 2 configuration other than the passwor
 
 Finally, I have the Puppet code itself inside manifests/site.pp:
 
-```puppet
+```js
 node default {
   notify { "Hello world from ${facts['hostname']}!": }
 }
@@ -630,15 +630,17 @@ For those who are already using Terraform, Puppet Bolt, and Puppet to manage the
 
 The more interesting question might be this: Who should use this if they are _not_ already using Terraform, Puppet Bolt, and Puppet to manage their EC2 instances? How _should_ you manage a fleet of EC2 instances using Terraform?
 
-HashiCorp [say](https://www.terraform.io/docs/provisioners/index.html) that provisioners - any provisioners, whether Chef, Puppet, local-exec etc - should be used as a "last resort":
+HashiCorp [say](https://www.terraform.io/docs/provisioners/index.html) that provisioners - any provisioners, whether Chef, Puppet, local-exec etc - should be used as a "last resort" and of the configuration management provisioners specifically:
 
-> Terraform includes the concept of provisioners as a measure of pragmatism, knowing that there will always be certain behaviors that can't be directly represented in Terraform's declarative model.
+> As a convenience to users who are forced to use generic operating system distribution images, Terraform includes a number of specialized provisioners for launching specific configuration management products.
 >
-> However, they also add a considerable amount of complexity and uncertainty to Terraform usage. Firstly, Terraform cannot model the actions of provisioners as part of a plan because they can in principle take any action. Secondly, successful use of provisioners requires coordinating many more details than Terraform usage usually requires: direct network access to your servers, issuing Terraform credentials to log in, making sure that all of the necessary external software is installed, etc. ...
+> We strongly recommend not using these, and instead running system configuration steps during a custom image build process. For example, HashiCorp Packer offers a similar complement of configuration management provisioners and can run their installation steps during a separate build process, before creating a system disk image that you can deploy many times.
 >
-> Even if your specific use-case is not described in the following sections, we still recommend attempting to solve it using other techniques first, and use provisioners only if there is no other option.
+> If you are using configuration management software that has a centralized server component, you will need to delay the registration step until the final system is booted from your custom image.
 
-In fact, it is quite possible to do configuration management just using Terraform's own features and UserData scripts. This should work fine ... most of the time! But if you foresee yourself outgrowing UserData - and believe me you need to think hard about this because you don't want to ever run into the limits of UserData as your configuration management solution because you'll probably discover that you have no choice other than to rewrite everything! - that is, if your use-case may grow to include configuration management of complex applications running on Linux or Windows - then the use of a provisioner like the Puppet provisioner (or the Chef provisioner or some of the others) deserves consideration.
+This is a statement of HashiCorp's strongly opinionated view of how to do configuration management of course and it is debatable. Equally, it is possible to do configuration management using only Terraform's features and UserData scripts. This also works fine ... most of the time!
+
+But if baking machine images isn't the best fit for your problem and you foresee yourself also outgrowing UserData - and believe me you need to think hard about this because you don't want to ever run into the limits of UserData as your configuration management solution because you'll probably discover that you have no choice other than to rewrite everything! - that is, if your use-case may grow to include configuration management of complex applications running on Linux or Windows - then the use of a provisioner like the Puppet provisioner (or the Chef provisioner or some of the others) deserves consideration.
 
 I can imagine that the requirement to also have Puppet Bolt on the machine running Terraform is going to be an issue for some users. If this provisioner is the _only_ reason to use Puppet Bolt, you may decide to do your configuration management another way. But with that said, Puppet Bolt is a quite powerful tool that also deserves consideration.
 
