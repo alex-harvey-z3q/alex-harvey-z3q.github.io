@@ -406,6 +406,18 @@ resource "aws_instance" "win_agent" {
 
 This is much the same as the Amazon Linux 2 configuration other than the password field that is passed in the connection block. There, I used the same EC2 user key to get the Administrator password, which is passed to the Puppet provisioner to be used by Bolt to connect to the Windows agent node and install the Puppet agent software.
 
+### The Puppet code
+
+Finally, I have the Puppet code itself inside manifests/site.pp:
+
+```puppet
+node default {
+  notify { "Hello world from ${facts['hostname']}!": }
+}
+```
+
+Note that this code is made available in the deploy_code function in the Puppet Master UserData above.
+
 ### Running it
 
 First run the setup script.
