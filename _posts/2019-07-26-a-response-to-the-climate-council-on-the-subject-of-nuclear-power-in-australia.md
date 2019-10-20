@@ -4,7 +4,7 @@ title: "A response to the Climate Council on the subject of nuclear power in Aus
 date: 2019-07-26
 author: Alex Harvey
 published: false
-tags: 
+tags:
 ---
 
 # About

@@ -27,7 +27,7 @@ In the dark days of early Terraform, the Terraform DSL had no conditional logic 
 
 Instead, Terraform had - as seen throughout this blog series so far - a `count` meta parameter. And there's one bit I haven't mentioned about `count` yet, which is what happens if you set `count = 0`? Well, it causes Terraform to simply not create that resource - or, if it is already created, it causes Terraform to destroy it again.
 
-And until Terraform 0.8 was released in December 2016, that was Terraform's "if" statement! 
+And until Terraform 0.8 was released in December 2016, that was Terraform's "if" statement!
 
 #### Example 1: Conditionally create a random_id
 
@@ -482,7 +482,7 @@ So, it is more readable, more functional and not broken. Some big wins here.
 
 ### Conditional logic V: Conditionally set an attribute
 
-Another big problem in Terraform 0.11 and earlier was the lack any equivalent of Puppet's `undef` value, which made it impossible to conditionally set attributes on resources while otherwise allowing the resource's default behaviour for that attribute. This was raised in Terraform [Issue #17968](https://github.com/hashicorp/terraform/issues/17968). 
+Another big problem in Terraform 0.11 and earlier was the lack any equivalent of Puppet's `undef` value, which made it impossible to conditionally set attributes on resources while otherwise allowing the resource's default behaviour for that attribute. This was raised in Terraform [Issue #17968](https://github.com/hashicorp/terraform/issues/17968).
 
 In Puppet, it has always been possible to write code like this:
 

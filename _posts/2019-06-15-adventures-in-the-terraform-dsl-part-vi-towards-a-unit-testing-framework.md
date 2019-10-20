@@ -467,7 +467,7 @@ From: /Users/alexharvey/git/home/terraform-unit-testing-poc/spec/aws_ec2_instanc
     31:           }
     32:         })[0]
     33:       end
-    34: 
+    34:
     35:       it do
  => 36:         require 'pry'; binding.pry
     37:       end
@@ -479,7 +479,7 @@ From: /Users/alexharvey/git/home/terraform-unit-testing-poc/spec/aws_ec2_instanc
 And I can inspect the Rspec "subject" - i.e. the Terraform evaluation object - like this:
 
 ```ruby
-[1] pry(#<RSpec::ExampleGroups::AwsInstanceThis::WithInstanceCount1::WithNoEBSVolumes>)> subject                                                                      
+[1] pry(#<RSpec::ExampleGroups::AwsInstanceThis::WithInstanceCount1::WithNoEBSVolumes>)> subject
 => #<Object:0x007fb1a6105090
  @ami="ami-08589eca6dcc9b39c",
  @arn=nil,
@@ -611,7 +611,7 @@ The last example I am going to look at is testing the user_data string. This is 
 The full proof of concept and all of the unit tests I wrote are in GitHub [here](). To run them in the end:
 
 ```text
-▶ bundle exec rspec spec/aws_ec2_instance_spec.rb                                                           
+▶ bundle exec rspec spec/aws_ec2_instance_spec.rb
 
 aws_instance.this
   with instance_count 0

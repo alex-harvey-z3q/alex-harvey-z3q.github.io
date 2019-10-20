@@ -267,7 +267,7 @@ As mentioned above, if the Puppet DSL could be used to solve this problem, we wo
 create_resources(aws_security_group, $aws_security_groups)
 ```
 
-In Terraform this is going to be a lot of work. 
+In Terraform this is going to be a lot of work.
 
 ### Replacing nested blocks with lists
 
