@@ -3,6 +3,9 @@ theme: jekyll-theme-hacker
 name: Alex Harvey
 author:
   twitter: alexharv074
+  github: https://github.com/alexharv074
+  linkedin: https://www.linkedin.com/in/harveyalex/
+  email: alexharv074@gmail.com
 url: https://alexharv074.github.io/
 plugins:
   - jekyll-seo-tag
