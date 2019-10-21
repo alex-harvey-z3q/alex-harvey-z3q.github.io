@@ -43,6 +43,8 @@ GEM
       pathutil (~> 0.9)
       rouge (>= 1.7, < 4)
       safe_yaml (~> 1.0)
+    jekyll-feed (0.12.1)
+      jekyll (>= 3.7, < 5.0)
     jekyll-sass-converter (1.5.2)
       sass (~> 3.4)
     jekyll-seo-tag (2.6.1)
@@ -114,6 +116,7 @@ PLATFORMS
 DEPENDENCIES
   debug_inspector (<= 0.0.2)
   jekyll
+  jekyll-feed
   jekyll-seo-tag
   jekyll-sitemap
   jekyll-theme-hacker

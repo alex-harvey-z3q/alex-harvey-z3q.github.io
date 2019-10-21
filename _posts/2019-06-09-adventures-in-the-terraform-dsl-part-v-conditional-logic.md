@@ -13,7 +13,7 @@ In this post, I look at the evolution of conditional logic and truthiness in Ter
 
 ## Introduction
 
-Conditional logic has always been a pain point in Terraform, as the titles of some of the references below reveal.
+Conditional logic has always been a pain point in Terraform, as the titles of some of the references [below](#see-also) reveal.
 
 In this Part V of my blog series, I look into all of this. I look at "truthiness" in Terraform, and follow the evolution of conditional logic in the Terraform DSL from the earliest days, through introduction of the ternary operator in Terraform 0.8, to the recent improvements in Terraform 0.12.
 
