@@ -15,6 +15,7 @@ gem 'jekyll'
 gem 'jekyll-theme-hacker'
 gem 'jekyll-seo-tag'
 gem 'jekyll-sitemap'
+gem 'jekyll-feed'
 
 # Includes my fix for Kramdown ToCs.
 #
