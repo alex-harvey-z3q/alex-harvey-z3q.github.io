@@ -23,7 +23,7 @@ The data that is made available this way should be distinguished from the static
 
 ## The first data source: terraform_remote_state
 
-Before I get to data sources, it is important to distinguish them from _logical resources_ that data sources grew out of. To do that I'll look at the very first data source, the [terraform_remote_state](https://www.terraform.io/docs/providers/terraform/d/remote_state.html) resource. This is the example from the Terraform 0.6 docs:
+Before I get to data sources, I want to distinguish them from the _logical resources_ that they grew out of. To do that I'll look at the very first data source, the [terraform_remote_state](https://www.terraform.io/docs/providers/terraform/d/remote_state.html) resource. This is the example from the Terraform 0.6 docs:
 
 ```js
 resource "terraform_remote_state" "vpc" {
@@ -39,32 +39,59 @@ resource "aws_instance" "foo" {
 }
 ```
 
-And in today's Terraform, that [example](https://www.terraform.io/docs/providers/terraform/d/remote_state.html) has changed to:
+Back then, this _logical resource_ just looked like any other resource on the surface, but one that fetched data from an external source under the hood.
+
+In Terraform 0.7, this changed to:
 
 ```js
 data "terraform_remote_state" "vpc" {
-  backend = "remote"
-
-  config = {
-    organization = "hashicorp"
-    workspaces = {
-      name = "vpc-prod"
-    }
+  backend = "atlas"
+  config {
+    name = "hashicorp/vpc-prod"
   }
 }
 
 resource "aws_instance" "foo" {
   // ...
-  subnet_id = data.terraform_remote_state.vpc.outputs.subnet_id
+  subnet_id = data.terraform_remote_state.vpc.subnet_id // 0.12 syntax here.
 }
 ```
 
 The key differences in usage are:
 
-- The declaration `data` rather than `resource`
+- The block type changed from `resource` to `data`.
 - To reference the word `data` is prepended whereas for data generated/exported by resources we just begin with the resource name. So, **data**.terraform_remote_state.vpc.outputs.subnet_id instead of terraform_remote_state.vpc.output.subnet_id.
 
-I found it helpful to study the actual [commit](https://github.com/hashicorp/terraform/commit/3eb4a89104ba6c41f305af425ce91f19d4f35f4c) that changed this first data source from a logical resource. It makes it clearer that under the hood, a data source really is just a special resource that is read-only.
+That is:
+- `data.<TYPE>.<NAME>.<ATTRIBUTE>` instead of
+- `<TYPE>.<NAME>.<ATTRIBUTE>`.
+
+I found it helpful to study the actual [commit](https://github.com/hashicorp/terraform/commit/3eb4a89104ba6c41f305af425ce91f19d4f35f4c) that changed this first data source from a logical resource. It makes it clearer that under the hood, a data source really is just a special resource that is read-only. The data source [still](https://github.com/hashicorp/terraform/blob/3eb4a89104ba6c41f305af425ce91f19d4f35f4c/builtin/providers/terraform/data_source_state.go#L11-L32) returns under the hood a Resource schema:
+
+```go
+func dataSourceRemoteState() *schema.Resource {
+	return &schema.Resource{
+		Read: dataSourceRemoteStateRead,
+
+		Schema: map[string]*schema.Schema{
+			"backend": &schema.Schema{
+				Type:     schema.TypeString,
+				Required: true,
+			},
+
+			"config": &schema.Schema{
+				Type:     schema.TypeMap,
+				Optional: true,
+			},
+
+			"output": &schema.Schema{
+				Type:     schema.TypeMap,
+				Computed: true,
+			},
+		},
+	}
+}
+```
 
 ## Data source examples
 
@@ -120,9 +147,9 @@ Then go down and click on one of the AWS services e.g. ACM:
 
 And from there all the data sources for that AWS service can be seen, in this case the [aws_acm_certificate](https://www.terraform.io/docs/providers/aws/d/acm_certificate.html) data source that can return the ARN of a certificate in AWS Certificate Manager (ACM).
 
-## template_file data source
+## Local-only data sources: template_file
 
-I make a special mention of another commonly used data source, the [template_file](https://www.terraform.io/docs/providers/template/d/file.html) data source. It is actually deprecated in favour of the `templatefile()` function - and I will discuss this more in the next part of my series which will be on Terraform's template language - but for now I simply mention that it is common to see templates declared like this in Terraform:
+Another kind of data source is the "local-only data source", a data source that fetches data from the local machine that is running Terraform, rather than the Cloud or network. I make a special mention of the commonly used [template_file](https://www.terraform.io/docs/providers/template/d/file.html) data source. It is actually deprecated now in favour of the `templatefile()` function - and I will discuss this more in the next part of my series which will be on Terraform's template language - but it is still common to see templates declared like this in Terraform:
 
 ```js
 data "template_file" "user_data" {
@@ -144,7 +171,7 @@ resource "aws_instance" "web" {
 }
 ```
 
-I am a bit surprised to see this deprecated because, to me, this is cleaner! More on that later.
+I am slightly disappointed that this is deprecated because, to me, this is cleaner! More on that later.
 
 ## Conclusion
 
