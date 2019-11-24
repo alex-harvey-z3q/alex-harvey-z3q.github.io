@@ -66,26 +66,26 @@ I found it helpful to study the actual [commit](https://github.com/hashicorp/ter
 
 ```go
 func dataSourceRemoteState() *schema.Resource {
-	return &schema.Resource{
-		Read: dataSourceRemoteStateRead,
+  return &schema.Resource{
+    Read: dataSourceRemoteStateRead,
 
-		Schema: map[string]*schema.Schema{
-			"backend": &schema.Schema{
-				Type:     schema.TypeString,
-				Required: true,
-			},
+    Schema: map[string]*schema.Schema{
+      "backend": &schema.Schema{
+        Type:     schema.TypeString,
+        Required: true,
+      },
 
-			"config": &schema.Schema{
-				Type:     schema.TypeMap,
-				Optional: true,
-			},
+      "config": &schema.Schema{
+        Type:     schema.TypeMap,
+        Optional: true,
+      },
 
-			"output": &schema.Schema{
-				Type:     schema.TypeMap,
-				Computed: true,
-			},
-		},
-	}
+      "output": &schema.Schema{
+        Type:     schema.TypeMap,
+        Computed: true,
+      },
+    },
+  }
 }
 ```
 

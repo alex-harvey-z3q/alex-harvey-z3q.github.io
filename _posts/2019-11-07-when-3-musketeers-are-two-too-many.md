@@ -51,7 +51,7 @@ services:
 
 # echo calls Compose to run the command "echo 'Hello, World!'" in a Docker container
 echo:
-	docker-compose run --rm alpine echo 'Hello, World!'
+  docker-compose run --rm alpine echo 'Hello, World!'
 ```
 
 ```text
@@ -93,7 +93,7 @@ It could be argued that having all of this automated in a Makefile provides a se
 
 ### Disadvantages
 
-The disadvantages are the ones that need to be thought about more carefully. 
+The disadvantages are the ones that need to be thought about more carefully.
 
 #### Maintaining Docker images
 
