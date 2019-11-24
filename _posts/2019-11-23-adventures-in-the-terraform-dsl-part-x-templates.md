@@ -15,7 +15,9 @@ Part X of my blog series on the Terraform DSL, where I look at Terraform's templ
 
 The feature "basic templating" was introduced in Terraform 0.5 in May 2015. And in those days it really was basic. The original intention was to allow results of other resources to be used in scripts to provision other resources. The feature was actually a community contribution by Josh Bleecher Snyder a.k.a [@josharian](https://www.linkedin.com/in/josharian/). The early discussions with Mitchell Hashimoto and others are in [Issue #215](https://github.com/hashicorp/terraform/issues/215).
 
-In this post, I look at the history and usage of this feature, starting with this Terraform 0.5 version, its change to a data source in Terraform 0.7, the very basic template language, and then the introduction of the `templatefile()` function and full templating language in Terraform 0.12 in December 2018 and the motivation for the deprecation of the data source. Along the way I write and test a number of code examples, making this a useful resource if you just want to know how to write a template to do X.
+In this post, I look at the history and usage of this feature, starting with this Terraform 0.5 version, its change to a data source in Terraform 0.7, the Template provider introduced in Terraform 0.10, and then the introduction of the `templatefile()` function and full templating language in Terraform 0.12 and the motivation for the deprecation of the data source.
+
+Along the way I write and test a number of code examples, making this a useful resource if you just want to know how to write a template to do X.
 
 ## Templates in Terraform 0.5
 
@@ -47,9 +49,7 @@ Note use there of the exported `rendered` attribute. That, of course, returns th
 
 ### The template language
 
-Actually, there was no template language at all, and this remained the case from Terraform 0.5 through to 0.11. All that you could do in templates was to interpolate strings using the notation `${var}`.
-
-This is useful to be aware of - especially if you have just inherited code written in Terraform 0.11 or earlier!
+Actually, there was no template language at all, and this remained the case from Terraform 0.5 through to 0.11. All that you could do in templates was to interpolate strings using the notation `${ ... }`. This is useful to be aware of if you have inherited code written in Terraform 0.11 or earlier!
 
 ## Templates in Terraform 0.7
 
@@ -367,10 +367,9 @@ Refactoring the last example to use strip markers:
 variable "name" {}
 
 output "hello" {
-  value = <<-EOF
-Hello,
-%{~ if var.name != "" ~}
- ${ var.name ~}
+  value = <<EOF
+Hello, %{~ if var.name != "" ~}
+ ${var.name}
 %{~ else ~}
  world
 %{~ endif ~}
@@ -379,11 +378,35 @@ EOF
 }
 ```
 
+##### Example 6: More on the strip marker
+
+Just for fun I include use of the strip marker without interpolating a variable:
+
+```js
+output "hello" {
+  value = <<-EOF
+    Hello, ${~ "world"}!
+  EOF
+}
+```
+
+Output:
+
+```text
+▶ terraform apply
+
+Apply complete! Resources: 0 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+hello = Hello,world!
+```
+
 #### Iteration
 
 The `for <NAME> in <COLLECTION> / endfor` directive meanwhile iterates over elements of a collection and evaluates a template for each element, concatenating the results together.
 
-##### Example 6: The for loop
+##### Example 7: The for loop
 
 A simple for loop example:
 
@@ -394,11 +417,11 @@ locals {
 
 output "fruits" {
   value = <<-EOF
-My favourite fruits are:
-%{ for fruit in local.fruits ~}
+    My favourite fruits are:
+    %{ for fruit in local.fruits ~}
   - ${ fruit }
-%{ endfor ~}
-EOF
+    %{ endfor ~}
+  EOF
 }
 ```
 
