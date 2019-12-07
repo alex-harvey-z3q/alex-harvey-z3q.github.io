@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Introduction to SAM Part IV: Updates to sam package and deploy in SAM CLI >= 0.33.1"
-date: 2019-12-06
+date: 2019-12-07
 author: Alex Harvey
 tags: sam
 ---
@@ -100,7 +100,7 @@ Next steps can be found in the README file at ./sam-app/README.md
 To fully automate that step (not that I can think of any reason why this would be necessary) but this works:
 
 ```text
-▶ echo Y | sam init --runtime python3.7 --name sam-app --app-template hello-world 
+▶ echo Y | sam init --runtime python3.7 --name sam-app --app-template hello-world
 ```
 
 ### Directory structure
@@ -181,7 +181,7 @@ It is in building and deploying application that the real changes are found. The
 The sam validate command works exactly as before:
 
 ```text
-▶ sam validate --template template.yaml 
+▶ sam validate --template template.yaml
 /Users/alexharvey/git/home/sam-test/sam-app/template.yaml is a valid SAM Template
 ```
 
@@ -368,7 +368,7 @@ capabilities = "CAPABILITY_IAM"
 When I deploy a second time, I can use the samconfig.toml that was created the first time. This time the file is automatically found:
 
 ```text
-▶ sam deploy 
+▶ sam deploy
 
         Deploying with following values
         ===============================
