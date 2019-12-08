@@ -13,15 +13,15 @@ A look at changes to sam package and deploy in SAM CLI 0.33.1 and other updates 
 
 ## Overview to Part IV
 
-Since I wrote parts I, II & III in March 2019, the SAM CLI was at version 0.11.0 and the SAM translator was at version 1.11.0. At the time of writing (December 2019) those versions have changed to 0.37.0 and 1.19.0. The intention of this post is to provide a rewrite of Part I on the SAM CLI based on the changes made in SAM CLI 0.33.1. I cover the new sam deploy and also the samconfig.toml file and walk through the whole deployment process using the new commands.
+When I wrote Parts I, II & III in March 2019, the SAM CLI was at version 0.11.0 and the SAM translator was at version 1.11.0. At the time of writing Part IV (7th December, 2019) those versions have changed to 0.37.0 and 1.19.0. The intention of this post is to provide a rewrite of Part I based on the changes in SAM CLI 0.33.1. I cover the new sam deploy and also the samconfig.toml file and walk through the deployment process using the new commands.
 
 ## SAM CLI
 
 ### Important documentation
 
-SAM's documentation appears much improved, making the importance of a section to help readers find important docs less urgent. All the same, there remains quite a lot of unofficial documentation that appears pretty useful for developers coming up to speed in SAM. I won't summarise it all again other than to note that a lot of the useful docs are now in the [`designs`](https://github.com/awslabs/aws-sam-cli/tree/develop/designs) directory.
+SAM's documentation appears much improved, making the importance of a section to help readers find important docs less relevant. All the same, there remains quite a lot of unofficial documentation in the source code that appears useful for developers coming up to speed in SAM. I won't summarise it all again other than to note that a lot of the useful docs are now in the [`designs`](https://github.com/awslabs/aws-sam-cli/tree/develop/designs) directory.
 
-Some documentation that is relevant to this post are the following:
+Some documents that are relevant to this post are the following:
 
 - [`designs/package_during_deploy.md`](https://github.com/awslabs/aws-sam-cli/blob/develop/designs/package_during_deploy.md) file. This doc explains the motivation and details of the sam deploy changes that I'm writing about today.
 - The [release notes](https://github.com/awslabs/aws-sam-cli/releases/tag/v0.33.1) for version 0.33.1 of the SAM CLI.
@@ -29,7 +29,7 @@ Some documentation that is relevant to this post are the following:
 
 ### Python version
 
-In Part I used Python 2.7 since that is what I had on my laptop at the time, but with Python 2 no longer in support at the end of this month it is definitely time to use Python 3.7. Thus note my Python version:
+In Part I, I used Python 2.7, since that is what I had on my laptop at the time. But with Python 2 no longer in support at the end of this month, it is definitely time to use Python 3.7. Thus my Python version:
 
 ```text
 ▶ python -V
@@ -38,7 +38,7 @@ Python 3.7.4
 
 ### Installing SAM CLI
 
-I use a similar Python Virtualenv approach as I used in Part I. I create a venv.sh:
+I use a similar Python Virtualenv approach as I used in Part I. I create a file venv.sh:
 
 ```bash
 #!/usr/bin/env bash
@@ -348,7 +348,7 @@ Successfully created/updated stack - sam-app in ap-southeast-2
 
 #### samconfig.toml
 
-When sam deploy --guided is run, a samconfig.toml file is created. After I did that above I had this content in it:
+When sam deploy \--guided is run, a samconfig.toml file is created. After I did that above I had this content in it:
 
 ```toml
 version = 0.1
