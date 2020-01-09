@@ -3,6 +3,7 @@ layout: post
 title: "Compiling a puppet catalog – on a laptop"
 date: 2015-12-31
 author: Alex Harvey
+category: puppet
 tags: puppet catalog
 ---
 

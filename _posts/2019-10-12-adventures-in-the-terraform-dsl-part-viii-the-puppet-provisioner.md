@@ -3,6 +3,7 @@ layout: post
 title: "Adventures in the Terraform DSL, Part VIII: The Puppet provisioner"
 date: 2019-10-12
 author: Alex Harvey
+category: puppet
 tags: terraform puppet
 ---
 

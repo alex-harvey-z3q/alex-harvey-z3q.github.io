@@ -3,6 +3,7 @@ layout: post
 title: "Speeding up Beaker on a Mac using SquidMan"
 date: 2016-04-25
 author: Alex Harvey
+category: puppet
 tags: puppet beaker
 ---
 

@@ -3,6 +3,7 @@ layout: post
 title: "Dumping the catalog in rspec-puppet"
 date: 2016-03-16
 author: Alex Harvey
+category: puppet
 tags: puppet catalog rspec
 ---
 

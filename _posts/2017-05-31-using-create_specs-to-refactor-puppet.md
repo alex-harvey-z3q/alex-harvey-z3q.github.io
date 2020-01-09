@@ -3,6 +3,7 @@ layout: post
 title: "Using create_specs to refactor Puppet"
 date: 2017-05-31
 author: Alex Harvey
+category: puppet
 tags: puppet create-specs rspec
 ---
 

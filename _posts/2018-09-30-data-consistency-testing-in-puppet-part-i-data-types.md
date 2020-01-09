@@ -3,6 +3,7 @@ layout: post
 title: "Data consistency testing in Puppet, Part I: Data types"
 date: 2018-09-30
 author: Alex Harvey
+category: puppet
 tags: puppet data-testing
 ---
 

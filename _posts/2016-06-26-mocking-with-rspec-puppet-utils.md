@@ -3,6 +3,7 @@ layout: post
 title: "Mocking with rspec-puppet-utils"
 date: 2016-06-26
 author: Alex Harvey
+category: puppet
 tags: puppet rspec
 ---
 

@@ -3,6 +3,7 @@ layout: post
 title: "Pretty-printing Puppet data"
 date: 2018-09-02
 author: Alex Harvey
+category: puppet
 tags: puppet
 ---
 

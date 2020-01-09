@@ -3,6 +3,7 @@ layout: post
 title: "Data consistency testing in Puppet, Part II: Testing file content"
 date: 2019-04-13
 author: Alex Harvey
+category: puppet
 tags: puppet rspec
 ---
 

@@ -3,6 +3,7 @@ layout: post
 title: "JQ commands for Puppet catalogs"
 date: 2017-11-30
 author: Alex Harvey
+category: puppet
 tags: puppet catalog jq
 ---
 
