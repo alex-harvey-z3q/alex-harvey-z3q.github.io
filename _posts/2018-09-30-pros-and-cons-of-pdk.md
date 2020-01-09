@@ -3,6 +3,7 @@ layout: post
 title: "The pros and cons of Puppet PDK"
 date: 2018-09-30
 author: Alex Harvey
+category: puppet
 tags: puppet pdk
 ---
 

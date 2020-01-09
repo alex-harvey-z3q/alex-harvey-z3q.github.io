@@ -14,3 +14,8 @@ plugins:
   - jekyll-feed
 disqus:
   shortname: alexharv074-github-io
+feed:
+  collections:
+    posts:
+      categories:
+        - puppet

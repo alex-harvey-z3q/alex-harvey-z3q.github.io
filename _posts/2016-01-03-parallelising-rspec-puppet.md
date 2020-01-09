@@ -3,6 +3,7 @@ layout: post
 title: "Parallelising rspec-puppet"
 date: 2016-01-03
 author: Alex Harvey
+category: puppet
 tags: puppet rspec
 ---
 

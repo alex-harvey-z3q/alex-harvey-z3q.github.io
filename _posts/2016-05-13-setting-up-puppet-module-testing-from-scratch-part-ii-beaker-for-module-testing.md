@@ -3,6 +3,7 @@ layout: post
 title: "Setting up Puppet module testing from scratch&#58 Part II, Beaker for module testing"
 date: 2016-05-13
 author: Alex Harvey
+category: puppet
 tags: puppet rspec beaker
 ---
 

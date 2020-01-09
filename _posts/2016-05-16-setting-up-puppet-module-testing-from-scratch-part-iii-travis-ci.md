@@ -3,6 +3,7 @@ layout: post
 title: "Setting up Puppet module testing from scratch&#58 Part III, Travis CI"
 date: 2016-05-16
 author: Alex Harvey
+category: puppet
 tags: puppet travis
 ---
 

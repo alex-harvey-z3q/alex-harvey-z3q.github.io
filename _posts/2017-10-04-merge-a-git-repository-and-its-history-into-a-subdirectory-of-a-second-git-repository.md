@@ -3,6 +3,7 @@ layout: post
 title: "Merge a Git repository and its history into a subdirectory of a second Git repository"
 date: 2017-10-04
 author: Alex Harvey
+category: puppet
 tags: git puppet
 ---
 

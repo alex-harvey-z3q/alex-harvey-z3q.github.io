@@ -3,6 +3,7 @@ layout: post
 title: "Verifying file contents in a puppet catalog"
 date: 2016-07-30
 author: Alex Harvey
+category: puppet
 tags: puppet rspec
 ---
 

@@ -3,6 +3,7 @@ layout: post
 title: "Analysing Puppet module dependencies using JQ"
 date: 2018-09-06
 author: Alex Harvey
+category: puppet
 tags: puppet jq
 ---
 
