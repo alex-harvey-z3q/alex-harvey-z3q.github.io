@@ -431,9 +431,10 @@ OK
 
 ## The generated CloudFormation
 
-Ok. Let's find out what my generated templates look like. Are they what I was expected? Formatted correctly? And so on:
+Ok. Let's find out what my generated templates look like. Are they what I expected? Formatted correctly? And so on:
 
 ```yaml
+# .compiled-j2/template.yml.0
 ---
 AWSTemplateFormatVersion: "2010-09-09"
 Description: "Security Groups"
@@ -467,6 +468,7 @@ Successfully created/updated stack - test-stack
 Great! What about the other one:
 
 ```yaml
+# .compiled-j2/template.yml.1
 ---
 AWSTemplateFormatVersion: "2010-09-09"
 Description: "Security Groups"
@@ -492,17 +494,17 @@ Resources:
           CidrIp: 0.0.0.0/0
 ```
 
-All good. I feel very confident that my code works now, and I haven't had to perform any expensive end-to-end testing. I can defer all that to one go at the end, where I expect everything is going to work first go(!). 
+All good. I feel very confident that my code works now, and I haven't had to perform any expensive end-to-end testing. I can defer all that to one go at the end, where I expect everything is going to work on the first try(!). 
 
 ## Discussion
 
-I have used this method for a while now and I find it to be adding a lot of value and well worth the effort in setting it all up. I would go as far as to say that I doubt anyone should be running Jinja2 CloudFormation templates without this layer of testing.
+I have used this method for a while now and I find it to be adding a lot of value and well worth the effort of setting it all up. I would go as far as to say that I doubt anyone should be running Jinja2 CloudFormation templates in production without a layer of testing like this.
 
 It is easy to also see how this could be extended to, say, test Bash scripts. I could just as easily run generated Bash scripts through `bash -n` - or even write Bash unit tests to run on the generated Bash code. Likewise, I could easily extend these tests for Jinja2 to be real unit tests, by reading the generated YAML into a dictionary and making assertions about its keys and data.
 
 ## Conclusion
 
-I have documented a method of unit testing Jinja2 logic in CloudFormation, Ansible and other code. As far as I can tell, no one in the DevOps community is doing this, although, I daresay, others should be doing it. Please send me an email if you have any feedback or suggestions for improvement!
+I have documented a method of unit testing Jinja2 logic in CloudFormation, Ansible and other code. As far as I can tell, not many in the DevOps community are doing anything like this, although, I daresay, they should be doing it. Please send me an email if you have any feedback or suggestions for improvement!
 
 ## See also
 
