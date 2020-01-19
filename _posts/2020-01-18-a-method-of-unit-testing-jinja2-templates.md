@@ -15,7 +15,7 @@ A post that documents a method of unit testing Jinja2 templates.
 
 The use of Jinja2 templating in infrastructure code has become popular, partly due to the popularity of Python in the DevOps community, and partly due to the success of Ansible, Salt and similar DevOps tools.
 
-Jinja2 itself is part of the Flask web framework and originally used for code-generating HTML front ends in web pages. In the DevOps community, however, it is mostly used for code-generating configuration files, although, in the Ansible CloudFormation module and in Sceptre, as examples, it is sometimes used for code-generating more code such as CloudFormation code and Bash shell scripts and so on.
+Jinja2 itself is part of the Flask web framework and was originally used for code-generating HTML front ends in web pages. In the DevOps community, it is mostly used for code-generating configuration files, although, in the Ansible CloudFormation module and in Sceptre, as examples, it is sometimes used for code-generating more code such as CloudFormation code and Bash shell scripts and so on.
 
 Code within code! It can often start off simple and quickly escalate into a labyrinthine mess! To be clear, I don't like the Jinja2 code-generation pattern and I try to avoid it, although it is widely in use, so techniques for making it maintainable are urgently needed.
 
@@ -27,7 +27,7 @@ These are the problems I am trying to solve here today:
 
 ## Code example
 
-My example code is a Sceptre/CloudFormation as follows:
+My example code is a [Sceptre](https://github.com/Sceptre/sceptre)/CloudFormation template as follows:
 
 ```jinja
 {%raw%}---
@@ -50,7 +50,7 @@ Resources:
   {%- endfor %}{%endraw%}
 ```
 
-Note that this involves a nested for loop for code-generating AWS Security Groups with a list of Ingress rules.
+As can be seen, it is a template for code-generating AWS Security Groups with a list of Ingress rules. Note that it involves a nested for loop - something that in Jinja2 can quickly become unreadable.
 
 ## Code on GitHub
 
