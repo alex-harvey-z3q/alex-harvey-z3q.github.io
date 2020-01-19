@@ -54,7 +54,7 @@ Note that this involves a nested for loop for code-generating AWS Security Group
 
 ## Code on GitHub
 
-This demo is available on GitHub [here]().
+This demo is available on GitHub [here](https://github.com/alexharv074/jinja2-unit-testing).
 
 ## Test cases
 
