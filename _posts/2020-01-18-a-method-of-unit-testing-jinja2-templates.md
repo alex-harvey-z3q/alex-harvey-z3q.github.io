@@ -64,7 +64,7 @@ I have created a YAML file with test data sets as test cases. My YAML file is as
 ---
 './template.yml.j2':
   - sceptre_user_data:
-      - 
+      -
         Name: WebSG
         GroupDescription: Web SG Inbound
         SecurityGroupIngress:
@@ -77,7 +77,7 @@ I have created a YAML file with test data sets as test cases. My YAML file is as
             ToPort: 443
             CidrIp: 0.0.0.0/0
   - sceptre_user_data:
-      - 
+      -
         Name: App1SG
         GroupDescription: First app inbound
         SecurityGroupIngress:
@@ -85,7 +85,7 @@ I have created a YAML file with test data sets as test cases. My YAML file is as
             FromPort: 80
             ToPort: 80
             CidrIp: 0.0.0.0/0
-      - 
+      -
         Name: App2SG
         GroupDescription: Second app inbound
         SecurityGroupIngress:
@@ -265,10 +265,10 @@ from yamllint import linter
 class TestJ2(unittest.TestCase):
 
     conf = YamlLintConfig('{\
-            extends: default,\
+            extends: relaxed,\
             rules: {\
+                key-duplicates: enable,\
                 new-line-at-end-of-file: disable,\
-                document-start: disable\
             }}')
 
     # ...
@@ -342,10 +342,10 @@ class TestJ2(unittest.TestCase):
             print(exc)
 
     conf = YamlLintConfig('{\
-            extends: default,\
+            extends: relaxed,\
             rules: {\
+                key-duplicates: enable,\
                 new-line-at-end-of-file: disable,\
-                document-start: disable\
             }}')
 
     def setUp(self):
@@ -494,7 +494,107 @@ Resources:
           CidrIp: 0.0.0.0/0
 ```
 
-All good. I feel very confident that my code works now, and I haven't had to perform any expensive end-to-end testing. I can defer all that to one go at the end, where I expect everything is going to work on the first try(!). 
+That looks right too.
+
+## Testing the tests
+
+So, what else can these tests actually detect? How useful are they? Here are a few demonstrations:
+
+### YAML indentation error
+
+In this demonstration I add a deliberate indentation error:
+
+```diff
+diff --git a/template.yml.j2 b/template.yml.j2
+index f02492a..30d6492 100644
+--- a/template.yml.j2
++++ b/template.yml.j2
+@@ -5,7 +5,7 @@ Description: "Security Groups"
+ Resources:
+   {%raw%}{%- for sg in sceptre_user_data %}
+   {{ sg.Name }}:{%endraw%}
+-    Type: AWS::EC2::SecurityGroup
++     Type: AWS::EC2::SecurityGroup
+     Properties:
+       GroupDescription: {%raw%}{{ sg.GroupDescription }}{%endraw%}
+       SecurityGroupIngress:
+```
+
+Then:
+
+```text
+▶ make
+python3 -m unittest discover -s pyunit
+F
+======================================================================
+FAIL: test_j2 (test_j2.TestJ2)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexharvey/git/home/j2_tests/pyunit/test_j2.py", line 58, in test_j2
+    yaml.load(rendered, Loader=yaml.BaseLoader)
+yaml.parser.ParserError: while parsing a block mapping
+  in "<unicode string>", line 6, column 3:
+      WebSG:
+      ^
+expected <block end>, but found '<block mapping start>'
+  in "<unicode string>", line 8, column 5:
+        Properties:
+        ^
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/alexharvey/git/home/j2_tests/pyunit/test_j2.py", line 60, in test_j2
+    self.fail("Compiled template is not valid YAML")
+AssertionError: Compiled template is not valid YAML
+
+----------------------------------------------------------------------
+Ran 1 test in 0.007s
+
+FAILED (failures=1)
+make: *** [test] Error 1
+```
+
+### YAML duplicate key
+
+Another easily-made and hard-to-notice YAML error is the dreaded key duplicate. I deliberately add a duplicate key:
+
+```diff
+diff --git a/template.yml.j2 b/template.yml.j2
+index f02492a..63fdcc8 100644
+--- a/template.yml.j2
++++ b/template.yml.j2
+@@ -15,5 +15,6 @@ Resources:
+           ToPort: {%raw%}{{ ing.ToPort }}
+           CidrIp: {{ ing.CidrIp }}
+         {%- endfor %}{%endraw%}
++    Type: AWS::EC2::SecurityGroup
+
+   {%raw%}{%- endfor %}{%endraw%}
+```
+
+And then I try that:
+
+```text
+▶ make
+python3 -m unittest discover -s pyunit
+F
+======================================================================
+FAIL: test_j2 (test_j2.TestJ2)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/alexharvey/git/home/j2_tests/pyunit/test_j2.py", line 64, in test_j2
+    "Yamllint issues in compiled template")
+AssertionError: [19:5: duplication of key "Type" in mapping (key-duplicates)] is not false : Yamllint issues in compiled template
+
+----------------------------------------------------------------------
+Ran 1 test in 0.016s
+
+FAILED (failures=1)
+make: *** [test] Error 1
+```
+
+All good. So, I feel very confident that my code works now, and I haven't had to perform any expensive end-to-end testing. I can defer all that to one go at the end, where I expect everything is going to work on the first try(!).
 
 ## Discussion
 
