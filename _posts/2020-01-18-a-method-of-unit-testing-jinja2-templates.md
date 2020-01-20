@@ -6,7 +6,7 @@ author: Alex Harvey
 tags: jinja2 python
 ---
 
-A post that documents a method of unit testing Jinja2 templates.
+A method of unit testing Jinja2 templates.
 
 - ToC
 {:toc}
