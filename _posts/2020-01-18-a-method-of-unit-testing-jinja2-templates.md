@@ -48,7 +48,7 @@ Resources:
   {%- endfor %}{%endraw%}
 ```
 
-As can be seen, it is a template for code-generating AWS Security Groups with a list of Ingress rules. Note that it involves a nested for loop - something that in Jinja2 can quickly become unreadable.
+As can be seen, it is a template for code-generating AWS Security Groups with a list of ingress rules. Note that it involves a nested for loop - something that in Jinja2 can quickly become unreadable.
 
 ## Code on GitHub
 
@@ -212,19 +212,19 @@ class TestJ2(unittest.TestCase):
         for full_path, contexts in self.test_data.items():
             for count, context in enumerate(contexts):
 
-                compiled = '{}/{}.{}'.format(
-                        COMPILED, file_name.replace('.j2',''), 0)
-
                 # Render the J2.
                 rendered = jinja2.Environment(
                     loader=jinja2.FileSystemLoader(path)
                 ).get_template(file_name).render(context)
 
+                compiled = '{}/{}.{}'.format(
+                        COMPILED, file_name.replace('.j2',''), count)
+
                 with open(compiled, 'w') as text_file:
                     text_file.write(rendered)
 ```
 
-Notice that the Jinja2 context has come straight from the YAML fixture file. Notice also that I then write out the compiled Jinja2 template in the `.compiled-j2` directory.
+Notice that the Jinja2 context has come straight from the YAML fixture file. Note also that I write out the compiled Jinja2 template in the `.compiled-j2` directory, and the file names are distinguished by the value of `count` for each data set for that template.
 
 The compiled J2 is obviously a useful thing to have indeed! This allows me to do manual testing given an input example data set. I don't need to have Sceptre all working to test the CloudFormation template I am writing. Winning! Obviously, the same could apply if I were using the Ansible CloudFormation module too.
 
@@ -277,7 +277,7 @@ class TestJ2(unittest.TestCase):
 
                 # ...
 
-                gen = linter.run(full_path, self.conf)
+                gen = linter.run(rendered, self.conf)
                 self.assertFalse(list(gen),
                       "Yamllint issues in compiled template")
 ```
@@ -364,12 +364,12 @@ class TestJ2(unittest.TestCase):
                 path = os.path.dirname(full_path)
                 file_name = os.path.basename(full_path)
 
-                compiled = '{}/{}.{}'.format(
-                        COMPILED, file_name.replace('.j2',''), count)
-
                 rendered = jinja2.Environment(
                     loader=jinja2.FileSystemLoader(path)
                 ).get_template(file_name).render(context)
+
+                compiled = '{}/{}.{}'.format(
+                        COMPILED, file_name.replace('.j2',''), count)
 
                 with open(compiled, 'w') as text_file:
                     text_file.write(rendered)
@@ -379,7 +379,7 @@ class TestJ2(unittest.TestCase):
                 except:
                     self.fail("Compiled template is not valid YAML")
 
-                gen = linter.run(full_path, self.conf)
+                gen = linter.run(rendered, self.conf)
                 self.assertFalse(list(gen),
                         "Yamllint issues in compiled template")
 
