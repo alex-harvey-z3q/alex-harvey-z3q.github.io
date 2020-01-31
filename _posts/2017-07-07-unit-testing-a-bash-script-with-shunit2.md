@@ -20,14 +20,14 @@ In this post, I introduce the subject of unit testing shell scripts using Kate W
 
 To install on a Macbook, run:
 
-~~~ text
-$ brew install shunit2
-~~~
+```text
+▶ brew install shunit2
+```
 
 The following files are installed:
 
-~~~ text
-$ find /usr/local/bin/shunit2 /usr/local/Cellar/shunit2
+```text
+▶ find /usr/local/bin/shunit2 /usr/local/Cellar/shunit2
 /usr/local/bin/shunit2
 /usr/local/Cellar/shunit2
 /usr/local/Cellar/shunit2/2.1.6
@@ -36,19 +36,19 @@ $ find /usr/local/bin/shunit2 /usr/local/Cellar/shunit2
 /usr/local/Cellar/shunit2/2.1.6/bin
 /usr/local/Cellar/shunit2/2.1.6/bin/shunit2
 /usr/local/Cellar/shunit2/2.1.6/INSTALL_RECEIPT.json
-~~~
+```
 
 ### Install on CentOS/RHEL
 
 Installing on an RPM-based system like RHEL causes some additional useful files to be installed:
 
-~~~ text
+```text
 # yum -y install shunit2
-~~~
+```
 
 And:
 
-~~~ text
+```text
 # rpm -ql shunit2
 /usr/share/doc/shunit2-2.1.6
 /usr/share/doc/shunit2-2.1.6/CHANGES-2.1.txt
@@ -70,7 +70,7 @@ And:
 /usr/share/shunit2
 /usr/share/shunit2/shunit2
 /usr/share/shunit2/shunit2_test_helpers
-~~~
+```
 
 Files of note include:
 
@@ -89,7 +89,7 @@ If that patch has been merged, then version 2.1.7-pre can be obtained from [here
 
 ## Our first test – Party like it’s 1999
 
-~~~ bash
+```bash
 #! /bin/sh
 # file: examples/party_test.sh
 
@@ -107,12 +107,12 @@ testPartyLikeItIs1999()
 
 # load shunit2
 . /usr/share/shunit2/shunit2
-~~~
+```
 
 It is worth thinking about what it is doing before moving on. I proceed immediately to run the test:
 
-~~~ text
-$ bash /usr/share/doc/shunit2-2.1.6/examples/party_test.sh
+```text
+▶ bash /usr/share/doc/shunit2-2.1.6/examples/party_test.sh
 testEquality
 testPartyLikeItIs1999
 ASSERT:It's not 1999 :-( expected:<1999> but was:<2017>
@@ -120,7 +120,7 @@ ASSERT:It's not 1999 :-( expected:<1999> but was:<2017>
 Ran 2 tests.
 
 FAILED (failures=1)
-~~~
+```
 
 So 1 still equals 1 and it’s not 1999.
 
@@ -144,10 +144,10 @@ This second example tests a function I wrote to emulate the Ubuntu prips command
 
 The shell code in question is:
 
-~~~ bash
+```bash
 #!/usr/bin/env bash
 
-cidr=$1
+cidr="$1"
 
 usage() {
   [ ! -z "$1" ] && echo $1
@@ -173,7 +173,7 @@ IFS=. read a b c d <<< "$lo"
 IFS=. read e f g h <<< "$hi"
 
 eval "echo {$a..$e}.{$b..$f}.{$c..$g}.{$d..$h}"
-~~~
+```
 
 In this example I introduce stubbing of system commands in order to test this script on Mac OS X.
 
@@ -183,7 +183,7 @@ The problem here is that the ipcalc command is a completely different program on
 
 In case the reader is confused about what the eval statement does, that code is logically equivalent to four nested for loops:
 
-~~~ bash
+```bash
 #eval "echo {$a..$e}.{$b..$f}.{$c..$g}.{$d..$h}"
 result=''
 for ((i=$a; i<=$e; i++)); do
@@ -196,7 +196,7 @@ for ((i=$a; i<=$e; i++)); do
   done
 done
 echo $result
-~~~
+```
 
 But it is much faster and more concise to use the eval and expansion. I will use my tests to prove this too.
 
@@ -210,7 +210,7 @@ The objective of all unit testing is to prove that code is correct. Here, I want
 
 Hopefully the code speaks for itself, so here I introduce the tests I have written to test this code:
 
-~~~ bash
+```bash
 #!/usr/bin/env bash
 
 # Fake the output of the ipcalc.
@@ -261,11 +261,11 @@ test_a_little_cidr() {
 
 test_a_big_cidr() {
   number_of_ips=$(. ./prips.sh 10.45.0.0/16 | wc -w)
-  assertEquals 65536 $number_of_ips
+  assertEquals 65536 "$number_of_ips"
 }
 
 . shunit2
-~~~
+```
 
 ### Stubbing the ipcalc command
 
@@ -279,7 +279,7 @@ What I like so much about unit testing in Bash with shUnit2 is just how easy it 
 
 So, here, I have stubbed the Linux ipcalc command, and programmed it to respond with canned response to expected inputs:
 
-~~~ bash
+```bash
 ipcalc() {
   case "$*" in
   "-n 192.168.0.2/28")
@@ -295,7 +295,7 @@ ipcalc() {
     echo BROADCAST=10.45.255.255
   esac
 }
-~~~
+```
 
 Now, when my tests execute, instead of the script failing, because Mac OS X is not supported, the script gets to “think” it’s running on a Linux platform, because the ipcalc command will return Linux output when called.
 
@@ -303,9 +303,9 @@ Now, when my tests execute, instead of the script failing, because Mac OS X is n
 
 shUnit2 provides a few assert functions, but assertEquals is the one most often required:
 
-~~~ text
+```text
 assertEquals [message] expected actual
-~~~
+```
 
 Asserts that expected and actual are equal to one another. The expected and actual values can be either strings or integer values as both will be treated as strings. The message is optional, and must be quoted.
 
@@ -313,8 +313,8 @@ See the rest of the functions [here](http://ssb.stsci.edu/testing/shunit2/shunit
 
 ### Running the tests
 
-~~~ text
-$ bash examples/test_prips.sh
+```text
+▶ bash examples/test_prips.sh
 test_minus_h
 test_missing_args
 test_too_many_args
@@ -325,12 +325,12 @@ test_a_big_cidr
 Ran 6 tests.
 
 OK
-~~~
+```
 
 Now, everything is passing. But what would happen if I removed the stub? Let’s see:
 
-~~~ text
-$ bash examples/test_prips.sh
+```text
+▶ bash examples/test_prips.sh
 test_minus_h
 test_missing_args
 test_too_many_args
@@ -343,14 +343,14 @@ ASSERT:expected:<65536> but was:<6>
 Ran 6 tests.
 
 FAILED (failures=2)
-~~~
+```
 
 Yep, that looks about right, because the ipcalc command on Mac OS X is an entirely different program to the one on Linux.
 
 Now what if I want to test that the nested for loop implementation is also correct? I refactor the prips.sh script and run the tests again:
 
-~~~ text
-$ time bash examples/test_prips.sh
+```text
+▶ time bash examples/test_prips.sh
 test_minus_h
 test_missing_args
 test_too_many_args
@@ -365,14 +365,14 @@ OK
 real    0m3.888s
 user    0m3.656s
 sys     0m0.253s
-~~~
+```
 
 I timed it, too, to show the test_a_big_cidr (actually a /16 CIDR) took ~ 4 seconds to be calculated. Using the original code I get:
 
-~~~ text
+```text
 real    0m0.343s
 user    0m0.250s
 sys     0m0.114s
-~~~
+```
 
 _To be continued..._
