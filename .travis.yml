@@ -1,11 +1,14 @@
 ---
 language: ruby
 rvm: 2.4.1
+
 before_script:
   - "sudo curl -o /usr/local/bin/shunit2 https://raw.githubusercontent.com/kward/shunit2/master/shunit2"
+
 script:
   - "bundle exec rake"
   - "bash shunit2/sed_and_awk_cookbook.sh"
+
 notifications:
   email:
     recipients:

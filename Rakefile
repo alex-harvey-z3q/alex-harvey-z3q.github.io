@@ -17,4 +17,4 @@ task :gen do
   end
 end
 
-task :default => [:spec, :mdl]
+task :default => :spec
