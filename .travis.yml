@@ -2,6 +2,9 @@
 language: ruby
 rvm: 2.4.1
 
+before_install:
+  - gem install bundler -v "< 2" --no-ri --no-rdoc || true
+
 before_script:
   - "sudo curl -o /usr/local/bin/shunit2 https://raw.githubusercontent.com/kward/shunit2/master/shunit2"
 
