@@ -185,17 +185,17 @@ As is often the case with such UserData scripts, a lot of it does not really nee
 yum -y update
 ```
 
-How could I "unit test" that? I would hope that the maintainers of the yum system do have good testing practices but from my end, the only testing I can do is at a system test level. Even then I can't really test much. Those who dare to run yum -y update must hope that upstream yum repos are working!
+How could I "unit test" that? I would hope that the maintainers of the yum system do have good testing practices but from my end, the only testing I could do would be at a system test level. Even then I couldn't really test much. Those who dare to run yum -y update must hope that upstream yum repos are working!
 
-If I did want to cover this line in a unit test, I can replace it with a stub like so:
+If I did want to cover this line in a unit test, I could replace external yum command with a stub like so:
 
 ```bash
 yum() { : ; }
 ```
 
-This will allow the yum command to execute and do nothing. Still, I am not really "testing" anything when I do this.
+This would allow the yum command to then be executed in my unit test environment and do nothing. Still, I would not really be "testing" anything if I did this.
 
-What I really want to test is all those `curl`, `jq` and `sed` commands. But if I wrote tests in the script's current format, I would have a huge amount of setup for the sake of only a small amount of testing. If your setup leads to significantly more code than your tests, I consider that to be a bit of an anti-pattern.
+What I really want to do is test all those `curl`, `jq` and `sed` commands. But if I wrote tests in the script's current format, I would have a huge amount of setup for the sake of only a small amount of testing. If your setup leads to significantly more code than your tests, I consider it to be a bit of a testing anti-pattern.
 
 So we must begin by refactoring this script into functions. That will make it both more readable, a better script, and testable.
 
