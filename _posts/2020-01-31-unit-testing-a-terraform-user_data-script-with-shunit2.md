@@ -89,9 +89,9 @@ curl -L \
   https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.rpm.sh | bash
 yum -y install gitlab-runner-"${gitlab_runner_version}"
 curl --fail --retry 6 -L \
-  https://github.com/docker/machine/releases/download/v"${docker_machine_version}"/docker-machine-"$(uname -s)"-"$(uname -m)" > /tmp/docker-machine
-chmod +x /tmp/docker-machine
-cp /tmp/docker-machine /usr/local/bin/docker-machine
+  https://github.com/docker/machine/releases/download/v"${docker_machine_version}"/docker-machine-"$(uname -s)"-"$(uname -m)" \
+    > /usr/local/bin/docker-machine
+chmod +x /usr/local/bin/docker-machine
 ln -s /usr/local/bin/docker-machine /usr/bin/docker-machine
 
 # Create a dummy machine so that the cert is generated properly
@@ -109,8 +109,7 @@ if [ "$token" == "null" ] ; then
       -F "description=${gitlab_runner_description}" \
       -F "locked=${gitlab_runner_locked_to_project}" \
       -F "maximum_timeout=${gitlab_runner_maximum_timeout}" \
-      -F "access_level=${gitlab_runner_access_level}" \
-  )
+      -F "access_level=${gitlab_runner_access_level}")
 
   token=$(jq -r .token <<< "$response")
 
@@ -292,28 +291,27 @@ install_gitlab_runner() {
 }
 
 register_runner() {
-  token=$(aws ssm get-parameters --names "${runners_ssm_token_key}" \
+  token_first_try=$(aws ssm get-parameters --names "${runners_ssm_token_key}" \
     --with-decryption --region "${aws_region}" | jq -r '.Parameters[0].Value')
 
-  if [ "$token" == "null" ] ; then
-    response=$(
-      curl -X POST -L "${runners_url}/api/v4/runners" \
+  if [ "$token_first_try" == "null" ] ; then
+    response=$(curl -X POST -L \
+      "${runners_url}/api/v4/runners" \
         -F "token=${gitlab_runner_registration_token}" \
         -F "description=${gitlab_runner_description}" \
         -F "locked=${gitlab_runner_locked_to_project}" \
         -F "maximum_timeout=${gitlab_runner_maximum_timeout}" \
-        -F "access_level=${gitlab_runner_access_level}" \
-    )
+        -F "access_level=${gitlab_runner_access_level}")
 
-    token=$(jq -r .token <<< "$response")
+    token_second_try=$(jq -r .token <<< "$response")
 
-    if [ "$token" == "null" ] ; then
+    if [ "$token_second_try" == "null" ] ; then
       echo "Received the following error:"
       echo "$response"
       return
     fi
 
-    aws ssm put-parameter --overwrite --type SecureString --name \
+    aws ssm put-parameter --overwrite --type 'SecureString' --name \
       "${runners_ssm_token_key}" --value "$token" --region "${aws_region}"
   fi
 
@@ -342,6 +340,30 @@ fi
 
 # vim: set ft=sh:
 ```
+
+## A note about the guard clause
+
+Note the lines at the end there:
+
+```bash
+if [ "$0" == "$BASH_SOURCE" ] ; then
+  main
+fi
+```
+
+These lines are required so that I can source the script in the context of the unit test environment without any code executing. That is because when a script is executed, `$0` is set to the name of the script whereas when a script is sourced into the running shell, `$0` is set to `bash`.
+
+Be aware that those lines are normally written as:
+
+```bash
+if [ "$0" == "${BASH_SOURCE[0]}" ] ; then
+  main
+fi
+```
+
+I can't use that notation in a Terraform user_data script because Terraform would try to interpolate there and our generated script would be broken.
+
+See also [this](https://stackoverflow.com/a/15612499/3787051) Stack Overflow answer.
 
 ## Benefits of refactoring
 
@@ -542,28 +564,27 @@ The other function to test is `register_runner`:
 
 ```bash
 register_runner() {
-  token=$(aws ssm get-parameters --names "${runners_ssm_token_key}" \
+  token_first_try=$(aws ssm get-parameters --names "${runners_ssm_token_key}" \
     --with-decryption --region "${aws_region}" | jq -r '.Parameters[0].Value')
 
-  if [ "$token" == "null" ] ; then
-    response=$(
-      curl -X POST -L "${runners_url}/api/v4/runners" \
+  if [ "$token_first_try" == "null" ] ; then
+    response=$(curl -X POST -L \
+      "${runners_url}/api/v4/runners" \
         -F "token=${gitlab_runner_registration_token}" \
         -F "description=${gitlab_runner_description}" \
         -F "locked=${gitlab_runner_locked_to_project}" \
         -F "maximum_timeout=${gitlab_runner_maximum_timeout}" \
-        -F "access_level=${gitlab_runner_access_level}" \
-    )
+        -F "access_level=${gitlab_runner_access_level}")
 
-    token=$(jq -r .token <<< "$response")
+    token_second_try=$(jq -r .token <<< "$response")
 
-    if [ "$token" == "null" ] ; then
+    if [ "$token_second_try" == "null" ] ; then
       echo "Received the following error:"
       echo "$response"
       return
     fi
 
-    aws ssm put-parameter --overwrite --type SecureString --name \
+    aws ssm put-parameter --overwrite --type 'SecureString' --name \
       "${runners_ssm_token_key}" --value "$token" --region "${aws_region}"
   fi
 
@@ -572,6 +593,16 @@ register_runner() {
 ```
 
 This one is more complex as it contains conditional logic and therefore multiple logical pathways. Those paths are reached depending on the value returned to `$token`. In this first test case, I let the value returned to `$token` be `null`.
+
+#### white box testing
+
+If I was to write out all test cases, I would start by drawing up all the pathways through this code:
+
+1. `$token_first_try` == `null`, `$token_second_try` != `null`
+1. `$token_first_try` == `null`, `$token_second_try` == `null` => error - possibly the curl command can fail in more than one way that could lead to us getting here.
+1. `$token_first_try` != `null`.
+
+I am not going to cover all of these in the post but I would normally cover them all in the code.
 
 #### test case 1
 
@@ -766,7 +797,7 @@ Great. My change is good and I can commit that and not worry about expensive end
 
 ## Summary
 
-In this post, I have documented a method of testing Terraform UserData scripts using shUnit2. This post could be read as a second part to my earlier post, [Unit testing a Bash script using shUnit2](https://alexharv074.github.io/2017/07/07/unit-testing-a-bash-script-with-shunit2.html), in so far as it shows how to do unit testing in Bash where the units are functions instead of scripts. I also have shown some Terraform-specific tricks for best practices with Bash `user_data` scripts.
+So that's my unit testing method for Terraform user_data scripts. In this post, I have documented a method of testing these scripts using shUnit2. The post could be read as a second part to my earlier post, [Unit testing a Bash script using shUnit2](https://alexharv074.github.io/2017/07/07/unit-testing-a-bash-script-with-shunit2.html), in so far as it shows how to do unit testing in Bash where the units are functions instead of scripts. I also have shown some Terraform-specific tricks for best practices with Bash `user_data` scripts, and covered a bit of theory of unit testing Bash scripts in general.
 
 ## See also
 
