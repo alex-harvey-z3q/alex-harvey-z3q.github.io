@@ -2,6 +2,8 @@
 
 https://alexharv074.github.io
 
+PRs welcome! If you find a mistake in one of my posts and you want to fix it, go for it!
+
 Rspec tests for my blog:
 
 [![Build Status](https://img.shields.io/travis/alexharv074/alexharv074.github.io.svg)](https://travis-ci.org/alexharv074/alexharv074.github.io)
