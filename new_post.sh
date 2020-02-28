@@ -1,18 +1,7 @@
 #!/usr/bin/env bash
 
-if [ ! -x /usr/local/bin/gsed ] ; then
-  echo "You need to install gnu-sed:"
-  echo "$ brew install gnu-sed"
-  exit 1
-fi
-
 shopt -s expand_aliases
 alias sed='/usr/local/bin/gsed'
-
-tags() {
-  # shellcheck disable=SC2046,SC2013
-  echo -n "[" $(for i in $(awk -F':' '/^tags/ {print $2}' _posts/*) ; do echo "$i" ; done | sort -u) "]"
-}
 
 usage() {
   echo "Usage: $0 [-h]"
@@ -20,18 +9,50 @@ usage() {
 }
 [ "$1" == "-h" ] && usage
 
-echo -n "Title: "
-read -r title
-echo -n "Tags, space separated: $(tags) "
-read -r tags
+tags() {
+  awk '
+    BEGIN {
+      ORS=" "
+    }
 
-date=$(date +%Y-%m-%d)
-file="_posts/$date-$(sed '
-  s/.*/\L&/
-  s![/ +,:][/ +,:]*!-!g
-' <<< "$title").md"
+    $1 == "tags" ":" {
+      for (i=2; i <= NF; i++)
+        seen[$i]++
+    }
 
-cat > "$file" <<EOF
+    END {
+      print "["
+
+      for (k in seen)
+        print k
+
+      print "]"
+    }
+  ' _posts/*
+}
+
+get_title_and_tags() {
+  echo -n "Title: "
+  read -r title
+  echo -n "Tags, space separated: $(tags)"
+  read -r tags
+}
+
+set_file_name() {
+  local date file_part
+
+  date="$(date +%Y-%m-%d)"
+
+  file_part=$(sed '
+    s!.*!\L&!
+    s![/ +,:][/ +,:]*!-!g
+  ' <<< "$title")
+
+  file="_posts/$date-$file_part.md"
+}
+
+create_doc() {
+  cat > "$file" <<EOF
 ---
 layout: post
 title: "$title"
@@ -41,4 +62,17 @@ tags: $tags
 ---
 EOF
 
-echo "Created $file"
+  printf "Created:\\n%s\\n" "$file"
+}
+
+main() {
+  get_title_and_tags
+  set_file_name
+  create_doc
+}
+
+if [ "$0" == "${BASH_SOURCE[0]}" ] ; then
+  main
+fi
+
+# vim: set ft=sh:
