@@ -48,7 +48,7 @@ The following charts show the carbon prices used in High VRE and Diverse (Fig. A
 
 ![Fig. 2]({{ "/assets/carbon_price_others.png" | absolute_url }})
 
-It should be immediately apparent that the assumption in High VRE and Diverse of a high, global carbon price of $30/tonne, starting in 2020, is not plausible, considering the outcome at Madrid, the China/US Trade War, and so on. Similarly, a carbon price of $22.5/tonne in China, Japan, and North America (NAM) starting in 2025 seems unlikely too. It may have seemed believable to the IPCC in 2013, although the rise of Xi Jinping in China and Donald Trump in America makes it is a lot less likely now.
+It should be immediately apparent that the assumption in High VRE and Diverse of a high, global carbon price of $30/tonne, starting in 2020, is not plausible, considering the outcome at Madrid, the China/US Trade War, and so on. Similarly, a carbon price of $22.5/tonne in China, Japan, and North America (NAM) starting in 2025 seems unlikely too. It may have seemed believable to the IPCC in 2013, although the rise of Xi Jinping in China and Donald Trump in America makes it is a lot less likely now.<sup>1</sup>
 
 Likewise, there is an assumption of a steadily rising carbon price in the EU in the Central scenario. It is true that, at the time of writing, the EU carbon price is coincidentally around €28/tonne, although it has hovered around €5-10/tonne for most of the last decade. In an optimistic case, it could perhaps rise, per Fig. A.3. But is it "probable"?
 
@@ -148,3 +148,5 @@ In this post I have discussed a number of troubling assumptions in the GenCost r
 - Diesendorf & Eliston, 2018, [link](https://reneweconomy.com.au/wp-content/uploads/2018/06/Diesendorf-Elliston.pdf).
 - Moreau, 2019, [link](https://www.google.com.au/url?sa=t&rct=j&q=&esrc=s&source=web&cd=1&ved=2ahUKEwiRqfG50eXnAhW_6nMBHZALBsQQFjAAegQIAxAB&url=https%3A%2F%2Fwww.mdpi.com%2F2079-9276%2F8%2F1%2F29%2Fpdf&usg=AOvVaw1MBzpcnRCEklKKADjNcDRi).
 - Renew Economy, "New CSIRO, AEMO study confirms wind, solar and storage beat coal, gas and nuclear", [link](https://reneweconomy.com.au/new-csiro-aemo-study-confirms-wind-solar-and-storage-beat-coal-gas-and-nuclear-57530/).
+
+<sup>1</sup> Note there is much skepticism about China's promised ETS, e.g. [link](https://www.lowyinstitute.org/the-interpreter/china-s-carbon-emissions-trading-scheme-not-where-action).
