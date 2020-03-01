@@ -11,9 +11,7 @@ usage() {
 
 tags() {
   awk '
-    BEGIN {
-      ORS=" "
-    }
+    BEGIN { ORS=" " }
 
     $1 == "tags" ":" {
       for (i=2; i <= NF; i++)
@@ -22,10 +20,7 @@ tags() {
 
     END {
       print "["
-
-      for (k in seen)
-        print k
-
+      for (k in seen) print k
       print "]"
     }
   ' _posts/*
