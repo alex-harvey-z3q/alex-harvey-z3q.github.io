@@ -139,7 +139,7 @@ This code appears to have been copy/pasted from one tool to the other at some po
 
 It goes without saying that this situation is far from ideal. As a user of Sceptre and Cookiecutter, it is frustrating, to say the least, to search on Stack Overflow and find a solution to a problem that only works in Ansible. It must be frustrating when migrating from Ansible to Salt and vice versa too.
 
-None of this is the fault of Jinja2, but it does raise a red flag that Ansible and Salt spent so much development time in "fixing" Jinja2.
+None of this is the fault of Jinja2, but it is a concern that Ansible and Salt appear to have invested in parallel development efforts directed to "fixing" the same limitations in Jinja2.
 
 ## Calling the shell
 
