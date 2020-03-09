@@ -11,13 +11,11 @@ The use of Jinja2 templating in the DevOps community has become a de facto stand
 - ToC
 {:toc}
 
-The Jinja2 template engine was inspired by Django and provides a Python-like language for securely generating HTML, XML, and other markup. Its appeal includes:
+The Jinja2 template engine was inspired by Django and provides a Python-like language for securely generating HTML, XML, and other markup. Its benefits are said to be:
 
 - sandboxed execution and optional automatic escaping for applications where security is important.
 - portability among Python versions.
-- and its elegance.
-
-"Jinja is beautiful".
+- elegance. "Jinja is beautiful".
 
 {% raw %}
 ```jinja
@@ -32,9 +30,9 @@ The Jinja2 template engine was inspired by Django and provides a Python-like lan
 ```
 {% endraw %}
 
-It is. And used as a web framework, as intended, I have no doubt that it is a powerful, elegant tool.
+It is. And used as a web framework, as intended, I have no doubt that it is a powerful, elegant tool, as advertised.
 
-But is it good for code generation in general? Because in the DevOps community, Jinja2 is not used for generating HTML web pages, but for generating configuration files, YAML documents, Markdown source code, and so on.
+But is it good for code generation in general? Because in the DevOps community, Jinja2 is not used for generating HTML web pages, but for generating configuration files, YAML documents, human readable text, Markdown source code, and so on.
 
 In this post I compare Jinja2's features with ERB, and I argue that the community could do well to return to ERB.
 
@@ -51,7 +49,7 @@ Of DevOps tools I am aware of, Jinja2 has found its way in as a templating langu
 |[MkDocs](http://www.mkdocs.org/)|2014|Static site generator|
 |[Sceptre](https://github.com/Sceptre/sceptre)|2017|Configuration management of CloudFormation|
 
-This is a short list, and I am sure there are many more.
+This is a short list, and I am sure there are many more. So it has found its way into many tools, mostly a result of Python's popularity.
 
 ## Jinja language compared to ERB
 
@@ -59,7 +57,7 @@ This is a short list, and I am sure there are many more.
 |-------|------|---|
 |Basic language|Small, Python-like DSL|Ruby|
 
-Jinja2 is a basic, Python-like DSL optimised to securely generate HTML, XML and other markup, whereas the Ruby in ERB is the real Ruby, a featureful, high-level programming language for data and text processing.
+Jinja2 is a basic, Python-like DSL optimised to securely generate HTML, XML and other markup, as mentioned, whereas the Ruby in ERB is the real Ruby, a featureful, high-level programming language for data and text processing.
 
 If your problem is securely generating web content, Jinja2's design is no doubt a good thing. Security is good and I am totally okay with having fewer features if more might be misused to generate insecure web content.
 
