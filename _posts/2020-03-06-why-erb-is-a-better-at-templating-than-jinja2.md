@@ -119,7 +119,7 @@ def regex_replace(value='', pattern='', replacement='', ignorecase=False, multil
     return _re.sub(replacement, value)
 ```
 
-### Salt version
+#### Salt version
 
 ```python
 def regex_replace(txt, rgx, val, ignorecase=False, multiline=False):
