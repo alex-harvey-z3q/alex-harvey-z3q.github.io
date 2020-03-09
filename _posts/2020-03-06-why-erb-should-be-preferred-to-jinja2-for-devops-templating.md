@@ -6,7 +6,9 @@ author: Alex Harvey
 tags: erb jinja2
 ---
 
-The use of Jinja2 templating in DevOps has become a de facto standard after the popularisation of Ansible and Salt as configuration management tools and Python as a programming language. Jinja2 has largely displaced the earlier Ruby-based equivalent, ERB (Embedded Ruby), that was previously popular in Puppet and Chef. In this post, I argue that Jinja2 has a number of flaws that make it not well-suited as a general purpose templating language.
+The use of Jinja2 templating in DevOps has become a de facto standard after the popularisation of Ansible and Salt as configuration management tools and Python as a programming language. Jinja2 has largely displaced the earlier Ruby-based equivalent, ERB (Embedded Ruby), that was previously popular in Puppet and Chef.
+
+In this post, I argue that Jinja2 has a number of flaws that make it not well-suited as a general purpose templating language.
 
 - ToC
 {:toc}
@@ -36,7 +38,7 @@ It is. And used as a web framework, as intended, I have no doubt that it is a po
 
 But is it good for code generation in general? Because in DevOps, Jinja2 is not used for generating HTML web pages, but for configuration files, YAML documents, human readable text, Markdown source code, and so on.
 
-In this post I compare Jinja2's features with ERB, and I argue that the community could do well to return to ERB.
+In this post I compare some of Jinja2's features with ERB, and I argue that the community could do well to return to ERB.
 
 ## DevOps tools using Jinja2
 
@@ -332,7 +334,7 @@ In fairness, this behaviour in Jinja2 can be configured, although I have only se
 
 This is really the tip of the iceberg. With full Ruby inside the templating engine, there is no limit on what can be done inside that template. Whereas in Jinja2, there is a quite severe and arbitrary limit.
 
-I have summarised the main problems that I am aware of as:
+I have summarised the main problems with Jinja2 that I personally encounter frequently:
 
 - No ability to call the shell or other languages
 - No way to define functions
