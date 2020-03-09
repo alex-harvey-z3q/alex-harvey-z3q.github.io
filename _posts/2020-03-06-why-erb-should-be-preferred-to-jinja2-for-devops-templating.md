@@ -95,9 +95,9 @@ Jinja2's built-in filters solve some of the same problems that AWK's built-in fu
 
 Users of Ansible and Salt may or may not realise that many of the filters they rely are custom filters provided by Ansible and Salt respectively, rather than actual features of Jinja2.
 
-Ansible's filters are documented [here](https://docs.ansible.com/ansible/latest/user_guide/playbooks_filters.html) and, as can be seen, the list of custom filters is large. There are filters for text manipulation, data transformation, set theory, regular expressions, and so on and on. The length of the list really speaks to how limited Jinja2 itself is.
+Ansible's filters are documented [here](https://docs.ansible.com/ansible/latest/user_guide/playbooks_filters.html) and, as can be seen, the list of custom filters is long. There are filters for text manipulation, data transformation, set theory, regular expressions, and so on and on. The length of the list really speaks to how limited Jinja2 itself is.
 
-Salt's similarly-large list of custom filters meanwhile is documented [here](https://docs.saltstack.com/en/latest/topics/jinja/index.html#filters).
+Salt's similarly-long list of custom filters meanwhile is documented [here](https://docs.saltstack.com/en/latest/topics/jinja/index.html#filters).
 
 ### Comparing regex_replace in Ansible and Salt
 
