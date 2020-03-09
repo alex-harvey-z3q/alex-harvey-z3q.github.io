@@ -6,10 +6,12 @@ author: Alex Harvey
 tags: erb jinja2
 ---
 
-The use of Jinja2 templating in the DevOps community has become a de facto standard thanks to the popularity of both Ansible as a configuration management tool and Python as a programming language. Jinja2 has largely displaced the earlier Ruby-based equivalent, ERB (Embedded Ruby). In this post, I argue that Jinja2 has a number of flaws that make it not well-suited to DevOps templating.
+The use of Jinja2 templating in DevOps has become a de facto standard after the popularisation of Ansible and Salt as configuration management tools and Python as a programming language. Jinja2 has largely displaced the earlier Ruby-based equivalent, ERB (Embedded Ruby), that was previously popular in Puppet and Chef. In this post, I argue that Jinja2 has a number of flaws that make it not well-suited as a general purpose templating language.
 
 - ToC
 {:toc}
+
+## Introduction
 
 The Jinja2 template engine was inspired by Django and provides a Python-like language for securely generating HTML, XML, and other markup. Its benefits are said to be:
 
@@ -32,13 +34,13 @@ The Jinja2 template engine was inspired by Django and provides a Python-like lan
 
 It is. And used as a web framework, as intended, I have no doubt that it is a powerful, elegant tool, as advertised.
 
-But is it good for code generation in general? Because in the DevOps community, Jinja2 is not used for generating HTML web pages, but for generating configuration files, YAML documents, human readable text, Markdown source code, and so on.
+But is it good for code generation in general? Because in DevOps, Jinja2 is not used for generating HTML web pages, but for configuration files, YAML documents, human readable text, Markdown source code, and so on.
 
 In this post I compare Jinja2's features with ERB, and I argue that the community could do well to return to ERB.
 
-## Modern DevOps tools using Jinja2
+## DevOps tools using Jinja2
 
-Of DevOps tools I am aware of, Jinja2 has found its way in as a templating language in the following systems:
+Of DevOps tools I am aware of, Jinja2 has found its way as a templating language into all of the following systems:
 
 |Tool|Year|Description|
 |----|----|-----------|
@@ -49,7 +51,7 @@ Of DevOps tools I am aware of, Jinja2 has found its way in as a templating langu
 |[MkDocs](http://www.mkdocs.org/)|2014|Static site generator|
 |[Sceptre](https://github.com/Sceptre/sceptre)|2017|Configuration management of CloudFormation|
 
-This is a short list, and I am sure there are many more. So it has found its way into many tools, mostly a result of Python's popularity.
+This is a short list, and I am sure there are many more. But it is used widely.
 
 ## Jinja language compared to ERB
 
@@ -57,11 +59,11 @@ This is a short list, and I am sure there are many more. So it has found its way
 |-------|------|---|
 |Basic language|Small, Python-like DSL|Ruby|
 
-Jinja2 is a basic, Python-like DSL optimised to securely generate HTML, XML and other markup, as mentioned, whereas the Ruby in ERB is the real Ruby, a featureful, high-level programming language for data and text processing.
+Jinja2 is a basic, Python-like DSL, as mentioned, whereas Ruby in ERB is the real Ruby, a featureful, high-level programming language optimised for data and text processing.
 
-If your problem is securely generating web content, Jinja2's design is no doubt a good thing. Security is good and I am totally okay with having fewer features if more might be misused to generate insecure web content.
+Now, if your problem is securely generating web content, I have no opinion on Flask versus Ruby-on-Rails. I assume that Jinja2's design is a good thing. Security is good and I am totally okay with fewer features in the interest of secure content.
 
-But if, on the other hand, your problem is code generating Markdown, configuration files, YAML documents, or other human readable text  - as is the case in tools like Cookiecutter, Ansible, Salt and Sceptre - a small, Python-like DSL is a limitation. Actually, it is a fairly accidental, arbitrary limitation. And the lack of DSL features creates difficulty in solving common code generation problems.
+But DevOps engineers are generally not using Jinja2 to generate secure web content. As already mentioned, it is used in configuration management to code generate human-readable text, Markdown documents, configuration files, YAML documents, and so on. This is true in tools like Cookiecutter and Sceptre and also Ansible and Salt. Here, I argue that a small, Python-like DSL is a limitation. In fact, a fairly accidental, arbitrary limitation.
 
 ## A (very incomplete) Jinja versus ERB feature comparison
 
@@ -77,33 +79,34 @@ The following table shows a list of basic text manipulation features that are mi
 |Define functions inline|Yes|Yes|Yes|Yes|No|
 |Call external programs|Yes|Yes|Yes|Yes|No|
 
-It should be immediately apparent that Jinja2 was not designed with text manipulation in mind.
+It could be argued that the most basic feature of a tool for editing text and data is a regular expression engine. And yet Jinja2 does not have one. The lack of a split function is surprising.
 
-## Built-in Jinja2 filters
+It is obvious that Jinja2 is not designed to edit and manipulate text. The author's assumption is that the caller already edited the text prior to instantiation of the template.
 
-Aside from basic language features, Jinja2 also has (at the time of writing) 50 built-in "filters". A filter is like a function in AWK and other programming languages. The full list of Jinja2 filters is [here](https://jinja.palletsprojects.com/en/2.11.x/templates/#list-of-builtin-filters). Some of these are great for text manipulation. The center and wordwrap filters are useful. But there are not so many useful filters.
+## Jinja2's built-in filters
 
-The size of this language is comparable to AWK. [Here](https://www.gnu.org/software/gawk/manual/html_node/Built_002din.html#Built_002din)) is AWK's full list of built-in functions.
+Jinja2's built-in filters solve some of the same problems that AWK's built-in functions solve. The two languages are comparable in size. Aside from basic language features, Jinja2 has (at the time of writing) 50 built-in "filters". The full list of Jinja2 filters is [here](https://jinja.palletsprojects.com/en/2.11.x/templates/#list-of-builtin-filters). Some of them are great for text manipulation. The center and wordwrap filters are great. But there are not many of them.
 
 ## Custom Jinja2 filters
 
-But the casual users of Ansible and Salt may not realise how limited Jinja2 itself is, since both Ansible and Salt provide a rich set of (different) extensions to the built-in Jinja2 filters.
+### Custom filters in Ansible and Salt
 
-Ansible's filters are documented [here](https://docs.ansible.com/ansible/latest/user_guide/playbooks_filters.html) and, as can be seen, the list of custom filters is large. There are filters for text manipulation, munging data, set theory, regular expressions, and so on and on. The length of this list really speaks to how limited Jinja2 itself is.
+Users of Ansible and Salt may or may not realise that many of the filters they rely are custom filters provided by Ansible and Salt respectively, rather than actual features of Jinja2.
+
+Ansible's filters are documented [here](https://docs.ansible.com/ansible/latest/user_guide/playbooks_filters.html) and, as can be seen, the list of custom filters is large. There are filters for text manipulation, data transformation, set theory, regular expressions, and so on and on. The length of the list really speaks to how limited Jinja2 itself is.
 
 Salt's similarly-large list of custom filters meanwhile is documented [here](https://docs.saltstack.com/en/latest/topics/jinja/index.html#filters).
 
-## Comparing Ansible and Salt filters: regex_replace
+### Comparing regex_replace in Ansible and Salt
 
 Often, Ansible and Salt have chosen to implement similar filters with similar usage. Thus, both provide a `regex_replace` filter.
 
 Let's have a look at the source code for these filters respectively.
 
-### Ansible
+#### Ansible version
 
 ```python
 def regex_replace(value='', pattern='', replacement='', ignorecase=False, multiline=False):
-    ''' Perform a `re.sub` returning a string '''
 
     value = to_text(value, errors='surrogate_or_strict', nonstring='simplerepr')
 
@@ -116,26 +119,11 @@ def regex_replace(value='', pattern='', replacement='', ignorecase=False, multil
     return _re.sub(replacement, value)
 ```
 
-### Salt
+### Salt version
 
 ```python
 def regex_replace(txt, rgx, val, ignorecase=False, multiline=False):
-    r'''
-    Searches for a pattern and replaces with a sequence of characters.
 
-    .. code-block:: jinja
-
-{% raw %}
-        {% set my_text = 'lets replace spaces' %}
-        {{ my_text | regex_replace('\s+', '__') }}
-{% endraw %}
-
-    will be rendered as:
-
-    .. code-block:: text
-
-        lets__replace__spaces
-    '''
     flag = 0
     if ignorecase:
         flag |= re.I
@@ -145,9 +133,11 @@ def regex_replace(txt, rgx, val, ignorecase=False, multiline=False):
     return compiled_rgx.sub(val, txt)
 ```
 
-So, we can see that both Ansible and Salt provide almost identical `regex_replace` custom filters, that are really thin wrappers around the Python [`re.compile`](https://docs.python.org/3/library/re.html#re.compile) function.
+This code appears to have been copy/pasted from one tool to the other at some point, and both filters are thin wrappers around the Python [`re.compile`](https://docs.python.org/3/library/re.html#re.compile) function.
 
-It goes without saying that this situation is far from ideal. Ansible users will find a similar but in some ways slightly different set of custom Jinja2 filters if they migrate to Salt. And too bad though if they find themselves using Cookiecutter or Sceptre, since none of these filters exist.
+It goes without saying that this situation is far from ideal. As a user of Sceptre and Cookiecutter, it is frustrating, to say the least, to search on Stack Overflow and find a solution to a problem that only works in Ansible. It must be frustrating when migrating from Ansible to Salt and vice versa too.
+
+None of this is the fault of Jinja2, but it does raise a red flag that Ansible and Salt spent so much development time in "fixing" Jinja2.
 
 ## Calling the shell
 
