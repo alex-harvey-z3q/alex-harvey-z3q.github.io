@@ -141,7 +141,7 @@ None of this is the fault of Jinja2, but it does raise a red flag that Ansible a
 
 ## Calling the shell
 
-Sometimes when doing code generation, it simply makes sense to call the shell, or sed, AWK or some other external program. This probably won't make sense if you are generating HTML for a web site, but it might make sense if you are generation documentation from source code, for instance.
+Sometimes when doing code generation, it simply makes sense to call the shell, or sed, AWK or some other external program. This probably won't make sense if you are generating HTML for a web site, but it might make sense if you are generating documentation from source code, for instance.
 
 In this ERB example, I call an external Ruby script to auto-generate a Markdown table of contents:
 
