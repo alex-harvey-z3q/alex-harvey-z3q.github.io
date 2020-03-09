@@ -3,6 +3,8 @@
 shopt -s expand_aliases
 alias sed='/usr/local/bin/gsed'
 
+date="$(date +%Y-%m-%d)"
+
 usage() {
   echo "Usage: $0 [-h]"
   exit 1
@@ -34,9 +36,7 @@ get_title_and_tags() {
 }
 
 set_file_name() {
-  local date file_part
-
-  date="$(date +%Y-%m-%d)"
+  local file_part
 
   file_part=$(sed '
     s!.*!\L&!
