@@ -69,7 +69,7 @@ But DevOps engineers are generally not using Jinja2 to generate secure web conte
 
 ## A (very incomplete) Jinja versus ERB feature comparison
 
-If we take a step back, we might consider the history of other programming languages designed with text and code generation in mind. Some of the best known ones are sed (1974), AWK (1975), Perl (1987), and Ruby (1993).
+If we take a step back, we might consider the history of other programming languages designed with text and code generation in mind. Some of the best known ones are sed (1974), AWK (1977), Perl (1987), and Ruby (1993).
 
 The following table shows a list of basic text manipulation features that are missing in Jinja2:
 
