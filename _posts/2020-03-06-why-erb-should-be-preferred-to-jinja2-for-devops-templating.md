@@ -68,7 +68,7 @@ Now, if your problem is securely generating web content, I have no opinion on Fl
 
 But DevOps engineers are generally not using Jinja2 to generate secure web content. As already mentioned, it is used in configuration management to code generate human-readable text, Markdown documents, configuration files, YAML documents, and so on. This is true in tools like Cookiecutter and Sceptre and also Ansible and Salt. Here, a small, Python-like DSL appears to be a limitation rather than an advantage. Actually, a fairly accidental, arbitrary limitation.
 
-## A (very incomplete) Jinja versus ERB feature comparison
+## A (very incomplete) Jinja feature comparison
 
 If we take a step back, we might consider the history of other programming languages designed with text and code generation in mind. Some of the best known ones are sed (1974), AWK (1977), Perl (1987), and Ruby (1993).
 
