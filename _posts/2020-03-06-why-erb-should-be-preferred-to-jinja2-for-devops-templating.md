@@ -3,6 +3,7 @@ layout: post
 title: "Why ERB should be preferred to Jinja2 for DevOps templating"
 date: 2020-03-06
 author: Alex Harvey
+category: puppet
 tags: erb jinja2
 ---
 
