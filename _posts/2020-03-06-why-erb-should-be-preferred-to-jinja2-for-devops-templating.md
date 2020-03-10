@@ -65,7 +65,7 @@ Jinja2 is a basic, Python-like DSL, as mentioned, whereas Ruby in ERB is the rea
 
 Now, if your problem is securely generating web content, I have no opinion on Flask versus Ruby-on-Rails. I assume that Jinja2's design is a good thing. Security is good and I am totally okay with fewer features in the interest of secure content.
 
-But DevOps engineers are generally not using Jinja2 to generate secure web content. As already mentioned, it is used in configuration management to code generate human-readable text, Markdown documents, configuration files, YAML documents, and so on. This is true in tools like Cookiecutter and Sceptre and also Ansible and Salt. Here, I argue that a small, Python-like DSL is a limitation. In fact, a fairly accidental, arbitrary limitation.
+But DevOps engineers are generally not using Jinja2 to generate secure web content. As already mentioned, it is used in configuration management to code generate human-readable text, Markdown documents, configuration files, YAML documents, and so on. This is true in tools like Cookiecutter and Sceptre and also Ansible and Salt. Here, a small, Python-like DSL appears to be a limitation rather than an advantage. Actually, a fairly accidental, arbitrary limitation.
 
 ## A (very incomplete) Jinja versus ERB feature comparison
 
