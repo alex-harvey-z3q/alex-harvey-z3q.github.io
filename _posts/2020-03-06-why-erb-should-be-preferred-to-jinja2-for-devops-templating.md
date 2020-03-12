@@ -88,7 +88,7 @@ It is obvious that Jinja2 is not designed to edit and manipulate text. The autho
 
 ## Jinja2's built-in filters
 
-Jinja2's built-in filters solve some of the same problems that AWK's built-in functions solve. The two languages are comparable in size. Aside from basic language features, Jinja2 has (at the time of writing) 50 built-in "filters". The full list of Jinja2 filters is [here](https://jinja.palletsprojects.com/en/2.11.x/templates/#list-of-builtin-filters). Some of them are great for text manipulation. The center and wordwrap filters are great. But there are not many of them.
+Aside from basic language features, Jinja2 has (at the time of writing) 50 built-in "filters". These are documented [here](https://jinja.palletsprojects.com/en/2.11.x/templates/#list-of-builtin-filters). Some of them are useful for text manipulation, such as the center and wordwrap filters. But there are not many filters and many gaps in functionality. I already mentioned there is no split filter for example.
 
 ## Custom Jinja2 filters
 
