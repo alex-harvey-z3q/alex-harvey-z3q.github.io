@@ -60,7 +60,7 @@ Resources:
               yum -y install httpd
               service httpd start
               chkconfig httpd on
-              aws s3 cp s3://${BucketName} /var/www/html -recursive
+              aws s3 cp s3://"${BucketName}" /var/www/html -recursive
             }
 
             configure_index_html() {
