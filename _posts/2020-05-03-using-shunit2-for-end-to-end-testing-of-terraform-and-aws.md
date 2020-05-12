@@ -6,14 +6,14 @@ author: Alex Harvey
 tags: shunit2 terraform aws
 ---
 
-This article documents a pattern of end-to-end testing Terraform on AWS using the shUnit2 framework.
+This article documents a pattern of end-to-end (E2E) testing Terraform on AWS using the shUnit2 framework.
 
 - ToC
 {:toc}
 
 ## Introduction
 
-In this post, I yet again document another use-case for the [shUnit2](https://github.com/kward/shunit2) Bash unit testing framework. This time, however, I am not using the framework for unit testing, but for end-to-end testing. I am going to show how to set this all up, given an example of simple end-to-end tests using a Terraform module that deploys a simple AWS EC2 instance, and then in the discussion section talk about what I love about this pattern, and I'll compare it to alternatives. My hope is that by the end of this, readers will also want to use this method!
+In this post, I yet again document another use-case for the [shUnit2](https://github.com/kward/shunit2) Bash unit testing framework. This time, however, I am not using the framework for unit testing, but for end-to-end testing. I am going to show how to set this all up, give an example of simple end-to-end tests using a Terraform module that just deploys an AWS EC2 instance, and then in the discussion section, talk about what I love about this pattern. My hope is that by the end of this, my readers will also want to use this method!
 
 ## Code example
 
