@@ -84,27 +84,31 @@ To download this code and play with it, it is on GitHub [here]().
 
 ## End to end tests
 
-### What are we testing
+### What are end-to-end tests
 
-End-to-end (E2E) testing is when we spin up an entire stack, an application or a cluster of applications and test that the whole thing is really working from end to end. E2E tests are typically slow and it is harder at this level to really prove that all code paths in your application are tested. But on the other hand, only E2E tests can prove that the code solution as a whole really works.
+End-to-end (E2E) testing is when we spin up an entire stack, an application, or a cluster of applications, and test that the whole thing really works from end to end. E2E tests are typically slower, and it is harder at this E2E level to prove that all code paths in the stack are truly tested. But on the other hand, only E2E tests can prove that the code solution as a whole really works.
 
 ### Designing the tests
 
-I would want to test a representative set of configurations that I would actually use in development and production environments and ensure that this code builds them "correctly". Knowing what is "correct" of course is often the challenge, although in the case of my arbitrarily simple example, an EC2 instance I can log into is what I'll consider "correct". So my tests will need to do these things:
+When writing E2E tests, I normally want to test a representative set of configurations that I would actually use in development and production environments and ensure that this code builds them "correctly". Knowing what is "correct" of course is the challenge, although in the case of the arbitrarily simple example in this post, I will say that an EC2 instance that I can log into is what I'll consider "correct". So my tests will need to do these things:
 
-- Spin up the AWS resources during the test set up stage.
-- Test that its state is "running".
-- Test that its key exists.
-- Test that I can login using the key.
-- Tear down the stack again at the end.
+- Test set up: Spin up the AWS resources.
+- Test #1: Test that its state is "running".
+- Test #2: Test that its key exists.
+- Test #3: Test that I can login using the key.
+- Test tear down: Destroy the stack again at the end.
+
+Note that I don't consider these tests to be perfectly designed. This post is not about designing E2E tests, but is intended simply to document the shUnit2 pattern I use!
 
 ## Bash magic
 
+I predict that one objection to using Bash for E2E testing could be that Bash lacks support for manipulating structured YAML and JSON data in the way people are familiar with in languages like Python and Ruby. That is to say, I can't just initialise a Hash or Dict in Bash with data returned from the AWS API. So how do we do it?
+
 ### JMESpath, jq and yq
 
-I imagine that one objection to using Bash for E2E testing is that Bash lacks support for manipulating structure YAML and JSON data in the same way that languages like Python and Ruby do. That is to say, I can't simply initialise a Hash or Dict with data returned from the AWS API.
+It turns out that with just a little bit of knowledge of [JMESpath](https://jmespath.org), [jq](https://stedolan.github.io/jq/) and jq's YAML front-end [yq](https://github.com/mikefarah/yq), the data structures problem is really no problem at all.
 
-While this is true, some knowledge of [JMESpath](https://jmespath.org), [jq](https://stedolan.github.io/jq/) and jq's YAML front-end [yq](https://github.com/mikefarah/yq), allows us to mostly avoid all these problems. In this section, I am going to provide a couple of examples of reading multiple values from the AWS CLI using these tools.
+In this section, I am going to provide a couple of examples of reading multiple values from the AWS CLI using JMESpath and jq. (yq of course is the same language as jq so an example would be redundant.)
 
 ### Example 1 - read muliple fields from a JMESpath query
 
@@ -146,14 +150,16 @@ So, putting it all together:
 
 ```text
 ▶ read -r key_name key_fingerprint <<< "$(
-  aws ec2 describe-key-pairs --output text --query \
-    'KeyPairs[?KeyName==`default`].[KeyName,KeyFingerprint]'
-)"
+    aws ec2 describe-key-pairs --output text --query \
+      'KeyPairs[?KeyName==`default`].[KeyName,KeyFingerprint]'
+  )"
 ▶ echo "$key_name"
 default
 ▶ echo "$key_fingerprint"
 70:e2:fa:b1:97:e3:68:5f:6a:63:93:17:09:5a:43:29:60:94:53:ab
 ```
+
+Which is just what I wanted.
 
 ### Example 2 - read multiple fields from a JSON file in jq
 
