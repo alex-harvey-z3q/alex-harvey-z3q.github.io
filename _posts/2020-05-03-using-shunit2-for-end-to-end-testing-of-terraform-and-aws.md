@@ -304,7 +304,7 @@ To run the tests I have a very simple Makefile:
 ```make
 .PHONY: test
 test:
-	@bash shunit2/test_backend.sh
+	@bash shunit2/test_web.sh
 ```
 
 ## Running the tests
@@ -312,20 +312,20 @@ test:
 ```text
 ▶ DESTROY=false make test                                   
 data.aws_ami.ami: Refreshing state...                                                                                                                                                   
-aws_instance.backend: Creating...                                     
-aws_instance.backend: Still creating... [10s elapsed]                                           
-aws_instance.backend: Still creating... [20s elapsed]                                                                                                                                   
-aws_instance.backend: Provisioning with 'remote-exec'...                                                
-aws_instance.backend (remote-exec): Connecting to remote host via SSH...
-aws_instance.backend (remote-exec):   Host: 13.210.249.192               
-aws_instance.backend (remote-exec):   User: ec2-user                                                                                                                                    
-aws_instance.backend (remote-exec):   Password: false   
-aws_instance.backend (remote-exec):   Private key: true                                                                                                                                 
-aws_instance.backend (remote-exec):   Certificate: false                 
-aws_instance.backend (remote-exec):   SSH Agent: true                                           
-aws_instance.backend (remote-exec):   Checking Host Key: false                                                                                                             
+aws_instance.web: Creating...                                     
+aws_instance.web: Still creating... [10s elapsed]                                           
+aws_instance.web: Still creating... [20s elapsed]                                                                                                                                   
+aws_instance.web: Provisioning with 'remote-exec'...                                                
+aws_instance.web (remote-exec): Connecting to remote host via SSH...
+aws_instance.web (remote-exec):   Host: 13.210.249.192               
+aws_instance.web (remote-exec):   User: ec2-user                                                                                                                                    
+aws_instance.web (remote-exec):   Password: false   
+aws_instance.web (remote-exec):   Private key: true                                                                                                                                 
+aws_instance.web (remote-exec):   Certificate: false                 
+aws_instance.web (remote-exec):   SSH Agent: true                                           
+aws_instance.web (remote-exec):   Checking Host Key: false                                                                                                             
 ...
-aws_instance.backend: Creation complete after 1m46s [id=i-0e71f9e2871d5fbf9]
+aws_instance.web: Creation complete after 1m46s [id=i-0e71f9e2871d5fbf9]
 
 Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
 
