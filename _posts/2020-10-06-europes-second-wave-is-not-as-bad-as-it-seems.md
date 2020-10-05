@@ -65,10 +65,6 @@ Most credit to the original author [@PishPishCat](https://twitter.com/PishPishCa
 
 ![Portugal]({{ "/assets/portugal.jpg" | absolute_url }})
 
-## Spain
-
-![Spain]({{ "/assets/spain.jpg" | absolute_url }})
-
 ## Switzerland
 
 ![Switzerland]({{ "/assets/switzerland.jpg" | absolute_url }})
@@ -87,7 +83,7 @@ So what is going on? A number of theories have been proposed:
 
 - T-cell immunity. After the first wave ripped through these countries, many people were exposed and developed T-cell immunity despite not becoming infected. Cross-reactive T-cell immunity from common cold coronaviruses may have already been present in 20% or more of the populations.
 - Casedemic. As testing becomes widespread, PCR tests detect false positives as well as true positives of RNA being detected in minute quantities.
-- Dry tinder theory. Many of the countries that saw huge death rates in the first waves had not had bad flu seasons in a number of years, leading to many people susceptible to the Covid pneumonia in those countries.
+- Dry tinder. Many of the countries that saw huge death rates in the first waves had not had bad flu seasons in a number of years, leading to many people susceptible to the Covid pneumonia in those countries.
 - The D614G mutation is less lethal. A few epidemiologists including Didier Raoult have suggested that D614G may be less lethal than the virus that ripped through Europe in March.
 - Improved medical treatment. It could be that improved medicine is leading to a much lower death rate. All the same, hospitalisations would be expected to increase as they did in the first waves, and this does not appear to be the case.
 
@@ -100,3 +96,4 @@ As for Spain, @Covid19Crusher had [noted](https://twitter.com/Covid19Crusher/sta
 - [1](https://twitter.com/PishPishCat/status/1312486338613051392), @PishPishCat's source for the charts in this post.
 - [2](https://www.cebm.net/covid-19/pcr-positives-what-do-they-mean/), PCR positives: what do they mean?, CEBM.
 - [3](https://twitter.com/JamesTodaroMD/status/1306627953573363713), James Todaro's prediction on Twitter that Spain is approaching herd immunity due to T-cell immunity.
+- [4](https://www.aljazeera.com/news/2020/8/18/mutated-coronavirus-may-be-less-deadly-expert-suggests), Paul Tambyah, Singaporean infectious diseases expert, suggests D614G is less lethal.
