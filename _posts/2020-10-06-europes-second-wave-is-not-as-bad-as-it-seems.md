@@ -6,9 +6,7 @@ author: Alex Harvey
 tags: covid
 ---
 
-This brief post is based on data my others. My main motivation for creating it is simply so that I can present the charts in a blog form that is easy to view. Interestingly, these charts appear to show that, as some had predicted (James Todaro and @Covid19Crusher), Spain's second wave does indeed appear to be burning out.
-
-Most credit to the original author [@PishPishCat](https://twitter.com/PishPishCat/status/1312486338613051392).
+This brief post is collates some charts I found published on Twitter. My main motivation for creating this post is simply to present the charts in a blog form that is easy to view. Interestingly, these data ppear to confirm, as some James Todaro, @Covid19Crusher, and others have predicted, that Spain's second wave appears to be already burning out. All credit to the original author [@PishPishCat](https://twitter.com/PishPishCat/status/1312486338613051392).
 
 ## Spain
 
@@ -82,11 +80,11 @@ So what is going on? A number of theories have been proposed:
 - Casedemic. As testing becomes widespread, PCR tests detect false positives as well as true positives of RNA being detected in minute quantities.
 - Dry tinder. Many of the countries that saw huge death rates in the first waves had not had bad flu seasons in a number of years, leading to many people susceptible to the Covid pneumonia in those countries.
 - The D614G mutation is less lethal. A few epidemiologists including Didier Raoult have suggested that D614G may be less lethal than the virus that ripped through Europe in March.
-- Improved medical treatment. It could be that improved medicine is leading to a much lower death rate. All the same, hospitalisations would be expected to increase as they did in the first waves, and this does not appear to be the case.
+- Improved medical treatment. It could be that improved medicine is leading to a much lower death rate. All the same, hospitalisations would be expected to increase as they did in the first waves, and this does not appear to be happening.
 
-What about Sweden? It is hard to avoid the conclusion that Sweden is faring better than all other states in the second wave, both in cases per day and deaths per day. It remains to be seen if Anders Tegnell's prediction will be borne out, that by the end of both waves, it will be seen that other EU nations doing hard lockdowns to contain the first wave merely delayed the inevitable, leading to greater pain in subsequent waves.
+What about Sweden? It is hard to avoid the conclusion that Sweden is faring better than all other states in the second wave, both in cases per day and deaths per day. It remains to be seen if Anders Tegnell's prediction will be borne out, that by the end of both waves, it will be seen that other EU nations that did hard lockdowns to contain the first wave merely delayed the inevitable, deferring this pain to the subsequent waves.
 
-As for Spain, @Covid19Crusher had [noted](https://twitter.com/Covid19Crusher/status/1309787854491484160) that Spain reached the level of cases per unit population where in the US, cases peaked and started to decline. The data so far bears out their prediction. Spain's second wave appears to have already peaked and is in decline.
+As for Spain, @Covid19Crusher had [noted](https://twitter.com/Covid19Crusher/status/1309787854491484160) that Spain reached the level of cases per unit population where in the US, cases peaked and started to decline. The data so far confirms their prediction. Spain's second wave appears to have already peaked and is in decline.
 
 ## References
 
