@@ -76,13 +76,13 @@ This brief post collates some charts I found published on Twitter. My main motiv
 
 So what is going on? A number of theories have been proposed:
 
-- T-cell immunity. After the first wave ripped through these countries, many people were exposed and developed T-cell immunity despite not becoming infected. Cross-reactive T-cell immunity from common cold coronaviruses may have already been present in 20% or more of the populations.
-- Casedemic. As testing becomes widespread, PCR tests detect false positives as well as true positives of RNA being detected in minute quantities.
+- T-cell immunity. After the first wave ripped through these countries, many people were exposed and developed T-cell immunity despite not becoming infected. Cross-reactive T-cell immunity from common cold coronaviruses may have already been present in 20% or more of the populations. This is now leading to milder infections even in a much larger number of cases.
+- Casedemic. As testing becomes widespread, PCR tests detect false positives as well as true positives of RNA being detected in minute quantities. On this theory, most of these cases simply shouldn't be counted as real cases.
 - Dry tinder. Many of the countries that saw huge death rates in the first waves had not had bad flu seasons in a number of years, leading to many people susceptible to the Covid pneumonia in those countries.
 - The D614G mutation is less lethal. A few epidemiologists including Didier Raoult have suggested that D614G may be less lethal than the virus that ripped through Europe in March.
-- Improved medical treatment. It could be that improved medicine is leading to a much lower death rate. All the same, hospitalisations would be expected to increase as they did in the first waves, and this does not appear to be happening.
+- Improved medical treatment. It could be that improved medicine is leading to a much lower death rate. However, if this were true, hospitalisations should still increase as they did in the first wave, and this does not appear to be happening.
 
-What about Sweden? It is hard to avoid the conclusion that Sweden is faring better than all other states in the second wave, both in cases per day and deaths per day. It remains to be seen if Anders Tegnell's prediction will be borne out, that by the end of both waves, it will be seen that other EU nations that did hard lockdowns to contain the first wave merely delayed the inevitable, deferring this pain to the subsequent waves.
+What about Sweden? It is hard to avoid the conclusion that Sweden is faring better than all other states in the second wave, both in cases per day and deaths per day. It remains to be seen if Anders Tegnell's prediction will be borne out, that by the end of both waves, the EU nations that did hard lockdowns to contain the first wave will have merely delayed the inevitable, deferring the pain to subsequent waves.
 
 As for Spain, @Covid19Crusher had [noted](https://twitter.com/Covid19Crusher/status/1309787854491484160) that Spain reached the level of cases per unit population where in the US, cases peaked and started to decline. The data so far confirms their prediction. Spain's second wave appears to have already peaked and is in decline.
 
