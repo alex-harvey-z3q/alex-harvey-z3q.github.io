@@ -10,6 +10,9 @@ This brief post is based on data my others. My main motivation for creating it i
 
 Most credit to the original author [@PishPishCat](https://twitter.com/PishPishCat/status/1312486338613051392).
 
+- ToC
+{:toc}
+
 ## Spain
 
 ![Spain]({{ "/assets/spain.jpg" | absolute_url }})
@@ -22,7 +25,7 @@ Most credit to the original author [@PishPishCat](https://twitter.com/PishPishCa
 
 ![Belgium]({{ "/assets/belgium.jpg" | absolute_url }})
 
-## Czech_republic
+## Czech Republic
 
 ![Czech_republic]({{ "/assets/czech_republic.jpg" | absolute_url }})
 
