@@ -10,9 +10,6 @@ This brief post is based on data my others. My main motivation for creating it i
 
 Most credit to the original author [@PishPishCat](https://twitter.com/PishPishCat/status/1312486338613051392).
 
-- ToC
-{:toc}
-
 ## Spain
 
 ![Spain]({{ "/assets/spain.jpg" | absolute_url }})
