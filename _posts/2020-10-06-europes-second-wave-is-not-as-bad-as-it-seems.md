@@ -6,7 +6,7 @@ author: Alex Harvey
 tags: covid
 ---
 
-This brief post is collates some charts I found published on Twitter. My main motivation for creating this post is simply to present the charts in a blog form that is easy to view. Interestingly, these data ppear to confirm, as some James Todaro, @Covid19Crusher, and others have predicted, that Spain's second wave appears to be already burning out. All credit to the original author [@PishPishCat](https://twitter.com/PishPishCat/status/1312486338613051392).
+This brief post collates some charts I found published on Twitter. My main motivation for creating this post is simply to present the charts in a blog form that is easy to view. Interestingly, these data appear to confirm, as James Todaro, @Covid19Crusher, and others have predicted, that Spain's second wave would quickly burn out. I have discussed some of the theories in the discussion section. All credit to the original author [@PishPishCat](https://twitter.com/PishPishCat/status/1312486338613051392).
 
 ## Spain
 
