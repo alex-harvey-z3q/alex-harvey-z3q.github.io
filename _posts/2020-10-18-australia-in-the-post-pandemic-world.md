@@ -89,29 +89,29 @@ There is strong evidence that Vitamin D deficiency creates a significant risk fa
 
 ## Part III - Containment fails
 
-The policies of Taiwan have, so far, contained Covid-19, in the first and second waves. Australia, meanwhile, has natural advantages compared to Taiwan, including better climate, and lower population density.
+The policies of Taiwan have, so far, contained Covid-19 in their city-state. They crushed their first wave, and have had no appreciable second wave. Australia, meanwhile, has natural advantages relative to Taiwan, including a better climate, and a lower population density.
 
-This section therefore is about the _worst case_. What happens if, despite best practice pandemic management, we still lose control of the epidemic.
+This section discusses the worst case. What happens if, despite implementing policies like Taiwan, we still lose control of the epidemic. Here, I argue that we should _not_ continue with lockdowns, curfews and stay-at-home orders, but instead switch to policies that attempt to prevent superspreading events.
 
-This section argues that we would _not_ continue with economically destructive lockdowns, curfews and stay-at-home orders, but would instead switch to policies similar to Sweden's that would merely slow the spread so that our hospitals cope, as we wait for the epidemic to burn out, with the intention of gaining control of it again after the wave of cases has passed.
+### Overdispersion and superspreading events
 
-### Focused protection
+##### Recommendation 7: Rewrite stage 3 with restrictions that prevent superspreading events. Remove Stage 4 lockdowns completely.
 
-On 17th June, 2009, at the peak of Australia's Swine Flu epidemic, the Rudd Labor government introduced a new phase in its pandemic response called PROTECT. Containment having failed, the government moved to focus on protecting people with high risk of complications from the disease. In the case of Swine Flu, this included pregnant women, a subpopulation that was particularly susceptible to Swine Flu. Testing at airports was discontinued. And the national stockpile of antiviral drugs was no longer made available to people with the flu unless there were more than mild symptoms or a high risk of dying.
+Instead of lockdowns, the WHO had recommended banning public gatherings and closing schools. Banning public gatherings is known to be the non-pharmaceutical intervention that makes the real difference in limiting spread. But if governments feel compelled to go further, we must understand these facts:
 
-Sweden's policies have been significantly misrepresented in the media and other public discussions. In reality, Sweden's policies were a suppression strategy quite similar to what was adopted by the Morrison government in Australia. Indeed, Sweden's policies essentially implement the flatten-the-curve memes that Australians shared on social media in February and early March, prior to Austalia's lockdown. For example:
+- 70% of Covid-19 infections do not infect others
+- The virus tends to spread via airborne aerosols
+- Indoor venues with poor ventilation are associated with superspreading events, such as bars, nightclubs, churches
+- Cool and damp conditions are especially favourable to superspreading, such as meat factories
+- Time spent in these locations is associated with superspreading.
 
-![Flatten]({{ "/assets/flatten.png" | absolute_url }})
+We could therefore look to the example of Iceland, after its case explosion in August. The Icelandic epidemiologist ordered bars, and gyms to close. Gatherings were limited to 20 people.
 
-Often missed in these discussions is that Sweden had invested in a huge hospital capacity and therefore could afford to allow the virus wave to spread faster without risking hospital capacity.
+### Backwards contact tracing
 
-Sweden's policies of focused protection were supposed to protect especially care homes. Sweden's government however claims that care homes did not implement the guidelines and this led to huge mortality in care homes. The same happened in Victoria, of course. The Royal Commission into aged care recently found that the Morrison government had failed to adequately prepare aged care homes for Covid-19.
+##### Recommendation 8: Contact tracers must use backwards contact tracing methods.
 
-The following chart shows excess mortality over a number of years in Sweden, the huge first wave of Covid visible at the end (source: EUROMOMO):
-
-![Excess]({{ "/assets/Sweden_excess.png" | absolute_url }})
-
-Another factor that also no doubt contributed to Sweden's high death rate in the first wave is also that excess mortality had been well below average in Sweden over the previous two years, leading to a build-up in people who were at high-risk of death from respiratory infection.
+Following on from the observation that Covid-19 is highly overdispersed, arises the idea of backwards contact tracing. Instead of contacting every contact of an infection, even though it is known that 70% will not be infected, better instead for contact tracers to instead focus on finding and quarantining the superspreader that started the cluster. 
 
 ### Why lockdowns are not useful
 
@@ -147,25 +147,23 @@ The case of the New Zealand lockdowns is interesting. According to WHO advice, u
 
 Lockdowns do not work. Political leaders must have the courage to hold their nerves, even if cases are increasing exponentially. The next section discusses the alternative.
 
-### Superspreading
+## Part IV - Focused protection
 
-##### Recommendation 7: Stage 3 restrictions and beyond must be rewritten to limit public gatherings and close or manage superspreading venues.
+On 17th June, 2009, at the peak of Australia's Swine Flu epidemic, the Rudd Labor government introduced a new phase in its pandemic response called PROTECT. Containment having failed, the government moved to focus on protecting people with high risk of complications from the disease. In the case of Swine Flu, this included pregnant women, a subpopulation that was particularly susceptible to Swine Flu. Testing at airports was discontinued. And the national stockpile of antiviral drugs was no longer made available to people with the flu unless there were more than mild symptoms or a high risk of dying.
 
-Instead of lockdowns, the WHO had recommended banning public gatherings and closing schools. Banning public gatherings is known to be the non-pharmaceutical intervention that makes the real difference in limiting spread. But if governments feel compelled to go further, we must understand these facts:
+Sweden's policies have been significantly misrepresented in the media and other public discussions. In reality, Sweden's policies were a suppression strategy quite similar to what was adopted by the Morrison government in Australia. Indeed, Sweden's policies essentially implement the flatten-the-curve memes that Australians shared on social media in February and early March, prior to Austalia's lockdown. For example:
 
-- 70% of Covid-19 infections do not infect others
-- The virus tends to spread via airborne aerosols
-- Indoor venues with poor ventilation are associated with superspreading events, such as bars, nightclubs, churches
-- Cool and damp conditions are especially favourable to superspreading, such as meat factories
-- Time spent in these locations is associated with superspreading.
+![Flatten]({{ "/assets/flatten.png" | absolute_url }})
 
-We could therefore look to the example of Iceland, after its case explosion in August. The Icelandic epidemiologist ordered bars, and gyms to close. Gatherings were limited to 20 people.
+Often missed in these discussions is that Sweden had invested in a huge hospital capacity and therefore could afford to allow the virus wave to spread faster without risking hospital capacity.
 
-### Backwards contact tracing
+Sweden's policies of focused protection were supposed to protect especially care homes. Sweden's government however claims that care homes did not implement the guidelines and this led to huge mortality in care homes. The same happened in Victoria, of course. The Royal Commission into aged care recently found that the Morrison government had failed to adequately prepare aged care homes for Covid-19.
 
-##### Recommendation 8: Contact tracers must use backwards contact tracing methods.
+The following chart shows excess mortality over a number of years in Sweden, the huge first wave of Covid visible at the end (source: EUROMOMO):
 
-Following on from the observation that Covid-19 is highly overdispersed, arises the idea of backwards contact tracing. Instead of contacting every contact of an infection, even though it is known that 70% will not be infected, better instead for contact tracers to instead focus on finding and quarantining the superspreader that started the cluster. 
+![Excess]({{ "/assets/Sweden_excess.png" | absolute_url }})
+
+Another factor that also no doubt contributed to Sweden's high death rate in the first wave is also that excess mortality had been well below average in Sweden over the previous two years, leading to a build-up in people who were at high-risk of death from respiratory infection.
 
 ### Conclusion
 
