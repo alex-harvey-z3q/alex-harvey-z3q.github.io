@@ -33,11 +33,13 @@ But Western nations have struggled with balancing personal freedoms with the nee
 
 ### Mandatory testing
 
+##### Recommendation 1: Australian and State governments must be willing to compel people who are suspected of infection to be tested.
+
 The CHO in Australia has the power to enforce mandatory testing. However, he has stated that the government does not wish for testing to be mandatory. Consider the case of South Korean Patient 31. A member of religious sect, Patient 31 refused doctors advice twice to be tested. The testing came in conflict with her religious beliefs. In the end, she personally infected over 1,000 people, over a number of days. Australia cannot take such a risk of, what I will call, a Patient 31 event.
 
-##### Recommendation 1: The Australian and State governments must be willing to compel people who are suspected of infection to be tested.
-
 ### Mandatory surveillance
+
+##### Recommendation 2: Australia should adopt a system similar to China's or Taiwan's that allows phone location data to be used. Failing that, COVIDSafe or similar must at least be mandatory.
 
 Contact tracing in Australia is done manually by teams of contact tracers who speak to infected individuals, and find the names and contact details of others who may have been infected. But given a virus that can spread exponentially, such methods do not scale beyond a small number of cases per day. And if contact tracing capacity is exceeded, then governments tend to order economically harmful restrictions and even lockdowns. 
 
@@ -47,9 +49,9 @@ Such data is invaluable in contact tracing. And considering the alternative of c
 
 The federal government of course provided the COVIDSafe app and encouraged everyone to download it. This of course failed, and the app appears to have been of almost no use in contact tracing at all.
 
-##### Recommendation 2: Australia should adopt a system similar to China's or Taiwan's that allows phone location data to be used. Failing that, COVIDSafe or similar must at least be mandatory.
-
 ### Mandatory quarantine
+
+##### Recommendation 3: Self-isolation orders should be monitored by surveillance.
 
 Perhaps even more concerning is that Australia as well as other Western nations generally ask infected Covid-19 patients to "self-isolate for 14 days". This self-isolation is mandatory, and there are significant penalties for failing to obey. In NSW, for example, there is an $11,000 fine or a 6 months prison sentence. Other states are similar, although in the Northern Territory it is only a $1,256 fine.
 
@@ -63,29 +65,27 @@ The Asian nations again do this differently. In Hong Kong, instead of self-isola
 
 We must do this too.
 
-##### Recommendation 3: Self-isolation orders should be monitored by surveillance.
-
 ## Part II - Treatment and prophylaxis
 
 ### Treatment
+
+##### Recommendation 4: TGA should approve a 2-track approvals process to allow safe medicines that have shown promise in studies to be used early by doctors.
 
 Australia and a number of other western nations have onerous approvals processes for new therapeutics, typically requiring them to proceed to large Phase III randomised trials. This process typically takes years. However, nations that have successfully managed Covid-19 have adopted empirical approaches to new therapeutics. China, South Korea, Senegal and many other nations adopted anti-viral treatments early in the pandemic. In some cases, Senegal for example, country-wide approaches based typically on Hydroxychloroquine were adopted. In others, such as South Korea and China, a range of treatments were recommended at the discretion of doctors.
 
 At this time there are many repurposed anti-viral drugs that show promise, including controversial ones like Hydroxychloroquine, Ivermectin, and less well-known ones such as Interferons.
 
-##### Recommendation 4: TGA should approve a 2-track approvals process to allow safe medicines that have shown promise in studies to be used early by doctors.
-
 ### Prophylaxis
-
-Some countries notably India have also approved therapeutics as chemoprophylaxis, namely Hydroxychloroquine and Ivermectin. Again, however, there a number of emerging options.
 
 ##### Recommendation 5: TGA should make safe drugs that have shown promise available to be used in health-care and other high-risk patients and the elderly.
 
+Some countries notably India have also approved therapeutics as chemoprophylaxis, namely Hydroxychloroquine and Ivermectin. Again, however, there a number of emerging options.
+
 ### Vitamin D supplementation
 
-There is strong evidence that Vitamin D deficiency creates a significant risk factor for Covid-19 and may even be a driver or the main driver of the observed seasonality, of Covid-19 and other respiratory viruses. Anthony Fauci has made an informal recommendation to use Vitamin D supplements. Vitamin D deficiency may also be a side effect of social distancing, if Australians spend more time in their houses and indoors than they otherwise would have.
-
 ##### Recommendation 6: The Australian government should initiate a campaign to educate and encourage Australians to use Vitamin D supplements.
+
+There is strong evidence that Vitamin D deficiency creates a significant risk factor for Covid-19 and may even be a driver or the main driver of the observed seasonality, of Covid-19 and other respiratory viruses. Anthony Fauci has made an informal recommendation to use Vitamin D supplements. Vitamin D deficiency may also be a side effect of social distancing, if Australians spend more time in their houses and indoors than they otherwise would have.
 
 ## Part III - Containment fails
 
@@ -149,6 +149,8 @@ Lockdowns do not work. Political leaders must have the courage to hold their ner
 
 ### Superspreading
 
+##### Recommendation 7: Stage 3 restrictions and beyond must be rewritten to limit public gatherings and close or manage superspreading venues.
+
 Instead of lockdowns, the WHO had recommended banning public gatherings and closing schools. Banning public gatherings is known to be the non-pharmaceutical intervention that makes the real difference in limiting spread. But if governments feel compelled to go further, we must understand these facts:
 
 - 70% of Covid-19 infections do not infect others
@@ -159,13 +161,11 @@ Instead of lockdowns, the WHO had recommended banning public gatherings and clos
 
 We could therefore look to the example of Iceland, after its case explosion in August. The Icelandic epidemiologist ordered bars, and gyms to close. Gatherings were limited to 20 people.
 
-##### Recommendation 7: Stage 3 restrictions and beyond must be rewritten to limit public gatherings and close or manage superspreading venues.
-
 ### Backwards contact tracing
 
-Following on from the observation that Covid-19 is highly overdispersed, arises the idea of backwards contact tracing. Instead of contacting every contact of an infection, even though it is known that 70% will not be infected, better instead for contact tracers to instead focus on finding and quarantining the superspreader that started the cluster. 
-
 ##### Recommendation 8: Contact tracers must use backwards contact tracing methods.
+
+Following on from the observation that Covid-19 is highly overdispersed, arises the idea of backwards contact tracing. Instead of contacting every contact of an infection, even though it is known that 70% will not be infected, better instead for contact tracers to instead focus on finding and quarantining the superspreader that started the cluster. 
 
 ### Conclusion
 
@@ -203,6 +203,8 @@ https://www.sciencemag.org/news/2020/03/cellphone-tracking-could-help-stem-sprea
 https://www.theguardian.com/world/2020/mar/24/australias-coronavirus-self-isolation-rules-who-has-to-do-it-and-how-it-works
 
 https://www.afr.com/politics/federal/nsw-police-take-tough-approach-to-self-isolation-orders-20200401-p54fwd
+
+https://www.abc.net.au/news/2020-08-28/victorias-hotel-quarantine-inquiry-hears-guards-slept-on-the-job/12607036
 
 https://www.bbc.com/news/technology-52017993
 
