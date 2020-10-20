@@ -8,7 +8,7 @@ tags: covid
 
 ## Abstract
 
-> As Australia enters the post-pandemic world, we will be forced to make difficult public health and economic choices. Our policies currently aim to build and maintain a robust public health infrastructure for containment of Covid-19 until a vaccine is available. As we learn more about the virus, however, and as domestic and international situations evolve, our policies must be ready to adapt. In the short term, our containment strategies must further emulate those of successful countries including Taiwan, South Korea, Iceland, Senegal and others. If our containment fails, however, or if the international situation, we must be ready to adopt to other policies, even beyond containment, including Sweden's focused protection. Further lockdowns should be ruled out of consideration under any circumstances.
+> As Australia enters the post-pandemic world, we will be forced to make difficult public health and economic choices. Our policies currently aim to build and maintain a robust public health infrastructure for containment of Covid-19 until a vaccine is available. As we learn more about the virus, however, and as domestic and international situations evolve, our policies must be ready to adapt. In the short term, our containment strategies must further emulate those of successful countries including Taiwan, South Korea, Iceland, Senegal and others. If our containment fails, however, or if the international situation changes, we must be ready to adopt other policies, even beyond containment, including Sweden's focused protection. Further lockdowns should be ruled out of consideration under any circumstances.
 
 - ToC
 {:toc}
@@ -51,9 +51,19 @@ The federal government of course provided the COVIDSafe app and encouraged every
 
 ### Mandatory quarantine
 
-Perhaps even more concerning is that Australia as well as many other Western nations asks infected Covid patients to "self-isolate for 14 days". This is the critical mistake that Iceland made in August, when two French tourists were asked to "self-isolate for 14 days" and instead they went out to bars and nightclubs and caused Iceland's explosion in cases.
+Perhaps even more concerning is that Australia as well as other Western nations generally ask infected Covid-19 patients to "self-isolate for 14 days". This self-isolation is mandatory, and there are significant penalties for failing to obey. In NSW, for example, there is an $11,000 fine or a 6 months prison sentence. Other states are similar, although in the Northern Territory it is only a $1,256 fine.
 
-##### Recommendation 3: Quarantine must be mandatory and monitored by phone or other surveillance.
+These are tough penalties, although we know that people can and do breach the self-isolation orders, all the same. Spot checks in NSW had already found 14 cases of people breaching the self-isolation orders, by 1st April. In late August, during Victoria's second lockdown, it was revealed that 50 people had been fined for breaching self-isolation orders.
+
+With people known to be breaching the self-isolation orders, it should be obvious that it is only a matter of time until a Patient 31 event occurs. Indeed, this has already happened, and more than once. On 28th August it was revealed to the Victorian hotel quarantine inquiry that a security guard had been ordered to self-isolate, but breached the order. Meanwhile, in NSW, it was revealed that a hotel quarantine security guard in NSW was fine twice for breaching self-isolation orders.
+
+This same critical mistake was made in Iceland. Two French tourists arrived for a holiday and tested positive for the virus. They were ordered to self-isolate but instead went out to clubs. This caused Iceland's second wave.
+
+The Asian nations again do this differently. In Hong Kong, instead of self-isolation orders, people are given wristbands and they are monitored. Likewise in Taiwan, people ordered to isolate are monitored by phone signals and satellite.
+
+We must do this too.
+
+##### Recommendation 3: Self-isolation orders should be monitored by surveillance.
 
 ## Part II - Treatment and prophylaxis
 
@@ -189,6 +199,10 @@ https://www.youtube.com/watch?v=4AOckAZt8zQ
 https://www.abc.net.au/news/2020-07-01/can-the-government-force-you-to-take-a-coronavirus-test/12410118
 
 https://www.sciencemag.org/news/2020/03/cellphone-tracking-could-help-stem-spread-coronavirus-privacy-price
+
+https://www.theguardian.com/world/2020/mar/24/australias-coronavirus-self-isolation-rules-who-has-to-do-it-and-how-it-works
+
+https://www.afr.com/politics/federal/nsw-police-take-tough-approach-to-self-isolation-orders-20200401-p54fwd
 
 https://www.bbc.com/news/technology-52017993
 
