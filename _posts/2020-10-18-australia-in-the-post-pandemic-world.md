@@ -276,22 +276,22 @@ I am not a proponent of Sweden's herd immunity or focused protection. But it is 
 - Outbreaks could occur even after vaccination.
 - Repeated outbreaks could bring us closer to herd immunity than we are now. Focused protection could be the best way to finish off that process.
 
-### Conclusion
+## Conclusion
 
 As I write this, I am aware of huge danger, in a way I never have been before, both to public health and to Australia economy and future, posed by Covid-19. I have low confidence in the processes that are in place for containing this virus, painfully aware of how easy it is for a single mistake to lead to a superspreading event, and knowledge that Labor states in particular believe in elimination rather than suppression and have response plans based on lockdowns.
 
 In this piece, I have argued for 8 changes to Australia's Covid-19 response:
 
-1. Mandatory testing: The Australian governments must be willing to compel those who may be infected to be tested.
-1. Mandatory surveillance: We must adopt a system of virus surveillance that includes mandatory access to mobile phone location data for use by contact tracers and in quarantine.
-1. Mandatory quarantine: We must end the self-isolation for those who test positive and move to a mandatory quarantine system, ideally based on phone location tracking.
-1. Early access to therapeutics: TGA should move to a 2-track approvals process to allow safe medicines that show promise of efficacy to be used at the discretion of doctors.
-1. Early access to chemoprophylaxis: As with therapeutics, those at high risk of Covid-19 infection and death such as the elderly and health care workers should be able to access medicines that have shown promise as prophylactics.
-1. Vitamin D supplementation: Australians should be encouraged to use Vitamin D supplements to boost immunity to Covid-19.
-1. Stage 3 restrictions should be rewritten to exclusively focus on venues of superspreading such as bars, nightclubs, gyms, meat factories, etc.
-1. Backwards tracing: contact tracing methodology should focus on finding and isolating superspreaders using backwards contact tracing instead of forwards tracing based on testing all contacts.
+1. Recommendation 1: Australian governments must strongly incentivise or compel people suspected of infection to be tested.
+1. Recommendation 2: Australia must deploy surveillance to assist contract tracers and enforce quarantine.
+1. Recommendation 3: Self-isolation orders should be monitored by surveillance.
+1. Recommendation 4: TGA should make promising, safe medicines available as early antiviral treatment for at-risk populations.
+1. Recommendation 5: TGA should also make promising, safe drugs available as chemoprophylaxis in at-risk populations.
+1. Recommendation 6: The government should campaign on educating immune system health and vitamin D supplementation.
+1. Recommendation 7: Rewrite stage 3 restrictions in favour of targeted restrictions.
+1. Recommendation 8: Ban lockdowns.
 
-### References
+## References
 
 https://www.sciencemag.org/news/2020/03/coronavirus-cases-have-dropped-sharply-south-korea-whats-secret-its-success
 
