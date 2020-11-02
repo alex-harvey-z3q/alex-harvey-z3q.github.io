@@ -6,54 +6,76 @@ author: Alex Harvey
 tags: covid
 ---
 
-## Abstract
-
-> As Australia enters the post-pandemic world, we will be forced to make difficult public health and economic choices. Our policies currently aim to build and maintain a robust public health infrastructure for containment of Covid-19 until a vaccine is available. As we learn more about the virus, however, and as domestic and international situations evolve, our policies must be ready to adapt. In the short term, our containment strategies must further emulate those of successful countries including Taiwan, South Korea, Iceland, Senegal and others. If our containment fails, however, or if the international situation changes, we must be ready to adopt other policies, even beyond containment, including Sweden's focused protection. Further lockdowns should be ruled out of consideration under any circumstances.
-
 - ToC
 {:toc}
 
+## Abstract
+
+> As Australia enters the post-pandemic world, we will be forced to make difficult public health and economic choices. Our policies currently aim to build a robust public health infrastructure for containment of Covid-19 until a vaccine is available. In the event of health capacity breaching, lockdowns are used to suppress the epidemic. Recent experiences in Victoria, however, where over 800 people died, despite one of the strictest lockdowns in the world, show that our current policy framework is optimised for neither public health nor economic outcomes. In response to these inadequacies, our containment strategies must be further tightened to emulate the surveillance and quarantine approach of Taiwan, South Korea, and other successful nations of Asia. Meanwhile, if containment does fail again, we must adopt the targeted restrictions strategies used in Germanic and Scandinavian nations. Further lockdowns should be ruled out of consideration in any circumstance as they are generally not the most efficient way to suppress an epidemic, but they are always the most economically impactful.
+
 ## Introduction
 
-In February, 2020, as Covid-19, the scenes of streets deserted in South Korea provided early warning to us in Australia that a probably unstoppable viral pandemic was on its way, a matter of only time. The Korea outbreak in the city of Daegu had come a few weeks after the Chinese central government had quarantined the entire city of Wuhan, and its population of 11 million souls. A lockdown in a free country like Korea, however, seemed unlikely. Authorities in Daegu, instead, set about to test hundreds of thousands of people, as its citizens instinctively wore face masks to limit the spread.
+In February, 2020, scenes of deserted streets in South Korea gave early warning to us in Australia that a probably unstoppable viral pandemic was on its way. The outbreak in the Korean city of Daegu had come a few weeks after the central government of the People's Republic of China had quarantined the entire city of Wuhan, population 11 million.
 
-By March 17th, Science Mag wrote of South Korea's surprising success. Europe had by now become the epicenter of pandemic. Deaths were soaring in Italy, Spain, France, and Germany, and the countries of the EU had, one by one, copied the policies of China in Wuhan, and closed their borders and ordered lockdowns.
+A quarantine in a free country like South Korea, however, was never seriously considered. Authorities instead pledged to test more than 200,000 members of the Shincheonji Church of Jesus, whose followers comprised a major cluster of early cases. They also offered tests to everyone in Daegu who had cold-like symptoms, an estimated 28,000 people.
 
-Not South Korea however. South Korea's Kim Woo-Joo, an infectious disease specialist at Korea University, said:
+The measures worked. By March 17th, _Science Mag_ was writing of South Korea's surprising success. The country had contained an outbreak of more than 7,000 cumulative confirmed cases.
+
+In the mean time, however, Europe had become the new epicenter of pandemic. Deaths were soaring in Italy, Spain, France, and Germany, and the countries of the EU had, one by one, adopted the policies, not of South Korea, but of the Chinese Communist Party in Wuhan. They had closed their borders, ordered non-essential businesses to shut, and they had put their citizens in house arrest.
+
+Infectious diseases specialist Kim Woo-Joo at Korea University told _Science Mag_:
 
 > South Korea is a democratic republic, we feel a lockdown is not a reasonable choice.
 
-In this article, I make the argument that Australia's containment policies are inadequate, that success so far outside of Victoria just shows that other states have been lucky, and we must adopt both the containment policies of the Asian nations as well as their attitude towards lockdowns. That is to say, we must stop the lockdowns.
+In this article, I make eight recommendations for change to Australia's Covid-19 policies. I argue that our policies are inadequate; that failure inside Victoria was predictable; that success outside Victoria has been lucky; and that we must adopt the surveillance and quarantine policies of the successful Asian nations like South Korea. And in the event of containment failing again, we must look to the suppression strategies based on the targeted restrictions in use, for instance, in the Germanic and Scandinavian nations.
+
+I agree with South Korea that lockdowns are not a reasonable choice in a free country. Over our history, more than 100,000 Australians died in wars fighting for the freedom of their children and grandchildren. I do not believe that Covid-19 policies based on perpetual rolling lockdowns is what these Australians fought and died for. But perhaps more importantly than that, the science suggests that lockdowns are not an efficient way to suppress an epidemic anyway.
 
 ## Part I - Containment
 
-Australia began the pandemic in a lucky position. We have have no land borders, a low population density, and a warm, sunny climate. The prime minister's decision to ban travel from China was also a good decision that made a difference to the evolution of the pandemic. We also purchased a lot of test kits and implemented many tests per day. Australia was one of the leaders in tests-per-day-per-population.
+Australia began the pandemic in a lucky position. We have have sea borders, a low population density, and a warm, sunny climate. The prime minister's early decision to ban travel from China bought us valuable time. We purchased test kits and tested widely. Australia was a global leader in the number of tests we did.
 
-But Western nations have struggled with balancing personal freedoms with the need to contain a virus. Our attitudes towards freedom have been inconsistent. We need to recognise that avoiding severe and economically catastrophic losses of freedom that come from lockdowns, we must be willing to give up minor freedoms.
+But Western nations have struggled with balancing personal freedoms with the need to contain a virus. Our attitudes towards freedom have been inconsistent. We need to recognise that to avoid severe and economically catastrophic losses of freedom in lockdowns, we must be willing to give up some minor freedoms.
+
+### Patient 31 events
+
+The western world could learn a lot from the case of South Korea's Patient 31, one of the biggest superspreading events of the pandemic.
+
+Patient 31 started the outbreak in the Korean city of Daegu. On February 7th, she presented herself to hospital after a minor traffic accident. While in hospital, she developed a fever and a sore throat. The doctors advised her to get tested for Covid-19. She refused, twice apparently. She had not travelled internationally, and she believed she had a cold. Instead, she went out with a friend to a buffet.
+
+While staying in the hospital, Patient 31 attended church services at the Shincheonji Church of Jesus twice, on February 9th, and February 16th. There were 9,000 others attending the services with her, in a huge hall. During these services, she sang hymns loudly with the others.
+
+On February 17th, her symptoms worsened, and finally she agreed to be tested. She tested positive, becoming South Korea's 31st confirmed case of Covid-19. This diagram shows her movements during the infectious period:
+
+![Patient31]({{ "/assets/patient31.png" | absolute_url }})
+
+### Can Australia withstand Patient 31 events
+
+NSW has been much praised for its effective contact tracing, mostly due to comparisons with Victoria, where control of the epidemic was lost. But if Korea's Patient 31 were to attend church in Sydney, could we stop her from infecting hundreds here?
 
 ### Mandatory testing
 
-##### Recommendation 1: Australian and State governments must be willing to compel people who are suspected of infection to be tested.
+One of the mistakes made in the case of Patient 31 was that the woman was not tested. She was not tested, because she refused to be tested, more than once. If Patient 31 had been tested on February 17th, however, it is possible that the Daegu outbreak could have been avoided.
 
-The CHO in Australia has the power to enforce mandatory testing. However, he has stated that the government does not wish for testing to be mandatory. Consider the case of South Korean Patient 31. A member of religious sect, Patient 31 refused doctors advice twice to be tested. The testing came in conflict with her religious beliefs. In the end, she personally infected over 1,000 people, over a number of days. Australia cannot take such a risk of, what I will call, a Patient 31 event.
+The Chief Health Officer in Australia has the power to compel people to be tested under the Biosecurity Act. The government, however, has stated that they do not wish for testing to be mandatory. Patient 31 shows that making testing voluntary poses an unacceptable risk. Testing must be strongly incentivised or made mandatory.
+
+###### Recommendation 1: Australian governments must strongly incentivise or compel people suspected of infection to be tested.
 
 ### Mandatory surveillance
 
-##### Recommendation 2: Australia should adopt a system similar to China's or Taiwan's that allows phone location data to be used. Failing that, COVIDSafe or similar must at least be mandatory.
+Contact tracing in Australia is done manually by teams of contact tracers who speak to infected individuals, and find the contact details of others who may also have been infected. But given a virus that can spread exponentially, these methods do not scale beyond a small number of cases per day. And if contact tracing capacity is exceeded, then governments tend to order economically harmful restrictions and lockdowns. 
 
-Contact tracing in Australia is done manually by teams of contact tracers who speak to infected individuals, and find the names and contact details of others who may have been infected. But given a virus that can spread exponentially, such methods do not scale beyond a small number of cases per day. And if contact tracing capacity is exceeded, then governments tend to order economically harmful restrictions and even lockdowns. 
+In the east Asian nations, it is different. In fairness, these countries have experience with the SARS and MERS epidemics. In response to MERS, South Korea rewrote much of its infectious-disease-prevention legislation. To expand contact tracing, South Korean health authorities were given warrantless access to all CCTV footage and the geolocation data from the patients' cell phones. With access to this data, the South Koreans proved they could contain an epidemic of more than 7,000 cumulative cases after a 1,000 person cluster within a month, without the need to panic or order lockdowns.
 
-In China it is different. The central government is willing to use mobile phone data to track infections. The Chinese had an app very early in the pandemic for this. In Taiwan, everyone can be monitored by satellite and mobile phone signals. The system is used both to monitor individuals in quarantine, and also to obtain close contacts during the infectious period.
+In Australia, The federal government provided the COVIDSafe phone app and encouraged people to download it. However, only 6 million or so did download it; the campaign was undermined somewhat by spurious privacy arguments, as well as technical flaws in the app itself.
 
-Such data is invaluable in contact tracing. And considering the alternative of complete loss of freedom in lockdown, again this minor freedom must be surrendered to contain this virus.
+This pandemic should have taught us by now, especially after Victoria's disastrous second lockdown, that we must sacrifice a small amount of privacy, in order to respond to the Covid-19 and future viral pandemics.
 
-The federal government of course provided the COVIDSafe app and encouraged everyone to download it. This of course failed, and the app appears to have been of almost no use in contact tracing at all.
+###### Recommendation 2: Australia must deploy surveillance to assist contract tracers and enforce quarantine.
 
 ### Mandatory quarantine
 
-##### Recommendation 3: Self-isolation orders should be monitored by surveillance.
-
-Perhaps even more concerning is that Australia as well as other Western nations generally ask infected Covid-19 patients to "self-isolate for 14 days". This self-isolation is mandatory, and there are significant penalties for failing to obey. In NSW, for example, there is an $11,000 fine or a 6 months prison sentence. Other states are similar, although in the Northern Territory it is only a $1,256 fine.
+Perhaps even more concerning is that Australia as well as other Western nations generally ask infected Covid-19 patients to self-isolate for 14 days. These self-isolation orders are mandatory, and there are significant penalties for failing to obey. In NSW, for example, there is an $11,000 fine or a 6 months prison sentence. Other states are similar, although in the Northern Territory it is only a $1,256 fine.
 
 These are tough penalties, although we know that people can and do breach the self-isolation orders, all the same. Spot checks in NSW had already found 14 cases of people breaching the self-isolation orders, by 1st April. In late August, during Victoria's second lockdown, it was revealed that 50 people had been fined for breaching self-isolation orders.
 
@@ -61,79 +83,158 @@ With people known to be breaching the self-isolation orders, it should be obviou
 
 This same critical mistake was made in Iceland. Two French tourists arrived for a holiday and tested positive for the virus. They were ordered to self-isolate but instead went out to clubs. This caused Iceland's second wave.
 
-The Asian nations again do this differently. In Hong Kong, instead of self-isolation orders, people are given wristbands and they are monitored. Likewise in Taiwan, people ordered to isolate are monitored by phone signals and satellite.
+The Asian nations again do this differently. In South Korea, the elderly and those with serious illness go straight to hospitals. The moderately sick are sent to quarantine camps, where they are monitored by the surveillance. And then only the asymptomatics and contacts of recently diagnosed cases are asked to self-isolate at home, and use separate bathrooms, dishes, and towels from their cohabitants. In Hong Kong, people are given wristbands and they are also monitored.
 
 We must do this too.
 
+###### Recommendation 3: Self-isolation orders should be monitored by surveillance.
+
 ## Part II - Treatment and prophylaxis
 
-### Treatment
+Another key departure from the Western and Asian responses epidemics and pandemics is the attitude towards therapeutics and prophylaxis. On the 13th February, based on the best advice of Chinese doctors, the Korean COVID-19 Central Clinical Task Force agreed on early treatment principles for patients with COVID-19. They decided: if patients were old or had underlying conditions with serious symptoms, physicians were to consider an antiviral treatment. Treatments were based on the HIV medication Kaletra, as well as the anti-Malarials Chloroquine and Hydroxychloroquine.
 
-##### Recommendation 4: TGA should approve a 2-track approvals process to allow safe medicines that have shown promise in studies to be used early by doctors.
+The same is true for most of Asia.
 
-Australia and a number of other western nations have onerous approvals processes for new therapeutics, typically requiring them to proceed to large Phase III randomised trials. This process typically takes years. However, nations that have successfully managed Covid-19 have adopted empirical approaches to new therapeutics. China, South Korea, Senegal and many other nations adopted anti-viral treatments early in the pandemic. In some cases, Senegal for example, country-wide approaches based typically on Hydroxychloroquine were adopted. In others, such as South Korea and China, a range of treatments were recommended at the discretion of doctors.
+### Therapeutics
 
-At this time there are many repurposed anti-viral drugs that show promise, including controversial ones like Hydroxychloroquine, Ivermectin, and less well-known ones such as Interferons.
+Australia and many other western nations including the United States have onerous approvals processes for new therapeutics. Cynics observe that these processes seem to favour the big drug companies and their patented new drugs. Bringing a new therapeutic to market typically involves succeeding in a large scale Phase III clinical trial. This usually takes years.
 
-### Prophylaxis
+The ongoing controversy surrounding the anti-Malarial drug Hydroxychloroquine is instructive. At the time of writing, at least 126 studies have looked at the efficacy of Hydroxychloroquine, making it one of the most well-studied drugs in history. A recent meta-analysis published in the journal _Clinical Microbiology and Infection_ found that Hydroxychloroquine lowers mortality risk by a statistically significant 21%. 
 
-##### Recommendation 5: TGA should make safe drugs that have shown promise available to be used in health-care and other high-risk patients and the elderly.
+This is not a large effect, but Hydroxychloroquine has a number of other advantages: its use over 65 years means its safety profile and associated risks are well-understood. It is usually well-tolerated with few, if any, side effects. It is a cheap drug that is administered orally. And many nations including Australia have already stockpiled it. 
 
-Some countries notably India have also approved therapeutics as chemoprophylaxis, namely Hydroxychloroquine and Ivermectin. Again, however, there a number of emerging options.
+But Hydroxychloroquine is not only candidate for drug repurposing. To name a few others that also show promise, there is the anti-parasitic Ivermectin, which is backed by credible Australian research; over-the-counter cough suppressants Ambroxol and Bromhexine; and the SSRI anti-depressant Fluvoxamine (Luvox).
 
-### Vitamin D supplementation
+###### Recommendation 4: TGA should make promising, safe medicines available as early antiviral treatment for at-risk populations.
 
-##### Recommendation 6: The Australian government should initiate a campaign to educate and encourage Australians to use Vitamin D supplements.
+### Chemoprophylaxis
 
-There is strong evidence that Vitamin D deficiency creates a significant risk factor for Covid-19 and may even be a driver or the main driver of the observed seasonality, of Covid-19 and other respiratory viruses. Anthony Fauci has made an informal recommendation to use Vitamin D supplements. Vitamin D deficiency may also be a side effect of social distancing, if Australians spend more time in their houses and indoors than they otherwise would have.
+Related to therapeutics are prophylactics. India in particular has deployed chemoprophylaxis to at-risk health care workers, notably Hydroxychloroquine and lately Ivermectin, since early in the pandemic. As with vaccines, proving efficacy is large-scale Phase III trials is extremely difficult, but there is enough evidence of efficacy in a few to be hopeful and to make these drugs available to at-risk health care workers and others who wish to use them.
+
+###### Recommendation 5: TGA should also make promising, safe drugs available as chemoprophylaxis in at-risk populations.
+
+### Immune system health
+
+The emerging northern hemisphere seasonal second wave of Covid-19 infections has made it clear that the virus is highly seasonal. And one of the leading theories of the drivers of seasonal respiratory infection is that shorter day light hours and more time spent indoors leads to winter-time vitamin D deficiency and generally weaker immune system health, making the population more susceptible to infection and severe infection.
+
+In a recent clinical trial, Spanish researchers found that patients treated with 25-hydroxyvitamin D (calcifediol) had a 94.2% reduced risk of being admitted to ICU, p=0.001.
+
+There is, at the time of writing, more than enough evidence to justify a government campaign to educate people on the need to eat, sleep well, and consider under direction of a pharmacist or doctor vitamin D supplementation.
+
+###### Recommendation 6: The government should campaign on educating immune system health and vitamin D supplementation.
 
 ## Part III - Containment fails
 
-The policies of Taiwan have, so far, contained Covid-19 in their city-state. They crushed their first wave, and have had no appreciable second wave. Australia, meanwhile, has natural advantages relative to Taiwan, including a better climate, and a lower population density.
+The policies of Taiwan have, so far, contained Covid-19 within their city-state. They crushed their first wave, and have had no appreciable second wave. Australia, meanwhile, has natural advantages relative to Taiwan, including a better climate, and a lower population density.
 
 This section discusses the worst case. What happens if, despite implementing policies like Taiwan, we still lose control of the epidemic. Here, I argue that we should _not_ continue with lockdowns, curfews and stay-at-home orders, but instead switch to policies that attempt to prevent superspreading events.
 
-### Overdispersion and superspreading events
+### Overdispersion and superspreading
 
-##### Recommendation 7: Rewrite stage 3 with restrictions that prevent superspreading events. Remove Stage 4 lockdowns completely.
+Returning to South Korea's Patient 31, this single superspreader event exposed over 1,000 individuals and may have infected hundreds. Meanwhile, the virus's basic reproduction number (R0) is thought to be 2.2 or so. This means that each on average, an infected individual infects 2.2 other people.
 
-Instead of lockdowns, the WHO had recommended banning public gatherings and closing schools. Banning public gatherings is known to be the non-pharmaceutical intervention that makes the real difference in limiting spread. But if governments feel compelled to go further, we must understand these facts:
+SARS-CoV-2 however is known to be highly "overdispersed". This means that while a group of 10 infected individuals might cause 25 other infections, just one of those might infect 20 people, while the remaining nine combine to infect only five.
 
-- 70% of Covid-19 infections do not infect others
-- The virus tends to spread via airborne aerosols
-- Indoor venues with poor ventilation are associated with superspreading events, such as bars, nightclubs, churches
-- Cool and damp conditions are especially favourable to superspreading, such as meat factories
-- Time spent in these locations is associated with superspreading.
+![Overdispersion]({{ "/assets/overdispersion.png" | absolute_url }})
 
-We could therefore look to the example of Iceland, after its case explosion in August. The Icelandic epidemiologist ordered bars, and gyms to close. Gatherings were limited to 20 people.
+#### Targeted measures not full lockdowns
 
-### Backwards contact tracing
+As far as pandemic mitigation goes, an important consequence follows immediately from this: If we removed that 1 person who infected 20 others, _the reproduction number of the remaining 9 is already less than 1_. There would be no need for any social distancing and other non-pharmaceutical interventions.
 
-##### Recommendation 8: Contact tracers must use backwards contact tracing methods.
+Contact tracers already use a method of tracing known as _backwards tracing_ in some states and other states are in the process of adopting the method. This method aims to trace cases specifically backwards to find the superspreader that infected them, remembering there there is a 70% chance that an infected individual has not themselves infected anyone else.
 
-Following on from the observation that Covid-19 is highly overdispersed, arises the idea of backwards contact tracing. Instead of contacting every contact of an infection, even though it is known that 70% will not be infected, better instead for contact tracers to instead focus on finding and quarantining the superspreader that started the cluster. 
+The other way to stop superspreading is to target the types of venues that are associated with high transmission. These venues tend to be almost always indoors, are places where people gather for a long time, are overcrowded, poorly ventilated, and where people may talk loudly, or sing, or shout. So, many outbreaks have occurred in choirs, bars, meat factories, etc.
 
-### Why lockdowns are not useful
+Iceland is a good example of a country that has adopted targeted measures instead of lockdowns. After Iceland lost control of the epidemic in September, they have closed gyms, bars, and nightclubs, and have limited gatherings to 20 people. Prior to this they had already mandated face masks on public transport. Their epidemic curve at the time of writing appears to have peaked, implying that these measures did lower R below 1.
 
-#### Very early lockdowns
+![Iceland]({{ "/assets/iceland.png" | absolute_url }})
 
-On August 18th, the government of New Zealand ordered a _second_ lockdown after the country recorded a tiny 13 cases after months of no transmission. Notice that if NSW had initiated lockdowns each time it recorded 13 cases, the state of NSW would have been in lockdown as much as Victoria. The following chart shows cases-per-day in NSW over 6 months (source: covid19data.com.au):
+###### Recommendation 7: Rewrite stage 3 restrictions in favour of targeted restrictions.
+
+### Against full lockdowns
+
+#### Expert opinion in January
+
+On 23rd January, 2020, the central government of China quarantined the entire city of Wuhan, as well as other cities in Hubei, in an effort to stop Covid-19 spreading to other cities. This was the first time in modern history that a huge city of 11 million people had been quarantined; it became known in the media as the "Wuhan lockdown" (武汉封城).
+
+The attitude of the WHO towards the move was ambiguous. “The lockdown of 11 million people is unprecedented in public health history,” said Gauden Galea, the WHO’s representative in Beijing. The WHO continued to not recommend restrictions on travel or trade. WHO chief Tedros Adhanom Ghebreyesus said, “China has taken measures it believes is appropriate to contain the spread of coronavirus in Wuhan and other cities. We hope they will be both effective and short in their duration".
+
+Outside of the WHO, other epidemiologists also expressed great skepticism on the lockdown. Wired Magazine wrote that, "Travel bans and quarantines are a centuries-old answer to the spread of disease," and also "exactly what the World Health Organization asked everyone _not_ to do". The WHO had advised against travel and trade restrictions, because "almost no one in the game thinks that works". James Hamblin, M.D. (Yale School of Public Health), writing in the Atlantic, called the lockdown a "radical experiment", and despite "an especially high mortality rate", "[t]he moderately virulent nature of the pathogen seems at odds with the fact that the largest quarantine in human history is now taking place in an authoritarian state". Hamblin's article is worth reading in full as a statement of the prevailing attitudes of epidemiologists at the time.
+
+Notice here crucially that this professional consensus against travel bans and trade restrictions came at a time when the case fatality rate of the virus was considered to be much higher at 2-4% and the virus was considered to be more infectious.
+
+#### Expert opinion in October
+
+Of course we know so much more about the virus today, in October, 2020, than we did in January. James Hamblin, for instance, has apparently changed his mind, and is a vocal proponent of lockdowns. Less clear is what the evidence is that caused him to change his mind. Does it mean that everyone changed their mind?
+
+I don't think so. On October 4th, in Great Barrington, Massachussets, three distinguished epidemilogists from Oxford, Stanford and Harvard, wrote a document opposing lockdowns, known as the Great Barrington Declaration. At the time of writing, it had gathered the signatures of 11,600 "public health experts", 33,000 doctors, and 604,000 citizens.
+
+A few weeks later, on October 16th, an opposing declaration was published in _The Lancet_, called the Jon Snow Memorandum. This document opposed the so-called "herd immunity" strategy mentioned in the Great Barrington Declaration, and instead called for containment at any cost. At this time, it is signed by only 6,400 academics. Many of these academics appear to be public health experts, although it appears open to anyone with a Ph.D. I easily found computer scientists, climate scientists etc, in the list.
+
+Let me be very clear about this: _I do not support either of these declarations_. All the same, the vastly higher number of public health scientists and doctors signing onto the Great Barrington Declaration suggests that support for lockdowns and quarantines continues to be a minority view. Whereas many scientists prefer to keep out of public controversies.
+
+#### Empirical evidence for lockdowns
+
+
+#### Household transmission
+
+Ben Cowling, professor of infectious disease epidemiology at the University of Hong Kong, noted in March that China had paired its lockdown with rigorous containment measures, including widespread testing, isolation of those infected, and quarantining of contacts who might be infected. This was not, however, done in Australia, or anywhere else in the West.
+
+It turns out that the baseline risk of being infected in your home by a housemate or family member is quite low. A large Danish household found that there is only a 17% chance of being infected, all other things being equal. The CEBM says it is 16%.
+
+In a Chinese meta-analysis studying secondary attack rates in households, the authors conclude:
+
+> All these challenge the value of home isolation for COVID-19 patients, as it may put household members at high risk of infection, propagating the disease. When the hospital isolation of all cases becomes unfeasible, other sheltering facilities, such as the Fangcang Shelter Hospital used in Wuhan, China, might be a better option.2
+
+Of course, stay-at-home orders during lockdown are likely to increase this risk of household transmission in two ways:
+
+1. More time spent indoors with people increases the risk of transmission.
+1. More time spent indoors weakens the immune system, especially causing vitamin D deficiency.
+
+But this is not merely theoretical. Observational evidence exists from huge seroprevalence studies. A study of 60,000 workers in Spain found that 6.3% of confined workers had been infected compared to only 5.3% of essential workers. These include hospital workers and police and others who should have been a far greater risk of infection - if lockdowns worked as advertised! A bit later, similar results were found in Italy.
+
+#### Herd immunity in New York City
+
+Serology studies in New York City had already found by May, 23% antibody prevalence. Modeling studies out of Isreal and the United States had gone further and predicted that New York City had already reached herd immunity. And at the time of writing, New York City is one of a handful of regions in the northern hemisphere that is not seeing a ferocious second seasonal wave, as shown in the following chart:
+
+![Newyork]({{ "/assets/newyork.png" | absolute_url }})
+
+But what about Governor Cuomo's strict lockdown? On March 20th, Cuomo had, so he said, in his "New York City on PAUSE" executive order. Non-essential workers were confined to their houses. Meanwhile, non-essential businesses were ordered to close.
+
+But if New York City reached herd immunity, despite Cuomo's strict lockdown, it would appear that herd immunity, not the lockdown, is what actually ended the epidemic.
+
+#### Spurious correlations
+
+Government and media communication around the world have always presented lockdowns as the primary cause of suppression of our epidemics. On Italy's lockdown, for example, _Business Insider_'s headline read: "_Italy and Spain have started to slow the coronavirus with total lockdowns — but France is yet to feel the effects. Here's how long it's taking to work_". Or CNN: "_Italian doctors hope for a sign the coronavirus lockdown is working, because there's no plan B_".
+
+Indeed, early in the pandemic, it was widely communicated that epidemics follow an _exponential curve_. This is really not true however. Epidemics in fact follow a well-known curve in epidemiology called the _epidemic curve_ or _epi curve_ for short. The following chart shows the epidemic curve of Swine Flu in Australia in 2009. Remember that the Australian government gave up early on containing the Swine Flu epidemic, so this helps us to guess what our epidemics would have looked like without any intervention:
+
+![Swineflu]({{ "/assets/swineflu.png" | absolute_url }})
+
+We must remember, therefore, that the assumption that our lockdowns flattened the epidemic curves is not proven. We don't know, for example, if the lockdowns did it, or if widespread testing, tracing, and isolating infections did it. Certainly, South Korea flattened their Daegu curve using only test, trace, isolate, and Australia was a world leader in ttests per day.
+
+#### Early lockdowns
+
+A number of states did use lockdowns very early and if used early, there are some common sense reasons to believe that the lockdowns are effective in suppressing an emerging outbreak. Some states, including Queensland and New Zealand, locked down when there were hardly any cases at all. The reason for these early lockdowns was said to be to give public health autorities time to prepare the health infrastructure during the second wave.
+
+But on August 18th, the government of New Zealand ordered a _second_ lockdown after the country recorded a tiny 13 cases after months of no transmission. But lockdowns used as early as New Zealand did in August suggest that that country has no intention to ever use test, trace, isolate to suppress an epidemic. Lockdown would always be the preferred method of containment.
+
+Notice that if NSW had initiated lockdowns each time it recorded 13 cases, the state of NSW would have been in lockdown during 2020 as much as Victoria. The following chart shows cases-per-day in NSW over 6 months (source: covid19data.com.au):
 
 ![NSW]({{ "/assets/nsw_cases.png" | absolute_url }})
 
-The longer-term economic consequences of New Zealand's experiments with rolling lockdowns are yet to be felt. The government has so far spent 20% of GDP, its JobSeeker-equivalent has flowed to almost 60% of workers. We will know in years to come how much of this burden has been shifted onto New Zealand's children and grandchildren.
+The longer-term economic consequences of New Zealand's experiments with rolling lockdowns are yet to be felt. The government has so far spent 20% of GDP, its JobSeeker-equivalent has flowed to almost 60% of workers.
 
-#### Victoria's late lockdown
+We will know in years to come how much of this burden has been shifted onto New Zealand's children and grandchildren.
 
-The lockdown implemented in Victoria meanwhile came earlier enough to eventually suppress the epidemic (probable but not certain), but not early enough to avoid over 800 deaths. The economic consequences to Victoria appear more severe even than in New Zealand, so Victoria's late lockdown appears to be a worst-of-all-worlds scenario. 
+#### Lockdowns have no place
 
-#### EU's very late lockdowns
+The uncomfortable but inescapable conclusion is that lockdowns have no place in modern pandemic management. We have to choose one:
 
-Meanwhile, lockdowns in Europe in the first wave appear to have come so late in the epidemic that the epidemic was already in decline at the time of lockdown orders. These very late lockdowns appear to have had no impact at all on the evolution of the epidemic and could even have exacerbated indoor spread.
+1. Will we be South Korea and use test, trace, isolate contain 7,000 cases in the Daegu outbreak?
+1. Or will we be New Zealand and shut the entire country to contain 13 cases in the Christchurch Hotel outbreak?
 
-#### Lockdowns have no place in pandemic management
-
-The uncomfortable but inescapable conclusion is that lockdowns have no place in modern pandemic management. Indeed, WHO pandemic preparedness documents do not, and have never, recommended lockdowns. The following screenshot shows the WHO's 2005 pandemic preparedness checklist section on social distancing and quarantine. Lockdowns are not mentioned in any documents:
+WHO pandemic preparedness documents do not, and have never, recommended lockdowns. The following screenshot shows the WHO's 2005 pandemic preparedness checklist section on social distancing and quarantine. Lockdowns are not mentioned in any documents:
 
 ![Checklist]({{ "/assets/checklist.png" | absolute_url }})
 
@@ -145,7 +246,9 @@ Similarly, countries like Germany, Norway, Switzerland and others already conced
 
 The case of the New Zealand lockdowns is interesting. According to WHO advice, updated in this pandemic, their first lockdown _may_ have been justifiable, but only if they had used that time to build containment infrastructure. But the fact of a second lockdown at only 13 cases is clearly not justifiable in terms of any pandemic best practice.
 
-Lockdowns do not work. Political leaders must have the courage to hold their nerves, even if cases are increasing exponentially. The next section discusses the alternative.
+Lockdowns do not work. Political leaders must have the courage to hold their nerves, even if cases appear to be increasing exponentially.
+
+###### Recommendation 8: Ban lockdowns.
 
 ## Part IV - Focused protection
 
@@ -164,6 +267,14 @@ The following chart shows excess mortality over a number of years in Sweden, the
 ![Excess]({{ "/assets/Sweden_excess.png" | absolute_url }})
 
 Another factor that also no doubt contributed to Sweden's high death rate in the first wave is also that excess mortality had been well below average in Sweden over the previous two years, leading to a build-up in people who were at high-risk of death from respiratory infection.
+
+### Scenarios of focused protection
+
+I am not a proponent of Sweden's herd immunity or focused protection. But it is easy to imagine scenarios where we might choose to adopt this:
+
+- The virus could mutate to become less lethal.
+- Outbreaks could occur even after vaccination.
+- Repeated outbreaks could bring us closer to herd immunity than we are now. Focused protection could be the best way to finish off that process.
 
 ### Conclusion
 
@@ -227,3 +338,19 @@ https://www.reuters.com/article/us-health-coronavirus-iceland-idUSKBN26Q1Q6
 https://www.lshtm.ac.uk/newsevents/news/2020/backward-contact-tracing-could-help-double-effectiveness-test-trace-system
 
 https://c19study.com/d
+
+https://www.abc.net.au/radionational/programs/lifematters/how-backward-contact-tracing-could-help-us-get-to-covid-normal/12744874
+
+https://time.com/5796425/china-coronavirus-lockdown/
+
+https://www.cebm.net/study/the-characteristics-of-household-transmission-of-covid-19/
+
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7446647/?fbclid=IwAR0RnlHcrNSjRWt5JDuuLVL9_Wo2y3R_6HjW0XHNR20yhzEEcLuVPy1hMSA
+
+https://www.businessinsider.com.au/how-long-took-spain-italy-france-lockdowns-to-slow-coronavirus-2020-4?r=US&IR=T
+
+https://edition.cnn.com/2020/03/18/europe/italy-coronavirus-lockdown-intl/index.html
+
+https://www.nejm.org/doi/full/10.1056/nejmp0910445
+
+https://www.gizmodo.com.au/2020/08/south-korea-holds-off-imposing-maximum-social-distancing-measures-as-cases-surge/
