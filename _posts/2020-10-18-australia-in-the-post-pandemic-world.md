@@ -35,15 +35,15 @@ I agree with South Korea that lockdowns are not a reasonable choice in a free co
 
 Australia began the pandemic in a lucky position. We have have sea borders, a low population density, and a warm, sunny climate. The prime minister's early decision to ban travel from China bought us valuable time. We purchased test kits and tested widely. Australia was a global leader in the number of tests we did.
 
-But Western nations have struggled with balancing personal freedoms with the need to contain a virus. Our attitudes towards freedom have been inconsistent. We need to recognise that to avoid severe and economically catastrophic losses of freedom in lockdowns, we must be willing to give up some minor freedoms.
+But Western nations have struggled with balancing ideals of freedom with the needs of containing a virus. Our attitudes have been quite inconsistent. We must recognise that to avoid the severe and economically catastrophic losses of freedom in lockdowns, we must be willing to give up some minor freedoms.
 
 ### Patient 31 events
 
 The western world could learn a lot from the case of South Korea's Patient 31, one of the biggest superspreading events of the pandemic.
 
-Patient 31 started the outbreak in the Korean city of Daegu. On February 7th, she presented herself to hospital after a minor traffic accident. While in hospital, she developed a fever and a sore throat. The doctors advised her to get tested for Covid-19. She refused, twice apparently. She had not travelled internationally, and she believed she had a cold. Instead, she went out with a friend to a buffet.
+Patient 31 started the outbreak in the Korean city of Daegu. On February 7th, this patient, a woman in her 60s, presented herself to hospital after a minor traffic accident. While in hospital, she developed a fever and sore throat. The doctors advised her to get tested for Covid-19. She refused, twice apparently. She had not travelled internationally, and she believed she had a cold. Instead, she went out with a friend to a buffet.
 
-While staying in the hospital, Patient 31 attended church services at the Shincheonji Church of Jesus twice, on February 9th, and February 16th. There were 9,000 others attending the services with her, in a huge hall. During these services, she sang hymns loudly with the others.
+While staying in the hospital, she attended church services at the Shincheonji Church of Jesus twice, on February 9th, and February 16th. There were 9,000 others attending the services with her, in a huge hall. During these services, she sang hymns loudly with the others.
 
 On February 17th, her symptoms worsened, and finally she agreed to be tested. She tested positive, becoming South Korea's 31st confirmed case of Covid-19. This diagram shows her movements during the infectious period:
 
