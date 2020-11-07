@@ -131,7 +131,7 @@ The figure shows that the autumnal Covid-19 surge in the northern hemisphere is 
 
 But Hope-Simpson's idea was well-supported prior to the pandemic. A literature review in 2006 (Cannell et al, _Epidemiol Infect_) had concluded that vitamin D deficiency may indeed be the driver of seasonality. Then in 2010, a Japanese randomised control trial demonstrated that vitamin D3 supplements given to children reduced the risk of influenza A infection, by over 75%.
 
-It could be that this pandemic, however, has provided the clearest evidence of vitamin D as the seasonal driver. In particular, a recent randomised control trial from Spain showed that early calcifediol (25-hydroxyvitamin D) treatment of hospitalised Covid-19 patients reduced risk of progression to intensive care by 94%. Also notable was a huge observational study in the US that studied 191,779 patients and found Covid-19 infection to be strongly correlated to circulating 25-hydroxyvitamin D levels. Another study from Spain found that 80% of 216 hospitalised Covid-19 patients compared to 197 matched from the general population had vitamin D deficiency.
+Turning how to Covid-19-specific observations, a randomised control trial from Spain recently showed that early calcifediol (25-hydroxyvitamin D) treatment in hospitalised Covid-19 patients reduced risk of progression to intensive care by 94%. Also notable was a huge observational study in the US that studied 191,779 patients and found Covid-19 infection to be strongly correlated to circulating 25-hydroxyvitamin D levels. Another study from Spain found that 80% of 216 hospitalised Covid-19 patients compared to 197 matched from the general population had vitamin D deficiency.
 
 #### Calls from experts
 
