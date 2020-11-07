@@ -115,23 +115,23 @@ Related to therapeutics are prophylactics. India in particular has deployed chem
 
 ### Vitamin D supplementation
 
-The emerging northern hemisphere second wave of Covid-19 infections has made it clear that this virus is highly seasonal. But what is seasonality really? The seasonality of viral infections is thought to be driven by changes in sunlight, temperature and humidity.
+The Covid-19 second wave in the northern hemisphere has made it clear that this virus is highly seasonal. But why are viruses seasonal? In general, it is assumed that viral seasonality is driven by changes in sunlight, temperature and humidity.
 
-In this section, I argue that the latest evidence suggests that sunlight and its impact on vitamin D status may be the main driver of seasonality, and that vitamin D supplementation may have a large effect on slowing Covid-19 transmission.
+In this section, I show that emerging evidence suggests that sunlight and its impact on vitamin D levels could be the main driver of seasonality. Vitamin D supplementation, therefore, could have a large effect on slowing Covid-19 transmission.
 
 #### Hope-Simpon's seasonal stimulus
 
-The idea that seasonality might be linked to sunlight was first proposed in 1981 by British epidemiologist Edgar Hope-Simpson. At the time, his hypothesis was not taken seriously, but, in the years since, evidence has mounted that vitamin D, a hormone that is created when sunlight strikes the skin, plays a key role in our immune system and protects us from viral infections.
+The idea that seasonality might be linked to sunlight was first proposed by British epidemiologist Edgar Hope-Simpson, in 1981. Back then, his hypothesis was not taken seriously, although, in the years since, evidence has mounted that vitamin D, a hormone that is created when sunlight strikes the skin, plays a key role in our immune system and protects us from viral infections.
 
 A picture is sometimes worth a thousand words, and I think this figure from a recent paper from UC Louvain, Belgium, is such a picture.
 
 ![VitD]({{ "/assets/vitD_latitude.png" | absolute_url }})
 
-The figure shows that the autumnal Covid-19 surge in the northern hemisphere is highly correlated to latitude, and not correlated at all to temperature. This does suggest that sunlight and vitamin D status could be the main driver of seasonality.
+The figure shows that the autumnal Covid-19 surge in the northern hemisphere is highly correlated to latitude, and not correlated at all to temperature. This would tend to suggest that sunlight is indeed the driver of seasonality, for Covid-19 anyway.
 
-Prior to this, a literature review in 2006 (Cannell et al, _Epidemiol Infect_) had concluded that Vitamin D deficiency may indeed be Hope-Simpson's "seasonal stimulus". A randomised control trial then demonstrated that Vitamin D3 supplements given to children reduced the risk of influenza A infection, by over 75%.
+But Hope-Simpson's idea was well-supported prior to the pandemic. A literature review in 2006 (Cannell et al, _Epidemiol Infect_) had concluded that vitamin D deficiency may indeed be the driver of seasonality. Then in 2010, a Japanese randomised control trial demonstrated that vitamin D3 supplements given to children reduced the risk of influenza A infection, by over 75%.
 
-But it is in this pandemic that the clearest evidence of vitamin D status as seasonal driver has appeared. In particular, a recent randomised control trial from Spain showed that early calcifediol (25-hydroxyvitamin D) treatment of hospitalised Covid-19 patients reduced risk of progression to intensive care by 94%. A huge observational study in the US, Kaufman et al (PLOS One, 2020) analysed 191,779 patients and found Covid-19 infection was strongly correlated with circulating 25-hydroxyvitamin D levels. Another study from Spain found that 80% of 216 hospitalised Covid-19 patients compared to 197 matched from the general population had vitamin D deficiency.
+It could be that this pandemic, however, has provided the clearest evidence of vitamin D as the seasonal driver. In particular, a recent randomised control trial from Spain showed that early calcifediol (25-hydroxyvitamin D) treatment of hospitalised Covid-19 patients reduced risk of progression to intensive care by 94%. Also notable was a huge observational study in the US that studied 191,779 patients and found Covid-19 infection to be strongly correlated to circulating 25-hydroxyvitamin D levels. Another study from Spain found that 80% of 216 hospitalised Covid-19 patients compared to 197 matched from the general population had vitamin D deficiency.
 
 #### Calls from experts
 
