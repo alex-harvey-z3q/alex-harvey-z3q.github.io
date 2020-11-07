@@ -113,15 +113,37 @@ Related to therapeutics are prophylactics. India in particular has deployed chem
 
 ###### Recommendation 5: TGA should also make promising, safe drugs available as chemoprophylaxis in at-risk populations.
 
-### Immune system health
+### Vitamin D supplementation
 
-The emerging northern hemisphere seasonal second wave of Covid-19 infections has made it clear that the virus is highly seasonal. And one of the leading theories of the drivers of seasonal respiratory infection is that shorter day light hours and more time spent indoors leads to winter-time vitamin D deficiency and generally weaker immune system health, making the population more susceptible to infection and severe infection.
+The emerging northern hemisphere second wave of Covid-19 infections has made it clear that this virus is highly seasonal. But what is seasonality really? The seasonality of viral infections is thought to be driven by changes in sunlight, temperature and humidity.
 
-In a recent clinical trial, Spanish researchers found that patients treated with 25-hydroxyvitamin D (calcifediol) had a 94.2% reduced risk of being admitted to ICU, p=0.001.
+In this section, I argue that the latest evidence suggests that sunlight and its impact on vitamin D status may be the main driver of seasonality, and that vitamin D supplementation may have a large effect on slowing Covid-19 transmission.
 
-There is, at the time of writing, more than enough evidence to justify a government campaign to educate people on the need to eat, sleep well, and consider under direction of a pharmacist or doctor vitamin D supplementation.
+#### Hope-Simpon's seasonal stimulus
 
-###### Recommendation 6: The government should campaign on educating immune system health and vitamin D supplementation.
+The idea that seasonality might be linked to sunlight was first proposed in 1981 by British epidemiologist Edgar Hope-Simpson. At the time, his hypothesis was not taken seriously, but, in the years since, evidence has mounted that vitamin D, a hormone that is created when sunlight strikes the skin, plays a key role in our immune system and protects us from viral infections.
+
+A picture is sometimes worth a thousand words, and I think this figure from a recent paper from UC Louvain, Belgium, is such a picture.
+
+![VitD]({{ "/assets/vitD_latitude.png" | absolute_url }})
+
+The figure shows that the autumnal Covid-19 surge in the northern hemisphere is highly correlated to latitude, and not correlated at all to temperature. This does suggest that sunlight and vitamin D status could be the main driver of seasonality.
+
+Prior to this, a literature review in 2006 (Cannell et al, _Epidemiol Infect_) had concluded that Vitamin D deficiency may indeed be Hope-Simpson's "seasonal stimulus". A randomised control trial then demonstrated that Vitamin D3 supplements given to children reduced the risk of influenza A infection, by over 75%.
+
+But it is in this pandemic that the clearest evidence of vitamin D status as seasonal driver has appeared. In particular, a recent randomised control trial from Spain showed that early calcifediol (25-hydroxyvitamin D) treatment of hospitalised Covid-19 patients reduced risk of progression to intensive care by 94%. A huge observational study in the US, Kaufman et al (PLOS One, 2020) analysed 191,779 patients and found Covid-19 infection was strongly correlated with circulating 25-hydroxyvitamin D levels. Another study from Spain found that 80% of 216 hospitalised Covid-19 patients compared to 197 matched from the general population had vitamin D deficiency.
+
+#### Calls from experts
+
+In recent weeks, experts have increasingly called for government interventions in the northern hemisphere to address vitamin D deficiency as a means of slowing tranmission. In the UK, where 40% are estimated to suffer vitamin D deficiency in winter, a group of experts are calling for vitamin D fortification in foods to protect against vitamin D deficiency. (Note that Australia already fortifies some foods to a minimum of 220 IU vitamin D per 100g food in some milks, yoghurts, and table confections.) In a letter by two digestive endoscopists to the editors of a journal, it was noted that the north-south gradient in Covid-19 mortality appeared correlated to vitamin D deficiency. They recommended vitamin D prophylaxis without overdosing. In Scotland, a decision has already been made to give free vitamin D supplements to the Scots at most risk of severe Covid-19 disease. And in the Netherlands, media campaigning on the vitamin D issue has led to many in the population taking supplements.
+
+#### Vitamin D deficiency in Australia
+
+It may come as a surprise to learn that Australia, despite its abundant sunlight, has problems with vitamin D deficiency. This is actually often the case in sunny countries like Australia, as people avoid sunlight due to concerns about sunburn and skin cancer. In fact, almost one quarter (23.5%) of Australians are estimated to have vitamin D deficiency, a figure that rises to 36% in the winter. And, unsurprisingly, the southeastern states of Victoria and Tasmania have the highest rates, 49% and 43% respectively. And Victoria, of course, is where the seasonal second wave hit Australia hardest.
+
+In summary, it may be premature to conclude that vitamin D status is the main driver of Covid-19's seasonality. But there is more than enough evidence to justify a government campaign to educate people on getting adequate sunlight and considering vitamin D supplementation. There is probably enough evidence to justify a policy similar to Scotland's, of giving free supplements to the at-risk group.
+
+###### Recommendation 6: The government should campaign to eradicate vitamin D deficiency in Australia.
 
 ## Part III - Containment fails
 
@@ -354,3 +376,15 @@ https://edition.cnn.com/2020/03/18/europe/italy-coronavirus-lockdown-intl/index.
 https://www.nejm.org/doi/full/10.1056/nejmp0910445
 
 https://www.gizmodo.com.au/2020/08/south-korea-holds-off-imposing-maximum-social-distancing-measures-as-cases-surge/
+
+https://www.sciencedirect.com/science/article/pii/S1198743X14610910
+
+https://www.theguardian.com/world/2020/oct/31/add-vitamin-d-bread-milk-help-fight-covid-urge-scientists-deficiency-supplements
+
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4152924/
+
+https://onlinelibrary.wiley.com/doi/10.1111/apt.15752
+
+https://www.thetimes.co.uk/article/coronavirus-in-scotland-vulnerable-will-receive-vitamin-d-supplements-zc8stdh
+
+https://www.noordhollandsdagblad.nl/cnt/DMF20201030_79473537/run-op-vitamine-d-na-nieuws-over-gunstige-effecten-bij-corona-lege-schappen-in-hilversumse-drogisterijen-het-is-gewoon-niet-aan-te-slepen?utm_source=google&utm_medium=organic
