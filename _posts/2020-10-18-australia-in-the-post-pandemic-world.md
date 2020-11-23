@@ -11,7 +11,7 @@ tags: covid
 
 ## Abstract
 
-> As Australia enters the post-pandemic world, we will be forced to make difficult public health and economic choices. Our policies currently aim to build a robust public health infrastructure for containment of Covid-19 until a vaccine is available. In the event of health capacity breaching, lockdowns are used to suppress the epidemic. Recent experiences in Victoria, however, where over 800 people died, despite one of the strictest lockdowns in the world, show that our current policy framework is optimised for neither public health nor economic outcomes. In response to these inadequacies, our containment strategies must be further tightened to emulate the surveillance and quarantine approach of Taiwan, South Korea, and other successful nations of Asia. Meanwhile, if containment does fail again, we must adopt the targeted restrictions strategies used in Germanic and Scandinavian nations. Further lockdowns should be ruled out of consideration in any circumstance as they are generally not the most efficient way to suppress an epidemic, but they are always the most economically impactful.
+> As Australia enters the post-pandemic world, we will be forced to make difficult public health and economic choices. Our policies currently aim to build a robust public health infrastructure for containment of Covid-19 until a vaccine is available. In the event of health capacity breaching, lockdowns are used to suppress the epidemic. Recent experiences in Victoria, however, where over 800 people died, despite one of the strictest lockdowns in the world, show that our current policy framework is optimised for neither public health nor economic outcomes. In response to these inadequacies, our containment strategies must be further tightened to emulate the surveillance and quarantine approach of Taiwan, South Korea, and other successful nations of Asia. Meanwhile, if containment does fail again, we must adopt the targeted restrictions strategies used in Germanic and Scandinavian nations. Further lockdowns should be ruled out of consideration in any circumstance as they are generally not the most efficient way to suppress an epidemic, but they are always most economically impactful.
 
 ## Introduction
 
@@ -33,9 +33,9 @@ I agree with South Korea that lockdowns are not a reasonable choice in a free co
 
 ## Part I - Containment
 
-Australia began the pandemic in a lucky position. We have have sea borders, a low population density, and a warm, sunny climate. The prime minister's early decision to ban travel from China bought us valuable time. We purchased test kits and tested widely. Australia was a global leader in the number of tests we did.
+Australia began the pandemic in a lucky position. We have sea borders, a low population density, and a warm, sunny climate. The prime minister's early decision to ban travel from China bought us valuable time. We purchased test kits and tested widely. Australia was a global leader in the number of tests we did.
 
-But Western nations have struggled with balancing ideals of freedom with the needs of containing a virus. Our attitudes have been quite inconsistent. We must recognise that to avoid the severe and economically catastrophic losses of freedom in lockdowns, we must be willing to give up some minor freedoms.
+But Western nations have struggled with balancing ideals of freedom with the needs of containing a virus. Our attitudes have been inconsistent. We must recognise that to avoid the severe and economically catastrophic losses of freedom in lockdowns, we must be willing to give up some minor freedoms.
 
 ### Patient 31 events
 
@@ -115,9 +115,9 @@ Related to therapeutics are prophylactics. India in particular has deployed chem
 
 ### Vitamin D supplementation
 
-The Covid-19 second wave in the northern hemisphere has made it clear that this virus is highly seasonal. But why are viruses seasonal? In general, it is assumed that viral seasonality is driven by changes in sunlight, temperature and humidity.
+The Covid-19 second wave in the northern hemisphere has made it clear that this virus is highly seasonal. But why are viruses seasonal anyway? While this is not fully understood, it is generally assumed that virus seasonality is caused by changes in sunlight, temperature and humidity.
 
-In this section, I show that emerging evidence suggests that sunlight and its impact on vitamin D levels could be the main driver of seasonality. Vitamin D supplementation, therefore, could have a large effect on slowing Covid-19 transmission.
+In this section, however, I show that emerging evidence suggests that sunlight and its impact on vitamin D levels could be the main driver of seasonality. Vitamin D supplementation, therefore, could have a large effect on slowing Covid-19 transmission.
 
 #### Hope-Simpon's seasonal stimulus
 
@@ -147,31 +147,47 @@ In summary, it may be premature to conclude that vitamin D status is the main dr
 
 ## Part III - Containment fails
 
-The policies of Taiwan have, so far, contained Covid-19 within their city-state. They crushed their first wave, and have had no appreciable second wave. Australia, meanwhile, has natural advantages relative to Taiwan, including a better climate, and a lower population density.
+So far, I have looked at measures aimed at preventing and containing future Covid-19 outbreak. But we must be realistic and accept that, no matter how good are our defences, we may lose control of the epidemic. South Korea, after all, lost control in Daegu. What should we do then?
 
-This section discusses the worst case. What happens if, despite implementing policies like Taiwan, we still lose control of the epidemic. Here, I argue that we should _not_ continue with lockdowns, curfews and stay-at-home orders, but instead switch to policies that attempt to prevent superspreading events.
+In this section, I argue that we must give up on the idea of the full national lockdown, implement lighter, targeted restrictions aimed to prevent superspreading events, and do what we can to protect the elderly and others most at risk of severe disease.
 
 ### Overdispersion and superspreading
 
-Returning to South Korea's Patient 31, this single superspreader event exposed over 1,000 individuals and may have infected hundreds. Meanwhile, the virus's basic reproduction number (R0) is thought to be 2.2 or so. This means that each on average, an infected individual infects 2.2 other people.
+South Korea's Patient 31 was a superspreading event that exposed over 1,000 individuals and may have infected hundreds. In another superspreading event, 175 executives from around the world came to a Biogen conference in Boston. Around 100 of these went home infected by SARS-CoV-2. In yet another example, 260 children and teenagers were infected at a sleepaway camp in Georgia in July.
 
-SARS-CoV-2 however is known to be highly "overdispersed". This means that while a group of 10 infected individuals might cause 25 other infections, just one of those might infect 20 people, while the remaining nine combine to infect only five.
+The average number of infections, however, that someone infected by SARS-CoV-2 causes - the value known as R0, the basic reproduction number – is thought to be about 2.5. 
+
+It turns out that SARS-CoV-2 is highly _overdispersed_. Overdispersion means a small number of infected individuals causes most of the transmission. Overdispersion is sometimes represented as the fraction of infected individuals who cause 80% of transmission. For SARS-CoV-2, the value may be 10% or lower. So, while on average a group of 10 infected individuals might cause 25 secondary infections, just one of those might infect 20 people, while the remaining nine combine to infect only five.
+
+This is represented in the following diagram:
 
 ![Overdispersion]({{ "/assets/overdispersion.png" | absolute_url }})
 
-#### Targeted measures not full lockdowns
+An important consequence follows from this immediately. If we could remove the 1 person who infects 20 others, the reproduction number is immediately reduced to about 0.5.
 
-As far as pandemic mitigation goes, an important consequence follows immediately from this: If we removed that 1 person who infected 20 others, _the reproduction number of the remaining 9 is already less than 1_. There would be no need for any social distancing and other non-pharmaceutical interventions.
+### Lloyd-smith and SARS
+
+The discovery of overdispersion in epidemiology was made by a young post-doc James Lloyd-smith and co-author Wayne Getz in a seminal 2005 paper on the overdispersion of SARS, entitled, _Superspreading and the effect of individual variation on disease emergence_. Since the time of Typhoid Mary, it had long been known that some people spread disease more than others. By analysing contact tracing data, however, Lloyd-smith and colleagues were for the first time able to model and quantify the effect of individual variations in infectiousness.
+
+Llyod-smith's paper also mathematically compared two different types of infection control interventions: population-wide controls that reduce the infectiousness of everyone in the population (think of lockdowns), compared to interventions based on a method of contact tracing that aims to randomly trace and isolate a subset of superspreaders. "If highly infectious individuals can be identified predictively ... then the efficiency of control could be greatly increased ... Focusing half of all control effort on the most infectious 20% of cases is up to threefold more effective than random control".
+
+They found in the case of a highly overdispersed virus such as SARS (whose overdispersion is similar to SARS-COV-2), this had effect of essentially lowering the herd immunity threshold by about half. A huge effect.
+
+This method of contact tracing - now known as backwards contact tracing - became standard in Asia. It is part of the secret to how South Korea contained the Daegu outbreak.
+
+### What is a superspreader
+
+Whether someone is a superspreader or not will depend on the pathogen and the patient's biology as well as environmental factors and the patient's behaviour. And in a society with so much global connectivity, the ability to move pathogens rapidly across great distances, often before people are even aware they are sick, helps create environments ripe for super spreading.
+
+#### Targeted restrictions
 
 Contact tracers already use a method of tracing known as _backwards tracing_ in some states and other states are in the process of adopting the method. This method aims to trace cases specifically backwards to find the superspreader that infected them, remembering there there is a 70% chance that an infected individual has not themselves infected anyone else.
 
 The other way to stop superspreading is to target the types of venues that are associated with high transmission. These venues tend to be almost always indoors, are places where people gather for a long time, are overcrowded, poorly ventilated, and where people may talk loudly, or sing, or shout. So, many outbreaks have occurred in choirs, bars, meat factories, etc.
 
-Iceland is a good example of a country that has adopted targeted measures instead of lockdowns. After Iceland lost control of the epidemic in September, they have closed gyms, bars, and nightclubs, and have limited gatherings to 20 people. Prior to this they had already mandated face masks on public transport. Their epidemic curve at the time of writing appears to have peaked, implying that these measures did lower R below 1.
+Iceland is a good example of a country that has adopted targeted restrictions instead of lockdowns. After Iceland lost control of the epidemic in September, they have closed gyms, bars, and nightclubs, and have limited gatherings to 20 people. Prior to this they had already mandated face masks on public transport. Their epidemic curve at the time of writing appears to have peaked, implying that these measures did lower R below 1.
 
 ![Iceland]({{ "/assets/iceland.png" | absolute_url }})
-
-###### Recommendation 7: Rewrite stage 3 restrictions in favour of targeted restrictions.
 
 ### Against full lockdowns
 
@@ -269,6 +285,8 @@ Similarly, countries like Germany, Norway, Switzerland and others already conced
 The case of the New Zealand lockdowns is interesting. According to WHO advice, updated in this pandemic, their first lockdown _may_ have been justifiable, but only if they had used that time to build containment infrastructure. But the fact of a second lockdown at only 13 cases is clearly not justifiable in terms of any pandemic best practice.
 
 Lockdowns do not work. Political leaders must have the courage to hold their nerves, even if cases appear to be increasing exponentially.
+
+###### Recommendation 7: Rewrite stage 3 restrictions in favour of targeted restrictions.
 
 ###### Recommendation 8: Ban lockdowns.
 
