@@ -147,17 +147,17 @@ In summary, it may be premature to conclude that vitamin D status is the main dr
 
 ## Part III - Containment fails
 
-So far, I have looked at measures aimed at preventing and containing future Covid-19 outbreak. But we must be realistic and accept that, no matter how good are our defences, we may lose control of the epidemic. South Korea, after all, lost control in Daegu. What should we do then?
+So far, I have looked at measures aimed at preventing and containing future Covid-19 outbreaks. But we must be realistic and accept that, no matter how good are our defences, we may lose control of the epidemic. South Korea, after all, lost control in Daegu. What should we do then?
 
-In this section, I argue that we must give up on the idea of the full national lockdown, implement lighter, targeted restrictions aimed to prevent superspreading events, and do what we can to protect the elderly and others most at risk of severe disease.
+In this section, I argue that we must give up on the full national lockdown, implement lighter, targeted restrictions aimed at preventing superspreading events, and do what we can to protect those most at risk of severe disease.
 
 ### Overdispersion and superspreading
 
-South Korea's Patient 31 was a superspreading event that exposed over 1,000 individuals and may have infected hundreds. In another superspreading event, 175 executives from around the world came to a Biogen conference in Boston. Around 100 of these went home infected by SARS-CoV-2. In yet another example, 260 children and teenagers were infected at a sleepaway camp in Georgia in July.
+South Korea's Patient 31 caused a superspreading event that exposed over 1,000 individuals and may have infected hundreds. In another superspreading event, 175 executives from around the world came to a Biogen conference in Boston. Around 100 of these went home infected by SARS-CoV-2. In yet another example, 260 children and teenagers were infected at a sleepaway camp in Georgia in July.
 
 The average number of infections, however, that someone infected by SARS-CoV-2 causes - the value known as R0, the basic reproduction number – is thought to be about 2.5. 
 
-It turns out that SARS-CoV-2 is highly _overdispersed_. Overdispersion means a small number of infected individuals causes most of the transmission. Overdispersion is sometimes represented as the fraction of infected individuals who cause 80% of transmission. For SARS-CoV-2, the value may be 10% or lower. So, while on average a group of 10 infected individuals might cause 25 secondary infections, just one of those might infect 20 people, while the remaining nine combine to infect only five.
+It turns out that SARS-CoV-2 is highly _overdispersed_. Overdispersion means a small number of infected individuals cause most of the transmission. It is sometimes expressed as the fraction of infected individuals who cause 80% of transmission. For SARS-CoV-2, the value may be 10% or lower. So, while on average, a group of 10 infected individuals might cause 25 secondary infections, just one of those might infect 20 people, while the remaining nine combine to infect only five.
 
 This is represented in the following diagram:
 
@@ -165,21 +165,35 @@ This is represented in the following diagram:
 
 An important consequence follows from this immediately. If we could remove the 1 person who infects 20 others, the reproduction number is immediately reduced to about 0.5.
 
-### Lloyd-smith and SARS
+#### Lloyd-smith and backwards contact tracing
 
 The discovery of overdispersion in epidemiology was made by a young post-doc James Lloyd-smith and co-author Wayne Getz in a seminal 2005 paper on the overdispersion of SARS, entitled, _Superspreading and the effect of individual variation on disease emergence_. Since the time of Typhoid Mary, it had long been known that some people spread disease more than others. By analysing contact tracing data, however, Lloyd-smith and colleagues were for the first time able to model and quantify the effect of individual variations in infectiousness.
 
-Llyod-smith's paper also mathematically compared two different types of infection control interventions: population-wide controls that reduce the infectiousness of everyone in the population (think of lockdowns), compared to interventions based on a method of contact tracing that aims to randomly trace and isolate a subset of superspreaders. "If highly infectious individuals can be identified predictively ... then the efficiency of control could be greatly increased ... Focusing half of all control effort on the most infectious 20% of cases is up to threefold more effective than random control".
+Llyod-smith's paper also mathematically compared two different types of infection control interventions: population-wide controls that aim to reduce the infectiousness of everyone in the population (think of lockdowns), compared to interventions based on contact tracing to trace and isolate superspreaders. "If highly infectious individuals can be identified predictively ... then the efficiency of control could be greatly increased ... Focusing half of all control effort on the most infectious 20% of cases is up to threefold more effective than random control".
 
-They found in the case of a highly overdispersed virus such as SARS (whose overdispersion is similar to SARS-COV-2), this had effect of essentially lowering the herd immunity threshold by about half. A huge effect.
+In the case of a highly overdispersed virus like SARS, whose overdispersion is similar to its cousin SARS-CoV-2, they found that contact tracing had effect of lowering the herd immunity threshold by about half. A huge effect.
 
-This method of contact tracing - now known as backwards contact tracing - became standard in Asia. It is part of the secret to how South Korea contained the Daegu outbreak.
+This method of contact tracing - now known as _backwards contact tracing_ - became standard in Asia. It is part of the reason South Korea was able to contain the Daegu outbreak.
 
-### What is a superspreader
+#### What is a superspreader
 
-Whether someone is a superspreader or not will depend on the pathogen and the patient's biology as well as environmental factors and the patient's behaviour. And in a society with so much global connectivity, the ability to move pathogens rapidly across great distances, often before people are even aware they are sick, helps create environments ripe for super spreading.
+Whether or not someone is a superspreader will depend on the pathogen and the individual's biology as well as their environment and behaviour. Some infected individuals might shed more virus than others, perhaps because of differences in their immune system. Some people do not feel sick and may continue their daily routines, inadvertently infecting more people. Alternatively, people with weaker immune systems that allow very high amounts of virus replication may be very good at transmitting even if they reduce their contacts with others. Individuals who have more symptoms – for example, coughing or sneezing more – can also be better at spreading the virus to new human hosts.
 
-#### Targeted restrictions
+A person’s behaviours, travel patterns and degree of contact with others can also contribute to superspreading. An infected shopkeeper might come in contact with a large number of people and goods each day. An international business traveler may crisscross the globe in a short period of time. A sick health care worker might come in contact with large numbers of people who are especially susceptible, given the presence of other underlying illnesses.
+
+#### Gabriela Gomes and individual susceptibility
+
+Another consequence of overdispersion has been pointed out recently by M. Gabriela M. Gomes, an infectious diseases modeller at the University of Strathclyde. “More susceptible and more connected individuals,” her team wrote, “have a higher propensity to be infected and thus are likely to become immune earlier. Due to this selective immunization by natural infection, heterogeneous populations require less infections to cross their herd immunity threshold.” According to her model, the herd immunity threshold is closer to 10-20%, rather than the usual 60% or so.
+
+Gomes' work has been controversial, as it has been popularised by proponents of Sweden's so-called herd immunity model. All the same, her key insight is not disputed, namely, that even in the absence of interventions, a highly-overdispersed viral pandemic will tend to burn out quicker and be easier to suppress than it otherwise would, due to the tendency of superspreaders to be infected and naturally immunised early.
+
+#### Places of superspreading
+
+Superspreading events require an infectious superspreader, but they also require an environment that is favourable to aerosol transmission. In the case of South Korea's Patient 31, the superspreading during a church service in a huge hall where the infected woman sang hymns loudly. 
+
+By now, it is well understood that superspreading is associated with shared rooms, where significant time is spent in the environment, where there may be crowding or overcrowding, poor ventilation, and where people talk, and especially where they sing or shout. So, many outbreaks have occurred in choirs, restaurants, bars, meat packing plants.
+
+### Targeted restrictions
 
 Contact tracers already use a method of tracing known as _backwards tracing_ in some states and other states are in the process of adopting the method. This method aims to trace cases specifically backwards to find the superspreader that infected them, remembering there there is a 70% chance that an infected individual has not themselves infected anyone else.
 
@@ -406,3 +420,5 @@ https://onlinelibrary.wiley.com/doi/10.1111/apt.15752
 https://www.thetimes.co.uk/article/coronavirus-in-scotland-vulnerable-will-receive-vitamin-d-supplements-zc8stdh
 
 https://www.noordhollandsdagblad.nl/cnt/DMF20201030_79473537/run-op-vitamine-d-na-nieuws-over-gunstige-effecten-bij-corona-lege-schappen-in-hilversumse-drogisterijen-het-is-gewoon-niet-aan-te-slepen?utm_source=google&utm_medium=organic
+
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7646035/
