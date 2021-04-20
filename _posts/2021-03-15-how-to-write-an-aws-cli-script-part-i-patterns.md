@@ -51,7 +51,7 @@ usage() {
 
 #### `get_opts` function
 
-In order to handle command line arguments, it is very likely that a script needs a `get_opts` function, whose purpose is to call the Bash built-in `getops`. In the case of a very simple script that does not accept arguments or perhaps accepts just a single argument, this function may not be required. But most of the time, it is.
+In order to handle command line arguments, it is very likely that a script also needs a `get_opts` function, whose purpose is to call the Bash built-in `getops`. In the case of a very simple script that does not accept arguments or perhaps accepts just a single argument, this function may not be required. But most of the time, it is.
 
 ##### Example calling getopts
 
@@ -73,6 +73,8 @@ get_opts() {
 ```
 
 Notice that I have localised the `$OPTARG` and `$OPTIND` variables. This is important, aside from being in general good style. Failure to localise these can lead to odd behaviour during unit testing. More on that later. For now, just remember that it is good style to localise all local variables, and especially important to localise these ones.
+
+How to use `getopts` is of course beyond the scope of this article, but see [here](https://sookocheff.com/post/bash/parsing-bash-script-arguments-with-shopts/) for a good tutorial on `getopts`.
 
 ##### Example not calling getopts
 
