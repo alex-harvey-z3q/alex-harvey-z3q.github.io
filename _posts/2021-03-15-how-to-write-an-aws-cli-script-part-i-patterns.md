@@ -6,41 +6,39 @@ author: Alex Harvey
 tags: bash aws shunit2
 ---
 
-This article presents a pattern for writing an testing AWS CLI scripts.
+This blog series presents patterns for writing an testing AWS CLI shell scripts.
 
 - ToC
 {:toc}
 
 ## Introduction
 
-I have now written many AWS CLI scripts in Bash, and have, over time, adapted programming patterns that, I think, all AWS CLI scripts _should_ follow. This post documents my patterns and I hope that others will also adopt them.
+I have by now written a lot AWS CLI scripts in Bash, and, over time, have adapted programming patterns that, I think, AWS CLI scripts actually _should_ follow. These patterns forced themselves on me, and I believe that anyone who writes enough of them will eventually come up with something similar. This post is intended to document those patterns. I also hope that others will adopt them.
 
-I also hope to show that Bash is a fine language for automating AWS via the AWS CLI. I think there is misplaced prejudice against Bash in favour of Python and Boto3, Golang, and so on. There is a sense that these others are "real" programming languages, despite that they complicate the development and testing in some ways, and, I think, often, for no real gain.
+My other hope in writing this is that the people who may not have realised it yet may discover that Bash is in fact a fine language for automating AWS. I frequently find that there is a misplaced prejudice against Bash in favour of Python, Golang, and other languages, for automating AWS. That is, there is a sense these others are "real" programming languages, despite that they can complicate development and testing in some ways &ndash; often, for no real gain. If operators are going to use the AWS CLI to communicate with AWS, then why write automation in a different language?
 
-If operators are going to use the AWS CLI to communicate with AWS, then why write automation in a different language?
-
-In the first part of this blog series, I introduce _all_ of the Bash programming patterns needed to write a complex AWS CLI shell script. Along the way I present two real life examples. And in Part II, I will look at how to unit test these scripts using shunit2.
+In the first part of this series, I introduce the programming patterns needed to write a complex AWS CLI shell script. Along the way I present some real life script examples. And then in Part II, I will look at the patterns for unit testing the scripts using the shunit2 framework.
 
 ## Patterns
 
 ### Structure of a script
 
-Before getting into the nuts and bolts of Bash programming techniques, I want to firstly look at how to organise a script. I have found that every script _should_ have the following five or six sections:
+Before getting into the nuts and bolts of Bash programming, I want to start by looking at how to organise a script. In my view, every script should have the following sections:
 
 - a `usage` function
-- a `get_opts` function (rarely ommitted)
-- a `validate_opts` function (sometimes omitted)
+- a `get_opts` function (that is rarely ommitted)
+- a `validate_opts` function (that is sometimes omitted)
 - functions that implement the script's logic
 - a `main` function
 - and a `guard` clause.
 
-In the following subsections, I explain what all of these are, and why we need them.
+The following subsections look at what these are and why they are needed.
 
-#### `usage` function
+#### A `usage` function
 
-Every program or script should have a usage function as a bare minimum level of documentation. The usage function tells or reminds the user - who is often also the author! - how to actually use the script. It says what the script does, what its command line arguments are, and it halts further execution when it is called.
+Every program or script, whatever it does, should have a `usage` function that provides a help message as a bare minimum level of documentation. This function should be invoked when `-h` passed on the command line, or when no options at all are passed to a script that requires at least one option. The `usage` function reminds the user how to run the script, what the script does, what its command line arguments are, and perhaps even gives a usage example or two.
 
-The Bash special variable `$0` should be used for the script name. For example:
+Never hard code the script name in the `usage` function. Instead, use the special variable `$0`. Here is an example `usage` function:
 
 ```bash
 usage() {
@@ -49,11 +47,13 @@ usage() {
 }
 ```
 
+For more on the `usage` function, see [this](http://courses.cms.caltech.edu/cs11/material/general/usage.html) page.
+
 #### `get_opts` function
 
-In order to handle command line arguments, it is very likely that a script also needs a `get_opts` function, whose purpose is to call the Bash built-in `getops`. In the case of a very simple script that does not accept arguments or perhaps accepts just a single argument, this function may not be required. But most of the time, it is.
+After the `usage` function, I nearly always have a `get_opts` function, whose purpose is to process the script's command line arguments, and, usually, call the Bash built-in `getops`. Here are two examples of the `get_opts` function, one using, and the other not using, `getopts`.
 
-##### Example calling getopts
+##### Pattern A - using getopts
 
 The `getopts` command should be used most of the time unless the script is very simple. Here is an example of a `get_opts` function that calls `getopts`:
 
@@ -72,13 +72,15 @@ get_opts() {
 }
 ```
 
-Notice that I have localised the `$OPTARG` and `$OPTIND` variables. This is important, aside from being in general good style. Failure to localise these can lead to odd behaviour during unit testing. More on that later. For now, just remember that it is good style to localise all local variables, and especially important to localise these ones.
+Notice that the `$OPTARG` and `$OPTIND` variables have been localised. This is important. Aside from being good style, failure to localise these can lead to some odd behaviour in unit testing. More on that later.
 
 How to use `getopts` is of course beyond the scope of this article, but see [here](https://sookocheff.com/post/bash/parsing-bash-script-arguments-with-shopts/) for a good tutorial on `getopts`.
 
-##### Example not calling getopts
+##### Pattern B - without getopts
 
-Occasionally, use of the `getops` command is overkill, and you may wish to implement your `get_opts` function without it. Here is an example that rewrites the above without `getopts`:
+Occasionally, it is better to not use `getopts`. The reasons for this include the limitations with `getopts` (e.g. no POSIX-compliant support for long options), or that `getopts` may be too complicated for a simple use case. Whatever the reason, you may need to write your own option handling logic.
+
+Here is an example that rewrites the function above without using `getopts`:
 
 ```bash
 get_opts() {
@@ -93,9 +95,9 @@ get_opts() {
 }
 ```
 
-##### Calling the get_opts function
+##### Calling get_opts
 
-Notice that the `getopts` built-in operates on the script's special `$@` variable. In order for this to be available inside a Bash function, you need to pass it around, like this:
+The `get_opts` function operates on the command line arguments that are stored in the special Bash variable `$@`. It is therefore necessary to explicitly pass `$@` to `get_opts` from the top scope.
 
 ```bash
 get_opts "$@"
