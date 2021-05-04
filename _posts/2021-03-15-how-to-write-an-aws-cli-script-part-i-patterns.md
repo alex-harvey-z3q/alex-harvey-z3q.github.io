@@ -15,7 +15,7 @@ This blog series presents patterns for writing an testing AWS CLI shell scripts.
 
 I have by now written a lot AWS CLI scripts in Bash, and, over time, have adapted programming patterns that, I think, AWS CLI scripts actually _should_ follow. These patterns forced themselves on me, and I believe that anyone who writes enough of them will eventually come up with something similar. This post is intended to document those patterns. I also hope that others will adopt them.
 
-My other hope in writing this is that the people who may not have realised it yet may discover that Bash is in fact a fine language for automating AWS. I frequently find that there is a misplaced prejudice against Bash in favour of Python, Golang, and other languages, for automating AWS. That is, there is a sense these others are "real" programming languages, despite that they can complicate development and testing in some ways &ndash; often, for no real gain. If operators are going to use the AWS CLI to communicate with AWS, then why write automation in a different language?
+My other hope in writing this is that the people who may not have realised it yet may discover that Bash is in fact a fine language for automating AWS. I frequently find that there is a misplaced prejudice against Bash in favour of Python, Golang, and other languages, for automating AWS. That is, there is a sense these others are "real" programming languages, despite that they can complicate development and testing in some ways &mdash; often, for no real gain. If operators are going to use the AWS CLI to communicate with AWS, then why write automation in a different language?
 
 In the first part of this series, I introduce the programming patterns needed to write a complex AWS CLI shell script. Along the way I present some real life script examples. And then in Part II, I will look at the patterns for unit testing the scripts using the shunit2 framework.
 
@@ -30,24 +30,29 @@ Before getting into the nuts and bolts of Bash programming, I want to start by l
 - a `validate_opts` function (that is sometimes omitted)
 - functions that implement the script's logic
 - a `main` function
-- and a `guard` clause.
+- and a guard clause.
 
 The following subsections look at what these are and why they are needed.
 
 #### A `usage` function
 
-Every program or script, whatever it does, should have a `usage` function that provides a help message as a bare minimum level of documentation. This function should be invoked when `-h` passed on the command line, or when no options at all are passed to a script that requires at least one option. The `usage` function reminds the user how to run the script, what the script does, what its command line arguments are, and perhaps even gives a usage example or two.
+Every program or script, whatever it does, should have a `usage` function that provides a help message as a bare minimum level of documentation. This function should be invoked, at least, when `-h` is passed to the command line, or when no options are passed to a script that expects at least one.
 
-Never hard code the script name in the `usage` function. Instead, use the special variable `$0`. Here is an example `usage` function:
+The `usage` function should remind the user of: how to run the script; what it does; and what its command line arguments are. Perhaps, it should also give a usage example or two.
+
+Never hard code the script name in the `usage` function. Instead, use the special variable `$0`.
+
+Here is an example of a `usage` function:
 
 ```bash
 usage() {
   echo "Usage: $0 [-h] [-s STACK_NAME]"
+  echo "Describe each EC2 instance in a stack"
   exit 1
 }
 ```
 
-For more on the `usage` function, see [this](http://courses.cms.caltech.edu/cs11/material/general/usage.html) page.
+For more on `usage` functions, see [this](http://courses.cms.caltech.edu/cs11/material/general/usage.html) page.
 
 #### `get_opts` function
 
