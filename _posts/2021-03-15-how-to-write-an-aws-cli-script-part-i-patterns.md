@@ -431,9 +431,11 @@ delete_key_pairs() {
 }
 ```
 
-#### Pattern B - using arrays and for loops
+#### Using arrays and for loops
 
-If I wanted to instead use an array and for loops for my iteration - say I need to keep these key pairs in the array for some reason for later - then I can refactor to do that this way:
+##### Pattern B - Using read -r -a
+
+If I wanted to instead use a for loop to iterate over an array &mdash; maybe I need to keep these key pairs in the array for use later &mdash; I can refactor to do that this way:
 
 ```bash
 describe_key_pairs() {
@@ -446,6 +448,28 @@ describe_key_pairs() {
 delete_key_pairs() {
   local key_pair_ids key_pair_id
   read -r -a key_pair_ids <<< "$(describe_key_pairs)"
+  for key_pair_id in "${key_pair_ids[@]}" ; do
+    aws ec2 delete-key-pair \
+      --key-pair-id "$key_pair_id"
+  done
+}
+```
+
+##### Pattern C - Using readarray aka mapfile
+
+Another way to load the array is to use the Bash 4 feature `readarray`. This command has an alternative name, `mapfile`. To use this pattern:
+
+```bash
+describe_key_pairs() {
+  local filter="*runner*"
+  aws ec2 describe-key-pairs \
+    --filters "Name=key-name,Values=$filter" \
+    --query "KeyPairs[].[KeyPairId]"
+}
+
+delete_key_pairs() {
+  local key_pair_ids key_pair_id
+  readarray -t key_pair_ids <<< "$(describe_key_pairs)"
   for key_pair_id in "${key_pair_ids[@]}" ; do
     aws ec2 delete-key-pair \
       --key-pair-id "$key_pair_id"
@@ -499,4 +523,14 @@ fi
 
 ## Concluding remarks
 
-So, in this post, I have documented _all_ of the Bash programming patterns that, in my opinion, are needed to write a useful AWS CLI script. I have also, in the course of presenting the patterns, shown them in the context of two complete examples of AWS CLI scripts. Stay with me for the second part, where I'll show how to unit test these scripts.
+So, in this post, I have documented the Bash programming patterns that, in my opinion, are needed to write useful AWS CLI scripts. I have also, in the course of presenting the patterns, shown them in the context of two complete examples of AWS CLI scripts. Stay with me for the second part, where I'll show how to unit test these scripts.
+
+## See also
+
+- Apr 2nd, 2008, [CS 11: How to write usage statements](http://courses.cms.caltech.edu/cs11/material/general/usage.html).
+- Mar 19th, 2017, [bash: reading a file into an array](https://kaijento.github.io/2017/03/19/bash-read-file-into-array/).
+
+## Revision history
+
+- March 15th, 2021 - Initial version.
+- May 9th, 2021 - Add section on readarray.
