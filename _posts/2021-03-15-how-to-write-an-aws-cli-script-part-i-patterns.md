@@ -455,9 +455,9 @@ delete_key_pairs() {
 }
 ```
 
-##### Pattern C - Using readarray aka mapfile
+##### Pattern C - Using readarray aka mapfile - Bash 4
 
-Another way to load the array is to use the Bash 4 feature `readarray`. This command has an alternative name, `mapfile`. To use this pattern:
+Or, I could load the array using the Bash 4 feature `readarray`. This command has an alternative name, `mapfile`. To refactor to use this pattern:
 
 ```bash
 describe_key_pairs() {
