@@ -352,7 +352,7 @@ From a user experience and output point of view, I feel that behave wins a littl
 
 ## Conclusion
 
-This concludes my post comparing the behave BDD framework with the Bash and shunit2 framework that I personally prefer. I have shown how to set it all up and given a simplest example. I did not cover some of the features but they would be easy to pick up from here. I then rewrote this in Bash and shunit2 and found that the Bash code ended up simpler in my own opinion.
+This concludes my post comparing the behave BDD framework with the Bash and shunit2 framework that I personally prefer. I have shown how to set it all up and given a simplest example. I did not cover all of the features but the remainder would be easy to pick up from here. I then rewrote this in Bash and shunit2 and found that the Bash code ended up simpler in my own opinion.
 
 ## See also
 
