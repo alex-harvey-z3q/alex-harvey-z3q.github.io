@@ -4,6 +4,7 @@ title: "Using act to run GitHub Workflows locally"
 date: 2022-03-27
 author: Alex Harvey
 tags: github-actions act
+published: false
 ---
 
 I recently started using GitHub Actions as a CI/CD platform, and quickly found I wanted a way to run my CI builds locally. This post documents my, as yet, unsuccessful attempt to use the open source project [nektos/act](https://github.com/nektos/act). I have given up at this point, since Reusable Workflows are [not supported](https://github.com/nektos/act/issues/826).
