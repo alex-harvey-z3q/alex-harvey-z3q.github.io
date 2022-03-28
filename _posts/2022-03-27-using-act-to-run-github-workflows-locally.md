@@ -6,7 +6,7 @@ author: Alex Harvey
 tags: github-actions act
 ---
 
-I recently started using GitHub Actions as a CI/CD platform, and quickly found I wanted a way to run my CI builds locally. This post shows how I did it using an open source project [nektos/act](https://github.com/nektos/act).
+I recently started using GitHub Actions as a CI/CD platform, and quickly found I wanted a way to run my CI builds locally. This post documents my, as yet, unsuccessful attempt to use the open source project [nektos/act](https://github.com/nektos/act). I have given up at this point, since Reusable Workflows are [not supported](https://github.com/nektos/act/issues/826).
 
 - ToC
 {:toc}
@@ -77,6 +77,6 @@ To run it:
 ▶ act -s GITHUB_TOKEN=xxx -P example-base=example-base:latest pull_request  
 ```
 
-## Stalled here
+## Conclusion
 
-At this point I've asked a question here: https://gitter.im/nektos/act?at=6240071c9a09ab24f3c38538
+This is a nice piece of software, that is possibly useful for people who are not using Reusable Workflows or other features of GitHub Actions that are not currently supported. At the time of writing, however, Reusable Workflows is not supported due to [this](https://github.com/nektos/act/issues/826) open issue. As this is something of a must-have feature, many will find this isn't a solution.
