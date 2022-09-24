@@ -38,7 +38,7 @@ Note that the three scenarios appear to be the key methodological departure from
 
 ## Dubious assumptions
 
-In the following sections, I look at a number of dubious assumptions in the GenCost 2019-20 draft, that, taken together, appear designed to increase the costs of SMR nuclear while decreasing the costs of solar, wind and storage.
+In the following sections, I look at a number of assumptions in the GenCost 2019-20 draft, that, taken together, should increase the costs of SMR nuclear and decrease the costs of solar, wind and storage.
 
 ### The global carbon price
 
