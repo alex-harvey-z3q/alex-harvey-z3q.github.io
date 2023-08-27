@@ -9,7 +9,6 @@ usage() {
   echo "Usage: $0 [-h]"
   exit 1
 }
-[ "$1" == "-h" ] && usage
 
 tags() {
   awk '
@@ -61,13 +60,12 @@ EOF
 }
 
 main() {
+  [[ "$1" = "-h" ]] && usage
   get_title_and_tags
   set_file_name
   create_doc
 }
 
-if [ "$0" == "${BASH_SOURCE[0]}" ] ; then
+if [[ "$0" = "${BASH_SOURCE[0]}" ]] ; then
   main
 fi
-
-# vim: set ft=sh:
