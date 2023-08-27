@@ -6,20 +6,22 @@ author: Alex Harvey
 tags: terraform
 ---
 
-A while back I raised an [Issue #21628](https://github.com/hashicorp/terraform/issues/21628) in the Terraform project suggesting that a real unit test framework is needed for Terraform, and I was delighted to hear that HashiCorp is about to ship one in the forthcoming Terraform v1.6.0. I had written a [blog post](https://alexharv074.github.io/2019/06/15/adventures-in-the-terraform-dsl-part-vi-towards-a-unit-testing-framework.html) at the time that tested out an early feature branch idea. I am pleased to say that somehing much nicer has emerged in the alpha version of the framework, and in this post, I document some of my early experiments in the framework.
+A while back I raised an [Issue #21628](https://github.com/hashicorp/terraform/issues/21628) in the Terraform project suggesting that a real unit test framework is needed for Terraform, and I was delighted to hear that HashiCorp is about to ship one in the forthcoming Terraform v1.6.0. I had written a [blog post](https://alexharv074.github.io/2019/06/15/adventures-in-the-terraform-dsl-part-vi-towards-a-unit-testing-framework.html) at the time on an early feature branch idea. But something much cleaner than that prototype has emerged in the alpha version of the framework, and, in this post, I document some of my experiments so far with it.
 
-From what I can see, so far, version 1.6 of Terraform is a big leap forward in terms of having a properly testable infrastructure-as-code in Terraform.
+Tests can be written in the HCL language on both plans and real infrastructure. I have split the blog post up into two parts therefore, this first part being about testing plans, and the second part about testing real infrastructure using `apply`.
+
+From what I can see, so far, version 1.6 of Terraform is a big leap forward in terms of having a properly testable infrastructure-as-code in Terraform. I am, personally, very excited about this!
 
 - ToC
 {:toc}
 
 ## Code and resources
 
-If you'd like to follow along, the source code for my tests are here. 
+If you'd like to follow along, the source code for all of my tests are [here](https://github.com/alexharv074/terraform-test-poc).
 
 ## Project structure
 
-The way a project is structured is to have the TF files in the top level of the project as normal, and then a tests directory named (by default) `./tests`. In there can go some HCL test files. I have set mine up as follows:
+Everything about this framework is nice and simple, and that's true of the project structure. No configuration is required. All you have to do is create a `./tests` directory, put some test files in it, and run `terraform test`. Some TF files for your module are expected to be in the top level of the project as usual. Here is my initial set up:
 
 ```text
 % tree . 
@@ -29,13 +31,13 @@ The way a project is structured is to have the TF files in the top level of the 
     └── test_main.tftest.hcl
 ```
 
-Notice the file extensions there. Instead of `.tf` — Terraform HCL files — the extension is `.tftest.hcl`. Because this is HCL code that looks like Terraform and mostly is, but isn't always true Terraform code, but is indeed HashiCorp's Configuration Language ([hcl](https://github.com/hashicorp/hcl)). Also, the file is required to have this file extension, or it will not be discovered by terraform test.
+Notice the file extensions there. Instead of `.tf` — Terraform HCL files — the extension is `.tftest.hcl`. These are HCL files that look a lot like Terraform code, although actually use a custom HCL language specific to this testing framework. Also, the test files are _required_ to have this file extension, or else they will not be discovered by the `terraform test` command.
 
 ## Simplest example
 
-The thing I did was a simple "hello world" to get my head around the structure.
+The first thing I did was a simple "hello world" to get my head around the simplest example of a test.
 
-```hcl
+```tf
 variable "word1" {
   type = string
 }
@@ -53,7 +55,7 @@ output "message" {
 }
 ```
 
-Now this is some artifically simple code that has a couple of variables, assembles them in a local variable, and emits a message through an output.
+This is artifically simple code that has a couple of variables, combines them in some text interpolation in a local variable, and emits a message as an output.
 
 Let's try init and plan on that:
 
@@ -63,9 +65,9 @@ And:
 
 ![tf test 2]({{ "/assets/tf_test_2.png" | absolute_url }})
 
-Notice here was is available in the plan outputs. Since the plan output is available, we can make an assertion about that. Here's how my first test looks:
+Notice here what is available in the plan outputs. Since the plan has an output, I can write an assertion about the plan's output. Here's my first test:
 
-```hcl
+```tf
 variables {
   word1 = "Hello"
   word2 = "World"
@@ -86,7 +88,7 @@ A few notes about the grammar here:
 - We have a `variables` block that allows me to set the values of the input variables. Notice that this is not the same syntax as in a Terraform `variable` declaration, and this syntax would not work in Terraform itself.
 - Notice that the `variables` block is at the top-level and not inside the `run` block. More on this below.
 - We then have a `run` block that names a test case. People familiar with other unit test frameworks might be surprised that this block is named `run` and not say `test` as it would be in PyTest, jUnit and so on. But that's ok. Just note that `run` declares a named test case.
-- Inside the `run` block we have the `command` attribute. This can be either `plan` (default) or `apply`. Since there is a default, this can be omitted, and `plan` will be assumed.
+- Inside the `run` block we have the `command` attribute. This can be either `apply` (default) or `plan`.
 - An `assert` block where I define a test case condition and an error message for when the test fails. Again, quite similar to `assert` in other languages like Python.
 - Finally, a real gotcha: Note carefully the syntax `output.message`. This won't work in Terraform itself, as outputs can't be referred to inside a module like (and the syntax for referring to them outside is different too).
 
@@ -100,7 +102,19 @@ Although not visible from my screenshot, these tests ran quite quickly. Of cours
 
 Let's change the code so that we have a more complicated expression — something a bit more complex that you might actually want to test.
 
-```hcl
+```tf
+variable "list_of_words" {
+  type = list(string)
+}
+
+locals {
+  upper_cased = [for s in var.list_of_words : upper(s)]
+}
+```
+
+Now I have one of Terraform's Python-like list comprehensions and these are not always trivial or readable. Sometimes, it would make sense to have test cases to test these for a range of inputs. Let's do that.
+
+```tf
 variables {
   list_of_words = ["foo", "bar", "baz"]
 }
@@ -136,7 +150,7 @@ So, notice here how you can define variables at the top level, and then override
 
 A gotcha though. It turns out that you _can't_ (as yet, anyway) do this:
 
-```hcl
+```tf
 run "test_some_words" {
   variables {
     list_of_words = ["foo", "bar", "baz"]
@@ -174,7 +188,7 @@ Still, there's some very useful functionality here.
 
 In the next example I have some more complex code that filters on some data. I'd also like to show how to expect failures, and test for invalid inputs.
 
-```hcl
+```tf
 variable "projects" {
   description = "Map of projects"
 
@@ -212,7 +226,7 @@ locals {
 
 And to test this I try to pass in various examples of valid and invalid data:
 
-```hcl
+```tf
 variables {
   projects = {
     customer_api = {
@@ -267,7 +281,7 @@ In the example here therefore, I expect the validation to fail for `var.projects
 
 But now let's see what happens when I pass in data that is of an unexpected type:
 
-```hcl
+```tf
 run "test_totally_invalid_input" {
   variables {
     projects = "totally_invalid"
@@ -277,7 +291,7 @@ run "test_totally_invalid_input" {
 }
 ```
 
-This test now fails when I hoped it would pass:
+This test now fails when I hoped that it would pass:
 
 ![tf test 6]({{ "/assets/tf_test_6.png" | absolute_url }})
 
@@ -285,13 +299,13 @@ So the bottom line is there does not appear to be any way of simply trapping all
 
 ## Known after apply
 
-The examples so far have been a little contrived in so far as I have not called on any of the Terraform Providers to configure any actual resources. In this last example therefore, I use the Random Provider to show what it looks like to test plans on real providers.
+The examples so far have been a little contrived in that I have not called on any of the Terraform Providers to configure any actual resources. In this last example therefore, I use the Random Provider to show what it looks like to test plans on real providers.
 
-The key point to realise when testing plans on real resources is that assertions about attributes that are _known after apply_ cannot be tested in the plan; you would need to create real infrastructure and then make assertions about it. See Part II on testing apply.
+It is important to realise that when testing plans that would configure resources, assertions about resource attributes that are _known after apply_ cannot be tested in the plan; you would need to create the real infrastructure before you can make assertions about many of their attributes. More on this in Part II of this blog post on testing apply.
 
 The code example I have is this one:
 
-```hcl
+```tf
 variable "len" {
   type = number
 }
@@ -305,12 +319,11 @@ Ok, that is really simple. I have a random ID of configurable length. (The Rando
 
 In order to write assertions about the plan here, I realised quickly that it makes sense to start by running `terraform plan` so as to see what is available. Here goes:
 
-```text
-```
+![tf test 7]({{ "/assets/tf_test_7.png" | absolute_url }})
 
 Here I can see that most things are known after apply, whereas in my plan, I can see that the byte length is known. Thus, I could make a test like this:
 
-```hcl
+```tf
 variables {
   len = 16
 }
