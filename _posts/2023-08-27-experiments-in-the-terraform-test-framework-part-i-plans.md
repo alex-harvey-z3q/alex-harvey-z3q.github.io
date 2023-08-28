@@ -90,7 +90,7 @@ A few notes about the grammar here:
 - We then have a `run` block that names a test case. People familiar with other unit test frameworks might be surprised that this block is named `run` and not say `test` as it would be in PyTest, jUnit and so on. But that's ok. Just note that `run` declares a named test case.
 - Inside the `run` block we have the `command` attribute. This can be either `apply` (default) or `plan`.
 - An `assert` block where I define a test case condition and an error message for when the test fails. Again, quite similar to `assert` in other languages like Python.
-- Finally, a real gotcha: Note carefully the syntax `output.message`. This won't work in Terraform itself, as outputs can't be referred to inside a module like (and the syntax for referring to them outside is different too).
+- Finally, a real gotcha: Note carefully the syntax `output.message`. This won't work in Terraform itself, as outputs can't be referred to inside a module like this (and the syntax for referring to them outside is different too).
 
 Ok, let's run the test:
 
@@ -352,4 +352,4 @@ For myself, I don't want to write slow and expensive tests that create real infr
 
 ## Refs
 
-- Terraform 1.6.0 Alpha's unmerged docs on Terraform Test.
+- Terraform 1.6.0 Alpha's [unmerged docs](https://github.com/hashicorp/terraform/pull/33454) on Terraform Test.
