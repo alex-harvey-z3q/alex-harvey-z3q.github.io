@@ -224,7 +224,7 @@ locals {
 }
 ```
 
-And to test this I try to pass in various examples of valid and invalid data:
+And to test this I try to pass in various examples of valid and invalid data [1](https://brendanthompson.com/posts/2022/10/terraform-for-expression):
 
 ```tf
 variables {
@@ -353,3 +353,4 @@ For myself, I don't want to write slow and expensive tests that create real infr
 ## Refs
 
 - Terraform 1.6.0 Alpha's [unmerged docs](https://github.com/hashicorp/terraform/pull/33454) on Terraform Test.
+- Brendan Thompson, [`Terraform For Expressions`](https://brendanthompson.com/posts/2022/10/terraform-for-expression) where I borrowed some code examples!
