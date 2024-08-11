@@ -169,7 +169,7 @@ Resources:
 
 And in Terraform:
 
-```hcl
+```js
 resource "aws_s3_bucket" "example" {
   bucket = "example"
 }
