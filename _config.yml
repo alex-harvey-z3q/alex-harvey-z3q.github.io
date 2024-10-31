@@ -4,16 +4,15 @@ name: Alex Harvey
 author:
   avatar: /assets/me.jpg
   twitter: alexharv074
-  github: https://github.com/alexharv074
-  linkedin: https://www.linkedin.com/in/harveyalex/
+  github: https://github.com/alex-harvey-z3q
   email: alexharv074@gmail.com
-url: https://alexharv074.github.io/
+url: https://alex-harvey-z3q.github.io/
 plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
   - jekyll-feed
 disqus:
-  shortname: alexharv074-github-io
+  shortname: alex-harvey-z3q-github-io
 feed:
   collections:
     posts:
