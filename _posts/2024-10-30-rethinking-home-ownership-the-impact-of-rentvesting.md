@@ -58,7 +58,7 @@ Changes to the CGT discount, meanwhile, could make investors more reluctant to s
 
 The AIHW’s report, when corrected for rentvestors, reveals a stable home ownership rate of 72%, undermining the claim of a significant decline since 2006. This adjustment not only affects public perception but also shifts the basis for policy decisions. Put simply, tax incentives for property investors have not contributed to declining ownership rates, contrary to what is often assumed.
 
-Policymakers need to incorporate this corrected view of home ownership into decision-making. Housing affordability remains the defining economic issue of our time, and it can only be addressed by increasing the supply of both rental properties and new dwellings. Investors have a crucial role to play in achieving these objectives, making it essential to craft policies that balance the needs of both aspiring homeowners and the broader housing market.
+Policymakers need to incorporate this corrected view of home ownership into decision-making. Housing affordability remains the defining economic issue of our time, and it can only be addressed by increasing the supply of both rental properties and new dwellings. Investors have a crucial role to play in achieving these objectives, making it essential to find policies that balance the needs of both aspiring homeowners and the broader housing market.
 
 ## References
 
