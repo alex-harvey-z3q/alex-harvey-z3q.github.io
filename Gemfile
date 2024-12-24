@@ -17,6 +17,8 @@ gem 'jekyll-seo-tag'
 gem 'jekyll-sitemap'
 gem 'jekyll-feed'
 
+gem 'public_suffix', '< 5.0.0' # Hack for old Ruby 2.4
+
 # Includes my fix for Kramdown ToCs.
 #
 gem 'mdl',
