@@ -127,8 +127,8 @@ I make the following changes to my template:
        Engine: mysql
 -      MasterUsername: !Ref MasterUsername
 -      MasterUserPassword: !Ref MasterUserPassword
-+      MasterUsername: '{{resolve:secretsmanager:database_password:SecretString:username}}'
-+      MasterUserPassword: '{{resolve:secretsmanager:database_password:SecretString:password}}'
++      MasterUsername: '{% raw %}{{resolve:secretsmanager:database_password:SecretString:username}}{% endraw %}'
++      MasterUserPassword: '{% raw %}{{resolve:secretsmanager:database_password:SecretString:password}}{% endraw %}'
        BackupRetentionPeriod: 0
 
  Outputs:
