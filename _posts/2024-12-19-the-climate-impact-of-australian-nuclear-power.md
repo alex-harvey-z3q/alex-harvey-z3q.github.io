@@ -38,7 +38,9 @@ A widely held concern about nuclear power is that nuclear power plants are slow 
 
 Hamilton calculated that the nuclear plan would result in cumulative emissions of 1,000 MtCO₂ by 2051:
 
-![Fig. 2]({{ "/assets/emissions2.jpg" | absolute_url }})
+<div style="text-align: center;">
+  <img src="{{ '/assets/emissions2.jpg' | absolute_url }}" alt="Fig. 2">
+</div>
 
 An additional billion tonnes of CO₂ is a seemingly large amount, but its actual impact on global warming is negligible.
 
