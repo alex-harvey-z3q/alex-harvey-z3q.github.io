@@ -59,7 +59,7 @@ Note that 1ppm ("parts per million by volume") CO₂ is approximately equal to 7
 To calculate how much actual warming would be caused by Australia emitting an additional 1,000 MtCO₂, we also need to know what the atmospheric concentration of CO₂ in 2045 would be. (Because CO₂ becomes less and less able to raise the surface temperature as CO₂ levels increase, we need to predict what the concentrations in 2045 will be rather than use today's concentrations.)
 
 Let's try two scenarios:
-- The world is on track for Net Zero 2045 and Australia is the laggard, in which case atmospheric CO₂ in 2045 might be ~ 440 ppm.
+- The world is on track for Net Zero in 2045 and Australia is the laggard, in which case atmospheric CO₂ in 2045 might be ~ 440 ppm.
 - The world has made little progress and is on track for 3 degrees of warming, in which case atmospheric CO₂ in 2045 would be ~ 470 ppm.
 
 Using the above formula:
