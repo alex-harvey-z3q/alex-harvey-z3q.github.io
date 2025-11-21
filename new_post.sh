@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 shopt -s expand_aliases
-alias sed='/usr/local/bin/gsed'
+alias sed='/opt/homebrew/bin/gsed'
 
 date="$(date +%Y-%m-%d)"
 
