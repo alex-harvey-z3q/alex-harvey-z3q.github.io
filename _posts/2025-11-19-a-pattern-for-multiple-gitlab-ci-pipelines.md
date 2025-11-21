@@ -18,7 +18,8 @@ This post documents a pattern I’ve developed for implementing a CI pipeline mu
 ## Full code example
 
 Code excerpts in this blog post relate to this full code example:
-https://github.com/alex-harvey-z3q/gitlab-ci-example
+
+[https://github.com/alex-harvey-z3q/gitlab-ci-example](https://github.com/alex-harvey-z3q/gitlab-ci-example).
 
 ## The Problem We're Solving
 
