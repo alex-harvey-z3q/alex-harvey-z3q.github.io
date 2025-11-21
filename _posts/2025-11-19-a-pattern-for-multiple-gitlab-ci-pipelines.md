@@ -15,6 +15,11 @@ In GitLab CI, a project has _exactly one entry point_: the `.gitlab-ci.yml` file
 
 This post documents a pattern I’ve developed for implementing a CI pipeline multiplexer inside `.gitlab-ci.yml`. The multiplexer delegates to child pipeline definitions, giving us functionality much closer to the multiple-workflows model of other CI systems, while operating within GitLab's constraints.
 
+## Full code example
+
+Code excerpts in this blog post relate to this full code example:
+https://github.com/alex-harvey-z3q/gitlab-ci-example
+
 ## The Problem We're Solving
 
 In our CI pipeline multiplexer, we want:
