@@ -7,7 +7,7 @@ category: puppet
 tags: puppet refactoring
 ---
 
-In [yesterday’s post](http://alexharv074.github.io/compiling-a-puppet-catalog-on-a-laptop.html) I showed how you can compile a Puppet catalog from a bundle on a laptop. Today I’m going to document how to use Zack Smith’s catalog diff tool to assist with complex refactoring changes.
+In [yesterday’s post](http://alex-harvey-z3q.github.io/compiling-a-puppet-catalog-on-a-laptop.html) I showed how you can compile a Puppet catalog from a bundle on a laptop. Today I’m going to document how to use Zack Smith’s catalog diff tool to assist with complex refactoring changes.
 
 ## Refactoring exercise
 

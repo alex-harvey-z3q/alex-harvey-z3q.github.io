@@ -15,7 +15,7 @@ This post documents a proof of concept for managing AWS SAM templates using [Sce
 
 Users of AWS CloudFormation and also AWS SAM (Serverless Application Model) would know that a major weakness of these tools is data handling. Data must be passed into CloudFormation and SAM stacks as a flat array of string parameters. This makes handling of environment-specific data difficult, if not impossible. Another significant defect is lack of programming features in the CloudFormation DSL. For loops and if statements don't exist, and there are no user-defined variables and so on.
 
-These issues have led to various abstraction layers for code-generating CloudFormation being produced. I have written about [Troposphere](https://github.com/cloudtools/troposphere) [here](https://alexharv074.github.io/2018/12/01/configuration-management-with-troposphere-and-jerakia.html) before. I also discussed a [Bash](https://alexharv074.github.io/2018/12/15/hierarchical-data-resolution-using-the-bash-shell.html) solution.
+These issues have led to various abstraction layers for code-generating CloudFormation being produced. I have written about [Troposphere](https://github.com/cloudtools/troposphere) [here](https://alex-harvey-z3q.github.io/2018/12/01/configuration-management-with-troposphere-and-jerakia.html) before. I also discussed a [Bash](https://alex-harvey-z3q.github.io/2018/12/15/hierarchical-data-resolution-using-the-bash-shell.html) solution.
 
 Yet another alternative that I encountered recently is [Sceptre](https://github.com/Sceptre/sceptre).
 
@@ -25,7 +25,7 @@ The purpose of this post is to show how I set up Sceptre to manage an example he
 
 ## Source code
 
-The source code to go with this blog post is online at GitHub [here](https://github.com/alexharv074/sceptre-sam-poc).
+The source code to go with this blog post is online at GitHub [here](https://github.com/alex-harvey-z3q/sceptre-sam-poc).
 
 ## Sceptre SAM support
 
@@ -69,7 +69,7 @@ SAM CLI, version 0.37.0
 
 ## Create a SAM project
 
-I start by using sam init to create an example "hello world" SAM app. See my earlier posts [here](https://alexharv074.github.io/2019/03/02/introduction-to-sam-part-i-using-the-sam-cli.html) and [here](https://alexharv074.github.io/2019/12/07/introduction-to-sam-part-iv-updates-to-sam-package-and-deploy-in-sam-cli-0.33.1.html) for more on this workflow.
+I start by using sam init to create an example "hello world" SAM app. See my earlier posts [here](https://alex-harvey-z3q.github.io/2019/03/02/introduction-to-sam-part-i-using-the-sam-cli.html) and [here](https://alex-harvey-z3q.github.io/2019/12/07/introduction-to-sam-part-iv-updates-to-sam-package-and-deploy-in-sam-cli-0.33.1.html) for more on this workflow.
 
 I can do that in one line using:
 

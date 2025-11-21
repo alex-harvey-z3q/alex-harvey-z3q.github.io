@@ -8,7 +8,7 @@ tags: sed bash
 
 I enjoyed reading the GNU AWK manual so much that I decided to read the [GNU sed manual](https://www.gnu.org/software/sed/manual/sed.html) too. Full disclaimer. sed is harder. Much harder!
 
-This post began as a companion to my earlier post, [Observations of AWK](https://alexharv074.github.io/2019/04/12/observations-of-awk.html), and ended up as a full tutorial and reference.
+This post began as a companion to my earlier post, [Observations of AWK](https://alex-harvey-z3q.github.io/2019/04/12/observations-of-awk.html), and ended up as a full tutorial and reference.
 
 * ToC
 {:toc}

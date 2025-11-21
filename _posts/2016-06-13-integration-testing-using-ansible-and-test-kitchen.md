@@ -39,11 +39,11 @@ The following figure shows the high-level architecture:
 
 ## Ansible role
 
-The code for this solution is available online at Github [here](https://github.com/alexharv074/ansible-bind) It’s not my intention here to discuss the Ansible code itself, except where it is relevant to the integration testing procedure.
+The code for this solution is available online at Github [here](https://github.com/alex-harvey-z3q/ansible-bind) It’s not my intention here to discuss the Ansible code itself, except where it is relevant to the integration testing procedure.
 
 ## Kitchen config
 
-To learn more about my Kitchen config, please see my earlier [post](https://alexharv074.github.io/2016/05/25/testing-an-ansible-role-using-test-kitchen.html) where I described the general config.
+To learn more about my Kitchen config, please see my earlier [post](https://alex-harvey-z3q.github.io/2016/05/25/testing-an-ansible-role-using-test-kitchen.html) where I described the general config.
 
 ### The .kitchen.yml file
 

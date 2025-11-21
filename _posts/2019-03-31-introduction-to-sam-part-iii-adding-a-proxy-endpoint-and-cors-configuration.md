@@ -6,7 +6,7 @@ author: Alex Harvey
 tags: aws lambda sam
 ---
 
-This is the third and final part of my blog series on Amazon’s Serverless Application Model (SAM). Part I and Part II are [here](https://alexharv074.github.io/2019/03/02/introduction-to-sam-part-i-using-the-sam-cli.html) and [here](https://alexharv074.github.io/2019/03/02/introduction-to-sam-part-ii-template-and-architecture.html).
+This is the third and final part of my blog series on Amazon’s Serverless Application Model (SAM). Part I and Part II are [here](https://alex-harvey-z3q.github.io/2019/03/02/introduction-to-sam-part-i-using-the-sam-cli.html) and [here](https://alex-harvey-z3q.github.io/2019/03/02/introduction-to-sam-part-ii-template-and-architecture.html).
 
 #### Table of contents
 

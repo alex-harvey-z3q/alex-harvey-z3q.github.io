@@ -6,7 +6,7 @@ author: Alex Harvey
 tags: shunit2 cloudformation
 ---
 
-This post adapts the method I documented [earlier](https://alexharv074.github.io/2020/01/31/unit-testing-a-terraform-user_data-script-with-shunit2.html) for unit testing a Terraform user_data script to CloudFormation.
+This post adapts the method I documented [earlier](https://alex-harvey-z3q.github.io/2020/01/31/unit-testing-a-terraform-user_data-script-with-shunit2.html) for unit testing a Terraform user_data script to CloudFormation.
 
 - Toc
 {:toc}
@@ -87,7 +87,7 @@ Outputs:
 
 ## Sample code on GitHub
 
-The source code for this blog post can be found online [here](https://github.com/alexharv074/cloudformation-unit-test-example).
+The source code for this blog post can be found online [here](https://github.com/alex-harvey-z3q/cloudformation-unit-test-example).
 
 ## Writing the unit tests
 
@@ -229,8 +229,8 @@ There is not much to add that I did not cover in the earlier Terraform post. The
 
 My earlier posts on shUnit2:
 
-- Jul 7, 2017, [Unit Testing a Bash Script with shUnit2](https://alexharv074.github.io/2017/07/07/unit-testing-a-bash-script-with-shunit2.html).
-- Sep 7, 2018, [Testing AWS CLI scripts in shUnit2](https://alexharv074.github.io/2018/09/07/testing-aws-cli-scripts-in-shunit2.html).
-- Jan 31, 2020, [Unit testing a Terraform user_data script with shUnit2](https://alexharv074.github.io/2020/01/31/unit-testing-a-terraform-user_data-script-with-shunit2.html).
+- Jul 7, 2017, [Unit Testing a Bash Script with shUnit2](https://alex-harvey-z3q.github.io/2017/07/07/unit-testing-a-bash-script-with-shunit2.html).
+- Sep 7, 2018, [Testing AWS CLI scripts in shUnit2](https://alex-harvey-z3q.github.io/2018/09/07/testing-aws-cli-scripts-in-shunit2.html).
+- Jan 31, 2020, [Unit testing a Terraform user_data script with shUnit2](https://alex-harvey-z3q.github.io/2020/01/31/unit-testing-a-terraform-user_data-script-with-shunit2.html).
 
-And see also my Placebo library on GitHub, [Placebo for Bash](https://github.com/alexharv074/bash_placebo).
+And see also my Placebo library on GitHub, [Placebo for Bash](https://github.com/alex-harvey-z3q/bash_placebo).

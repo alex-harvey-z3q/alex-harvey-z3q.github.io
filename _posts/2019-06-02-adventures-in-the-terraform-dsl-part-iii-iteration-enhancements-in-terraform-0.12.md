@@ -13,7 +13,7 @@ In this third part of my blog series on the Terraform DSL, I look at `for` and `
 
 ## Introduction
 
-In [Part II](https://alexharv074.github.io/2019/05/16/adventures-in-the-terraform-dsl-part-ii-iteration.html), I covered traditional iteration in Terraform 0.11 and earlier. I looked at the `count` meta parameter and discussed the pattern of using the `length()` and `element()` functions to create a list of resources, in a similar way to what was done in Puppet 3 and earlier.
+In [Part II](https://alex-harvey-z3q.github.io/2019/05/16/adventures-in-the-terraform-dsl-part-ii-iteration.html), I covered traditional iteration in Terraform 0.11 and earlier. I looked at the `count` meta parameter and discussed the pattern of using the `length()` and `element()` functions to create a list of resources, in a similar way to what was done in Puppet 3 and earlier.
 
 In this post, I look at the enhancements to iteration introduced in Terraform 0.12, notably `for` expressions, which are modelled on Python list comprehensions, and `for_each` expressions and dynamic nested blocks, which for the first time allow generation of nested blocks like `ingress` rules and so on.
 

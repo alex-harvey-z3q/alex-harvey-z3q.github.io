@@ -9,7 +9,7 @@ comments: true
 
 This posts documents a method for adding automated tests using the Python Placebo library to AWS Python Boto3 scripts. The method can be used for any Python Boto3 scripts, including Python Lambda functions that use the Boto3 library.
 
-I like the Python Placebo library quite a lot. In fact, I liked it so much so that I wrote my own Bash version of it for use with the AWS CLI ([here](https://alexharv074.github.io/2018/09/18/using-bash-placebo-to-auto-generate-mocks-in-unit-tests.html)).
+I like the Python Placebo library quite a lot. In fact, I liked it so much so that I wrote my own Bash version of it for use with the AWS CLI ([here](https://alex-harvey-z3q.github.io/2018/09/18/using-bash-placebo-to-auto-generate-mocks-in-unit-tests.html)).
 
 The Placebo library is by Mitch Garnaat who co-wrote Boto, Botocore and the AWS CLI.
 
@@ -57,7 +57,7 @@ class AMIEncrypter():
   # Other methods not shown.
 ```
 
-The code is also online [here](https://github.com/alexharv074/encrypt_ami) at GitHub.
+The code is also online [here](https://github.com/alex-harvey-z3q/encrypt_ami) at GitHub.
 
 ## Setting up Placebo
 
@@ -340,4 +340,4 @@ This post has quickly documented how to set up Placebo to unit test your Python 
 ## Further reading
 
 - Ben Kehoe, [Unit and Integration Testing for AWS Lambda](https://serverless.zone/unit-and-integration-testing-for-lambda-fc9510963003).
-- Alex Harvey, [Using Placebo for Bash to auto-generate mocks in unit tests](https://alexharv074.github.io/2018/09/18/using-bash-placebo-to-auto-generate-mocks-in-unit-tests.html).
+- Alex Harvey, [Using Placebo for Bash to auto-generate mocks in unit tests](https://alex-harvey-z3q.github.io/2018/09/18/using-bash-placebo-to-auto-generate-mocks-in-unit-tests.html).

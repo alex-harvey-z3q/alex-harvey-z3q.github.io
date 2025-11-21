@@ -101,7 +101,7 @@ php::fpm::pools:
 
 ## Code on GitHub
 
-The source code for this blog post is available online at GitHub [here](https://github.com/alexharv074/data_consistency_part_iii).
+The source code for this blog post is available online at GitHub [here](https://github.com/alex-harvey-z3q/data_consistency_part_iii).
 
 ## What are we testing and why
 

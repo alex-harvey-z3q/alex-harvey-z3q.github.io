@@ -307,4 +307,4 @@ sed -n '/^function/,/^}/{/PATTERN/p;}' FILE
 
 ---
 
-<sup>1</sup> Note that many of these one-liners are [auto-generated](https://github.com/alexharv074/alexharv074.github.io/blob/master/erb/2019-04-02-my-sed-and-awk-cookbook.md.erb#L9-L24) from [unit test](https://github.com/alexharv074/alexharv074.github.io/blob/master/shunit2/sed_and_awk_cookbook.sh) code.
+<sup>1</sup> Note that many of these one-liners are [auto-generated](https://github.com/alex-harvey-z3q/alex-harvey-z3q.github.io/blob/master/erb/2019-04-02-my-sed-and-awk-cookbook.md.erb#L9-L24) from [unit test](https://github.com/alex-harvey-z3q/alex-harvey-z3q.github.io/blob/master/shunit2/sed_and_awk_cookbook.sh) code.

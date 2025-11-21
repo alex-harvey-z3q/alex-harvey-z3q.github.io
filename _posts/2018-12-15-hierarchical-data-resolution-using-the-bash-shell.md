@@ -23,7 +23,7 @@ This post shows how to implement a hierarchical organisation of data in the same
 
 ## Example project
 
-An example project to go with this blog post is online at Github [here](https://github.com/alexharv074/hiera-in-bash.git). It was forked from [this](https://github.com/awslabs/ami-builder-packer) AWS Labs project. It is a very simple project that bakes an EC2 AMI using Packer, with different data for some parameters in dev, test and prod environments.
+An example project to go with this blog post is online at Github [here](https://github.com/alex-harvey-z3q/hiera-in-bash.git). It was forked from [this](https://github.com/awslabs/ami-builder-packer) AWS Labs project. It is a very simple project that bakes an EC2 AMI using Packer, with different data for some parameters in dev, test and prod environments.
 
 (This example project could be used as the starting point for any project that intends to manage Packer or CloudFormation or similar using shell scripts as wrappers. It is complete with a Makefile, unit tests and so on.)
 

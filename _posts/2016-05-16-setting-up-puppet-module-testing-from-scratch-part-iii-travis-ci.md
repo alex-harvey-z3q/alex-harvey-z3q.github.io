@@ -112,7 +112,7 @@ Finally, the script: line specifies the command line to use to run the builds. A
 Next, it is typical to advertise the Travis CI build status by adding a line at the top of the project’s README file:
 
 ~~~ text
-[![Build Status](https://img.shields.io/travis/alexharv074/puppet-spacewalk.svg)](https://travis-ci.org/alexharv074/puppet-spacewalk)
+[![Build Status](https://img.shields.io/travis/alex-harvey-z3q/puppet-spacewalk.svg)](https://travis-ci.org/alex-harvey-z3q/puppet-spacewalk)
 ~~~
 
 Once this is committed and pushed back to Github, the project’s README page will show a build status that looks like this:

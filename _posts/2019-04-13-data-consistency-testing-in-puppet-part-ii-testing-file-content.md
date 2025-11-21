@@ -7,9 +7,9 @@ category: puppet
 tags: puppet rspec
 ---
 
-This post continues my blog series on data consistency testing in Puppet, where I add additional layers of automated testing around the file content in Puppet catalogs. For Part I of the series, see [here](https://alexharv074.github.io/2018/09/30/data-consistency-testing-in-puppet-part-i-data-types.html).
+This post continues my blog series on data consistency testing in Puppet, where I add additional layers of automated testing around the file content in Puppet catalogs. For Part I of the series, see [here](https://alex-harvey-z3q.github.io/2018/09/30/data-consistency-testing-in-puppet-part-i-data-types.html).
 
-The source code for this blog is available at GitHub [here](https://github.com/alexharv074/data_consistency_part_ii). Step through the revision history to see the various examples.
+The source code for this blog is available at GitHub [here](https://github.com/alex-harvey-z3q/data_consistency_part_ii). Step through the revision history to see the various examples.
 
 * ToC
 {:toc}
@@ -64,7 +64,7 @@ And an ERB template<sup>1</sup>:
 }
 ```
 
-And suppose I have the simplest Rspec-puppet test, one that just compiles and [writes](https://alexharv074.github.io/2016/03/16/dumping-the-catalog-in-rspec-puppet.html) a catalog:
+And suppose I have the simplest Rspec-puppet test, one that just compiles and [writes](https://alex-harvey-z3q.github.io/2016/03/16/dumping-the-catalog-in-rspec-puppet.html) a catalog:
 
 ```ruby
 require 'spec_helper'

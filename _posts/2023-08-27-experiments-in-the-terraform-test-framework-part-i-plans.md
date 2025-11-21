@@ -6,7 +6,7 @@ author: Alex Harvey
 tags: terraform
 ---
 
-A while back I raised an [Issue #21628](https://github.com/hashicorp/terraform/issues/21628) in the Terraform project suggesting that a real unit test framework is needed for Terraform, and I was delighted to hear that HashiCorp is about to ship one in the forthcoming Terraform v1.6.0. I had written a [blog post](https://alexharv074.github.io/2019/06/15/adventures-in-the-terraform-dsl-part-vi-towards-a-unit-testing-framework.html) at the time on an early feature branch idea. But something much cleaner than that prototype has emerged in the alpha version of the framework, and, in this post, I document some of my experiments so far with it.
+A while back I raised an [Issue #21628](https://github.com/hashicorp/terraform/issues/21628) in the Terraform project suggesting that a real unit test framework is needed for Terraform, and I was delighted to hear that HashiCorp is about to ship one in the forthcoming Terraform v1.6.0. I had written a [blog post](https://alex-harvey-z3q.github.io/2019/06/15/adventures-in-the-terraform-dsl-part-vi-towards-a-unit-testing-framework.html) at the time on an early feature branch idea. But something much cleaner than that prototype has emerged in the alpha version of the framework, and, in this post, I document some of my experiments so far with it.
 
 Tests can be written in the HCL language on both plans and real infrastructure. I have split the blog post up into two parts therefore, this first part being about testing plans, and the second part about testing real infrastructure using `apply`.
 
@@ -17,7 +17,7 @@ From what I can see, so far, version 1.6 of Terraform is a big leap forward in t
 
 ## Code and resources
 
-If you'd like to follow along, the source code for all of my tests are [here](https://github.com/alexharv074/terraform-test-poc).
+If you'd like to follow along, the source code for all of my tests are [here](https://github.com/alex-harvey-z3q/terraform-test-poc).
 
 ## Project structure
 

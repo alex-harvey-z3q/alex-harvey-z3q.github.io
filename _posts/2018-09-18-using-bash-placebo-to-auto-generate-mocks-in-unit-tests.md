@@ -6,14 +6,14 @@ author: Alex Harvey
 tags: bash placebo
 ---
 
-This post shows how to use my [Bash Placebo](https://github.com/alexharv074/bash_placebo) library, inspired by Mitch Garnaat's [Python Placebo](https://github.com/garnaat/placebo) library, to unit test Bash scripts that use the AWS CLI.
+This post shows how to use my [Bash Placebo](https://github.com/alex-harvey-z3q/bash_placebo) library, inspired by Mitch Garnaat's [Python Placebo](https://github.com/garnaat/placebo) library, to unit test Bash scripts that use the AWS CLI.
 
 * Table of contents
 {:toc}
 
 ## Introduction
 
-This post is a sequel to, and should be read in conjunction with, an earlier [post](https://alexharv074.github.io/2018/09/07/testing-aws-cli-scripts-in-shunit2.html), where I documented a method for unit testing AWS CLI scripts in shunit2.
+This post is a sequel to, and should be read in conjunction with, an earlier [post](https://alex-harvey-z3q.github.io/2018/09/07/testing-aws-cli-scripts-in-shunit2.html), where I documented a method for unit testing AWS CLI scripts in shunit2.
 
 The earlier post focused on setting up and using shunit2, whereas this one focuses on the Placebo library that I have just released. This post is a Bash Placebo tutorial.
 
@@ -62,7 +62,7 @@ aws cloudformation delete-stack \
   --stack-name ${stack_name}
 ~~~
 
-As with the earlier article, the code is available at Github [here](https://github.com/alexharv074/shunit2_example.git), whereas changes that were added to integrate with Placebo were added in [this](https://github.com/alexharv074/shunit2_example/commit/724c93f6c5d87fbd7c823afad607769e646dc6f6) commit.
+As with the earlier article, the code is available at Github [here](https://github.com/alex-harvey-z3q/shunit2_example.git), whereas changes that were added to integrate with Placebo were added in [this](https://github.com/alex-harvey-z3q/shunit2_example/commit/724c93f6c5d87fbd7c823afad607769e646dc6f6) commit.
 
 ## Installing Placebo
 
@@ -70,7 +70,7 @@ The Placebo library, like shunit2, is just one file. At the moment, therefore, i
 
 ~~~ text
 ▶ curl -o /usr/local/bin/placebo \
-    https://raw.githubusercontent.com/alexharv074/bash_placebo/master/placebo
+    https://raw.githubusercontent.com/alex-harvey-z3q/bash_placebo/master/placebo
 ~~~
 
 ## Recording and playing back responses

@@ -7,7 +7,7 @@ category: puppet
 tags: puppet create-specs rspec
 ---
 
-In this post I document a new method for complex Puppet code refactoring, which involves a simple tool that I wrote called [create_specs](https://github.com/alexharv074/create_specs).
+In this post I document a new method for complex Puppet code refactoring, which involves a simple tool that I wrote called [create_specs](https://github.com/alex-harvey-z3q/create_specs).
 
 I have been using this method a while now; I find it easier than catalog-diff and consider it to be safer as well.
 
@@ -15,7 +15,7 @@ The tool create_specs automatically generates Rspec test cases to test all aspec
 
 Here, I provide a simple Puppet module that manages an NTP service in a single class, and then I refactor it to split the module into several classes. I then show how this method proves with certainty that the refactoring did not introduce bugs.
 
-I assume the reader already understands how to set up Rspec-puppet; if not, have a look at my [earlier](https://alexharv074.github.io/2016/05/08/setting-up-puppet-module-testing-from-scratch-part-i-puppet-syntax-puppet-lint-and-rspec-puppet.html) post.
+I assume the reader already understands how to set up Rspec-puppet; if not, have a look at my [earlier](https://alex-harvey-z3q.github.io/2016/05/08/setting-up-puppet-module-testing-from-scratch-part-i-puppet-syntax-puppet-lint-and-rspec-puppet.html) post.
 
 * Table of Contents
 {:toc}
@@ -24,7 +24,7 @@ I assume the reader already understands how to set up Rspec-puppet; if not, have
 
 The sample code is a simple Puppet class that installs and configures NTP.
 
-(Note: all of the code for this blog post is available at Github [here](https://github.com/alexharv074/create_specs_example). The reader can step through the revision history to see the examples before and after the refactoring.)
+(Note: all of the code for this blog post is available at Github [here](https://github.com/alex-harvey-z3q/create_specs_example). The reader can step through the revision history to see the examples before and after the refactoring.)
 
 ~~~ puppet
 class ntp (

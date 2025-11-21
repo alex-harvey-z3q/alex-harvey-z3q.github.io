@@ -22,7 +22,7 @@ The post should help Puppet users who want to use the Terraform Puppet provision
 
 ## The code
 
-For readers who prefer to just go straight to the code, I have that all on GitHub [here](https://github.com/alexharv074/terraform-puppet-provisioner-test).
+For readers who prefer to just go straight to the code, I have that all on GitHub [here](https://github.com/alex-harvey-z3q/terraform-puppet-provisioner-test).
 
 ## Architecture
 
@@ -98,7 +98,7 @@ I will also say something about the Puppetfile. The Puppetfile is used by Puppet
 # Modules from the Puppet Forge.
 mod 'danieldreier/autosign'
 mod 'puppetlabs/puppet_agent',
-  :git => 'https://github.com/alexharv074/puppetlabs-puppet_agent.git',
+  :git => 'https://github.com/alex-harvey-z3q/puppetlabs-puppet_agent.git',
   :ref => 'MODULES-9981-add_amazon_linux_2_support_to_install_task'
 ```
 
@@ -282,7 +282,7 @@ deploy_code() {
   yum -y install git
   rm -rf /etc/puppetlabs/code/environments/production
   git clone \
-    https://github.com/alexharv074/terraform-puppet-provisioner-test.git \
+    https://github.com/alex-harvey-z3q/terraform-puppet-provisioner-test.git \
     /etc/puppetlabs/code/environments/production
 }
 

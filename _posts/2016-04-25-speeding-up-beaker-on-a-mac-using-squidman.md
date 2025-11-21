@@ -69,7 +69,7 @@ ch'
 
 (Alexander Rumyantsev also removes the Yum Fastest Mirror plugin, although my reading of the documentation is that this won’t be used anyway if you remove all the mirror lists.)
 
-(If you’d like to see the actual commit where I updated mirror lists with base URLs it is [here](https://github.com/alexharv074/elk/commit/86a740caa37afc9254e2abfb9397bcb38e6f3d3a).)
+(If you’d like to see the actual commit where I updated mirror lists with base URLs it is [here](https://github.com/alex-harvey-z3q/elk/commit/86a740caa37afc9254e2abfb9397bcb38e6f3d3a).)
 
 ## Telling Beaker to use the Squid Cache
 

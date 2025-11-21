@@ -52,7 +52,7 @@ As can be seen, it is a template for code-generating AWS Security Groups with a 
 
 ## Code on GitHub
 
-This demo is available on GitHub [here](https://github.com/alexharv074/jinja2-unit-testing).
+This demo is available on GitHub [here](https://github.com/alex-harvey-z3q/jinja2-unit-testing).
 
 ## Test cases
 

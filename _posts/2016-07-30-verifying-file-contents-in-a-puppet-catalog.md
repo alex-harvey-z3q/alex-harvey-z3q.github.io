@@ -103,7 +103,7 @@ le.org\n</VirtualHost>\n"
 }
 ~~~
 
-(If you don’t know how to dump the catalog, see my [earlier](https://alexharv074.github.io/2016/03/16/dumping-the-catalog-in-rspec-puppet.html) post.)
+(If you don’t know how to dump the catalog, see my [earlier](https://alex-harvey-z3q.github.io/2016/03/16/dumping-the-catalog-in-rspec-puppet.html) post.)
 
 ## Tricks for catalog viewing
 

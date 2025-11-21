@@ -83,7 +83,7 @@ The examples bundled in the RPM are worth looking at – in fact, all of the exa
 
 ### Getting shUnit2 2.1.7-pre and my patch
 
-Some of the examples below require a patch that I have written which is, at the time of writing, not merged. Until it is merged, this patched version can be obtained from [here](https://github.com/alexharv074/shunit2/tree/Issue_54/protect_internal_commands_from_stubbing).
+Some of the examples below require a patch that I have written which is, at the time of writing, not merged. Until it is merged, this patched version can be obtained from [here](https://github.com/alex-harvey-z3q/shunit2/tree/Issue_54/protect_internal_commands_from_stubbing).
 
 If that patch has been merged, then version 2.1.7-pre can be obtained from [here](https://github.com/kward/shunit2).
 

@@ -13,7 +13,7 @@ The main reason for this post, however, was just to document the method of analy
 
 ## Broken build
 
-The failed build is available online [here](https://travis-ci.org/alexharv074/elk/jobs/420704510) and I ran it again in Librarian verbose mode [here](https://travis-ci.org/alexharv074/elk/jobs/423859931). Librarian can be seen failing like this:
+The failed build is available online [here](https://travis-ci.org/alex-harvey-z3q/elk/jobs/420704510) and I ran it again in Librarian verbose mode [here](https://travis-ci.org/alex-harvey-z3q/elk/jobs/423859931). Librarian can be seen failing like this:
 
 ~~~ text
 [Librarian] Resolving puppetlabs-concat (>= 0) <https://forgeapi.puppetlabs.com>

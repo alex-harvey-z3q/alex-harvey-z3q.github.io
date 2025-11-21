@@ -150,7 +150,7 @@ class profile::elasticsearch::data_node (
 }
 ~~~
 
-This is a modification of my open source ELK solution from [here](https://github.com/alexharv074/elk).
+This is a modification of my open source ELK solution from [here](https://github.com/alex-harvey-z3q/elk).
 
 The declaration "Hash" here is not likely to detect actual errors and does not add much as documentation. The chances are that in the absence of some sample data, it is not going to be easy to figure out what the actual YAML Hash of volume groups really looks like. The user probably would need to carefully study the internals of the LVM module or its documentation to figure out that a structure like this would be required:
 

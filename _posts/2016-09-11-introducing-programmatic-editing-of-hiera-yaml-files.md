@@ -47,7 +47,7 @@ I realised that a script that could execute snippets of arbitrary Python code on
 To install the script, just clone my Git repository and install the Python dependencies with PIP:
 
 ~~~ text
-$ git clone https://github.com/alexharv074/hiera-bulk-edit
+$ git clone https://github.com/alex-harvey-z3q/hiera-bulk-edit
 $ cd hiera-bulk-edit
 $ pip install -r requirements.txt
 ~~~

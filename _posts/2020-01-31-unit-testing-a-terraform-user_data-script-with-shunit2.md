@@ -6,7 +6,7 @@ author: Alex Harvey
 tags: terraform shunit2 bash
 ---
 
-In this post, which could be read as part II to an [earlier](https://alexharv074.github.io/2017/07/07/unit-testing-a-bash-script-with-shunit2.html) post, I document a method for unit testing a Terraform user_data script that is broken into functions.
+In this post, which could be read as part II to an [earlier](https://alex-harvey-z3q.github.io/2017/07/07/unit-testing-a-bash-script-with-shunit2.html) post, I document a method for unit testing a Terraform user_data script that is broken into functions.
 
 - Toc
 {:toc}
@@ -650,7 +650,7 @@ EOF
 }
 ```
 
-The only real conceptual difference between this test and the previous one is that my `aws` mock behaves differently depending on what the arguments passed to `aws` are. (See my earlier post [Testing AWS CLI scripts in shunit2](https://alexharv074.github.io/2018/09/07/testing-aws-cli-scripts-in-shunit2.html) for more info.)
+The only real conceptual difference between this test and the previous one is that my `aws` mock behaves differently depending on what the arguments passed to `aws` are. (See my earlier post [Testing AWS CLI scripts in shunit2](https://alex-harvey-z3q.github.io/2018/09/07/testing-aws-cli-scripts-in-shunit2.html) for more info.)
 
 #### test case 2
 
@@ -797,13 +797,13 @@ Great. My change is good and I can commit that and not worry about expensive end
 
 ## Summary
 
-So that's my unit testing method for Terraform user_data scripts. In this post, I have documented a method of testing these scripts using shUnit2. The post could be read as a second part to my earlier post, [Unit testing a Bash script using shUnit2](https://alexharv074.github.io/2017/07/07/unit-testing-a-bash-script-with-shunit2.html), in so far as it shows how to do unit testing in Bash where the units are functions instead of scripts. I also have shown some Terraform-specific tricks for best practices with Bash `user_data` scripts, and covered a bit of theory of unit testing Bash scripts in general.
+So that's my unit testing method for Terraform user_data scripts. In this post, I have documented a method of testing these scripts using shUnit2. The post could be read as a second part to my earlier post, [Unit testing a Bash script using shUnit2](https://alex-harvey-z3q.github.io/2017/07/07/unit-testing-a-bash-script-with-shunit2.html), in so far as it shows how to do unit testing in Bash where the units are functions instead of scripts. I also have shown some Terraform-specific tricks for best practices with Bash `user_data` scripts, and covered a bit of theory of unit testing Bash scripts in general.
 
 ## See also
 
 My earlier posts on shUnit2:
 
-- Jul 7, 2017, [Unit Testing a Bash Script with shUnit2](https://alexharv074.github.io/2017/07/07/unit-testing-a-bash-script-with-shunit2.html).
-- Sep 7, 2018, [Testing AWS CLI scripts in shUnit2](https://alexharv074.github.io/2018/09/07/testing-aws-cli-scripts-in-shunit2.html).
+- Jul 7, 2017, [Unit Testing a Bash Script with shUnit2](https://alex-harvey-z3q.github.io/2017/07/07/unit-testing-a-bash-script-with-shunit2.html).
+- Sep 7, 2018, [Testing AWS CLI scripts in shUnit2](https://alex-harvey-z3q.github.io/2018/09/07/testing-aws-cli-scripts-in-shunit2.html).
 
-And see also my Placebo library on GitHub, [Placebo for Bash](https://github.com/alexharv074/bash_placebo).
+And see also my Placebo library on GitHub, [Placebo for Bash](https://github.com/alex-harvey-z3q/bash_placebo).

@@ -13,7 +13,7 @@ In this Part IV of my adventures in the Terraform DSL, I finish my investigation
 
 ## Introduction
 
-In [Part I](https://alexharv074.github.io/2019/05/12/adventures-in-the-terraform-dsl-part-i-structured-data.html), I looked at addressing data in both Terraform 0.11 and 0.12-beta2 and I briefly mentioned _splat_ expressions in Terraform 0.11 and said I would return them in Part II on iteration. However, iteration in Terraform turned out to be such a large topic that Part II became Parts II and III and I still haven't honoured my promise to discuss the splat!
+In [Part I](https://alex-harvey-z3q.github.io/2019/05/12/adventures-in-the-terraform-dsl-part-i-structured-data.html), I looked at addressing data in both Terraform 0.11 and 0.12-beta2 and I briefly mentioned _splat_ expressions in Terraform 0.11 and said I would return them in Part II on iteration. However, iteration in Terraform turned out to be such a large topic that Part II became Parts II and III and I still haven't honoured my promise to discuss the splat!
 
 That's what this post is about: the splat expression in Terraform 0.11 and 0.12.1.
 

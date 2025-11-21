@@ -23,7 +23,7 @@ For example:
     - [Subsection b](#subsection-b)
 ~~~
 
-There are tools out there to auto-generate tables of contents e.g. [markdown-toc](https://github.com/jonschlinkert/markdown-toc), but I wanted something simpler and I wrote my own Ruby script to do it.  My script is [gen_markdown_toc.rb](https://github.com/alexharv074/scripts/blob/master/gen_markdown_toc.rb).
+There are tools out there to auto-generate tables of contents e.g. [markdown-toc](https://github.com/jonschlinkert/markdown-toc), but I wanted something simpler and I wrote my own Ruby script to do it.  My script is [gen_markdown_toc.rb](https://github.com/alex-harvey-z3q/scripts/blob/master/gen_markdown_toc.rb).
 
 To use it (on a Mac):
 

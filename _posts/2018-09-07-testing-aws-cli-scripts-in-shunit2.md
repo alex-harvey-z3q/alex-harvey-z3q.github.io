@@ -61,7 +61,7 @@ aws cloudformation delete-stack \
   --stack-name "$stack_name"
 ```
 
-(Note: all of the code for this blog post is available at Github [here](https://github.com/alexharv074/shunit2_example.git). The reader can step through the revision history to see the examples before and after the refactoring.)
+(Note: all of the code for this blog post is available at Github [here](https://github.com/alex-harvey-z3q/shunit2_example.git). The reader can step through the revision history to see the examples before and after the refactoring.)
 
 As can be seen, this script does these things:
 
@@ -137,7 +137,7 @@ Also used just for prettifying diff output (see below) is `DiffHighlight.pl`. Th
 
 ```text
 ▶ curl \
-    https://raw.githubusercontent.com/alexharv074/scripts/master/DiffHighlight.pl \
+    https://raw.githubusercontent.com/alex-harvey-z3q/scripts/master/DiffHighlight.pl \
     -o /usr/local/bin/DiffHighlight.pl
 ```
 

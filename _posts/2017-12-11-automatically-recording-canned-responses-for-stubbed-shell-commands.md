@@ -9,7 +9,7 @@ published: false
 
 This brief post shows a shell script that can automatically record canned responses from a shell command, for example the aws command line, for later use in shUnit2 tests.
 
-For more information, see my other [post](https://alexharv074.github.io/2017/07/07/unit-testing-a-bash-script-with-shunit2.html) on unit testing bash scripts in shUnit2.
+For more information, see my other [post](https://alex-harvey-z3q.github.io/2017/07/07/unit-testing-a-bash-script-with-shunit2.html) on unit testing bash scripts in shUnit2.
 
 ## Method
 

@@ -6,7 +6,7 @@ author: Alex Harvey
 tags: test-kitchen
 ---
 
-This is an update of sorts to my earlier blog post [Integration testing using Ansible and Test Kitchen](https://alexharv074.github.io/2016/06/13/integration-testing-using-ansible-and-test-kitchen.html) after I spent the day figuring out how to configure the [kitchen-ec2](https://github.com/test-kitchen/kitchen-ec2) driver.
+This is an update of sorts to my earlier blog post [Integration testing using Ansible and Test Kitchen](https://alex-harvey-z3q.github.io/2016/06/13/integration-testing-using-ansible-and-test-kitchen.html) after I spent the day figuring out how to configure the [kitchen-ec2](https://github.com/test-kitchen/kitchen-ec2) driver.
 
 ## Use of .kitchen.local.yml
 

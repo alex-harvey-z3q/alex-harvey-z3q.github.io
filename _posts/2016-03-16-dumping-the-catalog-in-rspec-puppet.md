@@ -9,7 +9,7 @@ tags: puppet catalog rspec
 
 I always knew there must be a better way.
 
-In a [previous post](https://alexharv074.github.io/2015/12/31/compiling-a-puppet-catalog-on-a-laptop.html) I documented a procedure for compiling a catalog without logging onto a Puppet Master.  The procedure is useful but also complicated.
+In a [previous post](https://alex-harvey-z3q.github.io/2015/12/31/compiling-a-puppet-catalog-on-a-laptop.html) I documented a procedure for compiling a catalog without logging onto a Puppet Master.  The procedure is useful but also complicated.
 
 I often wondered why Rspec-puppet couldn't just dump the catalogs it compiles during unit testing.
 

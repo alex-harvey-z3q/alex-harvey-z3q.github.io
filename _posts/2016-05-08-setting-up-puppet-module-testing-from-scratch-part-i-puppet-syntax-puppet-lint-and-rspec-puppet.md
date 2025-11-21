@@ -9,7 +9,7 @@ tags: puppet rspec
 
 It was brought to my attention that there’s demand for a post on how to set up Beaker from scratch. Then, after looking into it, I realised there’s a case for a whole series on how to set up Puppet modules as well as Puppet roles & profiles for testing.
 
-In this series I am going to look at setting up all of the following components for Puppet module testing: Puppetlabs_spec_helper, Puppet-syntax, Puppet-lint, and Rspec-puppet (this post); [Beaker for modules (part II)](http://alexharv074.github.io/2016/05/13/setting-up-puppet-module-testing-from-scratch-part-ii-beaker-for-module-testing.html); [Travis CI (part III)](http://alexharv074.github.io/2016/05/16/setting-up-puppet-module-testing-from-scratch-part-iii-travis-ci.html), Puppet Blacksmith and additional set up required for publishing your module on the Forge (part IV); and using ModuleSync to keep all of this set up in sync when you support many modules or code bases (part V).
+In this series I am going to look at setting up all of the following components for Puppet module testing: Puppetlabs_spec_helper, Puppet-syntax, Puppet-lint, and Rspec-puppet (this post); [Beaker for modules (part II)](http://alex-harvey-z3q.github.io/2016/05/13/setting-up-puppet-module-testing-from-scratch-part-ii-beaker-for-module-testing.html); [Travis CI (part III)](http://alex-harvey-z3q.github.io/2016/05/16/setting-up-puppet-module-testing-from-scratch-part-iii-travis-ci.html), Puppet Blacksmith and additional set up required for publishing your module on the Forge (part IV); and using ModuleSync to keep all of this set up in sync when you support many modules or code bases (part V).
 
 My aim is not to provide tutorials on how to write Rspec or Rspec-puppet or Beaker tests; there are many of those out there already. My focus is simply how to set up the various frameworks, assuming no prior knowledge from the reader.
 
@@ -17,7 +17,7 @@ My aim is not to provide tutorials on how to write Rspec or Rspec-puppet or Beak
 
 ## Example module
 
-By way of example, we will look at adding the testing of the [puppet-spacewalk](https://github.com/alexharv074/puppet-spacewalk) module that I have been working on.  As such, it is a real-life example.
+By way of example, we will look at adding the testing of the [puppet-spacewalk](https://github.com/alex-harvey-z3q/puppet-spacewalk) module that I have been working on.  As such, it is a real-life example.
 
 ## The puppetlabs_spec_helper
 

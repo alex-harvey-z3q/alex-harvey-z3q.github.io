@@ -115,7 +115,7 @@ Usage: terraform testing eval MODULE-DIR REF-ADDR DATA-FILE
 
 ### Example code
 
-My proof of concept code is online [here](https://github.com/alexharv074/terraform-unit-testing-poc) and the final version of all the code discussed in this post can be seen from there. The reader may also clone that and try it themself.
+My proof of concept code is online [here](https://github.com/alex-harvey-z3q/terraform-unit-testing-poc) and the final version of all the code discussed in this post can be seen from there. The reader may also clone that and try it themself.
 
 So as to have an example of something to actually test I have written a simple Terraform module that spins up an AWS EC2 instance:
 
@@ -231,7 +231,7 @@ Usage: terraform testing eval MODULE-DIR REF-ADDR DATA-FILE
 
 So we can pass in a `REF-ADDR` - a single Terraform resource like `aws_instance.this` - and a `DATA-FILE` - a JSON file specifying the variables we want to pass in, and also - and this is a bit of a gotcha - the values of any locals.
 
-In my case, I have created some example JSON files in my proof-of-concept [here](https://github.com/alexharv074/terraform-unit-testing-poc/blob/master/spec/fixtures/simplest_instance_count_1.json). For example:
+In my case, I have created some example JSON files in my proof-of-concept [here](https://github.com/alex-harvey-z3q/terraform-unit-testing-poc/blob/master/spec/fixtures/simplest_instance_count_1.json). For example:
 
 ```json
 {
@@ -264,7 +264,7 @@ To be sure, the JSON representation is a little confusing, which is why Martin a
 
 I chose to rewrite these Python helpers in Ruby so that I could use Rspec instead. My thinking is that Rspec is already known to many DevOps engineers, and is the basis of Serverspec, Test Kitchen, Rspec-puppet, Chefspec, InSpec and not to mention an old project [rspec-terraform](https://github.com/bsnape/rspec-terraform). And I also believe that Ruby's flexibility - a language that has evolved from sed, AWK & Perl - makes it a good language for automated testing. But, of course, the choice of framework here isn't a key consideration. I like Rspec. Others may feel free to use something else.
 
-The source code for these are [here](https://github.com/alexharv074/terraform-unit-testing-poc/blob/master/spec/spec_helper.rb#L8-L63).
+The source code for these are [here](https://github.com/alex-harvey-z3q/terraform-unit-testing-poc/blob/master/spec/spec_helper.rb#L8-L63).
 
 ```ruby
 class TerraformTesting
@@ -676,7 +676,7 @@ A minor issue to be sure is that all of this is done so far is pure Rspec and I 
 
 Part of my motivation for writing this post is to show how close we are to making real unit testing possible in Terraform and to provide incentive for HashiCorp to finish off the feature and merge it. At the moment, Martin Atkins has said that delivering this feature is not high on HashiCorp's priorities, although it took only a couple of hours to implement this prototype.
 
-In my own view, a tool like Terraform that lacks a unit testing framework is not safe for production. It is not a matter of if, but only when, a code base, whether written in the Terraform DSL or any other language, will require extensive refactoring. And, as things are, there will be so safe way to actually do that refactoring in Terraform when that point is reached. So, at the moment, my only recommendation would be to not use Terraform in production, ever. There are safer options: [Pulumi](https://www.pulumi.com), [AWS CDK](https://docs.aws.amazon.com/cdk/latest/guide/home.html), and I have written about [Troposphere](https://alexharv074.github.io/2018/12/01/configuration-management-with-troposphere-and-jerakia.html) here before.
+In my own view, a tool like Terraform that lacks a unit testing framework is not safe for production. It is not a matter of if, but only when, a code base, whether written in the Terraform DSL or any other language, will require extensive refactoring. And, as things are, there will be so safe way to actually do that refactoring in Terraform when that point is reached. So, at the moment, my only recommendation would be to not use Terraform in production, ever. There are safer options: [Pulumi](https://www.pulumi.com), [AWS CDK](https://docs.aws.amazon.com/cdk/latest/guide/home.html), and I have written about [Troposphere](https://alex-harvey-z3q.github.io/2018/12/01/configuration-management-with-troposphere-and-jerakia.html) here before.
 
 If you are reading this, go and upvote the related issue and let HashiCorp know that it is not safe to use Terraform in production until they deliver this feature.
 

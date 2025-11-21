@@ -15,7 +15,7 @@ It was an excuse to try out Tom Poulton‘s [rspec-puppet-utils](https://github.
 
 In this post I’m going to show how to use Tom’s project to mock functions; how to mock the Hiera function; how to test template logic; and also how to validate Hiera data directly.
 
-If you’d like to follow along, I have this code at Github [here](https://github.com/alexharv074/rspec-puppet-utils-example.git).
+If you’d like to follow along, I have this code at Github [here](https://github.com/alex-harvey-z3q/rspec-puppet-utils-example.git).
 
 {:toc}
 
@@ -287,7 +287,7 @@ end
 
 The part about this that is hacky is that I’m finding the template itself at spec/fixtures/modules/network/templates/ifcfg-eth.erb. What’s it doing there? Well, it gets checked out by the Puppetlabs_spec_helper, as it processes my .fixtures.yml. All dependent modules end up in spec/fixtures/modules, and I expect anyone who has read this far already knows this.
 
-In case you’re wondering how I deduced the expected content of the output template line by line, well I cheated and [looked](https://alexharv074.github.io/2016/03/13/dumping-the-catalog-in-rspec-puppet.html) inside a catalog I compiled!
+In case you’re wondering how I deduced the expected content of the output template line by line, well I cheated and [looked](https://alex-harvey-z3q.github.io/2016/03/13/dumping-the-catalog-in-rspec-puppet.html) inside a catalog I compiled!
 
 The harness.set lines allow me to set the values of the class variables expected by the ERB template.
 

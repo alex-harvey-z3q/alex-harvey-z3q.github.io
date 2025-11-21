@@ -393,6 +393,6 @@ While I am not familiar enough with Terraform's code base to be certain, I suspe
 
 ## Conclusion
 
-Today I have looked in detail at the Terraform 0.12.6 resource for_each and compared it specifically to the related features in Puppet. For anyone simply wanting to know how to use the feature, I had covered most of that in [Part III](https://alexharv074.github.io/2019/06/02/adventures-in-the-terraform-dsl-part-iii-iteration-enhancements-in-terraform-0.12.html) of this series, whereas today I have focused on what the feature still can't do, and I've proposed a way for HashiCorp to make it possible in a future release.
+Today I have looked in detail at the Terraform 0.12.6 resource for_each and compared it specifically to the related features in Puppet. For anyone simply wanting to know how to use the feature, I had covered most of that in [Part III](https://alex-harvey-z3q.github.io/2019/06/02/adventures-in-the-terraform-dsl-part-iii-iteration-enhancements-in-terraform-0.12.html) of this series, whereas today I have focused on what the feature still can't do, and I've proposed a way for HashiCorp to make it possible in a future release.
 
 Stay tuned for Part VIII where I look at the Terraform Puppet provisioner.

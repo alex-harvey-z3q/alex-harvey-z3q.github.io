@@ -10,7 +10,7 @@ While writing a simple Ruby script recently, I discovered that it is difficult t
 
 {:toc}
 
-The post is written as a tutorial and if you’d like to follow along with the code, you can clone [this](https://github.com/alexharv074/rspec_examples) repo. Note that I have added tags so that you can checkout the code in stages that will closely follow the examples in the text.
+The post is written as a tutorial and if you’d like to follow along with the code, you can clone [this](https://github.com/alex-harvey-z3q/rspec_examples) repo. Note that I have added tags so that you can checkout the code in stages that will closely follow the examples in the text.
 
 ## Project structure
 

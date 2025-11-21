@@ -6,7 +6,7 @@ author: Alex Harvey
 tags: sam lambda cors
 ---
 
-This is Part II of my 3-part blog series on Amazon's Serverless Application Model (SAM). Part I is [here](https://alexharv074.github.io/2019/03/02/introduction-to-sam-part-i-using-the-sam-cli.html) and I recommend reading that first.
+This is Part II of my 3-part blog series on Amazon's Serverless Application Model (SAM). Part I is [here](https://alex-harvey-z3q.github.io/2019/03/02/introduction-to-sam-part-i-using-the-sam-cli.html) and I recommend reading that first.
 
 #### Table of contents
 

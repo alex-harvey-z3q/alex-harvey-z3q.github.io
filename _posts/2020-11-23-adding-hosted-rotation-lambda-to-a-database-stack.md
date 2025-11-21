@@ -70,7 +70,7 @@ Successfully created/updated stack - test-stack
 
 ### Create password with manage_secrets
 
-Here I use a utility I wrote [manage_secrets](https://github.com/alexharv074/manage_secrets) to create and manage the initial secrets:
+Here I use a utility I wrote [manage_secrets](https://github.com/alex-harvey-z3q/manage_secrets) to create and manage the initial secrets:
 
 ```text
 ▶ bash manage_secrets.sh -c database_password -D "Password for RDS database" -s '{"username":"admin","password":"abcd1234"}'
