@@ -39,15 +39,59 @@ Agents are called explicitly and sequentially. The benefit isn't autonomy; it's 
 
 ## Shared state
 
-All agents communicate through a shared state object.
+All agents in this system communicate through a single shared state object, defined in `graph_state.py`.
 
-This state acts as a contract:
+Rather than passing lots of parameters between functions, each agent receives the entire state, reads the fields it cares about, and writes its own outputs back into it. Conceptually, the state is just a Python dictionary — but with a deliberately agreed structure.
 
-- each agent reads what it needs,
-- writes only what it is responsible for,
-- and appends logs describing what it did.
+Here's the definition:
 
-Making this state explicit turns the workflow into something you can reason about, inspect, and debug.
+```python
+from typing import List, TypedDict
+
+class AgentState(TypedDict, total=False):
+    # Original user question
+    question: str
+
+    # Planner output
+    sub_tasks: List[str]
+
+    # Researcher output
+    research_notes: List[str]
+
+    # Analyst output
+    analysis: str
+
+    # Writer output
+    draft_report: str
+
+    # Reviewer output
+    final_report: str
+
+    # Debug / trace messages
+    logs: List[str]
+```
+
+This state acts as a **contract between agents**.
+
+Each agent is responsible for:
+- reading only the fields it needs,
+- writing only the fields it owns,
+- and appending a short entry to `logs` describing what it did.
+
+For example:
+- the Planner reads `question` and writes `sub_tasks`,
+- the Researcher reads `sub_tasks` and writes `research_notes`,
+- the Writer reads `analysis` and writes `draft_report`,
+- the Reviewer reads `draft_report` and writes `final_report`.
+
+No agent is allowed to silently modify another agent's output.
+
+This design turns the workflow into something you can reason about step by step. At any point, you can print the state and see:
+- what information has been introduced,
+- which agent introduced it,
+- and what decisions were made along the way.
+
+That's especially important with LLM-based systems, where behaviour can otherwise feel opaque or “magical". By forcing everything through an explicit shared state, failures become visible rather than hidden — which makes debugging, iteration, and learning much easier.
 
 ---
 
