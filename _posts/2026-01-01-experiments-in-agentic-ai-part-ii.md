@@ -392,7 +392,13 @@ In Part III, I'll start wiring these agents together more formally and look at h
 
 ## References
 
-For further reading on the failures I am observing:
+Further reading:
 
+- Why language models hallucinate (OpenAI) https://openai.com/index/why-language-models-hallucinate/
+- Hallucination is Inevitable: An Innate Limitation of Large Language Models (arXiv) https://arxiv.org/abs/2401.11817
+- A Taxonomic Survey of Hallucinations in Large Language Models (MDPI) https://www.mdpi.com/2673-2688/6/10/260
+- Hallucination (Artificial Intelligence) – overview and references (Wikipedia) https://en.wikipedia.org/wiki/Hallucination_(artificial_intelligence)
 - Why LLM outputs get truncated or stop mid-sentence (Stack Overflow discussion) https://stackoverflow.com/questions/77061898/incomplete-output-with-llm-with-max-new-tokens
-- Overcoming Output Token Limits: A Smarter Way to Generate Long LLM Responses https://medium.com/@gopidurgaprasad762/overcoming-output-token-limits-a-smarter-way-to-generate-long-llm-responses-efe297857a76
+- Understanding stopping criteria and truncated LLM outputs (Medium) https://medium.com/@hafsaouaj/when-do-llms-stop-talking-understanding-stopping-criteria-6e96ef01835c
+- Overcoming output token limits in LLMs (Medium) https://medium.com/@gopidurgaprasad762/overcoming-output-token-limits-a-smarter-way-to-generate-long-llm-responses-efe297857a76
+- Survey and analysis of hallucinations in LLMs (PMC / academic paper) https://pmc.ncbi.nlm.nih.gov/articles/PMC12518350/
