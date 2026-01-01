@@ -49,6 +49,8 @@ Here's the definition:
 from typing import List, TypedDict
 
 class AgentState(TypedDict, total=False):
+    # Note that total=False makes fields in the TypedDict optional.
+
     # Original user question
     question: str
 
