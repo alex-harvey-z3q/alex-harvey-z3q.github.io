@@ -104,6 +104,7 @@ def planner_node(state: AgentState) -> AgentState:
 
     sub_tasks = _parse_numbered_lines(plan_text)
 
+    # See notes below!
     if not sub_tasks:
         sub_tasks = [
             line.strip("- ").strip()
@@ -126,9 +127,18 @@ One thing that surprised me early on is how often LLMs ignore formatting instruc
 
 > Return ONLY a numbered list (1., 2., 3., ...). No extra text.
 
-Even with that constraint, the model will sometimes return a bulleted list, or mix formatting styles. Because later steps depend on this output, the code has to be defensive and handle these cases explicitly.
+Even with that constraint, the model will sometimes return a bulleted list, or mix formatting styles. Because later steps depend on this output, the code has to be defensive and handle these cases explicitly. So that's what this bit is about:
 
-This is one of the less glamorous problems that tends to get glossed over in the hype around agentic AI. Building reliable workflows on top of models that are fundamentally probabilistic — and occasionally disobedient — requires a lot of careful engineering.
+```python
+if not sub_tasks:
+    sub_tasks = [
+        line.strip("- ").strip()
+        for line in plan_text.splitlines()
+        if line.strip()
+    ][:5]
+```
+
+This seems to be one of the less glamorous problems that gets glossed over in the hype around agentic AI. Building reliable workflows on top of models that are fundamentally probabilistic — and sometimes disobedient — requires a lot of careful engineering!
 
 ### Testing the Planner agent
 
