@@ -6,6 +6,11 @@ author: Alex Harvey
 tags: agentic-ai multi-agent langgraph
 ---
 
+- ToC
+{:toc}
+
+## Introduction
+
 In Part I, I built a minimal Retrieval‑Augmented Generation (RAG) loop: one question in, relevant text retrieved, a grounded answer out.
 
 The retrieval layer is now my infrastructure to build agents on. In this post, I do that, and start adding agents on top of it — beginning with the simplest and most important one: the Planner.
