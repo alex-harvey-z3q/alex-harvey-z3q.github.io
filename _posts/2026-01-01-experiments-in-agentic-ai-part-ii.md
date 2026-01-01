@@ -25,7 +25,7 @@ As before, this is written from the perspective of a non‑expert learning by bu
 
 ## What "adding agents" means here
 
-Before looking at the code, it's worth talking about an *agent* actually is.
+Before looking at the code, it's worth talking about what an *agent* actually is.
 
 In this project, an agent is not some new kind of AI. There's no autonomy, no background processes, and no magic. An agent is simply:
 
