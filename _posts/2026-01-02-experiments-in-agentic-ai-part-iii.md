@@ -463,5 +463,3 @@ The system still fails — but now it fails in a controlled way.
 In Part IV, I'll focus on retrieval itself.
 
 Even with evidence gating, semantic search still misses exact lines and returns partial context. Next up is tightening retrieval quality and attribution — without pretending it's "solved".
-
-That's where things get really interesting.
