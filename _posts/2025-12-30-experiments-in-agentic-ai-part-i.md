@@ -6,23 +6,39 @@ author: Alex Harvey
 tags: agentic-ai rag multi-agent
 ---
 
-This is the first in a multi-part blog series documenting my progress building agentic AI workflows — systems where multiple LLMs a.k.a. "agents" work together or collaborate on a bigger piece of work.
+- ToC
+{:toc}
 
-Here, I’m building a small but serious project: an **AI research analyst** that takes a question about something — in my demo that something is Beatles lyrics, but would normally be data about a company or industry etc — and produces a structured, executive-style brief — with sources, reasoning steps, and a basic quality review.
+## Series directory
 
-Note that this not about chatbots.  It’s about doing *agentic AI* in practice — to find out what multiple specialised AI agents coordinating together can actually do.  I mean, what they can really do, not what they do in the flashy Microsoft demo!
+This post is **Part I** of a multi-part series documenting my progress building agentic AI workflows — systems where multiple LLMs ("agents") collaborate on a larger piece of work.  If you want to jump ahead, here's the full sequence:
 
-At a high level, the system I’m working toward includes distinct agents responsible for planning, research, analysis, writing, and review.  Each "agent" is essentially just a separate prompt sent to a single LLM.
+- [**Part I: Agentic Research Analyst**](http://alex-harvey-z3q.github.io/2025/12/30/experiments-in-agentic-ai-part-i.html) (this page)
+  Building the foundation: a minimal Retrieval-Augmented Generation (RAG) layer that all later agents depend on.
 
-This post is **Part I** of the series. It focuses on the foundation: a minimal Retrieval-Augmented Generation (RAG) layer.  This retrieval capability is the shared tool that other agents later including the research agent (to gather evidence) and the reviewer agent (to verify it) will consume.
+- [**Part II: Adding Agents**](https://alex-harvey-z3q.github.io/2025/12/30/experiments-in-agentic-ai-part-ii.html).
+  Introducing planner, researcher, analyst, writer, and reviewer agents — and observing how things break once multiple models are chained together.
 
-If you want to follow along with the actual implementation, all of the source code for this project lives here:
+- [**Part III: Evidence, Gates, and Enforcing Truthfulness**](https://alex-harvey-z3q.github.io/2026/01/02/experiments-in-agentic-ai-part-iii.html)
+  Replacing free-text “notes” with structured evidence, tightening contracts between agents, and making the system fail conservatively instead of hallucinating.
+
+---
+
+## Introduction
+
+In this introductory post, I'm building a small but serious project: an **AI research analyst** that takes a question about something — in this demo, Beatles lyrics — and produces a structured, executive-style brief with sources, reasoning steps, and a basic quality review.
+
+Note that this is not about chatbots. It’s about doing *agentic AI* in practice — finding out what multiple specialised AI agents coordinating together can actually do, not what they do in flashy demos.
+
+At a high level, the system I’m working toward includes distinct agents responsible for planning, research, analysis, writing, and review. Each “agent” is essentially just a separate prompt sent to a single LLM.
+
+This post focuses on the foundation: a minimal Retrieval-Augmented Generation (RAG) layer. This retrieval capability is the shared tool that later agents — especially the researcher (to gather evidence) and the reviewer (to verify it) — will rely on.
+
+If you want to follow along with the implementation, all of the source code for this project lives here:
 
 > **https://github.com/alex-harvey-z3q/agentic-analyst**
 
-This post is written from the perspective of a non-expert learning by building, and it’s aimed at readers who are also curious about how these systems work under the hood.
-
----
+This post is written from the perspective of a non-expert learning by building, and it’s aimed at readers who want to understand what’s really going on under the hood.
 
 ## The end goal
 
