@@ -402,7 +402,7 @@ LOGS:
 [reviewer_editor] edit pass completed
 ```
 
-So that's actually an improvement. The LlamaIndex pipeline is now consistently surfacing verbatim lyric fragments that actually appear in the source material. Quotes like "Yes, I’m lonely, wanna die" (Yer Blues) and "Wearing a face that she keeps in a jar by the door" (Eleanor Rigby) are reliably present in the retrieved evidence, rather than being paraphrased or approximated by the model.
+So, that's actually an improvement. The LlamaIndex pipeline is now consistently surfacing verbatim lyric fragments that actually appear in the source material. Quotes like "Yes, I’m lonely, wanna die" (=> Yer Blues) and "Wearing a face that she keeps in a jar by the door" (=> Eleanor Rigby) are reliably present in the retrieved evidence, rather than being paraphrased or approximated by the model.
 
 This matters because the downstream agents were already conservative. The validator aggressively removes unsupported claims, and the editor deletes entire sections when attribution looks shaky. In the earlier LangChain-based version, that conservatism often resulted in large portions of the report being stripped away. Here, the same agents are running unchanged — but they now have access to higher-quality evidence, so fewer sections need to be deleted.
 
