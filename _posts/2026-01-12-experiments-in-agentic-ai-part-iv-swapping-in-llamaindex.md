@@ -406,7 +406,7 @@ So that's actually an improvement. The LlamaIndex pipeline is now consistently s
 
 This matters because the downstream agents were already conservative. The validator aggressively removes unsupported claims, and the editor deletes entire sections when attribution looks shaky. In the earlier LangChain-based version, that conservatism often resulted in large portions of the report being stripped away. Here, the same agents are running unchanged — but they now have access to higher-quality evidence, so fewer sections need to be deleted.
 
-Still, it's not perfect. Indeed, the results so far do not clearly demonstrate that multiple AI Agents have — so far — led to higher quality outcomes compared to what you'd expect just from ChatGPT 5.2 in instantaneous mode.
+Still, it's not perfect. Indeed, the results do not clearly demonstrate that multiple AI Agents have — so far — led to higher quality outcomes compared to what you'd expect just from ChatGPT 5.2 in instantaneous mode.
 
 One issue that remains, for example, is ambiguity around theme boundaries. Many Beatles lyrics sit at the intersection of multiple themes, e.g. love, travel, optimism, or emotional change, and the system still struggles to draw clean lines between them. For example, lines like "I’ll follow the sun" has lyrics about movement, but the song is really simply a love song. So, the retrieval layer now reliably surfaces the correct lyrics, but the analyst agent stretches these lines into broad thematic claims.
 
