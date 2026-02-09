@@ -44,15 +44,11 @@ LlamaIndex is gaining popularity because it makes retrieval-first architectures 
 
 After switching to LlamaIndex, I immediately have a better separation of concerns: a one-time indexing step that builds the retrieval structures and stores them in a gitignored directory. This avoids what I was doing before, namely re-deriving the retrieval structures every go at runtime.
 
-(Note that the issue seems to be caused more by documentation that any real problem of features in LangChain. In LangChain + Chroma, all the code examples generally look like: load docs; split docs; embed docs — which normalises build on startup as a default. By contrast, LlamaIndex’s docs lead you to ingestion/indexing as a separate step.)
-
-LlamaIndex is primarily designed for search and retrieval, turning large datasets into queryable structures.
-
-> LlamaIndex equips LLMs with the capability of adding RAG functionality to the system using external knowledge sources, databases, and indexes as query engines for memory purposes.
+(Note that the issue seems to be caused more by documentation than any real problem of features in LangChain. In LangChain + Chroma, all the code examples generally look like: load docs; split docs; embed docs — which normalises build on startup as a default. By contrast, LlamaIndex’s docs lead you to ingestion/indexing as a separate step.)
 
 ## Implementing LlamaIndex
 
-So here's what I did.
+So, here's what I did.
 
 ### Indexing as an explicit build step
 
