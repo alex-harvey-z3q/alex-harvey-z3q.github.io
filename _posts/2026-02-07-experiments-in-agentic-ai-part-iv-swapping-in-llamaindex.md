@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Experiments in Agentic AI, Part IV: Swapping in LlamaIndex"
-date: 2026-01-12
+date: 2026-02-07
 author: Alex Harvey
 tags: agentic-ai multi-agent rag
 ---
