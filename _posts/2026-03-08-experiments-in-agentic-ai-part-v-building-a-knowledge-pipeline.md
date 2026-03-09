@@ -66,6 +66,7 @@ The repository contains the infrastructure, ingestion workers, indexing pipeline
 The simplified structure of the project looks as follows:
 
 ```text
+.github/    GitHub Actions workflows
 api/        FastAPI retrieval service
 indexer/    LlamaIndex indexing pipeline
 ingest/     Wikipedia ingestion worker
