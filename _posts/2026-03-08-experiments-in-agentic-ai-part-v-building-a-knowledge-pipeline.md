@@ -191,8 +191,8 @@ This separation makes the system easier to reason about. Each stage performs a s
 
 This experiment focused primarily on building the infrastructure required to support a retrieval-augmented AI system.
 
-While the agent itself is intentionally simple, the pipeline now provides a foundation that could support more sophisticated workflows in the future.
+While the agent itself is intentionally simple, the pipeline now provides a foundation that can be deployed and operated in a real environment.
 
-In Part VI, I plan to explore how more sophisticated agents might interact with a system like this, and how retrieval quality can be evaluated and improved over time.
+In Part VI, I plan to rebuild this same architecture using Azure services instead of AWS. The goal is not to change the pipeline itself, but to see how easily the design can be reproduced on a different cloud platform.
 
 For now, however, the key takeaway from this experiment is that building useful AI agents often begins not with the agents themselves, but with the data pipelines that feed them.
