@@ -59,7 +59,7 @@ Finally, GitHub Actions handles the build and deployment pipeline, while CloudWa
 
 The full code for the system described in this post is available on GitHub:
 
-https://github.com/alex-harvey-z3q/wiki-rag
+[https://github.com/alex-harvey-z3q/wiki-rag](https://github.com/alex-harvey-z3q/wiki-rag)
 
 The repository contains the infrastructure, ingestion workers, indexing pipeline, and API service used to run the system.
 
