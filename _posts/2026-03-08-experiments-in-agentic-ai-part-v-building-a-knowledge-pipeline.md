@@ -17,13 +17,15 @@ Until now, I had been experimenting with multi-agent AI workflows, on the assump
 
 But over time I came to understand that the harder problem lies elsewhere: the retrieval system that feeds data to the agents.
 
-In the earlier posts I used LangChain (Parts I–III) and then, in Part IV, I swapped in LlamaIndex, which proved easier to work with and helped clarify how indexing and retrieval should be structured.
+In the earlier posts I used LangChain (Parts I – III) and then, in Part IV, I swapped in LlamaIndex, which proved easier to work with and helped clarify how indexing and retrieval should be structured.
 
 However, those experiments still ran mostly as local pipelines designed for exploration rather than deployment.
 
 Today I present an entirely new stack — one designed to be deployable in a real-world environment. The system runs as an AWS pipeline, with containerised services in ECS, persistent storage in S3 and RDS, and deployment orchestrated through GitHub Actions.
 
 So, this post is not about clever agent design, but about building the infrastructure that makes reliable AI workflows possible.
+
+---
 
 ## Architecture
 
@@ -55,6 +57,8 @@ The ingestion and indexing jobs are scheduled using EventBridge, allowing the sy
 
 Finally, GitHub Actions handles the build and deployment pipeline, while CloudWatch collects logs and metrics so the behaviour of the system can be monitored.
 
+---
+
 ## The Code
 
 The full code for the system described in this post is available on GitHub:
@@ -73,6 +77,8 @@ ingest/     Wikipedia ingestion worker
 terraform/  AWS infrastructure
 scripts/    Deployment and utility scripts
 ```
+
+---
 
 ## The Ingestion Worker
 
@@ -163,6 +169,8 @@ In contrast to the earlier parts of this series, the agent used here is intentio
 
 This simplification is deliberate. The goal of this experiment is not to build the most complex agent workflow possible, but rather to build the infrastructure required to support complex Agentic AI workflows.
 
+---
+
 ## Running the Pipeline
 
 With the ingestion worker, indexing job, and retrieval API in place, the system forms a simple but complete knowledge pipeline.
@@ -186,6 +194,8 @@ In practice, the operational flow looks like this:
 5. the API serves queries using the indexed data
 
 This separation makes the system easier to reason about. Each stage performs a single task, and failures in one part of the pipeline do not necessarily bring down the rest of the system.
+
+---
 
 ## What Comes Next
 
