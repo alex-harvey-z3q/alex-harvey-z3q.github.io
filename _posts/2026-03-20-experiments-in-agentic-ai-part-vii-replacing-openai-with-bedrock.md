@@ -10,15 +10,17 @@ tags: agentic-ai rag
 
 In the previous post, I rebuilt the RAG pipeline on Azure, demonstrating that the core architecture — ingestion, indexing, and retrieval — is portable across cloud providers. The same containers, database, and application code could be reused with only modest changes to the infrastructure layer.
 
-One dependency, however, remained constant across both implementations: OpenAI.
+One dependency, however, remained constant up to this point: OpenAI.
 
-In this post, I replace that dependency with a fully AWS-native model layer using Amazon Bedrock. This reflects a broader industry trend, where enterprises are increasingly adopting Bedrock to integrate foundation models within existing AWS environments, using IAM-based access rather than external API keys.
+In this post, I replace that remaining dependency with a fully AWS-native model layer using Amazon Bedrock. This change also aligns with a broader industry trend, where enterprises are increasingly adopting Bedrock to integrate foundation models within existing AWS environments, using IAM-based access rather than external API keys.
 
-Starting from the original AWS pipeline, I make the minimal changes required to replace OpenAI with Bedrock — keeping the rest of the system unchanged.
+With that in mind, I return to the original AWS pipeline (i.e. the state at the end of Part V) and make the minimal changes required to replace OpenAI with Bedrock, keeping the rest of the pipeline unchanged.
+
+With that in mind, I return to the original AWS pipeline (i.e. the state at the end of Part V) and make the minimal changes required to replace OpenAI with Bedrock, keeping the rest of the pipeline unchanged.
 
 ## Swapping the Model Layer
 
-The key point is that the architecture remains unchanged — only the model layer is replaced:
+At a high level, the change looks like this:
 
 ```
                        RAG Pipeline
