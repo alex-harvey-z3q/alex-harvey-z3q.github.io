@@ -12,7 +12,7 @@ In the previous post, I rebuilt the RAG pipeline on Azure, demonstrating that th
 
 One dependency, however, remained constant up to this point: OpenAI.
 
-In this post, I replace that remaining dependency with a fully AWS-native model layer using Amazon Bedrock. This change also aligns with a broader industry trend, where enterprises are increasingly adopting Bedrock to integrate foundation models within existing AWS environments, using IAM-based access rather than external API keys.
+In this post, I replace that remaining dependency with a fully AWS-native model layer using Amazon Bedrock. This change also aligns with a broader industry trend, where enterprises are increasingly adopting Bedrock to integrate foundation models within existing AWS environments.
 
 With that in mind, I return to the original AWS pipeline (i.e. the state at the end of Part V) and make the minimal changes required to replace OpenAI with Bedrock, keeping the rest of the pipeline unchanged.
 
