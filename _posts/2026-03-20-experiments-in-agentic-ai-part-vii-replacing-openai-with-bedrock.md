@@ -16,8 +16,6 @@ In this post, I replace that remaining dependency with a fully AWS-native model 
 
 With that in mind, I return to the original AWS pipeline (i.e. the state at the end of Part V) and make the minimal changes required to replace OpenAI with Bedrock, keeping the rest of the pipeline unchanged.
 
-With that in mind, I return to the original AWS pipeline (i.e. the state at the end of Part V) and make the minimal changes required to replace OpenAI with Bedrock, keeping the rest of the pipeline unchanged.
-
 ## Swapping the Model Layer
 
 At a high level, the change looks like this:
