@@ -16,6 +16,8 @@ In this post, I replace that remaining dependency with a fully AWS-native model 
 
 With that in mind, I return to the original AWS pipeline (i.e. the state at the end of Part V) and make the minimal changes required to replace OpenAI with Bedrock, keeping the rest of the pipeline unchanged.
 
+---
+
 ## Swapping the Model Layer
 
 At a high level, the change looks like this:
@@ -54,9 +56,21 @@ FastAPI Retrieval API
                                    Amazon Bedrock (Claude)
 ```
 
+---
+
+## The Code
+
+As always, the full code for the system in this post is available at my GitHub:
+
+[https://github.com/alex-harvey-z3q/wiki-rag-bedrock](https://github.com/alex-harvey-z3q/wiki-rag-bedrock)
+
+---
+
 ## Setting up Amazon Bedrock
 
 Before models can be invoked via Amazon Bedrock, two pieces of configuration are required: enabling model access (a manual step), and granting the correct IAM permissions.
+
+---
 
 ### Model access and use case submission
 
@@ -66,6 +80,8 @@ For this project, I used:
 
 - **Anthropic Claude 3.5 Sonnet** (answer generation)
 - **Amazon Titan embeddings** (vector embeddings)
+
+---
 
 ### IAM permissions
 
@@ -97,6 +113,8 @@ As well as AWS Marketplace permissions:
 ```
 
 Once these permissions are in place, the application can invoke Bedrock models using its IAM role, without requiring any API keys.
+
+---
 
 ## Consuming Bedrock in code
 
@@ -296,6 +314,8 @@ def configure_embeddings() -> BedrockEmbedding:
     Settings.embed_model = embed_model
     return embed_model
 ```
+
+---
 
 ## Conclusion
 
