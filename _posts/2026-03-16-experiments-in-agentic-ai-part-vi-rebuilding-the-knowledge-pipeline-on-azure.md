@@ -5,6 +5,10 @@ date: 2026-03-16
 author: Alex Harvey
 tags: agentic-ai llamaindex
 ---
+
+- ToC
+{:toc}
+
 ## Introduction
 
 In the previous post, I built a retrieval-augmented generation (RAG) pipeline on AWS. The system consisted of three main components: an ingestion pipeline that downloaded Wikipedia content to an S3 bucket; an indexing pipeline built with LlamaIndex that handled document parsing, chunking, and embedding generation; and a retrieval API implemented with FastAPI that exposed a simple endpoint for answering questions grounded in the indexed documents.

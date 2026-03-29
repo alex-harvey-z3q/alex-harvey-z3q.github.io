@@ -6,6 +6,9 @@ author: Alex Harvey
 tags: agentic-ai rag
 ---
 
+- ToC
+{:toc}
+
 ## Introduction
 
 In the previous post, I rebuilt the RAG pipeline on Azure, demonstrating that the core architecture — ingestion, indexing, and retrieval — is portable across cloud providers. The same containers, database, and application code could be reused with only modest changes to the infrastructure layer.
@@ -70,8 +73,6 @@ As always, the full code for the system in this post is available at my GitHub:
 
 Before models can be invoked via Amazon Bedrock, two pieces of configuration are required: enabling model access (a manual step), and granting the correct IAM permissions.
 
----
-
 ### Model access and use case submission
 
 Access to Bedrock models is not enabled by default. For Anthropic models, AWS requires submission of a short use case form before access is granted. Navigate to **Amazon Bedrock → Model catalog** and request access to the required models.
@@ -80,8 +81,6 @@ For this project, I used:
 
 - **Anthropic Claude 3.5 Sonnet** (answer generation)
 - **Amazon Titan embeddings** (vector embeddings)
-
----
 
 ### IAM permissions
 
