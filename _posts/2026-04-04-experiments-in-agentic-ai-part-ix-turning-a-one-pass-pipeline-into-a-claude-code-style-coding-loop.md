@@ -49,7 +49,7 @@ Then I wondered how far I could get down the path to building a real Claude Code
 
 The full code for Part IX is available here:
 
-https://github.com/alex-harvey-z3q/claude-code-minimal
+[https://github.com/alex-harvey-z3q/claude-code-minimal](https://github.com/alex-harvey-z3q/claude-code-minimal)
 
 ## Architecture
 
