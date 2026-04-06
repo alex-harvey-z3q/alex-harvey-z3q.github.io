@@ -53,9 +53,13 @@ https://github.com/alex-harvey-z3q/claude-code-minimal
 
 ## Architecture
 
-One point that took me a while to make fully explicit is that the LLM is not running code or interacting with files directly. The actual execution happens inside my ECS-hosted Python application. The LLM proposes code as text, the application writes that code into a workspace directory on the container filesystem, runs the tests there, reads the resulting files back from disk, and then feeds snapshots of that real workspace into the next prompt.
+Before I continue, let me clarify the diagram above. The workflow diagram can give the impression that the LLM is doing all of those steps itself. It is not. In particular, the **Write Files** and **Run Tests** boxes are not happening inside the model or even in Bedrock.
 
-In that sense, the workspace acts as the loop’s external memory. It is not a special AWS service, just a directory inside the running container that holds the generated code for that workflow run. The LLM only ever sees the workspace indirectly, through whatever file contents the orchestration code chooses to read back into the next prompt.
+What actually happens is that the LLM proposes code as plain text, then my ECS-hosted Python application writes those files into a workspace directory on the container filesystem, and then runs the tests on them, and then reads the resulting files back from disk, before feeding snapshots of that real workspace into the next prompt.
+
+That means the workspace acts as the loop’s external memory. It is not a special AWS service, just a directory inside the running container that holds the generated code for that workflow run. The LLM only ever sees that workspace indirectly, through whatever file contents the orchestration code chooses to read back into the next prompt.
+
+This distinction matters because it explains why Part IX feels more agentic than Part VIII. The workflow is no longer just passing text from one prompt to the next. It now has a real execution layer underneath it: generated files are written to disk, tests are run against those files, and the results of that execution are fed back into the loop.
 
 ## Prompt Design
 
