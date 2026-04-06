@@ -496,13 +496,13 @@ def review_code(
 
 That's me. Having finally made a workflow that would generally converge on a solution in a couple of iterations, I decided to review the quality of the implementations for myself.
 
-| Run | Completed iteration | Stop reason                    | Interpretation                        |
-|-----|---------------------|--------------------------------|---------------------------------------|
-| 1   | 3                   | `tests_passed_and_review_clean` | Needed retries, then converged        |
-| 2   | 1                   | `tests_passed_and_review_clean` | Solved immediately                    |
-| 3   | 3                   | `tests_passed_and_review_clean` | Needed retries, then converged        |
-| 4   | 10                  | `max_iterations_reached`        | Still stalled despite full budget     |
-| 5   | 5                   | `tests_passed_and_review_clean` | Slower convergence, but still solved  |
+| Run | Completed iteration | Stop reason                    | Interpretation                         | The truth |
+|-----|---------------------|--------------------------------|----------------------------------------|-----------|
+| 1   | 3                   | `tests_passed_and_review_clean` | Needed retries, then converged        | Didn't execute, 1 test failed, exposed internal state, ASCII board problems.|
+| 2   | 1                   | `tests_passed_and_review_clean` | Solved immediately                    | Had gameplay issues, and another badly implemented ASCII board.|
+| 3   | 3                   | `tests_passed_and_review_clean` | Needed retries, then converged        | Didn't execute, referred to code that wasn't implemented at all.|
+| 4   | 10                  | `max_iterations_reached`        | Still stalled despite full budget     | Actually the second-best implementation, failing test was a bug in the tests.|
+| 5   | 5                   | `tests_passed_and_review_clean` | Slower convergence, but still solved  | A good solution. Tests really passed, game really executed, gameplay fine, nice-looking UX and board.|
 
 Overall, 4 out of 5 runs converged cleanly, while 1 run exhausted the iteration budget without reaching a clean stop condition.
 
@@ -510,7 +510,7 @@ Overall, 4 out of 5 runs converged cleanly, while 1 run exhausted the iteration 
 
 The workflow’s own signals are only part of the picture. A run can stop with `tests_passed_and_review_clean`, but that still does not guarantee that the final artifact feels right in practice.
 
-So I also ran the generated Minesweeper games manually and played them myself. That was a useful reminder that passing the loop’s stopping criteria is not the same thing as producing polished software. The final version was playable and broadly correct, but manual use is still the best way to notice rough edges in the interface, awkward controls, or behaviours that the tests did not capture.
+So I also ran the generated Minesweeper games manually and played them myself. That was a useful reminder that passing the loop’s stopping criteria is not the same thing as producing polished software. The final version was playable and broadly correct, but manual use was still the only way to notice the rough edges in the interface, awkward controls, or behaviours that the tests did not capture.
 
 ### Run 1
 
@@ -547,11 +547,11 @@ Notice the ASCII borders don't quite line up. That seems to be a common LLM prob
 
 Also sadly I notice that the game is revealing the board's underlying state instead of showing unopened cells as something like ., #, or □.
 
-So I have had to mark this first iteration as a failure.
+So, I have had to mark this first iteration as a failure.
 
 ### Run 2
 
-The second run looks better. Its tests really passed, its CLI was working, and it displayed the board correctly:
+The second run looked better. Its tests really passed, and its CLI was working. The ASCII board design almost made sense!
 
 ```
 Select difficulty:
@@ -579,7 +579,7 @@ Mines remaining: 10
 Enter move (row col [f for flag]): 
 ```
 
-Now I'm marking this version of the game down for providing no instructions on how to play. I had to guess that to reveal 1, 1 I would type `1 1`.
+However, I marked this version of the game down for providing no instructions on how to play. I had to guess that to reveal 1, 1 I would type `1 1`.
 
 ```
     0 1 2 3 4 5 6 7 8
@@ -671,7 +671,7 @@ Time: 0 seconds
  5| ■ ■ 1       1 ■ ■
  6| ■ ■ 1 1 1 2 2 ■ ■
  7| ■ ■ ■ ■ ■ ■ ■ ■ ■
- 8| ■ ■ ■ ■ ■ ■  ■ ■
+ 8| ■ ■ ■ ■ ■ ■ ■ ■ ■
 
 Enter action (r x y for reveal, f x y for flag, q to quit):
 ```
@@ -682,7 +682,7 @@ There was only one minor problem with this implementation, a warning caused by u
 
 So, Part IX has got this workflow over an important threshold. It is no longer just a one-pass prompt pipeline that happens to involve multiple agents. It can now generate code, write files into a real workspace, runs tests against that code, reviews the result, and retries with targeted feedback.
 
-That still does not make it a robust coding agent. The manual testing results from the five runs made that clear. Four out of five runs converged according to the workflow’s own stop condition, but manual testing showed that convergence and quality are not the same thing. One version revealed the hidden board state, another crashed on startup despite passing its tests, and only the final run really felt like a usable Minesweeper game.
+That still does not make it a robust coding agent. The manual testing results from the five runs made that clear. Four out of five runs converged according to the workflow’s own stop condition, but manual testing showed that convergence and an actually-working game are not the same thing! One version revealed the hidden board state, another crashed on startup despite passing its tests, and only the final run really felt like a usable Minesweeper game.
 
 That is probably the main lesson from Part IX. Once iteration is introduced, the hard part is no longer just code generation. The hard part is orchestration: deciding what feedback to carry forward, what to ignore, which files to revise, and when to stop. In other words, the problem shifts from prompting a model once to building a controller around it.
 
