@@ -278,15 +278,36 @@ That led to the next refinement. I tightened the reviewer prompt so that MAJOR w
 
 By the end, that was the pattern I kept seeing: convergence was not a single problem. It was a stack of smaller ones. The loop needed to revise the actual failing files, carry forward the real code under test, give the model compact and accurate retry context, and stop the reviewer from inventing reasons to keep going. The surprising part was how much of the work ended up being about control surfaces and observability, not model capability. The model could often fix the code. The harder part was building a loop that knew when it had actually succeeded.
 
-#### `major_issues` helper
+#### Major issues helper
+
+```python
+def major_issues(review: str) -> bool:
+    """Return True when the review contains any real blocking issues."""
+    for raw_line in review.splitlines():
+        line = raw_line.strip()
+        if not line.startswith("MAJOR:"):
+            continue
+
+        remainder = line[len("MAJOR:"):].strip().lower()
+        if remainder.startswith("none") or remainder.startswith("no ") or remainder == "n/a":
+            continue
+
+        return True
+
+    return False
+```
+
+Discussion of some other helper functions is also worthwhile.
 
 The smaller `major_issues()` helper decides whether a review should block the workflow from stopping. In principle, this sounds trivial: just scan the review for a line starting with `MAJOR:`. In practice, however, the LLMs could never be 100% relied upon to obey their contracts and format output in the requested manner. A reviewer that found no blocking issue would often still emit something like `MAJOR: None` or `MAJOR: No major issues found`, even when requested to stay silent in this case. Other times, the Reviewer insisted on using bulleted lists.
 
-#### Retry targeting and `_build_issue_summary`
+#### Retry targeting and issue summary
 
-The first version of this code simply fed the full previous code, full review, and full test output back into the next iteration. I found that that works once or twice, but then the prompts start to bloat and the model begins truncating outputs or hallucinating contradictory review claims.
+Note that the first version of this code simply fed the full previous code, full review, and full test output back into the next iteration.
 
-The next step was not just to shorten the feedback, but to make it more targeted. Instead of asking the Implementer to reconsider the entire codebase on every retry, the workflow tries to identify a smaller set of files to revise and then builds a condensed retry payload around those files. That is what `_select_retry_files()` and `_build_issue_summary()` are doing together.
+That actually worked fine once or twice, but then the prompts started to bloat and the model began truncating outputs or hallucinating contradictory review claims.
+
+So, the next step was not just to shorten the feedback, but to make it more targeted. Instead of asking the Implementer to reconsider the entire codebase on every retry, the workflow tries to identify a smaller set of files to revise and then builds a condensed retry payload around those files. That is what `_select_retry_files()` and `_build_issue_summary()` are doing together.
 
 Rather than replaying the entire previous iteration, `_build_issue_summary()` builds a smaller retry payload from the selected files, a blocking checklist, condensed test failures, and the extracted review feedback:
 
