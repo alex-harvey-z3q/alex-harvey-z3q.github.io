@@ -55,7 +55,7 @@ https://github.com/alex-harvey-z3q/claude-code-minimal
 
 Before I continue, let me clarify the diagram above. The workflow diagram can give the impression that the LLM is doing all of those steps itself. It is not. In particular, the **Write Files** and **Run Tests** boxes are not happening inside the model or even in Bedrock.
 
-What actually happens is that the LLM proposes code as plain text, then my ECS-hosted Python application writes those files into a workspace directory on the container filesystem, and then runs the tests on them, and then reads the resulting files back from disk, before feeding snapshots of that real workspace into the next prompt.
+What actually happens is that the LLM proposes code as plain text. My ECS-hosted Python application writes those files into a workspace directory on the container filesystem, runs the tests there, reads the resulting files back from disk, and then feeds snapshots of that real workspace into the next prompt.
 
 That means the workspace acts as the loop’s external memory. It is not a special AWS service, just a directory inside the running container that holds the generated code for that workflow run. The LLM only ever sees that workspace indirectly, through whatever file contents the orchestration code chooses to read back into the next prompt.
 
@@ -297,7 +297,7 @@ def major_issues(review: str) -> bool:
     return False
 ```
 
-Discussion of some other helper functions is also worthwhile.
+A couple of other helper functions are worth discussing too..
 
 The smaller `major_issues()` helper decides whether a review should block the workflow from stopping. In principle, this sounds trivial: just scan the review for a line starting with `MAJOR:`. In practice, however, the LLMs could never be 100% relied upon to obey their contracts and format output in the requested manner. A reviewer that found no blocking issue would often still emit something like `MAJOR: None` or `MAJOR: No major issues found`, even when requested to stay silent in this case. Other times, the Reviewer insisted on using bulleted lists.
 
@@ -498,7 +498,7 @@ That's me. Having finally made a workflow that would generally converge on a sol
 
 | Run | Completed iteration | Stop reason                    | Interpretation                         | The truth |
 |-----|---------------------|--------------------------------|----------------------------------------|-----------|
-| 1   | 3                   | `tests_passed_and_review_clean` | Needed retries, then converged        | Didn't execute, 1 test failed, exposed internal state, ASCII board problems.|
+| 1   | 3                   | `tests_passed_and_review_clean` | Needed retries, then converged        | Didn't execute, 1 test failed, exposed internal state, ASCII board layout problems.|
 | 2   | 1                   | `tests_passed_and_review_clean` | Solved immediately                    | Had gameplay issues, and another badly implemented ASCII board.|
 | 3   | 3                   | `tests_passed_and_review_clean` | Needed retries, then converged        | Didn't execute, referred to code that wasn't implemented at all.|
 | 4   | 10                  | `max_iterations_reached`        | Still stalled despite full budget     | Actually the second-best implementation, failing test was a bug in the tests.|
@@ -551,7 +551,7 @@ So, I have had to mark this first iteration as a failure.
 
 ### Run 2
 
-The second run looked better. Its tests really passed, and its CLI was working. The ASCII board design almost made sense!
+The second run looked better. Its tests really did pass, and its CLI was working. The ASCII board design almost made sense!
 
 ```
 Select difficulty:
@@ -607,9 +607,9 @@ The third run was another disappointment. All 10 unit tests passed, but the game
 
 ### Run 4
 
-Run 4 is the one that had failed to converge. The story of why it failed to converge is somewhat amusing actually. The tests defined `Board.reveal()` as a success/failure API: safe reveal should return `True`, mine reveal should return `False`. But the implementation defined it the other way: `Board.reveal()` means “did this hit a mine?” API instead. In `board.py`, revealing a mine returns `True`, and in `game.py` that return value is assigned to hit_mine and used exactly that way: `if hit_mine: self.game_over = True`.
+Run 4 is the one that had failed to converge. The story of why it failed to converge is actually somewhat amusing. The tests defined `Board.reveal()` as a success/failure API: safe reveal should return `True`, mine reveal should return `False`. But the implementation defined it the other way: `Board.reveal()` means “did this hit a mine?” API instead. In `board.py`, revealing a mine returns `True`, and in `game.py` that return value is assigned to hit_mine and used exactly that way: `if hit_mine: self.game_over = True`.
 
-Between the Reviewer and Implementer however, they weren't able to sort this one out! However, the game in run 4 did actually work fine.
+Between the Reviewer and Implementer, however, they were not able to sort this one out. However, the game in run 4 did actually work fine.
 
 ```
 Mines remaining: 8
@@ -680,13 +680,13 @@ There was only one minor problem with this implementation, a warning caused by u
 
 ## Conclusion
 
-So, Part IX has got this workflow over an important threshold. It is no longer just a one-pass prompt pipeline that happens to involve multiple agents. It can now generate code, write files into a real workspace, runs tests against that code, reviews the result, and retries with targeted feedback.
+So, Part IX has got this workflow over an important threshold. It is no longer just a one-pass prompt pipeline that happens to involve multiple agents. It can now generate code, write files into a real workspace, run tests against that code, review the result, and retry with targeted feedback.
 
-That still does not make it a robust coding agent. The manual testing results from the five runs made that clear. Four out of five runs converged according to the workflow’s own stop condition, but manual testing showed that convergence and an actually-working game are not the same thing! One version revealed the hidden board state, another crashed on startup despite passing its tests, and only the final run really felt like a usable Minesweeper game.
+That still does not make it a robust coding agent. The manual testing results from the five runs made that clear. Four out of five runs converged according to the workflow’s own stop condition, but manual testing showed that convergence and a genuinely working game are not the same thing. One version revealed the hidden board state, another crashed on startup despite passing its tests, and only the final run really felt like a usable Minesweeper game.
 
 That is probably the main lesson from Part IX. Once iteration is introduced, the hard part is no longer just code generation. The hard part is orchestration: deciding what feedback to carry forward, what to ignore, which files to revise, and when to stop. In other words, the problem shifts from prompting a model once to building a controller around it.
 
-So I can't quite boast yet that “I built Claude Code.” But I did something more modest, and still useful: I now have a minimal coding loop that can genuinely improve its own outputs, and I have a much clearer picture of what still separates that from a reliable coding agent.
+So I cannot quite boast yet that “I built Claude Code.” But I did something more modest, and still useful: I now have a minimal coding loop that can genuinely improve its own outputs, and I have a much clearer picture of what still separates that from a reliable coding agent.
 
 ## What comes next
 
