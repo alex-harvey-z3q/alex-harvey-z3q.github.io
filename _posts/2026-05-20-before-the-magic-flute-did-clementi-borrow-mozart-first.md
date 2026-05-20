@@ -13,9 +13,9 @@ Christmas Eve, 1781. The court of His Imperial Majesty Joseph II, emperor of the
 
 Mozart was in Vienna, newly independent from Salzburg service and eager to make his way in the imperial capital. Clementi had arrived a few days earlier, already famous as a keyboard virtuoso from London. The occasion was the visit of the Russian Grand Duke Paul and Grand Duchess Maria Feodorovna, and Joseph II arranged an evening of musical entertainment for his guests.
 
-This night of entertainment turned into one of the most famous keyboard contests of the eighteenth century: Mozart and Clementi, placed before the emperor and his visitors, were asked to play. The episode is documented in the invaluable [Mozart Documents](https://www.mozartdocuments.org/documents/24-december-1781/) collection.
+This night of entertainment turned into one of the most famous keyboard contests of the eighteenth century: Mozart and Clementi, placed before the emperor and his visitors, were asked to play.
 
-Clementi played his Sonata in B-flat major, Op. 24 No. 2 -- a piece he must have composed relatively recently -- and his earlier Toccata in B-flat major, Op. 11. The meeting appears to have been courteous, although Mozart later wrote dismissively about Clementi in letters to his father and sister. He admitted to admiring Clementi's technical brilliance, especially his playing in thirds, but attacked his taste, feeling, and musicianship. In Mozart's telling, Clementi was a dazzling technician rather than a true artist.
+Clementi played his Sonata in B-flat major, Op. 24 No. 2 -- a piece he must have composed relatively recently -- and his Toccata in B-flat major, Op. 11. The meeting appears to have been courteous, although Mozart later wrote dismissively about Clementi in letters to his father and sister. He admitted to admiring Clementi's technical brilliance, especially his playing in thirds, but attacked his taste, feeling, and musicianship. In Mozart's telling, Clementi was a dazzling technician rather than a true artist.
 
 > "Clementi is a charlatan, like all Italians! He writes presto on a sonata, or even prestissimo and alla breve -- and plays it allegro in 4/4 time; -- I know it, because I have heard him."
 
@@ -29,11 +29,11 @@ At least, Mozart took the first half of the motif, transposed it to E-flat major
 
 That is the familiar story: Clementi plays the sonata before Mozart in 1781; Mozart sneers at Clementi afterward; ten years later Mozart reuses Clementi's opening idea in _The Magic Flute_. The direction of travel is simple enough: Clementi to Mozart.
 
-But when I first played Clementi's Sonata in B-flat major, I was reminded not only of _The Magic Flute_. I was also reminded of another Mozart piece.
+But when I first played Clementi's Sonata in B-flat major, I heard something else too: not _The Magic Flute_, but another Mozart work.
 
 ## Mozart's Sonata in B-flat major, K. 281
 
-I was reminded by Clementi's distinctive arpeggiated E-flat and B-flat major chords in measure 4, which seem to quote the opening of Mozart's B-flat sonata:
+Clementi's distinctive arpeggiated E-flat and B-flat major chords in measure 4 seem to quote the opening of Mozart's third sonata in B-flat:
 
 ![Figure 2. Early chord pattern]({{ "assets/clementi/figure_02_chord_pattern.png" | absolute_url }})
 
@@ -43,55 +43,55 @@ But then other details piled up.
 
 What if the borrowing did not run only one way? What if Clementi's B-flat sonata was not only the source of Mozart's later borrowing, but had also borrowed from Mozart?
 
-Mozart composed his third sonata K. 281 in Munich in 1775. Like Clementi's later sonata, it is in B-flat major in a brilliant keyboard style. There is a serious historical difficulty, which I will come back to: according to the [Mozarteum catalogue](https://kv.mozarteum.at/en/work/sonata-in-b-flat-for-clavier-3056), K. 281 was not published until 1799, so Clementi could not simply have bought a printed copy in London before the Vienna meeting. If he knew it, the route could only have been private performance, manuscript circulation, or elite musical exchange.
+Mozart composed his sonata K. 281 in Munich in 1775. Like Clementi's later sonata, it is in B-flat major and written in a "brilliant" keyboard style.
+
+There is a serious historical difficulty, though, which I will come back to: according to the [Mozarteum catalogue](https://kv.mozarteum.at/en/work/sonata-in-b-flat-for-clavier-3056), K. 281 was not published until 1799, so Clementi could not simply have bought a printed copy in London before the Vienna meeting. If he knew it, the route could only have been private performance, manuscript circulation, or elite musical exchange.
 
 That would matter historically. It would suggest Mozart's mature keyboard music was influencing other composers earlier than the publication record alone would lead us to think.
 
-Still, the score evidence is worth considering.
+But for now, let us focus on the score evidence.
 
 ## Three More Distinctive Features
 
-No single feature is proof of influence. But a cluster of features is interesting: several localised resemblances, in the same key, in the same genre, and in broadly comparable formal positions.
+No single feature proves influence. What matters is an accumulation of a number of resemblances, in a piece in the same key and genre, in comparable positions within the work.
 
 ## 1. Rising Scale, Repeated Trill, and Fall
 
 ![Figure 3. Rising scale, trill, and drop]({{ "assets/clementi/figure_03_rising_scale_trill_drop.png" | absolute_url }})
 
-The most striking resemblance comes later in the exposition. Mozart's passage from K. 281, mm. 7-11, and Clementi's corresponding passage, Op. 24 No. 2, mm. 7-15, share much more than a general habit of writing scales in B-flat major.
+The most striking resemblance comes later in the exposition. Mozart's passage in mm. 7-11 and Clementi's passage in mm. 7-15 share much more than a general habit of writing scales or the key of B-flat major!
 
-The opening left hand in Mozart m. 7 is almost identical to Clementi's m. 7. The right hand then makes a descending melodic turn that leads to the same B-flat chord in m. 8.
+The opening left hand in Mozart's m. 7 is almost identical to Clementi's m. 7. The right hand in both then makes a descending melodic turn that leads to the same B-flat chord in m. 8.
 
-A little later, Clementi's m. 10 recalls the opening thirds of Mozart's m. 1:
+Clementi's next bar m. 10 then recalls the opening thirds of Mozart's m. 1:
 
 ![Figure 4. Rising thirds]({{ "assets/clementi/figure_04_rising_thirds.png" | absolute_url }})
 
 These are already quite specific correspondences.
 
-Then comes the larger shape: a rising scale in the same key, ending in a measured trill of the same six notes, with the same accompanying chords, followed by a drop. This sequence catches the ear: ascent, brilliance, ornamental pressure, and then a downward release.
-
-Is this merely a coincidence?
+Then comes a much larger shape: a fast, rising scale in B-flat major, ending in a measured trill of the same six notes, with the same accompanying chords, followed by a drop. This sequence catches the ear: ascent, brilliance, ornamental pressure, and then a downward release.
 
 ## 2. Descent, Low Chord, and Modulation to C Major
 
 ![Figure 5. Descent and low chord]({{ "assets/clementi/figure_05_descending_figuration_low_chord.png" | absolute_url }})
 
-Another distinctive parallel occurs later. Mozart's K. 281, mm. 34-37, and Clementi's Op. 24 No. 2, mm. 20-23, both use a rapid descent, then leap suddenly to a low two-note chord on the first beat of the next bar. In both passages, the abrupt low-register arrival leads into C major.
+Another distinctive parallel occurs later. Both passages use a rapid descent, then leap suddenly to a low two-note chord on the first beat of the next bar. In both cases, that low-register chord leads to F major in second inversion, with C in the bass, before the music reaches C major at the end.
 
 ## 3. Clementi's Development Section
 
+![Figure 6. Four-note figuration in the development]({{ "assets/clementi/figure_06_development_texture.png" | absolute_url }})
+
 Late in Mozart's development, at mm. 55-56, he briefly recalls a texture from his opening: rapid four-note right-hand figuration over left-hand octaves on the first and fourth beats.
 
-![Figure 6. Development-section texture]({{ "assets/clementi/figure_06_development_texture.png" | absolute_url }})
-
-Clementi seems to take up that passing idea from around m. 59 and builds a much larger developmental passage from it. The resemblance is not melodic so much as textural and formal: Clementi appears to expand something Mozart only briefly flashes past.
+Clementi seems to take up that passing idea and, from m. 59, builds a much larger developmental passage from it. Where Mozart had hinted at this texture, Clementi makes it do real work.
 
 ## Coincidence, Common Style, or Allusion?
 
 The obvious objection is that these may all be common classical or galant keyboard formulas. Brilliant figuration, thirds, arpeggiation, scale patterns, dramatic register shifts? All belong to the shared language of late eighteenth-century keyboard writing.
 
-That objection matters. Mozart's K. 279-284 sonatas themselves belong to a broader contemporary sonata world. The Mozarteum catalogue notes their relationship to Haydn's Esterházy sonatas, and K. 281 is hardly sealed off from the common musical language of the 1770s.
+That objection matters because Mozart was not inventing this language from nowhere. His early sonatas belong to a broader contemporary sonata world, and the Mozarteum catalogue notes their relationship to Haydn's Esterházy sonatas. So some of the likenesses may reflect a common idiom rather than direct knowledge of this particular sonata.
 
-But the case does not depend on one feature. It depends on accumulation. Clementi's sonata does not merely share a key and a few generic details with K. 281. It touches Mozart's sonata at several points: early chordal punctuation, thirds, near-identical opening left-hand writing in the later phrase, rising scale and repeated-trill rhetoric, descent to a low chord and C major pedal, and development-section texture.
+But the case does not depend on one feature. It depends on accumulation. Clementi's sonata does not merely share a key and a few generic details with Mozart's; it touches it at several points: early chordal punctuation, thirds, near-identical opening left-hand writing in the later phrase, rising scale and repeated-trill rhetoric, descent to a low chord and C major pedal, and developmental figuration.
 
 I cannot personally believe this is all coincidence. The question is whether this many localised similarities in the same key and genre are better explained by shared style or by knowledge of a particular piece.
 
@@ -103,24 +103,28 @@ Mozart was famous in London from childhood. The Mozart children performed there 
 
 Clementi lived in England from the later 1760s and became active in London musical life in the 1770s. By the time he left for the Continent, he was a leading keyboard musician. It is therefore very plausible that Clementi knew of Mozart, and plausible that he knew some early published Mozart music.
 
-But K. 281 is a harder problem. Mozart composed it in Munich in 1775, and it was not published until 1799. Clementi could not have obtained it through ordinary printed London circulation before 1781.
+But the B-flat sonata is a harder problem. Mozart composed it in Munich in 1775, and it was not published until 1799. Clementi could not have obtained it through ordinary printed London circulation before 1781.
 
 So if Clementi knew K. 281, the route must have been less direct. Mozart may have performed it privately or semi-publicly. A manuscript copy may have circulated. A patron, traveller, teacher, collector, or publisher may have seen or copied it. Clementi may even have encountered it during his continental travels before the Vienna meeting.
 
-At the moment, that is only possibility, not proof. I know of no document proving Clementi knew K. 281, no Clementi letter saying so, and no early London publication that would solve the problem neatly.
+At the moment, that is only possibility, not proof. I know of no document proving Clementi knew the sonata, no Clementi letter saying so, and no early London publication that would solve the problem neatly.
 
 But elite musicians often encountered music before publication, and Clementi was not an obscure amateur waiting for printed editions to arrive in shops. He was an ambitious professional virtuoso moving in precisely the world where unpublished music could circulate.
 
 ## Why It Matters
 
-The usual story gives Clementi priority over Mozart in one famous case. Clementi plays Op. 24 No. 2 before Mozart in 1781; Mozart later borrows the opening motif for _The Magic Flute_.
+The usual story gives Clementi priority over Mozart in one famous case. Clementi plays the sonata before Mozart in 1781; Mozart later borrows the opening motif for _The Magic Flute_.
 
-The possible complication is more interesting. Clementi's sonata may itself contain traces of Mozart's K. 281. If so, the Magic Flute borrowing would not be a simple one-way act of musical memory, but part of a more tangled exchange: Mozart remembering Clementi, Clementi perhaps already remembering Mozart.
+The possible complication is more interesting. Clementi's sonata may itself contain traces of Mozart's sonata. If so, the Magic Flute borrowing would not be a simple one-way act of musical memory, but part of a more tangled exchange: Mozart remembering Clementi, Clementi perhaps already remembering Mozart.
 
-It also changes the meaning of Clementi's choice of piece. If Clementi knew K. 281, then playing this particular B-flat sonata to Mozart could have been intended as a kind of flattery: a subtle way of saying, I know your work, I admire it, and I can answer it in my own language.
+It also changes the meaning of Clementi's choice of piece. If Clementi knew Mozart's sonata, then playing this particular B-flat sonata to Mozart could have been intended as a kind of flattery: a subtle way of saying, I know your work, I admire it, and I can answer it in my own language.
 
 That would also make Mozart's contemptuous comments about Clementi more revealing. Mozart may have dismissed Clementi as a mere technician, but Clementi's sonata may have been operating in a subtler and more competitive register than Mozart cared to admit.
 
 ## Conclusion
 
 Nothing here is proven of course. The publication history makes the claim difficult. The score parallels make it worth asking. The goal is not to announce a verdict, but to invite a different hearing of a familiar anecdote. If Clementi is hiding Mozart in plain sight, perhaps other ears -- and other archives -- can help decide.
+
+## References
+
+- [Mozart Documents](https://www.mozartdocuments.org/documents/24-december-1781/)

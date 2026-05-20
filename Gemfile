@@ -1,4 +1,10 @@
 source 'https://rubygems.org'
+
+ruby '4.0.5'
+
+gem 'base64'
+gem 'bigdecimal'
+gem 'rexml'
 gem 'rspec'
 gem 'rake'
 
@@ -9,15 +15,12 @@ gem 'pry'
 gem 'pry-rescue'
 gem 'pry-stack_explorer'
 gem 'pry-doc'
-gem 'debug_inspector', '<= 0.0.2'
 
 gem 'jekyll'
 gem 'jekyll-theme-hacker'
 gem 'jekyll-seo-tag'
 gem 'jekyll-sitemap'
 gem 'jekyll-feed'
-
-gem 'public_suffix', '< 5.0.0' # Hack for old Ruby 2.4
 
 # Includes my fix for Kramdown ToCs.
 #

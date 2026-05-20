@@ -14,7 +14,7 @@ end
 
 desc 'Regenerate Clementi/Mozart notation figures'
 task :clementi do
-  system("python clementi/notation/render_figures.py")
+  system("ruby clementi/notation/render_figures.rb")
 end
 
 task :default => :spec

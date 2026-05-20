@@ -1,5 +1,6 @@
 
 require 'spec_helper'
+require 'date'
 require 'yaml'
 
 # Documented at https://jekyllrb.com/news/2017/03/02/jekyll-3-4-1-released/
@@ -16,7 +17,7 @@ describe 'posts' do
     basename = File.basename(file)
 
     context basename do
-      front_matter = YAML.load(File.read(file).split(/---/)[1])
+      front_matter = YAML.safe_load(File.read(file).split(/---/)[1], permitted_classes: [Date, Time])
 
       it 'filename must match documented post regex' do
         expect(basename).to match post_regex
