@@ -6,7 +6,7 @@ author:
   twitter: alexharv074
   github: https://github.com/alex-harvey-z3q
   email: alexharv074@gmail.com
-url: https://alex-harvey-z3q.github.io/
+url: https://alex-harvey-z3q.github.io
 plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
