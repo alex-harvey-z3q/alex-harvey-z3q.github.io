@@ -12,7 +12,7 @@ plugins:
   - jekyll-sitemap
   - jekyll-feed
 disqus:
-  shortname: alex-harvey-z3q-github-io
+  shortname: alex-harvey
 feed:
   collections:
     posts:
