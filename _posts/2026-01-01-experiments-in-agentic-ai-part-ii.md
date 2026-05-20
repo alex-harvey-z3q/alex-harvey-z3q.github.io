@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Experiments in Agentic AI, Part II: Adding Agents"
-date: 2025-12-30
+date: 2026-01-01
 author: Alex Harvey
 tags: agentic-ai multi-agent langgraph
 ---

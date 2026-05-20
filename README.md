@@ -4,9 +4,9 @@ https://alex-harvey-z3q.github.io
 
 PRs welcome! If you find a mistake in one of my posts and you want to fix it, go for it!
 
-Rspec tests for my blog:
+CI:
 
-[![Build Status](https://img.shields.io/travis/alexharv074/alexharv074.github.io.svg)](https://travis-ci.org/alexharv074/alexharv074.github.io)
+[![CI](https://github.com/alex-harvey-z3q/alex-harvey-z3q.github.io/actions/workflows/ci.yml/badge.svg)](https://github.com/alex-harvey-z3q/alex-harvey-z3q.github.io/actions/workflows/ci.yml)
 
 To build:
 
@@ -25,5 +25,4 @@ To run the tests:
 
 ```text
 ▶ bundle exec rake
-▶ bash/shunit2/sed_and_awk_cookbook.sh
 ```
