@@ -3,3 +3,8 @@ _site/
 Gemfile.lock
 vendor/
 .bundle/
+clementi/.cache/
+clementi/generated/
+clementi/lilypond/
+clementi/notation/__pycache__/
+assets/clementi/*.pdf
