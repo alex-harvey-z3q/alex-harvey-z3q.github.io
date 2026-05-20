@@ -13,6 +13,19 @@ plugins:
   - jekyll-feed
 disqus:
   shortname: alex-harvey
+exclude:
+  - .bundle/
+  - .github/
+  - .sass-cache/
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - Rakefile
+  - vendor/
+  - clementi/
+  - comments/
+  - new_post.sh
+  - spec/
 feed:
   collections:
     posts:
