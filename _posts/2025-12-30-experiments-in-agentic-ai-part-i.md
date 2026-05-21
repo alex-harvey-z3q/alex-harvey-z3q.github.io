@@ -16,7 +16,7 @@ This post is **Part I** of a multi-part series documenting my progress building 
 - [**Part I: Agentic Research Analyst**](http://alex-harvey-z3q.github.io/2025/12/30/experiments-in-agentic-ai-part-i.html) (this page)
   Building the foundation: a minimal Retrieval-Augmented Generation (RAG) layer that all later agents depend on.
 
-- [**Part II: Adding Agents**](https://alex-harvey-z3q.github.io/2025/12/30/experiments-in-agentic-ai-part-ii.html).
+- [**Part II: Adding Agents**]({% post_url 2026-01-01-experiments-in-agentic-ai-part-ii %}).
   Introducing planner, researcher, analyst, writer, and reviewer agents — and observing how things break once multiple models are chained together.
 
 - [**Part III: Evidence, Gates, and Enforcing Truthfulness**](https://alex-harvey-z3q.github.io/2026/01/02/experiments-in-agentic-ai-part-iii.html)

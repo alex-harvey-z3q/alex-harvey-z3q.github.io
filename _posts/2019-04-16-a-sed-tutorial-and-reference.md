@@ -1290,7 +1290,7 @@ Please let me know if you find any errors or have any suggestions for improvemen
 
 ## See also
 
-- [GNU sed manual](www.gnu.org/software/sed/manual/sed.html).
+- [GNU sed manual](https://www.gnu.org/software/sed/manual/sed.html).
 - [sed & AWK, 2nd ed](https://docstore.mik.ua/orelly/unix2.1/sedawk/index.htm) O'Reilly.
 - [sed FAQ](http://sed.sourceforge.net/sedfaq.html).
 - [Sed One-liners Explained, Part I: File Spacing, Numbering and Text Conversion and Substitution](https://catonmat.net/sed-one-liners-explained-part-one).

@@ -365,6 +365,6 @@ My earlier posts on shUnit2:
 - Jul 7, 2017, [Unit Testing a Bash Script with shUnit2](https://alex-harvey-z3q.github.io/2017/07/07/unit-testing-a-bash-script-with-shunit2.html).
 - Sep 7, 2018, [Testing AWS CLI scripts in shUnit2](https://alex-harvey-z3q.github.io/2018/09/07/testing-aws-cli-scripts-in-shunit2.html).
 - Jan 31, 2020, [Unit testing a Terraform user_data script with shUnit2](https://alex-harvey-z3q.github.io/2020/01/31/unit-testing-a-terraform-user_data-script-with-shunit2.html).
-- Apr 9, 2020, [Unit testing a CloudFormation UserData script with shunit2](alex-harvey-z3q.github.io/2020/04/09/unit-testing-a-cloudformation-userdata-script-with-shunit2.html).
+- Apr 9, 2020, [Unit testing a CloudFormation UserData script with shunit2]({% post_url 2020-04-09-unit-testing-a-cloudformation-userdata-script-with-shunit2 %}).
 
 And see also my Placebo library on GitHub, [Placebo for Bash](https://github.com/alex-harvey-z3q/bash_placebo).

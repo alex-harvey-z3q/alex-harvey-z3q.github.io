@@ -7,7 +7,7 @@ tags: awk
 published: false
 ---
 
-This post summarises observations that interested me when I spent a few hours on a weekend skim reading the [GNU AWK manual](www.gnu.org/software/gawk/manual/).
+This post summarises observations that interested me when I spent a few hours on a weekend skim reading the [GNU AWK manual](https://www.gnu.org/software/gawk/manual/).
 
 * ToC
 {:toc}
