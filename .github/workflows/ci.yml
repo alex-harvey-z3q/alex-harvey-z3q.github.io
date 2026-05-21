@@ -23,5 +23,5 @@ jobs:
           ruby-version: .ruby-version
           bundler-cache: true
 
-      - name: Run RSpec checks
+      - name: Run quality checks
         run: bundle exec rake

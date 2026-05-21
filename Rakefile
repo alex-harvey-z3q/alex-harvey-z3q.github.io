@@ -12,9 +12,14 @@ task :mdl do
   sh "bundle exec mdl -c .mdlrc _posts"
 end
 
+task :build do
+  puts "Building Jekyll site"
+  sh "bundle exec jekyll build --strict_front_matter"
+end
+
 desc 'Regenerate Clementi/Mozart notation figures'
 task :clementi do
   system("ruby clementi/notation/render_figures.rb")
 end
 
-task :default => [:spec, :mdl]
+task :default => [:spec, :mdl, :build]
