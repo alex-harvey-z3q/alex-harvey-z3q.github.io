@@ -9,6 +9,7 @@ tags: sam sceptre
 This post documents a proof of concept for managing AWS SAM templates using [Sceptre](https://sceptre.cloudreach.com/2.2.1/index.html).
 
 {:toc}
+
 - ToC
 
 ## Overview

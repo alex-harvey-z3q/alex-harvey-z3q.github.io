@@ -23,6 +23,7 @@ The Jinja2 template engine was inspired by Django and provides a Python-like lan
 - elegance. "Jinja is beautiful".
 
 {% raw %}
+
 ```jinja
 {% extends "layout.html" %}
 {% block body %}
@@ -33,6 +34,7 @@ The Jinja2 template engine was inspired by Django and provides a Python-like lan
   </ul>
 {% endblock %}
 ```
+
 {% endraw %}
 
 It is. And used as a web framework, as intended, I have no doubt that it is a powerful, elegant tool, as advertised.
@@ -185,6 +187,7 @@ Some might have concerns about using ERB to call Ruby to call sed. If so, I coul
 Notice in the above example how I have defined a function within a multi-line ERB tag. This is not possible in Jinja2. Consider this Jinja2 example:
 
 {% raw %}
+
 ```jinja
 do_bootstrap() {
   {% set args = "--kubelet-extra-args '--node-labels=nodegroup=" + node_group_name %}
@@ -207,23 +210,25 @@ do_bootstrap() {
   eval "/etc/eks/bootstrap.sh ${EKSClusterName} {{ args }}"
 }
 ```
+
 {% endraw %}
 
 That code is quite unreadable and it would be nice if Jinja2 allowed me to define multiline code inside its tags. Like this:
 
-{% raw %} 
-```jinja 
-do_bootstrap() { 
-  {%-
-    set args = "--kubelet-extra-args '--node-labels=nodegroup=" + node_group_name 
- 
-    if node_labels != "None" 
-      set args = args + "," + node_labels 
-    endif 
+{% raw %}
 
-    if cni_custom_network == "Yes" %} 
-      zone=$(curl -s http://169.254.169.254/latest/meta-data/placement/availability-zone) 
-      {%- set args = args + ",k8s.amazonaws.com/eniConfig=pod-netconfig-$zone" 
+```jinja
+do_bootstrap() {
+  {%-
+    set args = "--kubelet-extra-args '--node-labels=nodegroup=" + node_group_name
+
+    if node_labels != "None"
+      set args = args + "," + node_labels
+    endif
+
+    if cni_custom_network == "Yes" %}
+      zone=$(curl -s http://169.254.169.254/latest/meta-data/placement/availability-zone)
+      {%- set args = args + ",k8s.amazonaws.com/eniConfig=pod-netconfig-$zone"
     endif
 
     if taints != "None"
@@ -236,6 +241,7 @@ do_bootstrap() {
   eval "/etc/eks/bootstrap.sh ${EKSClusterName} {{ args }}"
 }
 ```
+
 {% endraw %}
 
 ## White space control
@@ -245,6 +251,7 @@ In the default configuration, Jinja2's white space control features are problema
 Consider the following block of code:
 
 {% raw %}
+
 ```jinja
 foo:
   bar: baz
@@ -256,6 +263,7 @@ foo:
     {% endfor %}
   {% endif %}
 ```
+
 {% endraw %}
 
 If mylist contains quux and quuz, this code generates the following YAML, and I reveal white spaces using `sed l`.
@@ -289,6 +297,7 @@ $
 I could try this:
 
 {% raw %}
+
 ```jinja
 foo:
   bar: baz
@@ -300,6 +309,7 @@ foo:
     {%- endfor %}
   {%- endif %}
 ```
+
 {% endraw %}
 
 And now I get this:

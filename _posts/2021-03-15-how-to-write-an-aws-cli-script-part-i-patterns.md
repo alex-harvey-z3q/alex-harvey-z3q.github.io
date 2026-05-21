@@ -273,7 +273,7 @@ describe_instances() {
 
 ### Filters, queries and jp
 
-A treatment of AWS CLI filters and its JMESpath query language is beyond the scope of this article. However, it needs to be said that writing AWS CLI scripts requires you to fully understand both of these topics. The AWS documentation on this [here](https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-filter.html) is quite good, and there are also many good JMESpath tutorials out there. 
+A treatment of AWS CLI filters and its JMESpath query language is beyond the scope of this article. However, it needs to be said that writing AWS CLI scripts requires you to fully understand both of these topics. The AWS documentation on this [here](https://docs.aws.amazon.com/cli/latest/userguide/cli-usage-filter.html) is quite good, and there are also many good JMESpath tutorials out there.
 
 Note that testing your JMESpath queries can be done using the [`jp`](https://github.com/jmespath/jp) command line utility. I recommend installing that and becoming familiar with it.
 

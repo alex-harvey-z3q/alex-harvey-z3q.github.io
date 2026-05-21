@@ -128,7 +128,7 @@ Rather than considering that high VRE and high electrification might lead to inc
 
 In the text:
 
-> From 2018, CSIRO’s projection methodology recognised that battery technologies, while mature, are still experiencing learning rates more consistent with emerging technologies. As a result, we have allowed higher rates of learning to apply for longer periods than previous CSIRO studies. The outcome of this assumption is that battery costs achieve a lower cost of $50/kWh by 2050 compared to an average of $100/kWh in the pre-2018 projections. 
+> From 2018, CSIRO’s projection methodology recognised that battery technologies, while mature, are still experiencing learning rates more consistent with emerging technologies. As a result, we have allowed higher rates of learning to apply for longer periods than previous CSIRO studies. The outcome of this assumption is that battery costs achieve a lower cost of $50/kWh by 2050 compared to an average of $100/kWh in the pre-2018 projections.
 
 It is also mentioned in the table on p. 8 that learning rates of "higher for longer in solar and batteries" are applied in High VRE and Central (although not in Diverse).
 

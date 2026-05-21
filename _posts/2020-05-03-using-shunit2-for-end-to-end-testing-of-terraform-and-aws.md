@@ -310,20 +310,20 @@ test:
 ## Running the tests
 
 ```text
-▶ DESTROY=false make test                                   
-data.aws_ami.ami: Refreshing state...                                                                                                                                                   
-aws_instance.web: Creating...                                     
-aws_instance.web: Still creating... [10s elapsed]                                           
-aws_instance.web: Still creating... [20s elapsed]                                                                                                                                   
-aws_instance.web: Provisioning with 'remote-exec'...                                                
+▶ DESTROY=false make test
+data.aws_ami.ami: Refreshing state...
+aws_instance.web: Creating...
+aws_instance.web: Still creating... [10s elapsed]
+aws_instance.web: Still creating... [20s elapsed]
+aws_instance.web: Provisioning with 'remote-exec'...
 aws_instance.web (remote-exec): Connecting to remote host via SSH...
-aws_instance.web (remote-exec):   Host: 13.210.249.192               
-aws_instance.web (remote-exec):   User: ec2-user                                                                                                                                    
-aws_instance.web (remote-exec):   Password: false   
-aws_instance.web (remote-exec):   Private key: true                                                                                                                                 
-aws_instance.web (remote-exec):   Certificate: false                 
-aws_instance.web (remote-exec):   SSH Agent: true                                           
-aws_instance.web (remote-exec):   Checking Host Key: false                                                                                                             
+aws_instance.web (remote-exec):   Host: 13.210.249.192
+aws_instance.web (remote-exec):   User: ec2-user
+aws_instance.web (remote-exec):   Password: false
+aws_instance.web (remote-exec):   Private key: true
+aws_instance.web (remote-exec):   Certificate: false
+aws_instance.web (remote-exec):   SSH Agent: true
+aws_instance.web (remote-exec):   Checking Host Key: false
 ...
 aws_instance.web: Creation complete after 1m46s [id=i-0e71f9e2871d5fbf9]
 

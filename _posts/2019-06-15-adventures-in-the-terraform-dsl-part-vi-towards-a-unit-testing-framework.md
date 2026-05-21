@@ -188,6 +188,7 @@ So before I show any actual test code I'd like to think through what I'd like to
 - The module accepts an input `var.instance_count`.
     * I would expect nothing to be created if this is variable is set to 0.
     * And I would expect one EC2 instance to be created if this is set to 1.
+
 - The module also accepts an optional map of EBS block devices.
     * If I pass in `var.instance_count` of 1 and a `var.ebs_block_device` of an empty map, I expect:
         1. One EC2 instance with no EBS block devices.

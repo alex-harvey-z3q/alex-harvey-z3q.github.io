@@ -264,7 +264,7 @@ What if I deliberately insert a duplicate key:
 Run it again:
 
 ```text
-▶ bundle exec rake yamllint                                                                   
+▶ bundle exec rake yamllint
 yamllint --version || bash venv.sh
 yamllint 1.11.1
 yamllint -c yamllint.yml hieradata/*.yaml

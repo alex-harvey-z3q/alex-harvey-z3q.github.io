@@ -25,19 +25,26 @@ Act is a tool for running your GitHub Actions locally. It gives you fast feedbac
 Initially I installed the latest version (0.2.26 at the time of writing) using `brew install act`. That worked fine until I ran into a Mac OS X bug documented ([Issue 935](https://github.com/nektos/act/issues/935) and found a [workaround](https://github.com/nektos/act/issues/935#issuecomment-999707633) that suggested I would need to downgrade to version 0.2.24. So, to install a specific version I did this:
 
 1. Cloned the source code:
+
     ```text
-    ▶ git clone git@github.com:nektos/act.git                            
+    ▶ git clone git@github.com:nektos/act.git
     ▶ cd act
     ```
+
 1. Read the source code of the installer! In there I found the `tag` option. So to install I then did:
+
     ```text
     ▶ bash install.sh v0.2.24
     ```
+
 1. That compiles a Golang binary in `./bin/act`, so then I did:
+
     ```text
     ▶ mv bin/act /usr/local/bin
     ```
+
 1. Checked it:
+
     ```text
     ▶ act --version
     act version 0.2.24
@@ -75,7 +82,7 @@ pr-pass   1      pr-pass
 To run it:
 
 ```text
-▶ act -s GITHUB_TOKEN=xxx -P example-base=example-base:latest pull_request  
+▶ act -s GITHUB_TOKEN=xxx -P example-base=example-base:latest pull_request
 ```
 
 ## Conclusion

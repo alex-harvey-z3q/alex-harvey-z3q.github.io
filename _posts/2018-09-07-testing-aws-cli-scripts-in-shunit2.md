@@ -78,6 +78,7 @@ To provide complete unit test coverage, I need the following test cases:
 - for a stack with no auto-scaling groups:
     * key pairs and deployment artifacts are expected to be deleted
     * aws cloudformation delete-stack should be issued
+
 - for a stack with multiple auto-scaling groups:
     * a resume-processes command should be issued for each auto-scaling group.
 

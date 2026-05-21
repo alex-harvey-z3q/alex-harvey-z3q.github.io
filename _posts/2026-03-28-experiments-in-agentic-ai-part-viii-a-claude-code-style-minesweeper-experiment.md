@@ -84,6 +84,7 @@ Retrieval provides shared context from both Wikipedia and an internal style guid
 ## The Workflow
 
 Each stage receives:
+
 - The original task
 - Retrieved evidence
 - (For later stages) the output of the previous stage
@@ -213,6 +214,7 @@ Prompt:
 The system produced a working implementation. However, rerunning the same prompt **without retrieval** produced nearly identical results.
 
 The presence of Wikipedia-style evidence had little to no impact on:
+
 - Code structure
 - Implementation quality
 - Behavior
@@ -231,12 +233,14 @@ The second experiment introduced a different kind of corpus: a coding style guid
 This time, the difference was clear.
 
 ### Without retrieval
+
 - Monolithic structure (logic, UI, tests in one file)
 - Large, multi-responsibility functions
 - Missing docstrings
 - Inconsistent validation
 
 ### With retrieval (style guide)
+
 - Modular structure (`board.py`, `game.py`, `main.py`)
 - Smaller, focused functions
 - Docstrings and clearer naming

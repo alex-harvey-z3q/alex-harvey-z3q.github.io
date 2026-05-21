@@ -18,10 +18,12 @@ This is the third and final part of my blog series on Amazon’s Serverless Appl
     * [Redeploying](#redeploying)
     * [Testing](#testing)
     * [Hashdiffing the processed.yml file](#hashdiffing-the-processedyml-file)
+
 4. [CORS configuration](#cors-configuration)
     * [What I am trying to do](#what-i-am-trying-to-do)
     * [Making the change](#making-the-change)
     * [The generated Swagger](#the-generated-swagger)
+
 5. [Summary](#summary)
 6. [Further reading](#further-reading)
 

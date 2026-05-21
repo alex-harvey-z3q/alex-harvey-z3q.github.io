@@ -9,7 +9,7 @@ end
 
 task :mdl do
   puts "Running MDL on all files"
-  system("bundle exec mdl -c .mdlrc _posts")
+  sh "bundle exec mdl -c .mdlrc _posts"
 end
 
 desc 'Regenerate Clementi/Mozart notation figures'
@@ -17,4 +17,4 @@ task :clementi do
   system("ruby clementi/notation/render_figures.rb")
 end
 
-task :default => :spec
+task :default => [:spec, :mdl]

@@ -64,7 +64,7 @@ The Chief Health Officer in Australia has the power to compel people to be teste
 
 ### Mandatory surveillance
 
-Contact tracing in Australia is done manually by teams of contact tracers who speak to infected individuals, and find the contact details of others who may also have been infected. But given a virus that can spread exponentially, these methods do not scale beyond a small number of cases per day. And if contact tracing capacity is exceeded, then governments tend to order economically harmful restrictions and lockdowns. 
+Contact tracing in Australia is done manually by teams of contact tracers who speak to infected individuals, and find the contact details of others who may also have been infected. But given a virus that can spread exponentially, these methods do not scale beyond a small number of cases per day. And if contact tracing capacity is exceeded, then governments tend to order economically harmful restrictions and lockdowns.
 
 In the east Asian nations, it is different. In fairness, these countries have experience with the SARS and MERS epidemics. In response to MERS, South Korea rewrote much of its infectious-disease-prevention legislation. To expand contact tracing, South Korean health authorities were given warrantless access to all CCTV footage and the geolocation data from the patients' cell phones. With access to this data, the South Koreans proved they could contain an epidemic of more than 7,000 cumulative cases after a 1,000 person cluster within a month, without the need to panic or order lockdowns.
 
@@ -100,9 +100,9 @@ The same is true for most of Asia.
 
 Australia and many other western nations including the United States have onerous approvals processes for new therapeutics. Cynics observe that these processes seem to favour the big drug companies and their patented new drugs. Bringing a new therapeutic to market typically involves succeeding in a large scale Phase III clinical trial. This usually takes years.
 
-The ongoing controversy surrounding the anti-Malarial drug Hydroxychloroquine is instructive. At the time of writing, at least 126 studies have looked at the efficacy of Hydroxychloroquine, making it one of the most well-studied drugs in history. A recent meta-analysis published in the journal _Clinical Microbiology and Infection_ found that Hydroxychloroquine lowers mortality risk by a statistically significant 21%. 
+The ongoing controversy surrounding the anti-Malarial drug Hydroxychloroquine is instructive. At the time of writing, at least 126 studies have looked at the efficacy of Hydroxychloroquine, making it one of the most well-studied drugs in history. A recent meta-analysis published in the journal _Clinical Microbiology and Infection_ found that Hydroxychloroquine lowers mortality risk by a statistically significant 21%.
 
-This is not a large effect, but Hydroxychloroquine has a number of other advantages: its use over 65 years means its safety profile and associated risks are well-understood. It is usually well-tolerated with few, if any, side effects. It is a cheap drug that is administered orally. And many nations including Australia have already stockpiled it. 
+This is not a large effect, but Hydroxychloroquine has a number of other advantages: its use over 65 years means its safety profile and associated risks are well-understood. It is usually well-tolerated with few, if any, side effects. It is a cheap drug that is administered orally. And many nations including Australia have already stockpiled it.
 
 But Hydroxychloroquine is not only candidate for drug repurposing. To name a few others that also show promise, there is the anti-parasitic Ivermectin, which is backed by credible Australian research; over-the-counter cough suppressants Ambroxol and Bromhexine; and the SSRI anti-depressant Fluvoxamine (Luvox).
 
@@ -156,7 +156,7 @@ In this section, I argue that we must give up on the full national lockdown, imp
 
 South Korea's Patient 31 caused a superspreading event that exposed over 1,000 individuals and may have infected hundreds. In another superspreading event, 175 executives from around the world came to a Biogen conference in Boston. Around 100 of these went home infected by SARS-CoV-2. In yet another example, 260 children and teenagers were infected at a sleepaway camp in Georgia in July.
 
-The average number of infections, however, that someone infected by SARS-CoV-2 causes - the value known as R0, the basic reproduction number – is thought to be about 2.5. 
+The average number of infections, however, that someone infected by SARS-CoV-2 causes - the value known as R0, the basic reproduction number – is thought to be about 2.5.
 
 It turns out that SARS-CoV-2 is highly _overdispersed_. Overdispersion means a small number of infected individuals cause most of the transmission. It is sometimes expressed as the fraction of infected individuals who cause 80% of transmission. For SARS-CoV-2, the value may be 10% or lower. So, while on average, a group of 10 infected individuals might cause 25 secondary infections, just one of those might infect 20 people, while the remaining nine combine to infect only five.
 
@@ -190,7 +190,7 @@ Gomes' work has been controversial, as it has been popularised by proponents of 
 
 #### Places of superspreading
 
-Superspreading events require an infectious superspreader, but they also require an environment that is favourable to aerosol transmission. In the case of South Korea's Patient 31, the superspreading during a church service in a huge hall where the infected woman sang hymns loudly. 
+Superspreading events require an infectious superspreader, but they also require an environment that is favourable to aerosol transmission. In the case of South Korea's Patient 31, the superspreading during a church service in a huge hall where the infected woman sang hymns loudly.
 
 By now, it is well understood that superspreading is associated with shared rooms, where significant time is spent in the environment, where there may be crowding or overcrowding, poor ventilation, and where people talk, and especially where they sing or shout. So, many outbreaks have occurred in choirs, restaurants, bars, meat packing plants.
 
@@ -227,7 +227,6 @@ A few weeks later, on October 16th, an opposing declaration was published in _Th
 Let me be very clear about this: _I do not support either of these declarations_. All the same, the vastly higher number of public health scientists and doctors signing onto the Great Barrington Declaration suggests that support for lockdowns and quarantines continues to be a minority view. Whereas many scientists prefer to keep out of public controversies.
 
 #### Empirical evidence for lockdowns
-
 
 #### Household transmission
 

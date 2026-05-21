@@ -214,7 +214,7 @@ Now it's time to create the SAM project that all of this migrated code will live
 Initialise the repo:
 
 ```text
-▶ sam init --runtime nodejs8.10                                        
+▶ sam init --runtime nodejs8.10
 ```
 
 (Note that at the time of writing Serverless & SAM didn't support the same Node.JS runtimes so I'm going to use nodejs8.10 and that should be fine.)

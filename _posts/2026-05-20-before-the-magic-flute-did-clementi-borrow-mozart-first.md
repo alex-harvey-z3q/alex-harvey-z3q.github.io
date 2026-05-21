@@ -6,7 +6,6 @@ author: Alex Harvey
 tags: mozart
 ---
 
-
 ## Introduction
 
 Christmas Eve, 1781. The court of His Imperial Majesty Joseph II, emperor of the Holy Roman Empire.

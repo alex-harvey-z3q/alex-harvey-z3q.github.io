@@ -19,14 +19,17 @@ In Part I (this article) I show how to use the SAM CLI to build, test and deploy
     * [Dependencies](#dependencies)
     * [Building a virtualenv](#building-a-virtualenv)
     * [Installing SAM CLI in the virtualenv](#installing-sam-cli-in-the-virtualenv)
+
 5. [Creating a new project](#creating-a-new-project)
     * [About the "hello world" app](#about-the-hello-world-app)
     * [sam init](#sam-init)
     * [The directory structure](#the-directory-structure)
+
 6. [Testing locally](#testing-locally)
     * [Running the unit tests](#running-the-unit-tests)
     * [sam local invoke](#sam-local-invoke)
     * [sam local start-api](#sam-local-start-api)
+
 7. [Building and deploying](#building-and-deploying)
     * [sam validate](#sam-validate)
     * [sam build](#sam-build)
@@ -34,6 +37,7 @@ In Part I (this article) I show how to use the SAM CLI to build, test and deploy
     * [sam package](#sam-package)
     * [sam deploy](#sam-deploy)
     * [sam logs](#sam-logs)
+
 8. [Summary](#summary)
 
 ## Overview to Part I
@@ -62,12 +66,14 @@ The docs that I have found most useful are:
         - [deploying_serverless_applications.md](https://github.com/awslabs/aws-sam-cli/blob/develop/docs/deploying_serverless_applications.md) is mostly duplicated by docs from elsewhere as far as I can tell. I just mention it here for completeness.
     * In the designs directory is some SAM CLI design documentation that is worth looking at, in particular:
         - [sam_build_cmd.md](https://github.com/awslabs/aws-sam-cli/blob/develop/designs/sam_build_cmd.md) talks about the recently-added sam build feature from the point of view of the developers who wrote the feature and helps to understand the problem it solves and where it is heading.
+
 - The [SAM product page](https://aws.amazon.com/serverless/sam).
 - The [SAM developer guide](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/what-is-sam.html), especially:
     * [Testing and Debugging Serverless Applications](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-test-and-debug.html) covers a lot of the same material as in the "usage" docs above, as well as a section on working with Lambda Layers that doesn't appear to be documented anywhere else.
     * [Deploying Serverless Applications](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-deploying.html) also covers material mentioned elsewhere on the sam package and sam deploy commands as well as using sam publish to publish to the AWS Serverless Application Repository and integration with CodeDeploy (both out of scope for this series).
     * [AWS SAM Reference](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-reference.html) covers in detail various ways of installing the SAM CLI and contains a SAM CLI Command Reference that is up to date of version 0.8.0.
     * [AWS SAM CLI Release Notes](https://github.com/awslabs/aws-sam-cli/releases) is an important document to keep an eye on (up to release 0.12.0 at the time of writing) for a product such as this one still in Beta.
+
 - The [SAM Quick Start Guide](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-quick-start.html) mentioned above.
 
 Also useful to be aware of are these other resources:

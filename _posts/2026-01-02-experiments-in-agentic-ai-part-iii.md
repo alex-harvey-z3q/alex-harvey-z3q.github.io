@@ -32,6 +32,7 @@ Originally, the Researcher produced `research_notes`: human‑readable summaries
 That turned out to be a dead end.
 
 Later agents:
+
 - paraphrased instead of quoting,
 - "rounded off" lyrics,
 - or confidently reused claims the reviewer had already flagged as unsupported.
@@ -52,6 +53,7 @@ Each evidence item is a small dictionary with a fixed shape:
 This has made a difference.
 
 Evidence is now:
+
 - **atomic** (i.e. each item represents one specific quote from one specific song)
 - **inspectable** (you can print it),
 - **machine‑checkable** (JSON, not text),
@@ -127,6 +129,7 @@ It does **not** try to improve style.
 ### 2. Editor agent
 
 Only after validation do I run an Editor agent, whose job is purely:
+
 - clarity,
 - structure,
 - and readability.

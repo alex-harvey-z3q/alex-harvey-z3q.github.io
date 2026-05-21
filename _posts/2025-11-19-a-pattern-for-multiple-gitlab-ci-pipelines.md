@@ -5,6 +5,7 @@ date: 2025-11-19
 author: Alex Harvey
 tags: gitlab
 ---
+
 ## Introduction
 
 Tools like Jenkins, GitHub Actions, and Azure Pipelines allow you to organise a project with multiple independent pipelines or workflows. In Jenkins, for example, you can define several `Jenkinsfiles` side-by-side to handle nightly builds, integration tests, and release automation separately. GitHub Actions, meanwhile, allows splitting unrelated tasks into separate workflows under `.github/workflows/`. Azure Pipelines supports multiple YAML pipelines that can be triggered independently.
@@ -24,10 +25,11 @@ Code excerpts in this blog post relate to this full code example:
 ## The Problem We're Solving
 
 In our CI pipeline multiplexer, we want:
-  - A clean UI for selecting the **pipeline** to run
-  - A readable YAML file for each pipeline
-  - A safe way to inject environment-specific values
-  - A design that scales as more pipelines are added.
+
+- A clean UI for selecting the **pipeline** to run
+- A readable YAML file for each pipeline
+- A safe way to inject environment-specific values
+- A design that scales as more pipelines are added.
 
 GitLab gives us most of the primitives we need: pipeline selection via variables, templating via external tools like `ytt`, and downstream triggering via `trigger:`.
 

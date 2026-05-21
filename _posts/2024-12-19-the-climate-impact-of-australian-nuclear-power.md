@@ -51,6 +51,7 @@ The following formula is used to calculate the global warming at the surface (Δ
 $$\Delta T = \text{TCR} \times \frac{\ln\left(\frac{C_{\text{final}}}{C_{\text{initial}}}\right)}{\ln(2)}$$
 
 Where:
+
 - $$C_{\text{initial}}$$ is the initial CO₂ concentration in the atmosphere (~470ppm in 2045, see below),
 - $$C_{\text{final}}$$ is the final CO₂ concentration after adding the additional emissions.
 
@@ -59,6 +60,7 @@ Note that 1ppm ("parts per million by volume") CO₂ is approximately equal to 7
 To calculate how much actual warming would be caused by Australia emitting an additional 1,000 MtCO₂, we also need to know what the atmospheric concentration of CO₂ in 2045 would be. (Because CO₂ becomes less and less able to raise the surface temperature as CO₂ levels increase, we need to predict what the concentrations in 2045 will be rather than use today's concentrations.)
 
 Let's try two scenarios:
+
 - The world is on track for Net Zero in 2045 and Australia is the laggard, in which case atmospheric CO₂ in 2045 might be ~ 440 ppm.
 - The world has made little progress and is on track for 3 degrees of warming, in which case atmospheric CO₂ in 2045 would be ~ 470 ppm.
 
@@ -93,6 +95,7 @@ To compute additional emissions in the second half of the century I use this for
 $$\text{Total Emissions (MtCO}_2\text{)} = \text{Emissions Intensity (tonnes/MWh)} \times \text{Total Energy (MWh/year)} \times \text{Years}$$
 
 Where:
+
 - Years $$= 2100 - 2050 = 50$$
 - Energy per year $$= 300 \, \text{TWh} = 300 \times 10^6 = 300{,}000{,}000 \, \text{MWh}$$
 

@@ -253,7 +253,6 @@ Song file block (beatles_lyrics.txt)
 └─────────────────────────────────────────┘
 ```
 
-
 ## Rerunning the pipeline
 
 Now let's see what happens when we run it:

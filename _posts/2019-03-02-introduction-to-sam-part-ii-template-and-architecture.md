@@ -22,6 +22,7 @@ This is Part II of my 3-part blog series on Amazon's Serverless Application Mode
     * [The implicit API and the Events source](#the-implicit-api-and-the-events-source)
     * [The default Role](#the-default-role)
     * [The default Stage](#the-default-stage)
+
 5. [Generated resources](#generated-resources)
 6. [Summary](#summary)
 7. [Further reading](#further-reading)
@@ -45,8 +46,10 @@ So, the additional documents to look at for the SAM Translator and the template 
         - [faq.rst](https://github.com/awslabs/serverless-application-model/blob/develop/docs/faq.rst), is a SAM FAQ that has just three questions at this time, including how to manage multiple environments, and how to enable API Gateway logs.
         - [policy_templates.rst](https://github.com/awslabs/serverless-application-model/blob/develop/docs/policy_templates.rst) discusses SAM's out-of-the-box IAM Policies that are found in the [policy_templates.json](https://github.com/awslabs/serverless-application-model/blob/develop/samtranslator/policy_templates_data/policy_templates.json) file.
         - And finally, [safe_lambda_deployments.rst](https://github.com/awslabs/serverless-application-model/blob/develop/docs/safe_lambda_deployments.rst) discusses traffic shifting for safe production deployments. (Also discussed again in the SAM Developer Guide [here](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/automating-updates-to-serverless-apps.html).)
+
 - The [SAM developer guide](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/what-is-sam.html), especially:
     * [AWS SAM Template Basics](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-template-basics.html) documents the resource types (but I expect the specification document above to be more up to date); contains info on the Metadata section of templates and how it relates to publishing SAM apps in the AWS Serverless Application Repository; and nested applications, which seems to be simply the nested stacks feature of CloudFormation.
+
 - Finally, the [examples](https://github.com/awslabs/serverless-application-model/tree/master/examples/) directory in the source code is especially useful for finding SAM apps and templates you can use a starting point for your own app.
 
 ## Architecture

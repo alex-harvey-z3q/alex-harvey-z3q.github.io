@@ -76,11 +76,13 @@ class AgentState(TypedDict, total=False):
 This state acts as a **contract between agents**.
 
 Each agent is responsible for:
+
 - reading only the fields it needs,
 - writing only the fields it owns,
 - and appending a short entry to `logs` describing what it did.
 
 For example:
+
 - the Planner reads `question` and writes `sub_tasks`,
 - the Researcher reads `sub_tasks` and writes `research_notes`,
 - the Writer reads `analysis` and writes `draft_report`,
@@ -89,6 +91,7 @@ For example:
 No agent is allowed to silently modify another agent's output.
 
 This design turns the workflow into something you can reason about step by step. At any point, you can print the state and see:
+
 - what information has been introduced,
 - which agent introduced it,
 - and what decisions were made along the way.

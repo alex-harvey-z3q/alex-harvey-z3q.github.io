@@ -24,7 +24,7 @@ If you'd like to follow along, the source code for all of my tests are [here](ht
 Everything about this framework is nice and simple, and that's true of the project structure. No configuration is required. All you have to do is create a `./tests` directory, put some test files in it, and run `terraform test`. Some TF files for your module are expected to be in the top level of the project as usual. Here is my initial set up:
 
 ```text
-% tree . 
+% tree .
 .
 ├── main.tf
 └── tests
@@ -273,7 +273,7 @@ run "test_invalid_input" {
 
 Notice that in the second test case, I expect failures.
 
-I must admit this is the most confusing aspect of the framework that I have found so far. Initially, I had hoped that expect failures might be more like Python's 'assert raises' — that is, something that could catch Terraform erroring-out for any reason at all. Sadly, no. 
+I must admit this is the most confusing aspect of the framework that I have found so far. Initially, I had hoped that expect failures might be more like Python's 'assert raises' — that is, something that could catch Terraform erroring-out for any reason at all. Sadly, no.
 
 The use case for `expect_failures` is much more specific. It is based on the [custom conditions](https://developer.hashicorp.com/terraform/language/expressions/custom-conditions) for a given resource, data source, variable, output or check block.
 

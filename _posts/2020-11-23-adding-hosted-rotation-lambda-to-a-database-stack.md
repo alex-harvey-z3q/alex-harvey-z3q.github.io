@@ -28,7 +28,7 @@ Parameters:
     Type: String
     MinLength: 1
     MaxLength: 41
-  MasterUserPassword: 
+  MasterUserPassword:
     NoEcho: true
     Description: The database Master Password
     Type: String
@@ -374,7 +374,7 @@ I found this all quite confusing, and thus my motivation for writing this post!
 
 ### Other gotchas
 
-Note that it is not possible to change the Name of the secret once it is created! 
+Note that it is not possible to change the Name of the secret once it is created!
 
 ## Summary
 

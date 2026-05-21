@@ -576,7 +576,7 @@ Enter choice (1-3): 1
 
 Mines remaining: 10
 
-Enter move (row col [f for flag]): 
+Enter move (row col [f for flag]):
 ```
 
 However, I marked this version of the game down for providing no instructions on how to play. I had to guess that to reveal 1, 1 I would type `1 1`.
@@ -676,7 +676,7 @@ Time: 0 seconds
 Enter action (r x y for reveal, f x y for flag, q to quit):
 ```
 
-There was only one minor problem with this implementation, a warning caused by unnecessary import of the CLI in `__init__.py`. 
+There was only one minor problem with this implementation, a warning caused by unnecessary import of the CLI in `__init__.py`.
 
 ## Conclusion
 

@@ -65,7 +65,7 @@ Feature: Fight or flight
      Then the ninja should run for his life
 ```
 
-This allows us to express the feature as the Agile "story" that created it; and then a number of "scenarios" (test cases) that test and express the business logic. 
+This allows us to express the feature as the Agile "story" that created it; and then a number of "scenarios" (test cases) that test and express the business logic.
 
 - *Given* we put the system in a known state before the user (or external system) starts interacting with the system (in the When steps). Avoid talking about user interaction in givens.
 - *When* we take key actions the user (or external system) performs. This is the interaction with your system which should (or perhaps should not) cause some state to change.
