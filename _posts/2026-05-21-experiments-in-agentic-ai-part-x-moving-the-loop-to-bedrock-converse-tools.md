@@ -88,11 +88,18 @@ The full code for this series is still here:
 
 ### Bedrock Converse
 
-The key AWS service feature used in this version is Bedrock Converse. In the earlier Bedrock version of this project, I was already using Bedrock to call Claude, but the interaction was still a normal chat-style request: send prompts, receive text.
+The key AWS service feature used in this version is Bedrock Converse. Converse is Bedrock's chat-style runtime API for multi-turn model interactions. Instead of calling a model with one prompt and receiving one text completion, the application sends a list of messages and receives the next assistant message.
 
-Converse is useful here because it gives the application a structured way to continue a model conversation. Each request includes the system prompt, the message history so far, model settings, and, for this version, a `toolConfig` describing the tools the model may request.
+For a simple chatbot, that might not sound very different from any other chat API. For this project, the important part is that Converse also has a tool-use protocol. The application can describe a set of tools in `toolConfig`; the model can respond with a structured `toolUse` request; the application can execute the corresponding local function; and the next Converse request can include a `toolResult` message containing the result.
 
-That last part is the important change. Bedrock is not running my tools. It is returning structured tool-use requests from Claude. My Python application receives those requests, decides whether they are valid, executes the corresponding local function, and sends the result back as a tool result.
+This solution uses four parts of Converse:
+
+- `messages`, to keep the conversation state across the implementer's work;
+- `system`, to set the coding-agent role and rules;
+- `inferenceConfig`, to set ordinary model parameters such as temperature and max tokens; and
+- `toolConfig`, to tell Claude which structured tools it may request.
+
+The tool-use part is the important change from the previous version. Bedrock is not running my tools. It is returning structured tool-use requests from Claude. My Python application receives those requests, decides whether they are valid, executes the corresponding local function, and sends the result back as a tool result.
 
 In this architecture, Bedrock Converse is the protocol between Claude and my application. Claude decides that it wants to use a tool, Converse represents that request, and the application owns the side effect.
 
@@ -480,7 +487,7 @@ For release-candidate testing I kept asking the local agent to build the same sm
 Build a terminal Minesweeper game in Python with unittest tests. Keep it small but playable.
 ```
 
-I ignored runs that failed before completion because of malformed tool calls or output limits. In the current workspace directory I had four successful first-outer-loop runs available, and I added the most recent successful first-outer-loop run from `/tmp/claude-code-minimal-workspaces.old` to make five:
+I ignored runs that failed before completion because of malformed tool calls or output limits. That left five successful first-outer-loop runs:
 
 - `a70556757fa840bf9abee6d4c509c238`
 - `9a770d5d0e76460d9e057fa943aced4f`
@@ -498,7 +505,7 @@ All five completed in one outer workflow iteration, passed their generated unit 
 | `52ea90b4` | 60 passing | 14 | 2 | 344 | 500 | Passed | Strong result, but direct `Board` API accepted out-of-bounds coordinates |
 | `46bd071b` | 24 passing | 9 | 2 | 308 | 321 | Passed | Compact single-module design; interactive setup rather than CLI arguments |
 
-The "test runs inside implementer" column is worth calling out. Only the first run wrote the implementation and got green tests immediately. The other four all hit at least one failing generated test, edited their own code or tests inside the Bedrock tool loop, and then returned with passing tests. From the outer workflow's point of view, those were still one-iteration successes.
+The "test runs inside implementer" column is worth calling out. Only the first run wrote the implementation and got green tests immediately. The other four all hit at least one failing generated test, edited their own code or tests inside the Bedrock tool loop, and then returned with passing tests. (From the outer workflow's point of view, of course, those were still one-iteration successes.)
 
 ### Run `a7055675`
 
