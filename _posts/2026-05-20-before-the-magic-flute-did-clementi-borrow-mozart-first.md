@@ -112,13 +112,13 @@ But elite musicians often encountered music before publication, and Clementi was
 
 ## Why It Matters
 
-The usual story gives Clementi priority over Mozart in one famous case. Clementi plays the sonata before Mozart in 1781; Mozart later borrows the opening motif for _The Magic Flute_.
+The usual story has it that Clementi plays the sonata before Mozart in 1781; Mozart later borrows the opening motif for _The Magic Flute_.
 
-The possible complication is more interesting. Clementi's sonata may itself contain traces of Mozart's sonata. If so, the Magic Flute borrowing would not be a simple one-way act of musical memory, but part of a more tangled exchange: Mozart remembering Clementi, Clementi perhaps already remembering Mozart.
+A possible revision to this narrative is interesting. Clementi's sonata may itself contain traces of Mozart's sonata. If so, the Magic Flute borrowing would not be a simple case of Mozart remembering Clementi. It could be Mozart returning a compliment, answering a piece that had already answered him, or perhaps feeling entitled to borrow from a sonata that had borrowed from him first.
 
 It also changes the meaning of Clementi's choice of piece. If Clementi knew Mozart's sonata, then playing this particular B-flat sonata to Mozart could have been intended as a kind of flattery: a subtle way of saying, I know your work, I admire it, and I can answer it in my own language.
 
-That would also make Mozart's contemptuous comments about Clementi more revealing. Mozart may have dismissed Clementi as a mere technician, but Clementi's sonata may have been operating in a subtler and more competitive register than Mozart cared to admit.
+That would also make Mozart's contemptuous comments about Clementi more interesting. If Clementi's sonata really was answering Mozart's, then Mozart's reaction becomes harder to understand. Why did he react so sharply?
 
 ## Conclusion
 
