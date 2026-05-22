@@ -74,7 +74,7 @@ Then comes a much larger shape: a fast, rising scale in B-flat major, ending in 
 
 ![Figure 5. Descent and low chord]({{ "assets/clementi/figure_05_descending_figuration_low_chord.png" | absolute_url }})
 
-Another distinctive parallel occurs later. Both passages use a rapid descent, then leap suddenly to a low two-note chord on the first beat of the next bar. In both cases, that low-register chord leads to F major in second inversion, with C in the bass, before the music reaches C major at the end.
+Another distinctive parallel occurs later, between Mozart's mm. 34-37 and Clementi's mm. 20-23. In each case, a rapid descent leaps suddenly to a low two-note chord on the first beat of the next bar. That low-register chord then leads to F major in second inversion, before the music reaches C major.
 
 ## 3. Clementi's Development Section
 
