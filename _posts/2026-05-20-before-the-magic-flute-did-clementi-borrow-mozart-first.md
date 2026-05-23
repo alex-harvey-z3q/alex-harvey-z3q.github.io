@@ -114,7 +114,7 @@ But elite musicians often encountered music before publication, and Clementi was
 
 The usual story has it that Clementi plays the sonata before Mozart in 1781; Mozart later borrows the opening motif for _The Magic Flute_.
 
-But if Clementi had already borrowed from Mozart, then Mozart’s later Magic Flute borrowing may not be simple theft at all. It could be a compliment returned, an answer to an answer, or a borrowing from a sonata that had borrowed first.
+But if Clementi had already borrowed from Mozart, the Magic Flute motif starts to look less like a simple act of theft and more like part of an exchange: Mozart returning a compliment, answering a piece that had already answered him, or perhaps feeling entitled to borrow from a sonata that had borrowed from him first.
 
 It also changes the meaning of Clementi's choice of piece. If Clementi knew Mozart's sonata, then playing this particular B-flat sonata to Mozart could have been intended as a kind of flattery: a subtle way of saying, I know your work, I admire it, and I can answer it in my own language.
 
