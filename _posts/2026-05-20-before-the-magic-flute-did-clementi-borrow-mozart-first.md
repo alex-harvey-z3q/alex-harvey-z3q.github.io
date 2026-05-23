@@ -36,7 +36,7 @@ Clementi's distinctive arpeggiated E-flat and B-flat major chords in measure 4 s
 
 ![Figure 2. Early chord pattern]({{ "assets/clementi/figure_02_chord_pattern.png" | absolute_url }})
 
-By itself, this could easily be just a conventional turn from the galant-style keyboard music that was popular in the 1770s. Mozart's six Salzburg sonatas are known to be modelled on Haydn's Esterházy sonatas, and a number of features of Mozart's K. 281 resemble Haydn's Sonata in E-flat major, Hob. XVI:25. At first I thought no more of it.
+By itself, this could easily be just a conventional turn from the galant-style keyboard music that was popular in the 1770s. Mozart's six Munich sonatas are known to be modelled on Haydn's Esterházy sonatas, and a number of features of Mozart's K. 281 resemble Haydn's Sonata in E-flat major, Hob. XVI:25. At first I thought no more of it.
 
 But then other details piled up.
 
