@@ -36,7 +36,7 @@ Clementi's distinctive arpeggiated E-flat and B-flat major chords in measure 4 s
 
 ![Figure 2. Early chord pattern]({{ "assets/clementi/figure_02_chord_pattern.png" | absolute_url }})
 
-By itself, this could easily be just a conventional turn from the galant-style keyboard music that was popular in the 1770s. Mozart's six Munich sonatas are known to be modelled on Haydn's Esterházy sonatas, and a number of features of Mozart's K. 281 resemble Haydn's Sonata in E-flat major, Hob. XVI:25. At first I thought no more of it.
+By itself, this could easily be just a conventional turn from the keyboard music of the 1770s. At first I thought no more of it.
 
 But then other details piled up.
 
@@ -44,15 +44,13 @@ What if the borrowing did not run only one way? What if Clementi's B-flat sonata
 
 Mozart composed his sonata K. 281 in Munich in 1775. Like Clementi's later sonata, it is in B-flat major and written in a "brilliant" keyboard style.
 
-There is a serious historical difficulty, though, which I will come back to: according to the [Mozarteum catalogue](https://kv.mozarteum.at/en/work/sonata-in-b-flat-for-clavier-3056), K. 281 was not published until 1799, so Clementi could not simply have bought a printed copy in London before the Vienna meeting. If he knew it, the route could only have been private performance, manuscript circulation, or elite musical exchange.
+There is a serious historical difficulty, though, which I will come back to: Clementi could not simply have found Mozart's sonata in print before the Vienna meeting.
 
 That would matter historically. It would suggest Mozart's mature keyboard music was influencing other composers earlier than the publication record alone would lead us to think.
 
 But for now, let us focus on the score evidence.
 
 ## Three More Distinctive Features
-
-No single feature proves influence. What matters is an accumulation of a number of resemblances, in a piece in the same key and genre, in comparable positions within the work.
 
 ## 1. Rising Scale, Repeated Trill, and Fall
 
@@ -88,11 +86,11 @@ Clementi seems to take up that passing idea and, from m. 59, builds a much large
 
 The obvious objection is that these may all be common classical or galant keyboard formulas. Brilliant figuration, thirds, arpeggiation, scale patterns, dramatic register shifts? All belong to the shared language of late eighteenth-century keyboard writing.
 
-That objection matters because Mozart was not inventing this language from nowhere. His early sonatas belong to a broader contemporary sonata world, and the Mozarteum catalogue notes their relationship to Haydn's Esterházy sonatas. So some of the likenesses may reflect a common idiom rather than direct knowledge of this particular sonata.
+That objection matters because Mozart was not inventing this language from nowhere. His early sonatas belong to a broader contemporary sonata world, and the Mozarteum catalogue notes their relationship to Haydn's Esterházy sonatas. A number of features in K. 281 also resemble Haydn's Sonata in E-flat major, Hob. XVI:25. So some of the likenesses here may reflect a common idiom rather than direct knowledge of Mozart's sonata.
 
-But the case does not depend on one feature. It depends on accumulation. Clementi's sonata does not merely share a key and a few generic details with Mozart's; it touches it at several points: early chordal punctuation, thirds, near-identical opening left-hand writing in the later phrase, rising scale and repeated-trill rhetoric, descent to a low chord and C major pedal, and developmental figuration.
+But the case does not depend on one feature. What matters is an accumulation of a number of resemblances, in a piece in the same key and genre, in comparable positions within the work. Clementi's sonata does not merely share a key and a few generic details with Mozart's; it touches it at several points: early chordal punctuation, thirds, near-identical opening left-hand writing in the later phrase, rising scale and repeated-trill rhetoric, descent to a low chord and C major pedal, and developmental figuration.
 
-I cannot personally believe this is all coincidence. The question is whether this many localised similarities in the same key and genre are better explained by shared style or by knowledge of a particular piece.
+I cannot personally believe this is all coincidence. The question is whether this pattern is better explained by shared style or by direct acquaintance with K. 281.
 
 ## Could Clementi Have Known K. 281?
 
@@ -100,7 +98,7 @@ Here the argument becomes more difficult.
 
 Mozart was famous in London from childhood. The Mozart children performed there in 1764-65, and by 1765 Mozart's abilities as performer and composer were [publicly discussed in London](https://www.mozartdocuments.org/documents/10-may-1765/). Mozart's early keyboard sonatas K. 10-15 were published in London in 1765, although these were accompanied keyboard sonatas, not the later solo sonatas.
 
-Clementi lived in England from the later 1760s and became active in London musical life in the 1770s. By the time he left for the Continent, he was a leading keyboard musician. It is therefore very plausible that Clementi knew of Mozart, and plausible that he knew some early published Mozart music.
+Clementi lived in England from the later 1760s and became active in London musical life in the 1770s. By the time he left for the Continent, he was a leading keyboard musician. It is therefore very plausible that Clementi knew of Mozart, and quite possible that he knew some early published Mozart music.
 
 But the B-flat sonata is a harder problem. Mozart composed it in Munich in 1775, and it was not published until 1799. Clementi could not have obtained it through ordinary printed London circulation before 1781.
 
