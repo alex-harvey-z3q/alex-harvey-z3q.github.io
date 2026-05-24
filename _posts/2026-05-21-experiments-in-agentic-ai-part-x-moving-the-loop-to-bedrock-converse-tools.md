@@ -479,6 +479,66 @@ This was a useful reminder that there are now two kinds of success. If the model
 
 Both behaviours are useful, but they are not the same thing.
 
+## Making the Tool Loop Observable
+
+Once I understood that distinction, the next problem was observability. The workflow already wrote an `agent_trace.json` file, but the trace was still too close to a dump of prompts and formatted tool calls. It was possible to debug a run by reading it carefully, but it was not easy to answer the basic questions:
+
+- How many outer workflow iterations happened?
+- How many inner tool rounds happened inside the implementer?
+- Which tools were called, and how often?
+- Did the implementer run tests once, or did it fail, edit, and run them again?
+- Did any tool calls fail or arrive malformed?
+- What did the reviewer inspect?
+
+So I changed the trace shape. Each implementer and reviewer phase now records a compact `tool_loop` summary and a structured `tool_rounds` timeline. The top-level trace also gets an `observability` block that rolls those phase summaries up across the workflow.
+
+For example, after another Minesweeper run, the top-level observability block looked like this:
+
+```json
+{
+  "outer_iteration_count": 1,
+  "total_tool_call_count": 21,
+  "tool_call_counts": {
+    "write_file": 10,
+    "run_tests": 3,
+    "list_files": 1,
+    "read_file": 7
+  },
+  "phases": [
+    {
+      "phase": "implement",
+      "round_count": 13,
+      "tool_call_count": 13,
+      "run_tests_count": 2,
+      "error_count": 0
+    },
+    {
+      "phase": "review",
+      "round_count": 5,
+      "tool_call_count": 8,
+      "run_tests_count": 1,
+      "error_count": 0
+    }
+  ],
+  "stop_reason": "tests_passed_and_review_clean"
+}
+```
+
+That is a much better debugging surface. It says immediately that the run completed in one outer workflow iteration, but the implementer still took 13 inner tool rounds and ran the tests twice.
+
+The per-round trace then explains why:
+
+```text
+Round 1-8:  wrote the package, CLI, and tests
+Round 9:    ran tests and hit one failing generated test
+Round 10:   rewrote tests/test_game.py
+Round 11:   reran tests and got 63 passing tests
+Round 12:   listed files
+Round 13:   returned the final summary
+```
+
+This is still not a polished trace viewer. I am still reading JSON with `jq`. But the important observability gap is mostly closed: the trace now has enough structure to show the outer workflow, the inner tool loop, test runs, failures, repairs, and final state without reconstructing the story by hand from a wall of text.
+
 ## Comparing the Successful Minesweeper Solutions
 
 For release-candidate testing I kept asking the local agent to build the same small terminal Minesweeper game:
@@ -495,17 +555,17 @@ I ignored runs that failed before completion because of malformed tool calls or 
 - `52ea90b4a21e411988196893afee6bc2`
 - `46bd071b65254581ba8561e2b3d978cd`
 
-All five completed in one outer workflow iteration, passed their generated unit tests, and produced a playable terminal game. That does not mean they were equally good.
+All five completed in one outer workflow iteration, passed their generated unit tests, and produced a playable terminal game. That does not mean they were equally good. The observability work also made the table more interesting, because "one iteration" is no longer the only execution metric worth looking at.
 
-| Run | Unit tests | Implementer tool calls | Test runs inside implementer | Source LOC | Test LOC | Manual smoke | Notable finding |
-|---|---:|---:|---:|---:|---:|---|---|
-| `a7055675` | 61 passing | 11 | 1 | 334 | 474 | Passed | Flood-fill could reveal a flagged safe cell; win check could be fooled after revealing mines |
-| `9a770d5d` | 62 passing | 15 | 2 | 341 | 472 | Passed | Best all-round result; fixed tests inside the tool loop and survived manual probes |
-| `33daeaa1` | 44 passing | 14 | 2 | 336 | 411 | Passed | Small custom boards could place too few mines and immediately win |
-| `52ea90b4` | 60 passing | 14 | 2 | 344 | 500 | Passed | Strong result, but direct `Board` API accepted out-of-bounds coordinates |
-| `46bd071b` | 24 passing | 9 | 2 | 308 | 321 | Passed | Compact single-module design; interactive setup rather than CLI arguments |
+| Run | Unit tests | Implementer tool calls | Implementer test runs | Inner-loop signal | Source LOC | Test LOC | Manual smoke | Notable finding |
+|---|---:|---:|---:|---|---:|---:|---|---|
+| `a7055675` | 61 passing | 11 | 1 | Green on first internal test run | 334 | 474 | Passed | Flood-fill could reveal a flagged safe cell; win check could be fooled after revealing mines |
+| `9a770d5d` | 62 passing | 15 | 2 | Self-repaired after generated game-state tests failed | 341 | 472 | Passed | Best all-round result; fixed tests inside the tool loop and survived manual probes |
+| `33daeaa1` | 44 passing | 14 | 2 | Self-repaired after a flagging/game-over test failed | 336 | 411 | Passed | Small custom boards could place too few mines and immediately win |
+| `52ea90b4` | 60 passing | 14 | 2 | Self-repaired after a generated test accidentally revealed a win | 344 | 500 | Passed | Strong result, but direct `Board` API accepted out-of-bounds coordinates |
+| `46bd071b` | 24 passing | 9 | 2 | Self-repaired the deliberately broken win condition inside the tool loop | 308 | 321 | Passed | Compact single-module design; interactive setup rather than CLI arguments |
 
-The "test runs inside implementer" column is worth calling out. Only the first run wrote the implementation and got green tests immediately. The other four all hit at least one failing generated test, edited their own code or tests inside the Bedrock tool loop, and then returned with passing tests. (From the outer workflow's point of view, of course, those were still one-iteration successes.)
+The "implementer test runs" column is worth calling out. Only the first run wrote the implementation and got green tests immediately. The other four all hit at least one failing generated test, edited their own code or tests inside the Bedrock tool loop, and then returned with passing tests. (From the outer workflow's point of view, of course, those were still one-iteration successes.)
 
 ### Run `a7055675`
 
@@ -576,7 +636,7 @@ That makes it less polished than `9a770d5d`, but still a good generated implemen
 
 ### Run `46bd071b`
 
-This was the most recent successful first-outer-loop run I found in the old workspace directory. It came from the deliberate outer-loop test prompt, so it is slightly different from the other four: the prompt explicitly asked for a win-condition bug on the first attempt and then allowed the retry attempt to fix it.
+This run came from the deliberate outer-loop test prompt, so it is slightly different from the other four: the prompt explicitly asked for a win-condition bug on the first attempt and then allowed the retry attempt to fix it.
 
 In practice, the model handled that inside one outer workflow iteration. The first internal test run failed two win-condition tests. Claude then read the implementation, fixed the win condition, and reran the suite. The final result had 24 passing tests.
 
@@ -612,6 +672,8 @@ The other lesson is that one outer iteration can hide quite a lot of inner activ
 - whether the outer workflow had to retry, and
 - how much repair work happened inside the tool loop before the attempt finished.
 
+The structured trace makes that second question much easier to answer. In the later observability run, for example, the top-level workflow still said "one iteration", but the trace showed 13 implementer rounds, two implementer test runs, one failing generated test, a rewrite of `tests/test_game.py`, and then a clean test run. That is exactly the kind of inner-loop story that the original trace made too hard to see.
+
 ## Lessons and Remaining Gaps
 
 The biggest lesson is that tool use is a better abstraction than passing code around as formatted text.
@@ -631,12 +693,14 @@ Once the model can request tools, the application needs to care about:
 - output truncation;
 - repeated malformed calls;
 - maximum tool rounds;
-- trace files that are useful after the fact;
+- trace files that explain the run after the fact;
 - and the cost of longer conversations.
 
 The `write_file` failure made this concrete. Claude repeatedly tried to call `write_file` without `content`. That is a strange failure mode compared with the previous text-emission pipeline, but it is exactly the sort of failure a tool-using system has to handle. The fix was not just "prompt better". The application also needed to validate the tool input, return a useful error, count repeated malformed calls, and stop with a traceable failure.
 
 The third lesson is that the outer workflow loop is still useful, but it is now a coarser signal than before. A run can complete in one outer iteration while still doing several rounds of edit-test-repair inside the implementer. That is a good thing, but it means that "completed in one iteration" is no longer enough detail. I also need to know how many tool rounds happened, how many tests were run, whether tests failed before passing, and what the model changed after seeing those failures.
+
+Adding structured observability to `agent_trace.json` helped with that. The trace now records a top-level workflow summary, per-phase tool-loop summaries, and per-round tool timelines. That does not make it a full UI, but it does turn the inner loop from something I had to infer into something I can inspect directly.
 
 The final lesson is about validation. Minesweeper is a small task, but it still exposed real differences between generated solutions. Passing 60 generated tests did not guarantee that a manual probe would find no bugs. Some defects were outside the generated test suite, and some were more about interface quality than pure correctness. That suggests a useful benchmark needs both automated checks and a small release-candidate review.
 
@@ -646,13 +710,13 @@ The workspace boundary is useful, but it is not a hardened security boundary. Te
 
 The tool surface is still tiny. It is enough for this experiment, but real coding agents need richer filesystem operations, shell commands with permissions, search, patching, dependency installation, maybe browser or UI testing, and a way to ask before doing risky things.
 
-The interface is also still just an API. There is no terminal-style UI, no streaming trace view, no approval prompts, and no ergonomic way to inspect the workspace while the model is working. For this series that is fine, but it is another way in which this remains a minimal coding agent rather than a Claude Code replacement.
+The interface is also still just an API. There is no terminal-style UI, no streaming trace view, no approval prompts, and no ergonomic way to inspect the workspace while the model is working. The JSON trace is now much better, but it is still something I inspect after the fact rather than a live coding-agent interface. For this series that is fine, but it is another way in which this remains a minimal coding agent rather than a Claude Code replacement.
 
 Finally, Minesweeper is probably too easy. It was useful because it exercised multi-file generation, tests, and manual play, but a better benchmark would involve an existing codebase, ambiguous requirements, dependencies, and changes that need to preserve prior behaviour.
 
 ## What Comes Next
 
-The next useful step is to turn the trace data into something easier to inspect. The JSON trace is already valuable, but it should be possible to see the inner tool loop at a glance: tool calls, test runs, failures, retries, and the final state.
+The next useful step is to put a small UI on top of the trace data. The JSON trace now contains the right information, but reading it through `jq` is still a developer debugging workflow. A simple local trace viewer could show outer iterations, implement/review phases, inner tool rounds, failed test runs, repairs, and final state without making me spelunk through raw JSON.
 
 After that, the execution boundary and tool surface need to grow together. Search, patching, shell commands, dependency installation, browser or UI testing, and stronger isolation are all obvious candidates, but they only make sense if they come with a permission model.
 
